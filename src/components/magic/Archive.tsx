@@ -48,7 +48,7 @@ export function Archive() {
         </div>
 
         <Reveal delay={200} className="mt-10 text-center">
-          <Button variant="magic" size="lg" asChild>
+          <Button variant="magic" size="pill" asChild>
             <a href="#guestbook">Explore Archive</a>
           </Button>
         </Reveal>
