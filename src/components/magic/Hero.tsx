@@ -1,4 +1,4 @@
-import { BookOpen, Trophy, FolderStar, MailOpen } from "lucide-react";
+import { BookOpen, Trophy, FolderHeart, MailOpen } from "lucide-react";
 import { Reveal } from "./Reveal";
 import sky from "@/assets/sky.jpg";
 
@@ -12,7 +12,7 @@ const quickLinks = [
   },
   {
     id: "archive",
-    icon: FolderStar,
+    icon: FolderHeart,
     title: "My Digital Archive",
     sub: "Writings, projects, and moments",
   },
