@@ -1,10 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
-function useRandomItems(count: number, seedFn: (i: number) => Record<string, number>) {
-  return useMemo(
-    () => Array.from({ length: count }, (_, i) => seedFn(i)),
-    [count, seedFn],
-  );
+function useRandomItems<T>(count: number, seedFn: (i: number) => T): T[] {
+  return useMemo(() => Array.from({ length: count }, (_, i) => seedFn(i)), [count, seedFn]);
 }
 
 export function MagicBackground() {
