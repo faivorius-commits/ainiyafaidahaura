@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Sparkles } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { id: "home", label: "Home" },
-  { id: "journey", label: "My Journey" },
-  { id: "experience", label: "Experience" },
-  { id: "achievement", label: "Achievement" },
-  { id: "archive", label: "Digital Archive" },
-  { id: "guestbook", label: "Guest Book" },
-  { id: "contact", label: "Contact Me" },
-];
+  { to: "/", label: "Home" },
+  { to: "/journey", label: "My Journey" },
+  { to: "/experience", label: "Experience & Achievement" },
+  { to: "/archive", label: "Digital Archive" },
+  { to: "/contact", label: "Contact Me" },
+] as const;
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,20 +32,22 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-4">
-        <a href="#home" className="flex min-w-0 items-center gap-2">
+        <Link to="/" className="flex min-w-0 items-center gap-2">
           <Sparkles className="size-5 shrink-0 text-primary" />
           <span className="font-display truncate text-lg tracking-wide">Ainiya F. Haura</span>
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-5 lg:flex">
           {links.map((l) => (
-            <li key={l.id}>
-              <a
-                href={`#${l.id}`}
+            <li key={l.to}>
+              <Link
+                to={l.to}
+                activeOptions={{ exact: true }}
+                activeProps={{ className: "text-primary" }}
                 className="text-sm text-muted-foreground transition-colors hover:text-primary"
               >
                 {l.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -64,14 +65,16 @@ export function Navbar() {
       {open && (
         <ul className="glass mx-5 mb-4 grid gap-1 p-3 lg:hidden">
           {links.map((l) => (
-            <li key={l.id}>
-              <a
-                href={`#${l.id}`}
+            <li key={l.to}>
+              <Link
+                to={l.to}
+                activeOptions={{ exact: true }}
+                activeProps={{ className: "text-primary" }}
                 onClick={() => setOpen(false)}
                 className="block rounded-xl px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary"
               >
                 {l.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
