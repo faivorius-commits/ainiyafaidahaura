@@ -1,22 +1,26 @@
 import { BookOpen, Trophy, FolderHeart, MailOpen } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 import sky from "@/assets/sky.jpg";
+import photo from "@/assets/ainiya.jpg.asset.json";
 
 const quickLinks = [
-  { id: "journey", icon: BookOpen, title: "My Journey", sub: "The story behind who I am today" },
+  { id: "journey", to: "/journey", icon: BookOpen, title: "My Journey", sub: "The story behind who I am today" },
   {
     id: "experience",
+    to: "/experience",
     icon: Trophy,
     title: "Experience & Achievement",
     sub: "Things I've done, and proud of",
   },
   {
     id: "archive",
+    to: "/archive",
     icon: FolderHeart,
     title: "My Digital Archive",
     sub: "Writings, projects, and moments",
   },
-  { id: "contact", icon: MailOpen, title: "Contact Me", sub: "Let's connect and create together" },
+  { id: "contact", to: "/contact", icon: MailOpen, title: "Contact Me", sub: "Let's connect and create together" },
 ];
 
 export function Hero() {
@@ -47,10 +51,16 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={120} className="my-10 flex justify-center">
-          <div className="animate-floaty relative grid size-40 place-items-center rounded-full border border-primary/40 shadow-[0_0_50px_oklch(0.88_0.13_90/25%)]">
-            <span className="text-6xl">🪶</span>
+          <div className="animate-floaty relative grid size-44 place-items-center rounded-full border border-primary/40 p-1.5 shadow-[0_0_50px_oklch(0.88_0.13_90/25%)]">
+            <img
+              src={photo.url}
+              alt="Portrait of Ainiya Faida Haura"
+              width={440}
+              height={440}
+              className="size-full rounded-full object-cover object-top"
+            />
             <span className="animate-twinkle absolute -top-1 left-4 text-primary">✦</span>
-            <span className="animate-twinkle absolute right-2 bottom-4 text-primary">✦</span>
+            <span className="animate-twinkle absolute right-2 -bottom-1 text-primary">✦</span>
           </div>
         </Reveal>
 
@@ -67,8 +77,8 @@ export function Hero() {
         <div className="mt-10 grid gap-3">
           {quickLinks.map((l, i) => (
             <Reveal key={l.id} delay={i * 90}>
-              <a
-                href={`#${l.id}`}
+              <Link
+                to={l.to}
                 className="glass glass-hover flex items-center gap-4 px-4 py-3 text-left"
               >
                 <span className="logo-frame size-11 shrink-0">
@@ -79,12 +89,12 @@ export function Hero() {
                   <span className="block truncate text-xs text-muted-foreground">{l.sub}</span>
                 </span>
                 <span className="animate-twinkle shrink-0 text-primary">✦</span>
-              </a>
+              </Link>
             </Reveal>
           ))}
         </div>
 
-        <p className="mt-12 text-sm text-muted-foreground">Scroll to explore</p>
+        <p className="mt-12 text-sm text-muted-foreground">Sign my guest book below ✦</p>
       </div>
     </section>
   );

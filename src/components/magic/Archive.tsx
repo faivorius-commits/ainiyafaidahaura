@@ -1,7 +1,8 @@
-import { PenLine, Code2, Users } from "lucide-react";
+import { PenLine, Code2, Users, Library, BookOpen } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
+import { Link } from "@tanstack/react-router";
 
 const categories = [
   { icon: PenLine, title: "Writing", items: ["Poetry", "Short Stories", "Articles"] },
@@ -15,6 +16,20 @@ const categories = [
     title: "Organizations",
     items: ["Certificates", "Documentation", "Event Galleries"],
   },
+  {
+    icon: Library,
+    title: "Library",
+    items: ["Book Collection", "Reading Notes", "Favourite Quotes"],
+  },
+];
+
+const books = [
+  { title: "Laut Bercerita", author: "Leila S. Chudori", note: "Sejarah yang ditulis dengan luka dan cinta." },
+  { title: "Bumi Manusia", author: "Pramoedya Ananta Toer", note: "Tentang keberanian melawan ketidakadilan." },
+  { title: "Atomic Habits", author: "James Clear", note: "Perubahan kecil, hasil yang luar biasa." },
+  { title: "The Little Prince", author: "Antoine de Saint-Exupéry", note: "Yang penting tak terlihat oleh mata." },
+  { title: "Filosofi Teras", author: "Henry Manampiring", note: "Menenangkan pikiran ala Stoa." },
+  { title: "Norwegian Wood", author: "Haruki Murakami", note: "Melankoli yang indah dan sunyi." },
 ];
 
 export function Archive() {
@@ -26,7 +41,7 @@ export function Archive() {
           subtitle="Writings, projects, and moments — all in one constellation."
         />
 
-        <div className="grid gap-5 sm:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2">
           {categories.map((c, i) => (
             <Reveal key={c.title} delay={i * 110}>
               <article className="glass glass-hover h-full p-5">
@@ -47,9 +62,32 @@ export function Archive() {
           ))}
         </div>
 
-        <Reveal delay={200} className="mt-10 text-center">
+        <div className="mt-20">
+          <SectionTitle
+            title="Library"
+            subtitle="A little shelf of books that shaped the way I think and write."
+          />
+          <div className="grid gap-4 sm:grid-cols-2">
+            {books.map((b, i) => (
+              <Reveal key={b.title} delay={i * 80}>
+                <article className="glass glass-hover flex h-full items-start gap-4 p-4">
+                  <span className="logo-frame size-12 shrink-0">
+                    <BookOpen className="size-5 text-primary" />
+                  </span>
+                  <span className="min-w-0">
+                    <h3 className="font-display text-lg leading-tight">{b.title}</h3>
+                    <p className="text-xs text-primary">{b.author}</p>
+                    <p className="mt-1.5 text-sm text-muted-foreground">{b.note}</p>
+                  </span>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        <Reveal delay={200} className="mt-12 text-center">
           <Button variant="magic" size="pill" asChild>
-            <a href="#guestbook">Explore Archive</a>
+            <Link to="/contact">Let's Connect</Link>
           </Button>
         </Reveal>
       </div>
