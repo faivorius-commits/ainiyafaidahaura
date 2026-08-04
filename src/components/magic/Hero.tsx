@@ -28,7 +28,15 @@ export function Hero() {
         aria-hidden
         width={1024}
         height={1536}
-        className="pointer-events-none absolute inset-0 -z-10 size-full object-cover opacity-45"
+        className="pointer-events-none absolute inset-0 -z-20 size-full object-cover opacity-40"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(75% 55% at 50% 45%, oklch(0.18 0.09 293 / 55%), transparent 70%), linear-gradient(180deg, oklch(0.18 0.09 293 / 45%) 0%, oklch(0.2 0.09 293 / 25%) 45%, oklch(0.19 0.09 293 / 70%) 100%)",
+        }}
       />
       <div className="relative mx-auto w-full max-w-xl text-center">
         <Reveal>
