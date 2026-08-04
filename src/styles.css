@@ -175,9 +175,9 @@
   --gradient-aurora: linear-gradient(
     180deg,
     oklch(0.17 0.09 293) 0%,
-    oklch(0.32 0.14 300) 35%,
-    oklch(0.55 0.15 340) 65%,
-    oklch(0.78 0.14 60) 100%
+    oklch(0.28 0.13 300) 40%,
+    oklch(0.4 0.14 330) 75%,
+    oklch(0.52 0.14 45) 100%
   );
   --gradient-gold: linear-gradient(
     100deg,
