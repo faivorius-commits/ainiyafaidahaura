@@ -83,8 +83,8 @@ export function Archive() {
             {projects.map((p, i) => (
               <Reveal key={p.title} delay={i * 80}>
                 <article className="glass glass-hover h-full p-5">
-                  <span className="logo-frame mb-4 size-12">
-                    <Code2 className="size-5 text-primary" />
+                  <span className="logo-frame mb-4 size-12 overflow-hidden p-0">
+                    <img src={p.image} alt={p.title} className="size-full object-cover" />
                   </span>
                   <h3 className="font-display text-xl leading-tight">{p.title}</h3>
                   <a
