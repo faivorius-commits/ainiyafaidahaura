@@ -1,9 +1,6 @@
 import { BookOpen, Trophy, FolderHeart, MailOpen } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
-import sky from "@/assets/sky.jpg";
-import photo from "@/assets/ainiya.jpg.asset.json";
-
 const quickLinks = [
   { id: "journey", to: "/journey", icon: BookOpen, title: "My Journey", sub: "The story behind who I am today" },
   {
@@ -27,7 +24,7 @@ export function Hero() {
   return (
     <section id="home" className="relative flex min-h-screen items-center justify-center px-5 pt-28 pb-20">
       <img
-        src={sky}
+        src="/assets/sky.jpg"
         alt=""
         aria-hidden
         width={1024}
@@ -53,7 +50,7 @@ export function Hero() {
         <Reveal delay={120} className="my-10 flex justify-center">
           <div className="animate-floaty relative grid size-44 place-items-center rounded-full border border-primary/40 p-1.5 shadow-[0_0_50px_oklch(0.88_0.13_90/25%)]">
             <img
-              src={photo.url}
+              src="/assets/ainiya.jpg"
               alt="Portrait of Ainiya Faida Haura"
               width={440}
               height={440}
