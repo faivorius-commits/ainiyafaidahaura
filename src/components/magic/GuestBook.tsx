@@ -16,12 +16,6 @@ const initialEntries: Entry[] = [
     message: "Your writing always feels like moonlight on paper. Keep shining! ✨",
     date: "July 2026",
   },
-  {
-    id: 2,
-    name: "Rafi",
-    message: "Such a magical little universe. Excited to see what you build next.",
-    date: "June 2026",
-  },
 ];
 
 export function GuestBook() {

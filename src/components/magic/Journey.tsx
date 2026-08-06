@@ -2,22 +2,10 @@ import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 
 const milestones = [
-  {
-    year: "2021",
-    text: "Beginning my journey through international education and language services.",
-  },
-  {
-    year: "2025",
-    text: "Joined Pelajar Merah Putih Batch 3 and started becoming active in youth communities.",
-  },
-  {
-    year: "2026",
-    text: "Expanded into literature, technology, youth advocacy, cybersecurity, creative writing, digital projects, and international volunteering.",
-  },
-  {
-    year: "Future",
-    text: "Building impactful innovations that combine creativity, technology, and meaningful social impact.",
-  },
+  { year: "2009", text: "Lahir" },
+  { year: "2015 – 2021", text: "Al-Huda Islamic Elementary School" },
+  { year: "2021 – 2024", text: "Sixteen Junior Highschool Bekasi" },
+  { year: "2024 – 2027", text: "Yadika 8 Senior Highschool" },
 ];
 
 export function Journey() {
