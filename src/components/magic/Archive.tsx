@@ -3,6 +3,7 @@ import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
+import teddyTownLogo from "@/assets/teddy-town-logo.jpg.asset.json";
 
 const categories = [
   { icon: PenLine, title: "Writing", items: ["Poetry", "Short Stories", "Articles"] },
@@ -35,8 +36,9 @@ const books = [
 const projects = [
   {
     title: "Cozy Teddy Town — Minisuperasep",
-    url: "https://minisuperasep-town-vercel.app",
-    label: "minisuperasep-town-vercel.app",
+    url: "https://minisuperasep-town.vercel.app",
+    label: "minisuperasep-town.vercel.app",
+    image: teddyTownLogo.url,
     description:
       "Cozy web application where users build friendships with virtual teddy bears by reading daily letters, collecting unique characters, and tracking their progress through an interactive, responsive interface. Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.",
   },
@@ -81,8 +83,8 @@ export function Archive() {
             {projects.map((p, i) => (
               <Reveal key={p.title} delay={i * 80}>
                 <article className="glass glass-hover h-full p-5">
-                  <span className="logo-frame mb-4 size-12">
-                    <Code2 className="size-5 text-primary" />
+                  <span className="logo-frame mb-4 size-12 overflow-hidden p-0">
+                    <img src={p.image} alt={p.title} className="size-full object-cover" />
                   </span>
                   <h3 className="font-display text-xl leading-tight">{p.title}</h3>
                   <a
