@@ -1,17 +1,11 @@
 import { MapPin, Sparkles } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
-import ilp from "@/assets/ilp.jpg.asset.json";
-import pmp from "@/assets/pmp.jpg.asset.json";
-import scn from "@/assets/scn.jpg.asset.json";
-import lamina from "@/assets/lamina.png.asset.json";
-import pustaka from "@/assets/pustaka.jpg.asset.json";
-
 const experiences = [
   {
     position: "Registrar Staff",
     org: "International Language Programme",
-    logo: ilp.url,
+    logo: "/assets/ilp.jpg",
     duration: "2021 – 2025",
     location: "Grand Wisata, Indonesia",
     type: "Part-Time Work",
@@ -21,7 +15,7 @@ const experiences = [
   {
     position: "Member",
     org: "Pelajar Merah Putih Batch 3",
-    logo: pmp.url,
+    logo: "/assets/pmp.jpg",
     duration: "December 2025 – Present",
     location: "Indonesia",
     type: "Organization",
@@ -31,7 +25,7 @@ const experiences = [
   {
     position: "Content Maker",
     org: "Srikandi Cahaya Nusantara Batch 2",
-    logo: scn.url,
+    logo: "/assets/scn.jpg",
     duration: "June 2026 – Present",
     location: "Indonesia",
     type: "Organization",
@@ -41,7 +35,7 @@ const experiences = [
   {
     position: "Event Coordinator",
     org: "Lamina Press Publisher",
-    logo: lamina.url,
+    logo: "/assets/lamina.png",
     duration: "February 2026 – July 2026",
     location: "Indonesia",
     type: "Work",
@@ -51,7 +45,7 @@ const experiences = [
   {
     position: "Event Coordinator",
     org: "Pustaka Sastra Publisher",
-    logo: pustaka.url,
+    logo: "/assets/pustaka.jpg",
     duration: "May 2026 – Present",
     location: "Indonesia",
     type: "Work",

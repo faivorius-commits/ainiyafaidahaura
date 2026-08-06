@@ -1,4 +1,4 @@
-import { Trophy, Award } from "lucide-react";
+import { Trophy } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 
@@ -7,13 +7,21 @@ const awards = [
     emoji: "🥇",
     title: "1st Ranked — Event Menulis Nasional",
     organizer: "Antero Literasi",
+    logo: "/assets/antero.jpg",
     year: "2026",
   },
-  { emoji: "🏆", title: "Best Analytical Thinking", organizer: "VERTEX", year: "2026" },
+  {
+    emoji: "🏆",
+    title: "Best Analytical Thinking",
+    organizer: "VERTEX 2026",
+    logo: "/assets/vertex.jpg",
+    year: "2026",
+  },
   {
     emoji: "⭐",
     title: "Best Rookies — Cybersecurity Workshop",
     organizer: "Generation Girl Tangerang",
+    logo: "/assets/generation-girl.jpg",
     year: "2026",
   },
 ];
@@ -29,8 +37,13 @@ export function Achievement() {
             <Reveal key={a.title} delay={i * 110}>
               <article className="glass glass-hover h-full p-5">
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
-                  <div className="logo-frame size-14 shrink-0" aria-label="Organizer logo placeholder">
-                    <Award className="size-5 text-primary/70" />
+                  <div className="logo-frame size-14 shrink-0 overflow-hidden">
+                    <img
+                      src={a.logo}
+                      alt={`${a.organizer} logo`}
+                      loading="lazy"
+                      className="size-full rounded-[inherit] object-contain"
+                    />
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">

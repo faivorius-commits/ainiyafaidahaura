@@ -1,4 +1,4 @@
-import { PenLine, Code2, Users, Library, BookOpen } from "lucide-react";
+import { PenLine, Code2, Users, Library, BookOpen, ExternalLink } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
@@ -32,6 +32,16 @@ const books = [
   { title: "Norwegian Wood", author: "Haruki Murakami", note: "Melankoli yang indah dan sunyi." },
 ];
 
+const projects = [
+  {
+    title: "Cozy Teddy Town — Minisuperasep",
+    url: "https://minisuperasep-town-vercel.app",
+    label: "minisuperasep-town-vercel.app",
+    description:
+      "Cozy web application where users build friendships with virtual teddy bears by reading daily letters, collecting unique characters, and tracking their progress through an interactive, responsive interface. Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.",
+  },
+];
+
 export function Archive() {
   return (
     <section id="archive" className="relative px-5 py-24">
@@ -60,6 +70,35 @@ export function Archive() {
               </article>
             </Reveal>
           ))}
+        </div>
+
+        <div className="mt-20">
+          <SectionTitle
+            title="Projects"
+            subtitle="Things I built with code, curiosity, and a bit of magic."
+          />
+          <div className="grid gap-4">
+            {projects.map((p, i) => (
+              <Reveal key={p.title} delay={i * 80}>
+                <article className="glass glass-hover h-full p-5">
+                  <span className="logo-frame mb-4 size-12">
+                    <Code2 className="size-5 text-primary" />
+                  </span>
+                  <h3 className="font-display text-xl leading-tight">{p.title}</h3>
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-1 inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
+                  >
+                    {p.label}
+                    <ExternalLink className="size-3" />
+                  </a>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
 
         <div className="mt-20">
