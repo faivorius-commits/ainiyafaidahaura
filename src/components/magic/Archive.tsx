@@ -1,4 +1,4 @@
-import { PenLine, Code2, Users, Library, BookOpen, ExternalLink } from "lucide-react";
+import { PenLine, Code2, Users, Library, BookOpen, ExternalLink, Feather } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
