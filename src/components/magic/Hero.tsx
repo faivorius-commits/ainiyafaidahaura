@@ -1,4 +1,4 @@
-import { BookOpen, Trophy, FolderHeart, MailOpen } from "lucide-react";
+import { BookOpen, Trophy, FolderHeart, MailOpen, Feather } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 const quickLinks = [
@@ -16,6 +16,13 @@ const quickLinks = [
     icon: FolderHeart,
     title: "My Digital Archive",
     sub: "Writings, projects, and moments",
+  },
+  {
+    id: "poetry",
+    to: "/poetry",
+    icon: Feather,
+    title: "Poetry",
+    sub: "Verses written on paper and starlight",
   },
   { id: "contact", to: "/contact", icon: MailOpen, title: "Contact Me", sub: "Let's connect and create together" },
 ];
