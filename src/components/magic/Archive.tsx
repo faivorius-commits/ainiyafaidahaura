@@ -127,6 +127,14 @@ export function Archive() {
         </div>
 
         <Reveal delay={200} className="mt-12 text-center">
+          <div className="mb-4">
+            <Button variant="magic" size="pill" asChild>
+              <Link to="/poetry">
+                <Feather className="size-4" />
+                Read My Poetry
+              </Link>
+            </Button>
+          </div>
           <Button variant="magic" size="pill" asChild>
             <Link to="/contact">Let's Connect</Link>
           </Button>
