@@ -8,6 +8,7 @@ const links = [
   { to: "/journey", label: "My Journey" },
   { to: "/experience", label: "Experience & Achievement" },
   { to: "/archive", label: "Digital Archive" },
+  { to: "/poetry", label: "Poetry" },
   { to: "/contact", label: "Contact Me" },
 ] as const;
 

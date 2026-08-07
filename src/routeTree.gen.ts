@@ -14,6 +14,7 @@ import { Route as ArchiveRouteImport } from './routes/archive'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as JourneyRouteImport } from './routes/journey'
+import { Route as PoetryRouteImport } from './routes/poetry'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const JourneyRoute = JourneyRouteImport.update({
   path: '/journey',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PoetryRoute = PoetryRouteImport.update({
+  id: '/poetry',
+  path: '/poetry',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/journey': typeof JourneyRoute
+  '/poetry': typeof PoetryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/journey': typeof JourneyRoute
+  '/poetry': typeof PoetryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,22 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/journey': typeof JourneyRoute
+  '/poetry': typeof PoetryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/archive' | '/contact' | '/experience' | '/journey'
+  fullPaths:
+    '/' | '/archive' | '/contact' | '/experience' | '/journey' | '/poetry'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/archive' | '/contact' | '/experience' | '/journey'
-  id: '__root__' | '/' | '/archive' | '/contact' | '/experience' | '/journey'
+  to: '/' | '/archive' | '/contact' | '/experience' | '/journey' | '/poetry'
+  id:
+    | '__root__'
+    | '/'
+    | '/archive'
+    | '/contact'
+    | '/experience'
+    | '/journey'
+    | '/poetry'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +94,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ExperienceRoute: typeof ExperienceRoute
   JourneyRoute: typeof JourneyRoute
+  PoetryRoute: typeof PoetryRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +134,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JourneyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/poetry': {
+      id: '/poetry'
+      path: '/poetry'
+      fullPath: '/poetry'
+      preLoaderRoute: typeof PoetryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,17 +150,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ExperienceRoute: ExperienceRoute,
   JourneyRoute: JourneyRoute,
+  PoetryRoute: PoetryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
