@@ -5,7 +5,7 @@ const experiences = [
   {
     position: "Registrar Staff",
     org: "International Language Programme",
-    logo: "/assets/ilp.jpg",
+    logo: "/images/ilp.jpg",
     duration: "2021 – 2025",
     location: "Grand Wisata, Indonesia",
     type: "Part-Time Work",
@@ -15,7 +15,7 @@ const experiences = [
   {
     position: "Member",
     org: "Pelajar Merah Putih Batch 3",
-    logo: "/assets/pmp.jpg",
+    logo: "/images/pmp.jpg",
     duration: "December 2025 – Present",
     location: "Indonesia",
     type: "Organization",
@@ -25,7 +25,7 @@ const experiences = [
   {
     position: "Content Maker",
     org: "Srikandi Cahaya Nusantara Batch 2",
-    logo: "/assets/scn.jpg",
+    logo: "/images/scn.jpg",
     duration: "June 2026 – Present",
     location: "Indonesia",
     type: "Organization",
@@ -35,7 +35,7 @@ const experiences = [
   {
     position: "Event Coordinator",
     org: "Lamina Press Publisher",
-    logo: "/assets/lamina.png",
+    logo: "/images/lamina.png",
     duration: "February 2026 – July 2026",
     location: "Indonesia",
     type: "Work",
@@ -45,7 +45,7 @@ const experiences = [
   {
     position: "Event Coordinator",
     org: "Pustaka Sastra Publisher",
-    logo: "/assets/pustaka.jpg",
+    logo: "/images/pustaka.jpg",
     duration: "May 2026 – Present",
     location: "Indonesia",
     type: "Work",

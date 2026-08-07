@@ -1,4 +1,4 @@
-import { BookOpen, Trophy, FolderHeart, MailOpen, Feather } from "lucide-react";
+import { BookOpen, Trophy, FolderHeart, MailOpen } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 const quickLinks = [
@@ -17,13 +17,6 @@ const quickLinks = [
     title: "My Digital Archive",
     sub: "Writings, projects, and moments",
   },
-  {
-    id: "poetry",
-    to: "/poetry",
-    icon: Feather,
-    title: "Poetry",
-    sub: "Verses written on paper and starlight",
-  },
   { id: "contact", to: "/contact", icon: MailOpen, title: "Contact Me", sub: "Let's connect and create together" },
 ];
 
@@ -31,7 +24,7 @@ export function Hero() {
   return (
     <section id="home" className="relative flex min-h-screen items-center justify-center px-5 pt-28 pb-20">
       <img
-        src="/assets/sky.jpg"
+        src="/images/sky.jpg"
         alt=""
         aria-hidden
         width={1024}
@@ -57,7 +50,7 @@ export function Hero() {
         <Reveal delay={120} className="my-10 flex justify-center">
           <div className="animate-floaty relative grid size-44 place-items-center rounded-full border border-primary/40 p-1.5 shadow-[0_0_50px_oklch(0.88_0.13_90/25%)]">
             <img
-              src="/assets/ainiya.jpg"
+              src="/images/ainiya.jpg"
               alt="Portrait of Ainiya Faida Haura"
               width={440}
               height={440}
