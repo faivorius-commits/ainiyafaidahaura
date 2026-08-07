@@ -1,6 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 
-const OWNER_EMAIL = "faivorius@gmail.com";
+// Resend test sending only delivers to the Resend account owner's address.
+// Verify a domain at resend.com/domains to send anywhere else.
+const OWNER_EMAIL = "auuraaaa10@gmail.com";
 
 export type GuestBookInput = { name: string; email?: string; message: string };
 
