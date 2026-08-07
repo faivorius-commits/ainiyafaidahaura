@@ -1,4 +1,4 @@
-import { PenLine, Code2, Users, Library, BookOpen, ExternalLink } from "lucide-react";
+import { PenLine, Code2, Users, Library, BookOpen, ExternalLink, Feather } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
@@ -127,6 +127,14 @@ export function Archive() {
         </div>
 
         <Reveal delay={200} className="mt-12 text-center">
+          <div className="mb-4">
+            <Button variant="magic" size="pill" asChild>
+              <Link to="/poetry">
+                <Feather className="size-4" />
+                Read My Poetry
+              </Link>
+            </Button>
+          </div>
           <Button variant="magic" size="pill" asChild>
             <Link to="/contact">Let's Connect</Link>
           </Button>
