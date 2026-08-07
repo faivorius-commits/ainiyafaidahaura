@@ -3,10 +3,9 @@ import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
-import teddyTownLogo from "@/assets/teddy-town-logo.jpg.asset.json";
 
 const categories = [
-  { icon: PenLine, title: "Writing", items: ["Poetry", "Short Stories", "Articles"] },
+  { icon: PenLine, title: "Writing", items: ["Short Stories", "Articles"] },
   {
     icon: Code2,
     title: "Projects",
@@ -38,9 +37,14 @@ const projects = [
     title: "Cozy Teddy Town — Minisuperasep",
     url: "https://minisuperasep-town.vercel.app",
     label: "minisuperasep-town.vercel.app",
-    image: teddyTownLogo.url,
+    image: "/images/teddy-town-logo.jpg",
     description:
       "Cozy web application where users build friendships with virtual teddy bears by reading daily letters, collecting unique characters, and tracking their progress through an interactive, responsive interface. Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.",
+  },
+  {
+    title: "Save The Light: Protect The Deer",
+    image: "/images/save-the-light.jpg",
+    description: "Protect the magical deer from red eyes.",
   },
 ];
 
@@ -62,6 +66,18 @@ export function Archive() {
                 </span>
                 <h3 className="font-display text-xl">{c.title}</h3>
                 <ul className="mt-3 grid gap-2">
+                  {c.title === "Writing" && (
+                    <li>
+                      <Link
+                        to="/poetry"
+                        className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                      >
+                        <span className="text-primary">✦</span>
+                        Poetry
+                        <Feather className="ml-auto size-3.5 text-primary" />
+                      </Link>
+                    </li>
+                  )}
                   {c.items.map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
                       <span className="text-primary">✦</span>
@@ -87,15 +103,17 @@ export function Archive() {
                     <img src={p.image} alt={p.title} className="size-full object-cover" />
                   </span>
                   <h3 className="font-display text-xl leading-tight">{p.title}</h3>
-                  <a
-                    href={p.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-1 inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
-                  >
-                    {p.label}
-                    <ExternalLink className="size-3" />
-                  </a>
+                  {p.url && p.label && (
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-1 inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
+                    >
+                      {p.label}
+                      <ExternalLink className="size-3" />
+                    </a>
+                  )}
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
                 </article>
               </Reveal>
@@ -127,14 +145,6 @@ export function Archive() {
         </div>
 
         <Reveal delay={200} className="mt-12 text-center">
-          <div className="mb-4">
-            <Button variant="magic" size="pill" asChild>
-              <Link to="/poetry">
-                <Feather className="size-4" />
-                Read My Poetry
-              </Link>
-            </Button>
-          </div>
           <Button variant="magic" size="pill" asChild>
             <Link to="/contact">Let's Connect</Link>
           </Button>
