@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from "react";
-import { Sparkles, Send } from "lucide-react";
+import { Sparkles, Send, Loader2 } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { sendGuestBookMessage } from "@/lib/guestbook.functions";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
@@ -23,23 +25,33 @@ export function GuestBook() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const sendMessage = useServerFn(sendGuestBookMessage);
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !message.trim()) return;
-    setEntries((prev) => [
-      {
-        id: Date.now(),
-        name: name.trim(),
-        message: message.trim(),
-        date: "Just now",
-        fresh: true,
-      },
-      ...prev,
-    ]);
-    setName("");
-    setEmail("");
-    setMessage("");
+    setStatus("sending");
+    try {
+      await sendMessage({ data: { name: name.trim(), email: email.trim(), message: message.trim() } });
+      setEntries((prev) => [
+        {
+          id: Date.now(),
+          name: name.trim(),
+          message: message.trim(),
+          date: "Just now",
+          fresh: true,
+        },
+        ...prev,
+      ]);
+      setName("");
+      setEmail("");
+      setMessage("");
+      setStatus("sent");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   };
 
   return (
@@ -86,10 +98,30 @@ export function GuestBook() {
                 className="border-primary/30 bg-background/20"
               />
             </div>
-            <Button type="submit" variant="magic" size="pill" className="justify-self-center">
-              <Send className="size-4" />
-              Send Message
+            <Button
+              type="submit"
+              variant="magic"
+              size="pill"
+              disabled={status === "sending"}
+              className="justify-self-center"
+            >
+              {status === "sending" ? (
+                <Loader2 className="size-4 animate-spin" />
+              ) : (
+                <Send className="size-4" />
+              )}
+              {status === "sending" ? "Sending…" : "Send Message"}
             </Button>
+            {status === "sent" && (
+              <p className="text-center text-sm text-primary">
+                ✦ Thank you! Your message has been sent.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="text-center text-sm text-destructive">
+                Something went wrong. Please try again later.
+              </p>
+            )}
           </form>
         </Reveal>
 
