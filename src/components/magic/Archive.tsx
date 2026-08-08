@@ -1,15 +1,18 @@
-import { PenLine, Code2, Users, Library, BookOpen, ExternalLink, Feather } from "lucide-react";
+import { PenLine, Code2, Users, Library as LibraryIcon, ExternalLink, Feather, BookOpen } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 
+const HEAL_URL =
+  "https://www.linkedin.com/safety/go/?url=https%3A%2F%2Fqrcbn%2Ecom%2Fcheck%2F62-6264-2709-644&urlhash=G5Vl&mt=1teoDSHvMUFvAMyOZvTZKRUxfUz4YPNmGS4c-mKdGl4mahs4VpEYYkKu1GMpQesvw9lXmzcm70BmZtLe2zgqEuvDcSHA&isSdui=true";
+
 const categories = [
-  { icon: PenLine, title: "Writing", items: ["Short Stories", "Articles"] },
+  { icon: PenLine, title: "Writing", items: ["Articles"] },
   {
     icon: Code2,
     title: "Projects",
-    items: ["Portfolio Website", "Mobile Apps", "UI/UX", "Cybersecurity"],
+    items: ["UI/UX", "Cybersecurity"],
   },
   {
     icon: Users,
@@ -17,19 +20,10 @@ const categories = [
     items: ["Certificates", "Documentation", "Event Galleries"],
   },
   {
-    icon: Library,
+    icon: LibraryIcon,
     title: "Library",
-    items: ["Book Collection", "Reading Notes", "Favourite Quotes"],
+    items: ["Reading Notes", "Favourite Quotes"],
   },
-];
-
-const books = [
-  { title: "Laut Bercerita", author: "Leila S. Chudori", note: "Sejarah yang ditulis dengan luka dan cinta." },
-  { title: "Bumi Manusia", author: "Pramoedya Ananta Toer", note: "Tentang keberanian melawan ketidakadilan." },
-  { title: "Atomic Habits", author: "James Clear", note: "Perubahan kecil, hasil yang luar biasa." },
-  { title: "The Little Prince", author: "Antoine de Saint-Exupéry", note: "Yang penting tak terlihat oleh mata." },
-  { title: "Filosofi Teras", author: "Henry Manampiring", note: "Menenangkan pikiran ala Stoa." },
-  { title: "Norwegian Wood", author: "Haruki Murakami", note: "Melankoli yang indah dan sunyi." },
 ];
 
 const projects = [
@@ -39,7 +33,7 @@ const projects = [
     label: "minisuperasep-town.vercel.app",
     image: "/images/teddy-town-logo.jpg",
     description:
-      "Cozy web application where users build friendships with virtual teddy bears by reading daily letters, collecting unique characters, and tracking their progress through an interactive, responsive interface. Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.",
+      "Cozy web application where users build friendships with virtual teddy bears by reading daily letters, collecting unique characters, and tracking their progress through an interactive, responsive interface.",
   },
   {
     title: "Save The Light: Protect The Deer",
@@ -67,14 +61,48 @@ export function Archive() {
                 <h3 className="font-display text-xl">{c.title}</h3>
                 <ul className="mt-3 grid gap-2">
                   {c.title === "Writing" && (
+                    <>
+                      <li>
+                        <Link
+                          to="/poetry"
+                          className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                        >
+                          <span className="text-primary">✦</span>
+                          Poetry
+                          <Feather className="ml-auto size-3.5 text-primary" />
+                        </Link>
+                      </li>
+                      <li>
+                        <a
+                          href="#short-stories"
+                          className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                        >
+                          <span className="text-primary">✦</span>
+                          Short Stories
+                        </a>
+                      </li>
+                    </>
+                  )}
+                  {c.title === "Projects" && (
                     <li>
-                      <Link
-                        to="/poetry"
+                      <a
+                        href="#projects"
                         className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
                       >
                         <span className="text-primary">✦</span>
-                        Poetry
-                        <Feather className="ml-auto size-3.5 text-primary" />
+                        Website / Apps
+                      </a>
+                    </li>
+                  )}
+                  {c.title === "Library" && (
+                    <li>
+                      <Link
+                        to="/library"
+                        className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                      >
+                        <span className="text-primary">✦</span>
+                        Book Collection
+                        <BookOpen className="ml-auto size-3.5 text-primary" />
                       </Link>
                     </li>
                   )}
@@ -90,9 +118,39 @@ export function Archive() {
           ))}
         </div>
 
-        <div className="mt-20">
+        <div id="short-stories" className="mt-20 scroll-mt-28">
           <SectionTitle
-            title="Projects"
+            title="Short Stories"
+            subtitle="Stories published in print — small worlds folded into paper."
+          />
+          <Reveal>
+            <article className="glass glass-hover p-5">
+              <span className="logo-frame mb-4 size-12">
+                <PenLine className="size-5 text-primary" />
+              </span>
+              <h3 className="font-display text-xl leading-tight">
+                “Heal” — Short Story Anthology, Festival Sastra Volume 6
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                A published short story anthology featuring my work, released as part of Festival
+                Sastra Volume 6.
+              </p>
+              <a
+                href={HEAL_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20"
+              >
+                QRCBN
+                <ExternalLink className="size-3" />
+              </a>
+            </article>
+          </Reveal>
+        </div>
+
+        <div id="projects" className="mt-20 scroll-mt-28">
+          <SectionTitle
+            title="Projects — Website / Apps"
             subtitle="Things I built with code, curiosity, and a bit of magic."
           />
           <div className="grid gap-4">
@@ -121,30 +179,10 @@ export function Archive() {
           </div>
         </div>
 
-        <div className="mt-20">
-          <SectionTitle
-            title="Library"
-            subtitle="A little shelf of books that shaped the way I think and write."
-          />
-          <div className="grid gap-4 sm:grid-cols-2">
-            {books.map((b, i) => (
-              <Reveal key={b.title} delay={i * 80}>
-                <article className="glass glass-hover flex h-full items-start gap-4 p-4">
-                  <span className="logo-frame size-12 shrink-0">
-                    <BookOpen className="size-5 text-primary" />
-                  </span>
-                  <span className="min-w-0">
-                    <h3 className="font-display text-lg leading-tight">{b.title}</h3>
-                    <p className="text-xs text-primary">{b.author}</p>
-                    <p className="mt-1.5 text-sm text-muted-foreground">{b.note}</p>
-                  </span>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-
-        <Reveal delay={200} className="mt-12 text-center">
+        <Reveal delay={200} className="mt-12 flex flex-wrap justify-center gap-3">
+          <Button variant="magic" size="pill" asChild>
+            <Link to="/library">Open the Library</Link>
+          </Button>
           <Button variant="magic" size="pill" asChild>
             <Link to="/contact">Let's Connect</Link>
           </Button>
