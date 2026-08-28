@@ -1,4 +1,4 @@
-import { PenLine, Code2, Users, Library as LibraryIcon, Feather, BookOpen } from "lucide-react";
+import { PenLine, Code2, Users, Library as LibraryIcon, Feather, BookOpen, ExternalLink } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
@@ -23,8 +23,8 @@ export function Archive() {
               <h3 className="font-display text-xl">Writing</h3>
               <ul className="mt-3 grid gap-2">
                 <li>
-                  <Link to="/poetry" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
-                    <span className="text-primary">✦</span>Poetry<Feather className="ml-auto size-3.5" />
+                  <Link to="/poetry" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
+                    <span className="text-primary">✦</span>Poetry<Feather className="ml-auto size-3.5 text-primary" />
                   </Link>
                 </li>
                 <li>
@@ -49,7 +49,7 @@ export function Archive() {
               <h3 className="font-display text-xl">Projects</h3>
               <ul className="mt-3 grid gap-2">
                 <li>
-                  <Link to="/archive/website-apps" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
+                  <Link to="/archive/website-apps" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
                     <span className="text-primary">✦</span>Website / Apps
                   </Link>
                 </li>
@@ -89,8 +89,8 @@ export function Archive() {
               <h3 className="font-display text-xl">Library</h3>
               <ul className="mt-3 grid gap-2">
                 <li>
-                  <Link to="/library" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
-                    <span className="text-primary">✦</span>Book Collection<BookOpen className="ml-auto size-3.5" />
+                  <Link to="/library" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
+                    <span className="text-primary">✦</span>Book Collection<BookOpen className="ml-auto size-3.5 text-primary" />
                   </Link>
                 </li>
                 <li><span className="flex items-center gap-2 text-sm text-muted-foreground"><span className="text-primary">✦</span>Reading Notes</span></li>
@@ -107,8 +107,8 @@ export function Archive() {
               <span className="logo-frame mb-4 size-12"><PenLine className="size-5 text-primary" /></span>
               <h3 className="font-display text-xl leading-tight">“Heal” — Short Story Anthology, Festival Sastra Volume 6</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">A published short story anthology featuring my work, released as part of Festival Sastra Volume 6.</p>
-              <a href={HEAL_URL} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs text-primary">
-                QRCBN <ExternalLink size={12} />
+              <a href={HEAL_URL} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">
+                QRCBN<ExternalLink className="size-3" />
               </a>
             </article>
           </Reveal>
