@@ -86,15 +86,24 @@ export function Archive() {
                     </>
                   )}
                   {c.title === "Projects" && (
-                    <li>
-                      <a
-                        href="#projects"
-                        className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-                      >
-                        <span className="text-primary">✦</span>
-                        Website / Apps
-                      </a>
-                    </li>
+                    <>
+                      <li>
+                        <a
+                          href="#projects"
+                          className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                        >
+                          <span className="text-primary">✦</span>
+                          Website / Apps
+                          <ExternalLink className="ml-auto size-3.5 text-primary" />
+                        </a>
+                      </li>
+                      {c.items.map((item) => (
+                        <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <span className="text-primary">✦</span>
+                          {item}
+                        </li>
+                      ))}
+                    </>
                   )}
                   {c.title === "Library" && (
                     <li>
@@ -108,12 +117,13 @@ export function Archive() {
                       </Link>
                     </li>
                   )}
-                  {c.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <span className="text-primary">✦</span>
-                      {item}
-                    </li>
-                  ))}
+                  {c.title !== "Writing" && c.title !== "Projects" && c.title !== "Library" &&
+                    c.items.map((item) => (
+                      <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span className="text-primary">✦</span>
+                        {item}
+                      </li>
+                    ))}
                 </ul>
               </article>
             </Reveal>
@@ -192,4 +202,4 @@ export function Archive() {
       </div>
     </section>
   );
-}
+          }
