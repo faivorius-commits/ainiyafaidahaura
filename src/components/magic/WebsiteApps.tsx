@@ -1,6 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
+import { Link } from "@tanstack/react-router";
 
 const projects = [
   {
@@ -15,7 +16,7 @@ const projects = [
     url: "https://fivorius.itch.io",
     label: "Private Project",
     image: "/images/save-the-light.jpg",
-    description: "Protect the magical deer from red eyes.",
+    description: "Protect the magical deer from red lights.",
   },
 ];
 
@@ -23,6 +24,12 @@ export function WebsiteApps() {
   return (
     <section className="relative px-5 py-24">
       <div className="mx-auto max-w-3xl">
+        <Link 
+          to="/archive" 
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6"
+        >
+          ← Kembali ke Digital Archive
+        </Link>
         <SectionTitle title="Website / Apps" subtitle="Things I built with code, curiosity, and a bit of magic." />
         <div className="grid gap-4">
           {projects.map((p, i) => (
