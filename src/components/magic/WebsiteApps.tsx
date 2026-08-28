@@ -34,10 +34,10 @@ export function WebsiteApps() {
                 <h3 className="font-display text-xl leading-tight">{p.title}</h3>
                 {p.url && p.label && (
                   <a href={p.url} target="_blank" rel="noreferrer" className="mt-1 inline-flex items-center gap-1.5 text-xs text-primary hover:underline">
-                    {p.label}<ExternalLink size={12} />
+                    {p.label}<ExternalLink className="size-3" />
                   </a>
                 )}
-                <p className="mt-3 text-sm text-muted-foreground">{p.description}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
               </article>
             </Reveal>
           ))}
