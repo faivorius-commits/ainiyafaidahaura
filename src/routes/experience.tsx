@@ -1,5 +1,5 @@
 import { Honors } from "@/components/magic/Honors";
-import { Journey } from "@/components/magic/Journey";
+import { Experience } from "@/components/magic/Experience";
 import { Link } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -18,8 +18,8 @@ function ExperiencePage() {
           ← Back to home
         </Link>
 
-        <Journey />
-        <Experience & Honors/>
+        <Experience />
+        <Honors />
       </div>
     </div>
   );
