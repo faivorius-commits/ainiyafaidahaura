@@ -2,7 +2,7 @@ import { Trophy } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 
-const awards = [
+const honors = [
   {
     emoji: "🥇",
     title: "1st Place — National Writing Competition",
