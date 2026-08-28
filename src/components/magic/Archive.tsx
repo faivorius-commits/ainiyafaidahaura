@@ -29,14 +29,16 @@ const categories = [
 const projects = [
   {
     title: "Cozy Teddy Town — Minisuperasep",
-    url: "https://minisuperasep-town.vercel.app",
-    label: "minisuperasep-town.vercel.app",
+    url: "https://fivorius.itch.io",
+    label: "Private Project",
     image: "/images/teddy-town-logo.jpg",
     description:
       "Cozy web application where users build friendships with virtual teddy bears by reading daily letters, collecting unique characters, and tracking their progress through an interactive, responsive interface.",
   },
   {
     title: "Save The Light: Protect The Deer",
+    url: "https://fivorius.itch.io",
+    label: "Private Project",
     image: "/images/save-the-light.jpg",
     description: "Protect the magical deer from red eyes.",
   },
@@ -118,9 +120,9 @@ export function Archive() {
           ))}
         </div>
 
-        <div id="short-stories" className="mt-20 scroll-mt-28">
+        <div id="publication" className="mt-20 scroll-mt-28">
           <SectionTitle
-            title="Short Stories"
+            title="Publication"
             subtitle="Stories published in print — small worlds folded into paper."
           />
           <Reveal>
