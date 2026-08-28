@@ -11,7 +11,6 @@ function ExperiencePage() {
   return (
     <div className="min-h-screen px-5 py-20">
       <div className="mx-auto max-w-3xl">
-        {/* ✅ TOMBOL BACK TO HOME — SAMA PERSIS DENGAN HALAMAN ARCHIVE! */}
         <Link
           to="/"
           className="inline-flex items-center gap-2 mb-10 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-colors"
@@ -19,11 +18,8 @@ function ExperiencePage() {
           ← Back to home
         </Link>
 
-        {/* ✅ BAGIAN EXPERIENCE */}
         <Journey />
-
-        {/* ✅ BAGIAN HONORS — SUDAH ADA & BERJALAN! */}
-        <Honors />
+        <Experience & Honors/>
       </div>
     </div>
   );
