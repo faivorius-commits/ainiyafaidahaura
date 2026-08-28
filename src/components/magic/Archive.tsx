@@ -1,4 +1,4 @@
-import { PenLine, Code2, Users, Library as LibraryIcon, ExternalLink, Feather, BookOpen } from "lucide-react";
+import { PenLine, Code2, Users, Library as LibraryIcon, Feather, BookOpen, ExternalLink } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
@@ -23,24 +23,6 @@ const categories = [
     icon: LibraryIcon,
     title: "Library",
     items: ["Reading Notes", "Favourite Quotes"],
-  },
-];
-
-const projects = [
-  {
-    title: "Cozy Teddy Town — Minisuperasep",
-    url: "https://fivorius.itch.io",
-    label: "Private Project",
-    image: "/images/teddy-town-logo.jpg",
-    description:
-      "Cozy web application where users build friendships with virtual teddy bears by reading daily letters, collecting unique characters, and tracking their progress through an interactive, responsive interface.",
-  },
-  {
-    title: "Save The Light: Protect The Deer",
-    url: "https://fivorius.itch.io",
-    label: "Private Project",
-    image: "/images/save-the-light.jpg",
-    description: "Protect the magical deer from red eyes.",
   },
 ];
 
@@ -88,14 +70,14 @@ export function Archive() {
                   {c.title === "Projects" && (
                     <>
                       <li>
-                        <a
-                          href="#projects"
+                        <Link
+                          to="/archive/website-apps"
                           className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
                         >
                           <span className="text-primary">✦</span>
                           Website / Apps
                           <ExternalLink className="ml-auto size-3.5 text-primary" />
-                        </a>
+                        </Link>
                       </li>
                       {c.items.map((item) => (
                         <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -160,37 +142,6 @@ export function Archive() {
           </Reveal>
         </div>
 
-        <div id="projects" className="mt-20 scroll-mt-28">
-          <SectionTitle
-            title="Projects — Website / Apps"
-            subtitle="Things I built with code, curiosity, and a bit of magic."
-          />
-          <div className="grid gap-4">
-            {projects.map((p, i) => (
-              <Reveal key={p.title} delay={i * 80}>
-                <article className="glass glass-hover h-full p-5">
-                  <span className="logo-frame mb-4 size-12 overflow-hidden p-0">
-                    <img src={p.image} alt={p.title} className="size-full object-cover" />
-                  </span>
-                  <h3 className="font-display text-xl leading-tight">{p.title}</h3>
-                  {p.url && p.label && (
-                    <a
-                      href={p.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-1 inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
-                    >
-                      {p.label}
-                      <ExternalLink className="size-3" />
-                    </a>
-                  )}
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-
         <Reveal delay={200} className="mt-12 flex flex-wrap justify-center gap-3">
           <Button variant="magic" size="pill" asChild>
             <Link to="/library">Open the Library</Link>
@@ -202,4 +153,4 @@ export function Archive() {
       </div>
     </section>
   );
-          }
+}
