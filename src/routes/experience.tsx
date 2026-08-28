@@ -1,3 +1,4 @@
+import { Experiences } from "@/components/magic/Experiences";
 import { Honors } from "@/components/magic/Honors";
 import { createFileRoute } from "@tanstack/react-router";
 
