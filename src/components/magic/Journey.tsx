@@ -2,21 +2,20 @@ import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 
 const milestones = [
-  { year: "2009", title: "Born", text: "The beginning of my journey." },
   {
     year: "2015 – 2021",
     title: "Al-Huda Islamic Elementary School",
-    text: "Built a strong academic foundation while developing discipline, curiosity, and character.",
+    text: "Elementary School Diploma.",
   },
   {
     year: "2021 – 2024",
     title: "Sixteen Junior High School Bekasi",
-    text: "Expanded my knowledge, discovered new interests, and actively participated in learning and personal growth.",
+    text: "Middle School Diploma.",
   },
   {
     year: "2024 – 2027",
     title: "Yadika 8 Senior High School",
-    text: "Continuing to grow through academic achievements, leadership, organizational activities, and preparing for future opportunities.",
+    text: "High School Diploma.",
   },
 ];
 
