@@ -7,6 +7,10 @@ export const Route = createFileRoute("/archive")({
     meta: [
       { title: "My Digital Archive — Ainiya Faida Haura" },
       { name: "description", content: "Writings, projects, organizations, and a personal library collection." },
+      { property: "og:title", content: "My Digital Archive — Ainiya Faida Haura" },
+      { property: "og:description", content: "Writings, projects, organizations, and a personal library collection." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (
