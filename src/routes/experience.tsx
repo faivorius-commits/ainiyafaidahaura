@@ -1,5 +1,5 @@
 import { Honors } from "@/components/magic/Honors";
-import { createFileRoute } from "@tanstack/start";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/experience")({
   component: ExperiencePage,
