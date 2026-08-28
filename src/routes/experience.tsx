@@ -17,7 +17,7 @@ export const Route = createFileRoute("/experience")({
   component: () => (
     <PageShell>
       <Experience />
-      <Achievement />
+      <Honors />
     </PageShell>
   ),
 });
