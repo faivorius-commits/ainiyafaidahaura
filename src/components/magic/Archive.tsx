@@ -49,7 +49,7 @@ export function Archive() {
               <h3 className="font-display text-xl">Projects</h3>
               <ul className="mt-3 grid gap-2">
                 <li>
-                  <Link to="/archive/website-apps" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
+                  <Link to="/archive/website-apps" className="flex items-center gap-2 text-muted-foreground hover:text-primary">
                     <span className="text-primary">✦</span>Website / Apps
                   </Link>
                 </li>
