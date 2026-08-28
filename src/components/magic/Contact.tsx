@@ -6,20 +6,20 @@ const channels = [
   {
     icon: Instagram,
     label: "Instagram",
-    value: "@faivorius",
-    href: "https://www.instagram.com/faivorius",
+    value: "@fiivoor",
+    href: "https://www.instagram.com/fiivoor",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
     value: "Ainiya Faida Haura",
-    href: "https://www.linkedin.com/in/ainiya-faida-haura-2688b1414",
+    href: "https://www.linkedin.com/in/ainiyafaidahaura",
   },
   {
     icon: Mail,
     label: "Email",
-    value: "faivorius@gmail.com",
-    href: "mailto:faivorius@gmail.com",
+    value: "ainiyafaidahaura@gmail.com",
+    href: "mailto:ainiyafaidahaura@gmail.com",
   },
 ];
 
