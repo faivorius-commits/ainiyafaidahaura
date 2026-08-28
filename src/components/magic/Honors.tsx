@@ -33,7 +33,6 @@ export function Honors() {
         <SectionTitle title="Honors" subtitle="Small sparks that keep the fire going." />
 
         <div className="grid gap-5 sm:grid-cols-2">
-          {/* ✅ Diperbaiki: awards → honors */}
           {honors.map((a, i) => (
             <Reveal key={a.title} delay={i * 110}>
               <article className="glass glass-hover h-full p-5">
