@@ -1,23 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { PageShell } from "@/components/magic/PageShell";
-import { Experience } from "@/components/magic/Experience";
+// ✅ IMPORT SUDAH DIPERBAIKI — sesuai nama file baru
 import { Honors } from "@/components/magic/Honors";
+import { createFileRoute } from "@tanstack/start";
 
 export const Route = createFileRoute("/experience")({
-  head: () => ({
-    meta: [
-      { title: "Experience & Honors — Ainiya Faida Haura" },
-      { name: "description", content: "Roles, organizations, competitions and awards I am proud of." },
-      { property: "og:title", content: "Experience & Honors — Ainiya Faida Haura" },
-      { property: "og:description", content: "Roles, organizations, competitions and awards I am proud of." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: () => (
-    <PageShell>
-      <Experience />
-      <Honors />
-    </PageShell>
-  ),
+  component: ExperiencePage,
 });
+
+function ExperiencePage() {
+  return (
+    <div className="min-h-screen px-5 py-20">
+      <div className="mx-auto max-w-3xl">
+        <Honors /> {/* ✅ Komponen sudah diganti jadi Honors */}
+      </div>
+    </div>
+  );
+}
