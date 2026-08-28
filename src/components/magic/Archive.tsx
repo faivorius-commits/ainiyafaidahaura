@@ -8,7 +8,7 @@ const HEAL_URL = "https://www.linkedin.com/safety/go/?url=https%3A%2F%2Fqrcbn%2E
 
 const categories = [
   { icon: PenLine, title: "Writing", items: ["Articles"] },
-  { icon: Code2, title: "Projects", items: ["UI/UX", "Cybersecurity"] },
+  { icon: Code2, title: "Projects", items: ["Website / Apps", "UI/UX", "Cybersecurity"] },
   { icon: Users, title: "Organizations", items: ["Certificates", "Documentation", "Event Galleries"] },
   { icon: LibraryIcon, title: "Library", items: ["Reading Notes", "Favourite Quotes"] },
 ];
@@ -51,7 +51,7 @@ export function Archive() {
                           <span className="text-primary">✦</span>Website / Apps<ExternalLink className="ml-auto size-3.5 text-primary" />
                         </Link>
                       </li>
-                      {c.items.map((item) => (
+                      {c.items.filter(item => item !== "Website / Apps").map((item) => (
                         <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
                           <span className="text-primary">✦</span>{item}
                         </li>
@@ -96,4 +96,4 @@ export function Archive() {
       </div>
     </section>
   );
-}
+                        }
