@@ -13,16 +13,6 @@ const experiences = [
       "Managed participant registration, administrative tasks, and communication to support international language programs.",
   },
   {
-    position: "Member",
-    org: "Pelajar Merah Putih Batch 3",
-    logo: "/images/pmp.jpg",
-    duration: "December 2025 – Present",
-    location: "Indonesia",
-    type: "Organization",
-    description:
-      "Active member participating in youth empowerment programs, leadership development, and national collaborations.",
-  },
-  {
     position: "Content Maker",
     org: "Srikandi Cahaya Nusantara Batch 2",
     logo: "/images/scn.jpg",
