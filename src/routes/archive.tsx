@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/magic/PageShell";
 import { Archive } from "@/components/magic/Archive";
+import { WebsiteApps } from "@/components/magic/WebsiteApps";
 
 export const Route = createFileRoute("/archive")({
   head: () => ({
@@ -16,6 +17,14 @@ export const Route = createFileRoute("/archive")({
   component: () => (
     <PageShell>
       <Archive />
+    </PageShell>
+  ),
+});
+
+export const RouteWebsiteApps = createFileRoute("/archive/website-apps")({
+  component: () => (
+    <PageShell>
+      <WebsiteApps />
     </PageShell>
   ),
 });
