@@ -5,32 +5,32 @@ import { SectionTitle } from "./SectionTitle";
 const awards = [
   {
     emoji: "🥇",
-    title: "1st Ranked — Event Menulis Nasional",
+    title: "1st Place — National Writing Competition",
     organizer: "Antero Literasi",
     logo: "/images/antero.jpg",
     year: "2026",
   },
   {
     emoji: "🏆",
-    title: "Best Analytical Thinking",
-    organizer: "VERTEX 2026",
+    title: "Best Analytical Thinking Essay, VERTEX 2026",
+    organizer: "PT. Vetrion Amartya Indonesia",
     logo: "/images/vertex.jpg",
     year: "2026",
   },
   {
     emoji: "⭐",
-    title: "Best Rookies — Cybersecurity Workshop",
+    title: "Best Rookies in Cybersecurity",
     organizer: "Generation Girl Tangerang",
     logo: "/images/generation-girl.jpg",
     year: "2026",
   },
 ];
 
-export function Achievement() {
+export function Honors() {
   return (
-    <section id="achievement" className="relative px-5 py-24">
+    <section id="honors" className="relative px-5 py-24">
       <div className="mx-auto max-w-3xl">
-        <SectionTitle title="Achievement" subtitle="Small sparks that keep the fire going." />
+        <SectionTitle title="Honors" subtitle="Small sparks that keep the fire going." />
 
         <div className="grid gap-5 sm:grid-cols-2">
           {awards.map((a, i) => (
