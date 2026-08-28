@@ -24,7 +24,7 @@ const honors = [
     logo: "/images/generation-girl.jpg",
     year: "2026",
   },
-];
+  {
     emoji: "🇮🇩",
     title: "Indonesian Student Recognition – Pelajar Merah Putih",
     organizer: "Patriot Pelajar Mahasiswa",
