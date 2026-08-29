@@ -3,6 +3,7 @@ import { Reveal } from "./Reveal"; import { SectionTitle } from "./SectionTitle"
 import { Button } from "@/components/ui/button"; import { Link } from "@tanstack/react-router";
 
 const HEAL_URL = "https://qrcbn.com/check/62-6264-2709-644";
+const SPRING_URL = ""; // Isi link kalau nanti ada
 
 export function Archive() {
   return (
@@ -59,18 +60,34 @@ export function Archive() {
             </article>
           </Reveal>
         </div>
+
         {/* PUBLICATION */}
         <div id="publication" className="mt-20 scroll-mt-28">
           <SectionTitle title="Publication" subtitle="Stories published in print — small worlds folded into paper." />
+          
+          {/* Publikasi 1: Heal */}
           <Reveal>
-            <article className="glass glass-hover p-5">
+            <article className="glass glass-hover p-5 mb-4">
               <span className="logo-frame mb-4 size-12"><PenLine className="size-5 text-primary" /></span>
               <h3 className="font-display text-xl leading-tight">“Heal” — Short Story Anthology, Festival Sastra Volume 6</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">A published short story anthology featuring my work, released as part of Festival Sastra Volume 6.</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">ISBN: <span className="text-xs text-muted-foreground/80">62-6264-2709-644</span></p>
               <a href={HEAL_URL} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">QRCBN<ExternalLink className="size-3" /></a>
             </article>
           </Reveal>
+
+          {/* Publikasi 2: A Little More Spring */}
+          <Reveal delay={100}>
+            <article className="glass glass-hover p-5">
+              <span className="logo-frame mb-4 size-12"><PenLine className="size-5 text-primary" /></span>
+              <h3 className="font-display text-xl leading-tight">“A Little More Spring” — Poetry Anthology, Her Story In Your Poem</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">ISBN: <span className="text-xs text-muted-foreground/80">978-81-904011-0-4</span></p>
+              {SPRING_URL ? (
+                <a href={SPRING_URL} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">Link<ExternalLink className="size-3" /></a>
+              ) : null}
+            </article>
+          </Reveal>
         </div>
+
         {/* BOTTOM BUTTONS */}
         <Reveal delay={200} className="mt-12 flex flex-wrap justify-center gap-3">
           <Button variant="magic" size="pill" asChild><Link to="/library">Open the Library</Link></Button>
@@ -79,4 +96,4 @@ export function Archive() {
       </div>
     </section>
   );
-      }
+        }
