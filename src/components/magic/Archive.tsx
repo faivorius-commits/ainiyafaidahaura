@@ -33,7 +33,7 @@ export function Archive() {
             </article>
           </Reveal>
 
-          {/* HONORS — DENGAN IKON KAMERA DI SAMPING DOCUMENTATION */}
+          {/* HONORS — LINK HANYA DI IKON KAMERA SAJA */}
           <Reveal key="Honors" delay={100}>
             <article className="glass glass-hover h-full p-5">
               <span className="logo-frame mb-4 size-12">
@@ -41,16 +41,24 @@ export function Archive() {
               </span>
               <h3 className="font-display text-xl">Honors</h3>
               <ul className="mt-3 grid gap-2">
-                <li><span className="flex items-center gap-2 text-muted-foreground"><span className="text-primary">✦</span>Certificates</span></li>
                 <li>
-                  <Link to="/documentation" className="flex items-center justify-between text-muted-foreground transition-colors hover:text-primary">
-                    <span className="flex items-center gap-2">
-                      <span className="text-primary">✦</span>Documentation
-                    </span>
-                    <Camera size={16} className="text-primary" />
-                  </Link>
+                  <span className="flex items-center justify-between text-muted-foreground">
+                    <span className="flex items-center gap-2"><span className="text-primary">✦</span>Certificates</span>
+                  </span>
                 </li>
-                <li><span className="flex items-center gap-2 text-muted-foreground"><span className="text-primary">✦</span>Event Galleries</span></li>
+                <li>
+                  <span className="flex items-center justify-between text-muted-foreground">
+                    <span className="flex items-center gap-2"><span className="text-primary">✦</span>Documentation</span>
+                    <Link to="/documentation" className="transition-colors hover:text-primary">
+                      <Camera size={16} className="text-primary" />
+                    </Link>
+                  </span>
+                </li>
+                <li>
+                  <span className="flex items-center justify-between text-muted-foreground">
+                    <span className="flex items-center gap-2"><span className="text-primary">✦</span>Event Galleries</span>
+                  </span>
+                </li>
               </ul>
             </article>
           </Reveal>
