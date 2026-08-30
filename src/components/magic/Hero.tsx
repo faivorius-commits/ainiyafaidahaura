@@ -7,7 +7,7 @@ const quickLinks = [
     id: "experience",
     to: "/experience",
     icon: Trophy,
-    title: "Experience & Achievement",
+    title: "Experience & Honors",
     sub: "Things I've done, and proud of",
   },
   {
