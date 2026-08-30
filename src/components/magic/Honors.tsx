@@ -37,6 +37,7 @@ const honors = [
     organizer: "Patriot Pelajar Mahasiswa",
     logo: "/images/pmp.jpg",
     year: "2025",
+  },
 ];
 
 export function Honors() {
