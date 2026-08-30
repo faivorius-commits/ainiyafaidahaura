@@ -25,12 +25,18 @@ const honors = [
     year: "2026",
   },
   {
+    emoji: "🏆🥉",
+    title: "1st Place Bronze League",
+    organizer: "TryHackMe",
+    logo: "/images/TryHackMe.jpg",
+    year: "2026",
+  }, 
+  {
     emoji: "🇮🇩",
     title: "Indonesian Student Recognition – Pelajar Merah Putih",
     organizer: "Patriot Pelajar Mahasiswa",
     logo: "/images/pmp.jpg",
     year: "2025",
-  },
 ];
 
 export function Honors() {
