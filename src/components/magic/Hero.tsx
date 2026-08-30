@@ -1,4 +1,4 @@
-import { BookOpen, Trophy, FolderHeart, MailOpen } from "lucide-react";
+import { BookOpen, FileBadge2, FolderHeart, MailOpen } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 const quickLinks = [
