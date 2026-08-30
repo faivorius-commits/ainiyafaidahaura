@@ -1,4 +1,4 @@
-import { PenLine, Code2, Award, Library as LibraryIcon, BookOpen } from "lucide-react";
+import { PenLine, Code2, Award, Library as LibraryIcon, BookOpen, Camera } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Link } from "@tanstack/react-router";
@@ -33,7 +33,7 @@ export function Archive() {
             </article>
           </Reveal>
 
-          {/* HONORS */}
+          {/* HONORS — DENGAN IKON KAMERA DI SAMPING DOCUMENTATION */}
           <Reveal key="Honors" delay={100}>
             <article className="glass glass-hover h-full p-5">
               <span className="logo-frame mb-4 size-12">
@@ -43,8 +43,11 @@ export function Archive() {
               <ul className="mt-3 grid gap-2">
                 <li><span className="flex items-center gap-2 text-muted-foreground"><span className="text-primary">✦</span>Certificates</span></li>
                 <li>
-                  <Link to="/documentation" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary">
-                    <span className="text-primary">✦</span>Documentation
+                  <Link to="/documentation" className="flex items-center justify-between text-muted-foreground transition-colors hover:text-primary">
+                    <span className="flex items-center gap-2">
+                      <span className="text-primary">✦</span>Documentation
+                    </span>
+                    <Camera size={16} className="text-primary" />
                   </Link>
                 </li>
                 <li><span className="flex items-center gap-2 text-muted-foreground"><span className="text-primary">✦</span>Event Galleries</span></li>
