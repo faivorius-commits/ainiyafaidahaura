@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles, FileBadge2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 
