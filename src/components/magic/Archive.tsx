@@ -1,9 +1,11 @@
-import { PenLine, Code2, Users, Library as LibraryIcon, Feather, BookOpen, ExternalLink } from "lucide-react";
-import { Reveal } from "./Reveal"; import { SectionTitle } from "./SectionTitle";
-import { Button } from "@/components/ui/button"; import { Link } from "@tanstack/react-router";
+import { PenLine, Code2, Users, Library as LibraryIcon, Feather, BookOpen, ExternalLink, FileBadge2 } from "lucide-react";
+import { Reveal } from "./Reveal";
+import { SectionTitle } from "./SectionTitle";
+import { Button } from "@/components/ui/button";
+import { Link } from "@tanstack/react-router";
 
 const HEAL_URL = "https://qrcbn.com/check/62-6264-2709-644";
-const SPRING_URL = ""; // Isi link kalau nanti ada
+const SPRING_URL = "";
 
 export function Archive() {
   return (
@@ -23,6 +25,7 @@ export function Archive() {
               </ul>
             </article>
           </Reveal>
+
           {/* PROJECTS */}
           <Reveal key="Projects" delay={110}>
             <article className="glass glass-hover h-full p-5">
@@ -35,11 +38,12 @@ export function Archive() {
               </ul>
             </article>
           </Reveal>
-          {/* ORGANIZATIONS */}
-          <Reveal key="Organizations" delay={220}>
+
+          {/* HONORS — DIPERBARUI IKONNYA */}
+          <Reveal key="Honors" delay={220}>
             <article className="glass glass-hover h-full p-5">
-              <span className="logo-frame mb-4 size-12"><Users className="size-5 text-primary" /></span>
-              <h3 className="font-display text-xl">Organizations</h3>
+              <span className="logo-frame mb-4 size-12"><FileBadge2 className="size-5 text-primary" /></span>
+              <h3 className="font-display text-xl">Honors</h3>
               <ul className="mt-3 grid gap-2">
                 <li><span className="flex items-center gap-2 text-sm text-muted-foreground"><span className="text-primary">✦</span>Certificates</span></li>
                 <li><span className="flex items-center gap-2 text-sm text-muted-foreground"><span className="text-primary">✦</span>Documentation</span></li>
@@ -47,6 +51,7 @@ export function Archive() {
               </ul>
             </article>
           </Reveal>
+
           {/* LIBRARY */}
           <Reveal key="Library" delay={330}>
             <article className="glass glass-hover h-full p-5">
@@ -61,7 +66,7 @@ export function Archive() {
           </Reveal>
         </div>
 
-        {/* PUBLICATION */}
+        {/* PUBLICATION — LENGKAP SESUAI DATA BUKU */}
         <div id="publication" className="mt-20 scroll-mt-28">
           <SectionTitle title="Publication" subtitle="Stories published in print — small worlds folded into paper." />
           
@@ -71,7 +76,7 @@ export function Archive() {
               <span className="logo-frame mb-4 size-12"><PenLine className="size-5 text-primary" /></span>
               <h3 className="font-display text-xl leading-tight">“Heal” — Short Story Anthology, Festival Sastra Volume 6</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">ISBN: <span className="text-xs text-muted-foreground/80">62-6264-2709-644</span></p>
-              <a href={HEAL_URL} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">QRCBN<ExternalLink className="size-3" /></a>
+              <a href={HEAL_URL} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">Buka Buku<ExternalLink className="size-3" /></a>
             </article>
           </Reveal>
 
@@ -82,13 +87,13 @@ export function Archive() {
               <h3 className="font-display text-xl leading-tight">“A Little More Spring” — Poetry Anthology, Her Story In Your Poem</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">ISBN: <span className="text-xs text-muted-foreground/80">978-81-904011-0-4</span></p>
               {SPRING_URL ? (
-                <a href={SPRING_URL} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">Link<ExternalLink className="size-3" /></a>
+                <a href={SPRING_URL} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">Buka Buku<ExternalLink className="size-3" /></a>
               ) : null}
             </article>
           </Reveal>
         </div>
 
-        {/* BOTTOM BUTTONS */}
+        {/* TOMBOL BAWAH */}
         <Reveal delay={200} className="mt-12 flex flex-wrap justify-center gap-3">
           <Button variant="magic" size="pill" asChild><Link to="/library">Open the Library</Link></Button>
           <Button variant="magic" size="pill" asChild><Link to="/contact">Let's Connect</Link></Button>
@@ -96,4 +101,4 @@ export function Archive() {
       </div>
     </section>
   );
-        }
+}
