@@ -130,14 +130,12 @@
   * {
     border-color: var(--color-border);
   }
-
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
 }
 
-/* ===== Magical celestial design system ===== */
 :root {
   --background: oklch(0.19 0.09 293);
   --foreground: oklch(0.98 0.01 300);
@@ -186,19 +184,12 @@ body {
   overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-.font-display {
+h1, h2, h3, .font-display {
   font-family: var(--font-display);
 }
 
 @utility glass {
-  background: linear-gradient(
-    140deg,
-    oklch(1 0 0 / 14%),
-    oklch(1 0 0 / 5%)
-  );
+  background: linear-gradient(140deg, oklch(1 0 0 / 14%), oklch(1 0 0 / 5%));
   border: 1px solid oklch(0.88 0.13 90 / 28%);
   backdrop-filter: blur(14px);
   box-shadow: var(--glow-soft);
@@ -206,16 +197,11 @@ h3,
 }
 
 @utility glass-hover {
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease;
   &:hover {
     transform: translateY(-4px);
     border-color: oklch(0.88 0.13 90 / 65%);
-    box-shadow:
-      var(--glow-soft),
-      0 0 30px oklch(0.88 0.13 90 / 30%);
+    box-shadow: var(--glow-soft), 0 0 30px oklch(0.88 0.13 90 / 30%);
   }
 }
 
@@ -239,12 +225,7 @@ h3,
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      110deg,
-      transparent 35%,
-      oklch(1 0 0 / 45%) 50%,
-      transparent 65%
-    );
+    background: linear-gradient(110deg, transparent 35%, oklch(1 0 0 / 45%) 50%, transparent 65%);
     transform: translateX(-120%);
     animation: shimmer 3.5s ease-in-out infinite;
   }
@@ -253,9 +234,7 @@ h3,
 @utility reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition:
-    opacity 0.9s ease,
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   &[data-visible="true"] {
     opacity: 1;
     transform: translateY(0);
@@ -272,133 +251,22 @@ h3,
   50% { opacity: 1; transform: scale(1.25); }
 }
 
-@keyframes drift {
-  from { transform: translateX(-12%); }
-  to { transform: translateX(12%); }
-}
-
-@keyframes floaty {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-@keyframes rise {
-  0% { transform: translateY(0) scale(0.6); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateY(-70vh) scale(1.1); opacity: 0; }
-}
-
-@keyframes draw-line {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
-}
-
-@keyframes sparkle-pop {
-  0% { opacity: 0; transform: scale(0.4) rotate(0deg); }
-  40% { opacity: 1; }
-  100% { opacity: 0; transform: scale(1.6) rotate(90deg); }
-}
-
-/* ✅ ANIMASI WHIMSICAL UNTUK MY JOURNEY */
 @keyframes float {
   0% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
   50% { transform: translateY(-18px) rotate(6deg); opacity: 1; }
   100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
 }
+
 .animate-float {
   animation: float 7s ease-in-out infinite;
-}
-
-.animate-floaty {
-  animation: floaty 6s ease-in-out infinite;
 }
 .animate-twinkle {
   animation: twinkle 3s ease-in-out infinite;
 }
-.animate-sparkle-pop {
-  animation: sparkle-pop 1.1s ease-out forwards;
-}
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
   }
 }
-
-/* ===== Paper / poetry reading experience ===== */
-@utility paper {
-  --paper-cream: oklch(0.96 0.026 88);
-  --paper-ink: oklch(0.32 0.035 60);
-  position: relative;
-  color: var(--paper-ink);
-  background-color: var(--paper-cream);
-  background-image:
-    radial-gradient(circle at 18% 22%, oklch(0.88 0.05 70 / 35%) 0 1px, transparent 1.6px),
-    radial-gradient(circle at 72% 61%, oklch(0.86 0.05 60 / 30%) 0 1px, transparent 1.6px),
-    radial-gradient(circle at 45% 88%, oklch(0.9 0.04 80 / 30%) 0 1px, transparent 1.4px),
-    linear-gradient(115deg, oklch(0.98 0.02 92) 0%, oklch(0.94 0.035 82) 55%, oklch(0.91 0.04 72) 100%);
-  background-size: 140px 140px, 190px 190px, 110px 110px, 100% 100%;
-  box-shadow:
-    0 18px 45px oklch(0.15 0.08 293 / 45%),
-    inset 0 0 60px oklch(0.78 0.06 65 / 28%);
-  border-radius: 1.1rem;
-}
-
-@utility paper-torn {
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 12px;
-    background: inherit;
-    background-color: var(--paper-cream);
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M0 0h120v6c-6 4-11-2-17 1s-9 4-15 1-10-4-16-1-11 4-17 1-10-3-16 0-11 3-17-1-6-1-6-1z' fill='%23000'/%3E%3C/svg%3E");
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M0 0h120v6c-6 4-11-2-17 1s-9 4-15 1-10-4-16-1-11 4-17 1-10-3-16 0-11 3-17-1-6-1-6-1z' fill='%23000'/%3E%3C/svg%3E");
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-  }
-  &::before {
-    top: -11px;
-    transform: scaleY(-1);
-  }
-  &::after {
-    bottom: -11px;
-  }
-}
-
-@utility ink {
-  color: oklch(0.34 0.04 62);
-}
-
-@utility ink-muted {
-  color: oklch(0.52 0.03 62);
-}
-
-@keyframes page-open {
-  0% {
-    opacity: 0;
-    transform: perspective(1400px) rotateX(-14deg) translateY(26px) scale(0.96);
-  }
-  100% {
-    opacity: 1;
-    transform: perspective(1400px) rotateX(0deg) translateY(0) scale(1);
-  }
-}
-
-@keyframes line-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-page-open {
-  animation: page-open 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.animate-line-in {
-  animation: line-in 0.7s ease both;
-  }
-  
