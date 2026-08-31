@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { BookOpen, GraduationCap, Sparkles, Star, Feather, Moon, Cloud } from "lucide-react";
@@ -9,8 +10,31 @@ const milestones = [
 ];
 
 export function Journey() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 3200);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section id="journey" className="relative px-5 py-24 overflow-hidden">
+    <section id="journey" className="relative px-5 py-24 overflow-hidden min-h-screen">
+      
+      {/* ✅ LAYAR PEMBUKA: BUKU BUKA TUTUP + TULISAN JOURNEY FONT SYMPHONY */}
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[oklch(0.19_0.09_293)] animate-fade-out">
+          <div className="relative animate-book-loader">
+            <div className="relative w-28 h-36 border-2 border-primary/60 rounded-lg bg-white/5 backdrop-blur-sm shadow-[0_0_30px_oklch(0.88_0.13_90/40%)]">
+              <div className="absolute inset-0 border-r border-primary/40 w-1/2" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="font-display text-gold text-5xl tracking-widest">Journey</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ✅ HIASAN MELAYANG */}
       <div className="absolute inset-0 pointer-events-none">
         <Star className="animate-float absolute text-primary/60 size-5" style={{ top: '10%', left: '8%', animationDelay: '0s' }} />
         <Feather className="animate-float absolute text-accent/50 size-4" style={{ top: '22%', right: '12%', animationDelay: '0.6s' }} />
@@ -20,32 +44,35 @@ export function Journey() {
         <Cloud className="animate-float absolute text-primary/30 size-5" style={{ bottom: '32%', right: '22%', animationDelay: '3s' }} />
       </div>
 
-      <div className="mx-auto max-w-3xl relative z-10 animate-book-open">
-        <SectionTitle title="My Journey" subtitle="Every experience, big or small, weaves into who I am." />
+      {/* ✅ ISI HALAMAN — MUNCUL SETELAH BUKU SELESAI BUKA TUTUP */}
+      {!loading && (
+        <div className="mx-auto max-w-3xl relative z-10 animate-content-in">
+          <SectionTitle title="My Journey" subtitle="Every experience, big or small, weaves into who I am." />
 
-        <div className="relative pl-10 mt-10">
-          <span aria-hidden className="absolute top-2 bottom-2 left-3 w-px origin-top bg-gradient-to-b from-primary/80 via-accent/60 to-transparent" style={{ animation: "draw-line 2.5s ease-out both" }} />
-          <ul className="grid gap-8">
-            {milestones.map((m, i) => {
-              const Icon = m.icon;
-              return (
-                <li key={m.year} style={{ animationDelay: `${i * 400}ms` }} className="animate-page-reveal opacity-0">
-                  <Reveal delay={i * 120} className="relative">
-                    <span aria-hidden className="absolute top-5 -left-[2.2rem]">
-                      <Icon className="size-5 text-primary drop-shadow-[0_0_8px_oklch(0.88_0.13_90/50%)]" />
-                    </span>
-                    <div className="glass glass-hover p-5 animate-page-flip opacity-0" style={{ animationDelay: `${i * 300 + 900}ms` }}>
-                      <p className="font-display text-gold text-2xl">{m.year}</p>
-                      <p className="font-display mt-2 text-lg leading-snug text-primary">{m.title}</p>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{m.text}</p>
-                    </div>
-                  </Reveal>
-                </li>
-              );
-            })}
-          </ul>
+          <div className="relative pl-10 mt-10">
+            <span aria-hidden className="absolute top-2 bottom-2 left-3 w-px bg-gradient-to-b from-primary/80 via-accent/60 to-transparent animate-draw-line" />
+            <ul className="grid gap-8 mt-2">
+              {milestones.map((m, i) => {
+                const Icon = m.icon;
+                return (
+                  <li key={m.year} style={{ animationDelay: `${i * 300 + 3.5}s` }} className="animate-content-in opacity-0">
+                    <Reveal delay={i * 120} className="relative">
+                      <span aria-hidden className="absolute top-5 -left-[2.2rem]">
+                        <Icon className="size-5 text-primary drop-shadow-[0_0_8px_oklch(0.88_0.13_90/50%)]" />
+                      </span>
+                      <div className="glass glass-hover p-5">
+                        <p className="font-display text-gold text-2xl">{m.year}</p>
+                        <p className="font-display mt-2 text-lg leading-snug text-primary">{m.title}</p>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{m.text}</p>
+                      </div>
+                    </Reveal>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
