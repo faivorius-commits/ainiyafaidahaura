@@ -20,7 +20,7 @@ export function Journey() {
   return (
     <section id="journey" className="relative px-5 py-24 overflow-hidden min-h-screen">
       
-      {/* ✅ LAYAR PEMBUKA: BUKU BUKA TUTUP + TULISAN JOURNEY FONT SYMPHONY */}
+      {/* SCREEN */}
       {loading && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[oklch(0.19_0.09_293)] animate-fade-out">
           <div className="relative animate-book-loader">
@@ -34,7 +34,7 @@ export function Journey() {
         </div>
       )}
 
-      {/* ✅ HIASAN MELAYANG */}
+      {/* DECORATION */}
       <div className="absolute inset-0 pointer-events-none">
         <Star className="animate-float absolute text-primary/60 size-5" style={{ top: '10%', left: '8%', animationDelay: '0s' }} />
         <Feather className="animate-float absolute text-accent/50 size-4" style={{ top: '22%', right: '12%', animationDelay: '0.6s' }} />
@@ -44,7 +44,7 @@ export function Journey() {
         <Cloud className="animate-float absolute text-primary/30 size-5" style={{ bottom: '32%', right: '22%', animationDelay: '3s' }} />
       </div>
 
-      {/* ✅ ISI HALAMAN — MUNCUL SETELAH BUKU SELESAI BUKA TUTUP */}
+      {/* JOURNEY PAGE */}
       {!loading && (
         <div className="mx-auto max-w-3xl relative z-10 animate-content-in">
           <SectionTitle title="My Journey" subtitle="Every experience, big or small, weaves into who I am." />
