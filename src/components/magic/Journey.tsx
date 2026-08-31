@@ -1,32 +1,16 @@
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
-import { BookOpen, GraduationCap, Sparkles, Star, Cloud, Moon, Feather } from "lucide-react";
+import { BookOpen, GraduationCap, Sparkles, Star, Feather, Moon, Cloud } from "lucide-react";
 
 const milestones = [
-  {
-    icon: BookOpen,
-    year: "2015 – 2021",
-    title: "Al-Huda Islamic Elementary School",
-    text: "The first place where I learned that words could hold entire worlds — and I started writing my own."
-  },
-  {
-    icon: GraduationCap,
-    year: "2021 – 2024",
-    title: "Sixteen Junior High School Bekasi",
-    text: "I found my voice, stepped out of my comfort zone, and discovered how much I loved creating."
-  },
-  {
-    icon: Sparkles,
-    year: "2024 – 2027",
-    title: "Yadika 8 Senior High School",
-    text: "The world feels wider now — writing, technology, leadership, and dreams all growing together."
-  }
+  { icon: BookOpen, year: "2015 – 2021", title: "Al-Huda Islamic Elementary School", text: "The first place where I learned that words could hold entire worlds — and I started writing my own." },
+  { icon: GraduationCap, year: "2021 – 2024", title: "Sixteen Junior High School Bekasi", text: "I found my voice, stepped out of my comfort zone, and discovered how much I loved creating." },
+  { icon: Sparkles, year: "2024 – 2027", title: "Yadika 8 Senior High School", text: "The world feels wider now — writing, technology, leadership, and dreams all growing together." }
 ];
 
 export function Journey() {
   return (
     <section id="journey" className="relative px-5 py-24 overflow-hidden">
-      {/* ✅ Hiasan animasi whimsical — ikon dari Lucide, tanpa emoji */}
       <div className="absolute inset-0 pointer-events-none">
         <Star className="animate-float absolute text-primary/60 size-5" style={{ top: '10%', left: '8%', animationDelay: '0s' }} />
         <Feather className="animate-float absolute text-accent/50 size-4" style={{ top: '22%', right: '12%', animationDelay: '0.6s' }} />
@@ -36,29 +20,21 @@ export function Journey() {
         <Cloud className="animate-float absolute text-primary/30 size-5" style={{ bottom: '32%', right: '22%', animationDelay: '3s' }} />
       </div>
 
-      <div className="mx-auto max-w-3xl relative z-10">
-        <SectionTitle
-          title="My Journey"
-          subtitle="Every experience, big or small, weaves into who I am."
-        />
+      <div className="mx-auto max-w-3xl relative z-10 animate-book-open">
+        <SectionTitle title="My Journey" subtitle="Every experience, big or small, weaves into who I am." />
 
         <div className="relative pl-10 mt-10">
-          <span
-            aria-hidden
-            className="absolute top-2 bottom-2 left-3 w-px origin-top bg-gradient-to-b from-primary/80 via-accent/60 to-transparent"
-            style={{ animation: "draw-line 2.5s ease-out both" }}
-          />
-
+          <span aria-hidden className="absolute top-2 bottom-2 left-3 w-px origin-top bg-gradient-to-b from-primary/80 via-accent/60 to-transparent" style={{ animation: "draw-line 2.5s ease-out both" }} />
           <ul className="grid gap-8">
             {milestones.map((m, i) => {
               const Icon = m.icon;
               return (
-                <li key={m.year}>
+                <li key={m.year} style={{ animationDelay: `${i * 400}ms` }} className="animate-page-reveal opacity-0">
                   <Reveal delay={i * 120} className="relative">
                     <span aria-hidden className="absolute top-5 -left-[2.2rem]">
                       <Icon className="size-5 text-primary drop-shadow-[0_0_8px_oklch(0.88_0.13_90/50%)]" />
                     </span>
-                    <div className="glass glass-hover p-5">
+                    <div className="glass glass-hover p-5 animate-page-flip opacity-0" style={{ animationDelay: `${i * 300 + 900}ms` }}>
                       <p className="font-display text-gold text-2xl">{m.year}</p>
                       <p className="font-display mt-2 text-lg leading-snug text-primary">{m.title}</p>
                       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{m.text}</p>
