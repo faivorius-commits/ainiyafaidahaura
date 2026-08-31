@@ -20,21 +20,22 @@ export function Journey() {
   return (
     <section id="journey" className="relative px-5 py-24 overflow-hidden min-h-screen">
       
-      {/* MAGICAL BOOK */}
       {loading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[oklch(0.19_0.09_293)] animate-fade-out-smooth">
-          <div className="relative animate-book-magic">
-            <div className="relative w-32 h-40 border-2 border-primary/70 rounded-lg bg-white/8 backdrop-blur-md shadow-[0_0_40px_oklch(0.88_0.13_90/50%),inset_0_0_20px_oklch(0.88_0.13_90/20%)]">
-              <div className="absolute inset-0 border-r border-primary/50 w-1/2" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display text-gold text-5xl tracking-widest drop-shadow-[0_0_10px_oklch(0.88_0.13_90/60%)]">Journey</span>
-              </div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[oklch(0.19_0.09_293)] animate-loader-fade">
+          <div className="relative">
+          
+            <img
+              src="/images/book-open.png"
+              alt="Open Book"
+              className="w-48 h-auto animate-page-flip-open drop-shadow-[0_0_40px_oklch(0.88_0.13_90/50%)]"
+            />
+            <div className="absolute inset-0 flex items-center justify-center mt-8">
+              <span className="font-display text-gold text-5xl tracking-widest">Journey</span>
             </div>
           </div>
         </div>
       )}
 
-      {/* DECORATION */}
       <div className="absolute inset-0 pointer-events-none">
         <Star className="animate-float absolute text-primary/60 size-5" style={{ top: '10%', left: '8%', animationDelay: '0s' }} />
         <Feather className="animate-float absolute text-accent/50 size-4" style={{ top: '22%', right: '12%', animationDelay: '0.6s' }} />
@@ -44,9 +45,9 @@ export function Journey() {
         <Cloud className="animate-float absolute text-primary/30 size-5" style={{ bottom: '32%', right: '22%', animationDelay: '3s' }} />
       </div>
 
-      {/* JOURNEY PAGE */}
+  
       {!loading && (
-        <div className="mx-auto max-w-3xl relative z-10 animate-appear-up">
+        <div className="mx-auto max-w-3xl relative z-10 animate-content-fade-in">
           <SectionTitle title="My Journey" subtitle="Every experience, big or small, weaves into who I am." />
 
           <div className="relative pl-10 mt-10">
@@ -55,7 +56,7 @@ export function Journey() {
               {milestones.map((m, i) => {
                 const Icon = m.icon;
                 return (
-                  <li key={m.year} style={{ animationDelay: `${i * 300 + 0.5}s` }} className="animate-appear-up">
+                  <li key={m.year} style={{ animationDelay: `${i * 300 + 3.2}s` }} className="animate-content-fade-in">
                     <Reveal delay={i * 120} className="relative">
                       <span aria-hidden className="absolute top-5 -left-[2.2rem] logo-frame size-9">
                         <Icon className="size-5 text-primary" />
