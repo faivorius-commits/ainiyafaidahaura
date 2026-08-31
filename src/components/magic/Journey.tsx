@@ -13,21 +13,21 @@ export function Journey() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3200);
+    const timer = setTimeout(() => setLoading(false), 3500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <section id="journey" className="relative px-5 py-24 overflow-hidden min-h-screen">
       
-      {/* SCREEN */}
+      {/* MAGICAL BOOK */}
       {loading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[oklch(0.19_0.09_293)] animate-fade-out">
-          <div className="relative animate-book-loader">
-            <div className="relative w-28 h-36 border-2 border-primary/60 rounded-lg bg-white/5 backdrop-blur-sm shadow-[0_0_30px_oklch(0.88_0.13_90/40%)]">
-              <div className="absolute inset-0 border-r border-primary/40 w-1/2" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[oklch(0.19_0.09_293)] animate-fade-out-smooth">
+          <div className="relative animate-book-magic">
+            <div className="relative w-32 h-40 border-2 border-primary/70 rounded-lg bg-white/8 backdrop-blur-md shadow-[0_0_40px_oklch(0.88_0.13_90/50%),inset_0_0_20px_oklch(0.88_0.13_90/20%)]">
+              <div className="absolute inset-0 border-r border-primary/50 w-1/2" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display text-gold text-5xl tracking-widest">Journey</span>
+                <span className="font-display text-gold text-5xl tracking-widest drop-shadow-[0_0_10px_oklch(0.88_0.13_90/60%)]">Journey</span>
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@ export function Journey() {
 
       {/* JOURNEY PAGE */}
       {!loading && (
-        <div className="mx-auto max-w-3xl relative z-10 animate-content-in">
+        <div className="mx-auto max-w-3xl relative z-10 animate-appear-up">
           <SectionTitle title="My Journey" subtitle="Every experience, big or small, weaves into who I am." />
 
           <div className="relative pl-10 mt-10">
@@ -55,10 +55,10 @@ export function Journey() {
               {milestones.map((m, i) => {
                 const Icon = m.icon;
                 return (
-                  <li key={m.year} style={{ animationDelay: `${i * 300 + 3.5}s` }} className="animate-content-in opacity-0">
+                  <li key={m.year} style={{ animationDelay: `${i * 300 + 0.5}s` }} className="animate-appear-up">
                     <Reveal delay={i * 120} className="relative">
-                      <span aria-hidden className="absolute top-5 -left-[2.2rem]">
-                        <Icon className="size-5 text-primary drop-shadow-[0_0_8px_oklch(0.88_0.13_90/50%)]" />
+                      <span aria-hidden className="absolute top-5 -left-[2.2rem] logo-frame size-9">
+                        <Icon className="size-5 text-primary" />
                       </span>
                       <div className="glass glass-hover p-5">
                         <p className="font-display text-gold text-2xl">{m.year}</p>
