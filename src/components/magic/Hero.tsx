@@ -1,9 +1,16 @@
+import { useRef, useState } from "react";
 import { BookOpen, FileBadge2, FolderHeart, MailOpen } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 
 const quickLinks = [
-  { id: "journey", to: "/journey", icon: BookOpen, title: "My Journey", sub: "The story behind who I am today" },
+  {
+    id: "journey",
+    to: "/journey",
+    icon: BookOpen,
+    title: "My Journey",
+    sub: "The story behind who I am today",
+  },
   {
     id: "experience",
     to: "/experience",
@@ -18,12 +25,73 @@ const quickLinks = [
     title: "My Digital Archive",
     sub: "Writings, projects, and moments",
   },
-  { id: "contact", to: "/contact", icon: MailOpen, title: "Contact Me", sub: "Let's connect and create together" },
+  {
+    id: "contact",
+    to: "/contact",
+    icon: MailOpen,
+    title: "Contact Me",
+    sub: "Let's connect and create together",
+  },
 ];
 
+function getOffset(index: number, activeIndex: number) {
+  let offset = index - activeIndex;
+
+  if (offset > 2) offset -= 4;
+  if (offset < -2) offset += 4;
+
+  return offset;
+}
+
 export function Hero() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const startX = useRef<number | null>(null);
+  const moved = useRef(false);
+
+  const next = () => {
+    setActiveIndex((current) => (current + 1) % quickLinks.length);
+  };
+
+  const previous = () => {
+    setActiveIndex(
+      (current) => (current - 1 + quickLinks.length) % quickLinks.length,
+    );
+  };
+
+  const handlePointerDown = (event: React.PointerEvent) => {
+    startX.current = event.clientX;
+    moved.current = false;
+  };
+
+  const handlePointerMove = (event: React.PointerEvent) => {
+    if (startX.current === null) return;
+
+    if (Math.abs(event.clientX - startX.current) > 12) {
+      moved.current = true;
+    }
+  };
+
+  const handlePointerUp = (event: React.PointerEvent) => {
+    if (startX.current === null) return;
+
+    const distance = event.clientX - startX.current;
+
+    if (Math.abs(distance) > 45) {
+      if (distance < 0) {
+        next();
+      } else {
+        previous();
+      }
+    }
+
+    startX.current = null;
+  };
+
   return (
-    <section id="home" className="relative flex min-h-screen items-center justify-center px-5 pt-28 pb-20">
+    <section
+      id="home"
+      className="relative flex min-h-screen items-center justify-center px-5 pt-28 pb-20"
+    >
       <img
         src="/images/sky.jpg"
         alt=""
@@ -32,6 +100,7 @@ export function Hero() {
         height={1536}
         className="pointer-events-none absolute inset-0 -z-20 size-full object-cover opacity-40"
       />
+
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
@@ -40,9 +109,13 @@ export function Hero() {
             "radial-gradient(75% 55% at 50% 45%, oklch(0.18 0.09 293 / 55%), transparent 70%), linear-gradient(180deg, oklch(0.18 0.09 293 / 45%) 0%, oklch(0.2 0.09 293 / 25%) 45%, oklch(0.19 0.09 293 / 70%) 100%)",
         }}
       />
+
       <div className="relative mx-auto w-full max-w-xl text-center">
         <Reveal>
-          <h1 className="text-6xl font-medium tracking-tight sm:text-7xl">Welcome</h1>
+          <h1 className="text-6xl font-medium tracking-tight sm:text-7xl">
+            Welcome
+          </h1>
+
           <p className="mt-2 font-display text-lg italic text-primary">
             ✦ to my little universe ✦
           </p>
@@ -57,40 +130,107 @@ export function Hero() {
               height={440}
               className="size-full rounded-full object-cover object-top"
             />
-            <span className="animate-twinkle absolute -top-1 left-4 text-primary">✦</span>
-            <span className="animate-twinkle absolute right-2 -bottom-1 text-primary">✦</span>
+
+            <span className="animate-twinkle absolute -top-1 left-4 text-primary">
+              ✦
+            </span>
+
+            <span className="animate-twinkle absolute right-2 -bottom-1 text-primary">
+              ✦
+            </span>
           </div>
         </Reveal>
 
         <Reveal delay={200}>
           <p className="font-display text-lg text-primary">✦ Hi I'm ✦</p>
-          <p className="font-display mt-1 text-4xl font-medium sm:text-5xl">Ainiya Faida Haura</p>
+
+          <p className="font-display mt-1 text-4xl font-medium sm:text-5xl">
+            Ainiya Faida Haura
+          </p>
+
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-            I am a young writer and creative thinker who explores the intersection of literature,
-            youth advocacy, technology, and digital creativity. I believe in learning continuously,
-            creating meaningfully, and using ideas to make an impact.
+            I am a young writer and creative thinker who explores the
+            intersection of literature, youth advocacy, technology, and
+            digital creativity. I believe in learning continuously, creating
+            meaningfully, and using ideas to make an impact.
           </p>
         </Reveal>
 
-        <div className="mt-10 grid gap-3">
-          {quickLinks.map((l, i) => (
-            <Reveal key={l.id} delay={i * 90}>
-              <Link
-                to={l.to}
-                className="glass glass-hover flex items-center gap-4 px-4 py-3 text-left"
-              >
-                <span className="logo-frame size-11 shrink-0">
-                  <l.icon className="size-5 text-primary" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="font-display block truncate text-lg">{l.title}</span>
-                  <span className="block truncate text-xs text-muted-foreground">{l.sub}</span>
-                </span>
-                <span className="animate-twinkle shrink-0 text-primary">✦</span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={300} className="mt-8">
+          <div
+            className="orbit-carousel"
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={() => {
+              startX.current = null;
+            }}
+          >
+            <div className="orbit-carousel-stage">
+              <div className="orbit-carousel-ring" aria-hidden />
+
+              {quickLinks.map((link, index) => {
+                const offset = getOffset(index, activeIndex);
+                const Icon = link.icon;
+
+                const isActive = offset === 0;
+                const isLeft = offset === -1;
+                const isRight = offset === 1;
+                const isBack = Math.abs(offset) === 2;
+
+                let positionClass = "orbit-position-back";
+
+                if (isActive) positionClass = "orbit-position-active";
+                if (isLeft) positionClass = "orbit-position-left";
+                if (isRight) positionClass = "orbit-position-right";
+
+                return (
+                  <Link
+                    key={link.id}
+                    to={link.to}
+                    className={`orbit-card ${positionClass} ${
+                      isActive ? "orbit-card-active" : ""
+                    }`}
+                    onClick={(event) => {
+                      if (moved.current) {
+                        event.preventDefault();
+                        moved.current = false;
+                      }
+                    }}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    <span className="orbit-card-icon">
+                      <Icon className="size-5 text-primary" />
+                    </span>
+
+                    <span className="orbit-card-content">
+                      <span className="font-display block truncate text-base">
+                        {link.title}
+                      </span>
+
+                      <span className="block truncate text-[10px] text-muted-foreground">
+                        {link.sub}
+                      </span>
+                    </span>
+
+                    <span className="orbit-card-star">✦</span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="orbit-dots" aria-hidden>
+              {quickLinks.map((link, index) => (
+                <span
+                  key={link.id}
+                  className={`orbit-dot ${
+                    index === activeIndex ? "orbit-dot-active" : ""
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
