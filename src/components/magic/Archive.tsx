@@ -1,4 +1,4 @@
-import { PenLine, Code2, FileBadge2, Library as LibraryIcon, Feather, BookOpen, ExternalLink } from "lucide-react";
+import { PenLine, Code2, Image as GalleryIcon, Library as LibraryIcon, Feather, BookOpen, ExternalLink, Camera } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
@@ -34,15 +34,15 @@ export function Archive() {
               </ul>
             </article>
           </Reveal>
-          {/* HONORS */}
-          <Reveal key="Honors" delay={220}>
+          {/* GALLERY */}
+          <Reveal key="Gallery" delay={220}>
             <article className="glass glass-hover h-full p-5">
-              <span className="logo-frame mb-4 size-12"><FileBadge2 className="size-5 text-primary" /></span>
-              <h3 className="font-display text-xl">Honors</h3>
+              <span className="logo-frame mb-4 size-12"><GalleryIcon className="size-5 text-primary" /></span>
+              <h3 className="font-display text-xl">Gallery</h3>
               <ul className="mt-3 grid gap-2">
                 <li><span className="flex items-center gap-2 text-sm text-muted-foreground"><span className="text-primary">✦</span>Certificates</span></li>
-                <li><span className="flex items-center gap-2 text-sm text-muted-foreground"><span className="text-primary">✦</span>Documentation</span></li>
-                <li><span className="flex items-center gap-2 text-sm text-muted-foreground"><span className="text-primary">✦</span>Event Galleries</span></li>
+                <li><Link to="/documentation" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"><span className="text-primary">✦</span>Documentation<Camera className="ml-auto size-3.5 text-primary" /></Link></li>
+                <li><Link to="/gallery" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"><span className="text-primary">✦</span>Event Photos<GalleryIcon className="ml-auto size-3.5 text-primary" /></Link></li>
               </ul>
             </article>
           </Reveal>
