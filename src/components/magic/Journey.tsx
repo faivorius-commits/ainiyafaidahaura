@@ -29,14 +29,14 @@ const education = [
 
 const experiences = [
   {
-    position: "Registrar Staff",
-    org: "International Language Programme",
-    logo: "/images/ilp.jpg",
-    duration: "2021 – 2025",
-    location: "Grand Wisata, Indonesia",
-    type: "Part-Time Work",
+    position: "Cybersecurity Intern",
+    org: "CodeAlpha",
+    logo: "/images/codealpha.jpg",
+    duration: "August 2026 – September 2026",
+    location: "Remote",
+    type: "Internship",
     description:
-      "Managed participant registration, administrative tasks, and communication to support international language programs.",
+      "Gained hands-on experience in cybersecurity through practical tasks, security exercises, and real-world learning during a one-month internship.",
   },
   {
     position: "Content Maker",
@@ -50,6 +50,16 @@ const experiences = [
   },
   {
     position: "Event Coordinator",
+    org: "Pustaka Sastra Publisher",
+    logo: "/images/pustaka.jpg",
+    duration: "May 2026 – Present",
+    location: "Indonesia",
+    type: "Work",
+    description:
+      "Organize national writing competitions, coordinate participants, and assist in managing literary publishing events.",
+  },
+  {
+    position: "Event Coordinator",
     org: "Lamina Press Publisher",
     logo: "/images/lamina.png",
     duration: "February 2026 – July 2026",
@@ -59,14 +69,14 @@ const experiences = [
       "Coordinated literary events, managed schedules, collaborated with committees, and supported publication activities.",
   },
   {
-    position: "Event Coordinator",
-    org: "Pustaka Sastra Publisher",
-    logo: "/images/pustaka.jpg",
-    duration: "May 2026 – Present",
-    location: "Indonesia",
-    type: "Work",
+    position: "Registrar Staff",
+    org: "International Language Programme",
+    logo: "/images/ilp.jpg",
+    duration: "2021 – 2025",
+    location: "Grand Wisata, Indonesia",
+    type: "Part-Time Work",
     description:
-      "Organize national writing competitions, coordinate participants, and assist in managing literary publishing events.",
+      "Managed participant registration, administrative tasks, and communication to support international language programs.",
   },
 ];
 
@@ -165,10 +175,7 @@ export function Journey() {
             <ul className="grid gap-10">
               {education.map((item, index) => (
                 <li key={item.year}>
-                  <Reveal
-                    delay={index * 120}
-                    className="relative"
-                  >
+                  <Reveal delay={index * 120} className="relative">
                     <span
                       aria-hidden
                       className="animate-twinkle absolute -left-[1.86rem] top-6 size-3 rounded-full bg-primary shadow-[0_0_16px_oklch(0.88_0.13_90/80%)]"
@@ -305,10 +312,7 @@ export function Journey() {
 
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-xl">
-                      {honor.emoji}
-                    </span>
-
+                    <span className="text-xl">{honor.emoji}</span>
                     <Trophy className="size-4 text-primary" />
                   </div>
 
@@ -371,4 +375,4 @@ export function Journey() {
       </div>
     </section>
   );
-}
+      }
