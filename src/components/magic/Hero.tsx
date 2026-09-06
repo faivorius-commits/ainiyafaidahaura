@@ -1,37 +1,38 @@
 import { useRef, useState } from "react";
+import type { PointerEvent } from "react";
 import {
   BookOpen,
   Download,
   MailOpen,
   ShieldCheck,
 } from "lucide-react";
-import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 
 const quickLinks = [
   {
     id: "cybersecurity",
-    to: "/cybersecurity",
+    href: "/cybersecurity",
     icon: ShieldCheck,
     title: "Cybersecurity",
     sub: "Learning, challenges, and technical growth",
   },
   {
     id: "journey",
-    to: "/journey",
+    href: "/journey",
     icon: BookOpen,
     title: "My Journey",
     sub: "The story behind who I am today",
   },
   {
     id: "cv",
+    href: "/Ainiya-Faida-Haura-CV.pdf",
     icon: Download,
     title: "Download CV",
     sub: "A glimpse into my experience and skills",
   },
   {
     id: "contact",
-    to: "/contact",
+    href: "/contact",
     icon: MailOpen,
     title: "Contact Me",
     sub: "Let's connect and create together",
@@ -54,22 +55,25 @@ export function Hero() {
   const moved = useRef(false);
 
   const next = () => {
-    setActiveIndex((current) => (current + 1) % quickLinks.length);
+    setActiveIndex(
+      (current) => (current + 1) % quickLinks.length,
+    );
   };
 
   const previous = () => {
     setActiveIndex(
       (current) =>
-        (current - 1 + quickLinks.length) % quickLinks.length,
+        (current - 1 + quickLinks.length) %
+        quickLinks.length,
     );
   };
 
-  const handlePointerDown = (event: React.PointerEvent) => {
+  const handlePointerDown = (event: PointerEvent) => {
     startX.current = event.clientX;
     moved.current = false;
   };
 
-  const handlePointerMove = (event: React.PointerEvent) => {
+  const handlePointerMove = (event: PointerEvent) => {
     if (startX.current === null) return;
 
     if (Math.abs(event.clientX - startX.current) > 12) {
@@ -77,7 +81,7 @@ export function Hero() {
     }
   };
 
-  const handlePointerUp = (event: React.PointerEvent) => {
+  const handlePointerUp = (event: PointerEvent) => {
     if (startX.current === null) return;
 
     const distance = event.clientX - startX.current;
@@ -102,14 +106,14 @@ export function Hero() {
       <img
         src="/images/sky.jpg"
         alt=""
-        aria-hidden
+        aria-hidden="true"
         width={1024}
         height={1536}
         className="pointer-events-none absolute inset-0 -z-20 size-full object-cover opacity-40"
       />
 
       <div
-        aria-hidden
+        aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
@@ -132,107 +136,78 @@ export function Hero() {
 
         {/* =========================================
             DIGITAL ID CARD
-           ========================================= */}
+        ========================================= */}
 
-        <Reveal delay={120} className="my-10 flex justify-center">
-          <div className="id-card-wrapper">
+        <Reveal
+          delay={120}
+          className="my-10 flex justify-center"
+        >
+          <div className="id-card-scene">
 
-            <div className="id-card-scene">
-              <div className="id-card-inner">
+            <div className="id-card">
 
-                {/* ================= FRONT ================= */}
-                <div className="id-card-face id-card-front">
-                  <img
-                    src="/images/id-card.png"
-                    alt="Ainiya Faida Haura digital ID card"
-                    className="id-card-image"
-                  />
+              {/* FRONT */}
+              <div className="id-card-face id-card-front">
+                <img
+                  src="/images/id-card.png"
+                  alt="Digital ID card"
+                />
+              </div>
 
-                  <span
-                    aria-hidden
-                    className="id-card-shine"
-                  />
-                </div>
+              {/* BACK */}
+              <div className="id-card-face id-card-back">
+                <div
+                  className="flex h-full w-full flex-col items-center justify-center p-5 text-center"
+                >
+                  <div className="flex w-full items-center justify-between">
+                    <span className="font-display text-sm text-primary">
+                      AFH
+                    </span>
 
-                {/* ================= BACK ================= */}
-                <div className="id-card-face id-card-back">
+                    <span className="text-primary">
+                      ✦
+                    </span>
+                  </div>
 
-                  <div className="id-back-content">
-
-                    <div className="id-back-header">
-                      <span>AFH</span>
-                      <span>✦</span>
+                  <div className="my-auto">
+                    <div className="mb-3 text-3xl text-primary">
+                      ◈
                     </div>
 
-                    <div className="id-back-orbit">
-                      <span>✦</span>
-                      <span>◈</span>
-                      <span>✦</span>
-                    </div>
-
-                    <p className="id-back-title">
+                    <p className="font-display text-sm tracking-[0.2em] text-primary">
                       DIGITAL IDENTITY
                     </p>
 
-                    <p className="id-back-name">
+                    <p className="mt-2 font-display text-lg font-medium">
                       AINIYA FAIDA HAURA
                     </p>
 
-                    <p className="id-back-hash">
+                    <p className="mt-3 text-[8px] tracking-[0.16em] text-muted-foreground">
                       SHA256: AB29DAF6
                     </p>
 
-                    <div className="id-back-barcode">
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                      <span />
+                    <div className="mt-5 flex h-8 items-end justify-center gap-[2px]">
+                      <span className="h-5 w-[2px] bg-primary/60" />
+                      <span className="h-8 w-[3px] bg-primary/80" />
+                      <span className="h-6 w-[1px] bg-primary/50" />
+                      <span className="h-8 w-[4px] bg-primary/70" />
+                      <span className="h-4 w-[2px] bg-primary/50" />
+                      <span className="h-7 w-[1px] bg-primary/70" />
+                      <span className="h-8 w-[3px] bg-primary/60" />
+                      <span className="h-5 w-[2px] bg-primary/80" />
+                      <span className="h-7 w-[1px] bg-primary/50" />
+                      <span className="h-8 w-[3px] bg-primary/70" />
+                      <span className="h-4 w-[2px] bg-primary/60" />
                     </div>
-
-                    <p className="id-back-footer">
-                      KEEP EXPLORING · KEEP LEARNING
-                    </p>
-
                   </div>
 
-                  <span
-                    aria-hidden
-                    className="id-card-shine"
-                  />
+                  <p className="text-[7px] tracking-[0.18em] text-muted-foreground">
+                    KEEP EXPLORING · KEEP LEARNING
+                  </p>
                 </div>
-
               </div>
+
             </div>
-
-            {/* DECORATIVE STARS */}
-            <span
-              aria-hidden
-              className="id-card-star id-card-star-one animate-twinkle"
-            >
-              ✦
-            </span>
-
-            <span
-              aria-hidden
-              className="id-card-star id-card-star-two animate-twinkle"
-            >
-              ✦
-            </span>
-
-            <span
-              aria-hidden
-              className="id-card-star id-card-star-three animate-twinkle"
-            >
-              ✧
-            </span>
-
           </div>
         </Reveal>
 
@@ -254,7 +229,7 @@ export function Hero() {
 
         {/* =========================================
             QUICK LINKS
-           ========================================= */}
+        ========================================= */}
 
         <Reveal delay={300} className="mt-8">
           <div
@@ -270,7 +245,7 @@ export function Hero() {
 
               <div
                 className="orbit-carousel-ring"
-                aria-hidden
+                aria-hidden="true"
               />
 
               {quickLinks.map((link, index) => {
@@ -291,19 +266,15 @@ export function Hero() {
                 if (isActive) {
                   positionClass =
                     "orbit-position-active";
-                }
-
-                if (isLeft) {
+                } else if (isLeft) {
                   positionClass =
                     "orbit-position-left";
-                }
-
-                if (isRight) {
+                } else if (isRight) {
                   positionClass =
                     "orbit-position-right";
                 }
 
-                const cardContent = (
+                const content = (
                   <>
                     <span className="orbit-card-icon">
                       <Icon className="size-5 text-primary" />
@@ -325,35 +296,15 @@ export function Hero() {
                   </>
                 );
 
-                /* DOWNLOAD CV */
-                if (link.id === "cv") {
-                  return (
-                    <a
-                      key={link.id}
-                      href="/Ainiya-Faida-Haura-CV.pdf"
-                      download
-                      className={`orbit-card ${positionClass} ${
-                        isActive
-                          ? "orbit-card-active"
-                          : ""
-                      }`}
-                      onClick={(event) => {
-                        if (moved.current) {
-                          event.preventDefault();
-                          moved.current = false;
-                        }
-                      }}
-                    >
-                      {cardContent}
-                    </a>
-                  );
-                }
-
-                /* NORMAL LINK */
                 return (
-                  <Link
+                  <a
                     key={link.id}
-                    to={link.to!}
+                    href={link.href}
+                    download={
+                      link.id === "cv"
+                        ? true
+                        : undefined
+                    }
                     className={`orbit-card ${positionClass} ${
                       isActive
                         ? "orbit-card-active"
@@ -369,13 +320,17 @@ export function Hero() {
                       isActive ? "page" : undefined
                     }
                   >
-                    {cardContent}
-                  </Link>
+                    {content}
+                  </a>
                 );
               })}
             </div>
 
-            <div className="orbit-dots" aria-hidden>
+            {/* DOTS */}
+            <div
+              className="orbit-dots"
+              aria-hidden="true"
+            >
               {quickLinks.map((link, index) => (
                 <span
                   key={link.id}
@@ -393,4 +348,4 @@ export function Hero() {
       </div>
     </section>
   );
-}
+          }
