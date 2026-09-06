@@ -1,10 +1,9 @@
 import { useRef, useState } from "react";
 import {
   BookOpen,
-  FolderHeart,
+  Download,
   MailOpen,
   ShieldCheck,
-  Download,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
@@ -25,11 +24,10 @@ const quickLinks = [
     sub: "The story behind who I am today",
   },
   {
-    id: "archive",
-    to: "/archive",
-    icon: FolderHeart,
-    title: "My Digital Archive",
-    sub: "Writings, projects, and moments",
+    id: "cv",
+    icon: Download,
+    title: "Download CV",
+    sub: "A glimpse into my experience and skills",
   },
   {
     id: "contact",
@@ -61,7 +59,8 @@ export function Hero() {
 
   const previous = () => {
     setActiveIndex(
-      (current) => (current - 1 + quickLinks.length) % quickLinks.length,
+      (current) =>
+        (current - 1 + quickLinks.length) % quickLinks.length,
     );
   };
 
@@ -99,7 +98,7 @@ export function Hero() {
       id="home"
       className="relative flex min-h-screen items-center justify-center px-5 pt-28 pb-20"
     >
-      {/* Background */}
+      {/* BACKGROUND */}
       <img
         src="/images/sky.jpg"
         alt=""
@@ -119,7 +118,8 @@ export function Hero() {
       />
 
       <div className="relative mx-auto w-full max-w-xl text-center">
-        {/* Welcome */}
+
+        {/* WELCOME */}
         <Reveal>
           <h1 className="text-6xl font-medium tracking-tight sm:text-7xl">
             Welcome
@@ -130,15 +130,17 @@ export function Hero() {
           </p>
         </Reveal>
 
-        {/* ========================= */}
-        {/* ID CARD */}
-        {/* ========================= */}
+        {/* =========================================
+            DIGITAL ID CARD
+           ========================================= */}
 
         <Reveal delay={120} className="my-10 flex justify-center">
-          <div className="id-card-float">
+          <div className="id-card-wrapper">
+
             <div className="id-card-scene">
-              <div className="id-card">
-                {/* FRONT */}
+              <div className="id-card-inner">
+
+                {/* ================= FRONT ================= */}
                 <div className="id-card-face id-card-front">
                   <img
                     src="/images/id-card.png"
@@ -146,54 +148,70 @@ export function Hero() {
                     className="id-card-image"
                   />
 
-                  {/* Shine */}
                   <span
                     aria-hidden
                     className="id-card-shine"
                   />
                 </div>
 
-                {/* BACK */}
+                {/* ================= BACK ================= */}
                 <div className="id-card-face id-card-back">
-                  <div className="id-back-inner">
-                    <div className="id-back-top">
+
+                  <div className="id-back-content">
+
+                    <div className="id-back-header">
                       <span>AFH</span>
                       <span>✦</span>
                     </div>
 
-                    <div className="id-back-symbol">
-                      ◈
+                    <div className="id-back-orbit">
+                      <span>✦</span>
+                      <span>◈</span>
+                      <span>✦</span>
                     </div>
 
                     <p className="id-back-title">
                       DIGITAL IDENTITY
                     </p>
 
-                    <p className="id-back-code">
+                    <p className="id-back-name">
+                      AINIYA FAIDA HAURA
+                    </p>
+
+                    <p className="id-back-hash">
                       SHA256: AB29DAF6
                     </p>
 
-                    <div className="id-back-lines">
+                    <div className="id-back-barcode">
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                      <span />
                       <span />
                       <span />
                       <span />
                     </div>
 
                     <p className="id-back-footer">
-                      AINIYA FAIDA HAURA
+                      KEEP EXPLORING · KEEP LEARNING
                     </p>
+
                   </div>
 
-                  {/* Shine on back */}
                   <span
                     aria-hidden
                     className="id-card-shine"
                   />
                 </div>
+
               </div>
             </div>
 
-            {/* Decorative stars */}
+            {/* DECORATIVE STARS */}
             <span
               aria-hidden
               className="id-card-star id-card-star-one animate-twinkle"
@@ -214,10 +232,11 @@ export function Hero() {
             >
               ✧
             </span>
+
           </div>
         </Reveal>
 
-        {/* Introduction */}
+        {/* INTRO */}
         <Reveal delay={200}>
           <p className="font-display text-lg text-primary">
             ✦ Hi I'm ✦
@@ -233,9 +252,9 @@ export function Hero() {
           </p>
         </Reveal>
 
-        {/* ========================= */}
-        {/* QUICK LINKS */}
-        {/* ========================= */}
+        {/* =========================================
+            QUICK LINKS
+           ========================================= */}
 
         <Reveal delay={300} className="mt-8">
           <div
@@ -248,45 +267,44 @@ export function Hero() {
             }}
           >
             <div className="orbit-carousel-stage">
-              <div className="orbit-carousel-ring" aria-hidden />
+
+              <div
+                className="orbit-carousel-ring"
+                aria-hidden
+              />
 
               {quickLinks.map((link, index) => {
-                const offset = getOffset(index, activeIndex);
+                const offset = getOffset(
+                  index,
+                  activeIndex,
+                );
+
                 const Icon = link.icon;
 
                 const isActive = offset === 0;
                 const isLeft = offset === -1;
                 const isRight = offset === 1;
 
-                let positionClass = "orbit-position-back";
+                let positionClass =
+                  "orbit-position-back";
 
                 if (isActive) {
-                  positionClass = "orbit-position-active";
+                  positionClass =
+                    "orbit-position-active";
                 }
 
                 if (isLeft) {
-                  positionClass = "orbit-position-left";
+                  positionClass =
+                    "orbit-position-left";
                 }
 
                 if (isRight) {
-                  positionClass = "orbit-position-right";
+                  positionClass =
+                    "orbit-position-right";
                 }
 
-                return (
-                  <Link
-                    key={link.id}
-                    to={link.to}
-                    className={`orbit-card ${positionClass} ${
-                      isActive ? "orbit-card-active" : ""
-                    }`}
-                    onClick={(event) => {
-                      if (moved.current) {
-                        event.preventDefault();
-                        moved.current = false;
-                      }
-                    }}
-                    aria-current={isActive ? "page" : undefined}
-                  >
+                const cardContent = (
+                  <>
                     <span className="orbit-card-icon">
                       <Icon className="size-5 text-primary" />
                     </span>
@@ -304,6 +322,54 @@ export function Hero() {
                     <span className="orbit-card-star">
                       ✦
                     </span>
+                  </>
+                );
+
+                /* DOWNLOAD CV */
+                if (link.id === "cv") {
+                  return (
+                    <a
+                      key={link.id}
+                      href="/Ainiya-Faida-Haura-CV.pdf"
+                      download
+                      className={`orbit-card ${positionClass} ${
+                        isActive
+                          ? "orbit-card-active"
+                          : ""
+                      }`}
+                      onClick={(event) => {
+                        if (moved.current) {
+                          event.preventDefault();
+                          moved.current = false;
+                        }
+                      }}
+                    >
+                      {cardContent}
+                    </a>
+                  );
+                }
+
+                /* NORMAL LINK */
+                return (
+                  <Link
+                    key={link.id}
+                    to={link.to!}
+                    className={`orbit-card ${positionClass} ${
+                      isActive
+                        ? "orbit-card-active"
+                        : ""
+                    }`}
+                    onClick={(event) => {
+                      if (moved.current) {
+                        event.preventDefault();
+                        moved.current = false;
+                      }
+                    }}
+                    aria-current={
+                      isActive ? "page" : undefined
+                    }
+                  >
+                    {cardContent}
                   </Link>
                 );
               })}
@@ -314,14 +380,17 @@ export function Hero() {
                 <span
                   key={link.id}
                   className={`orbit-dot ${
-                    index === activeIndex ? "orbit-dot-active" : ""
+                    index === activeIndex
+                      ? "orbit-dot-active"
+                      : ""
                   }`}
                 />
               ))}
             </div>
           </div>
         </Reveal>
+
       </div>
     </section>
   );
-                              }
+}
