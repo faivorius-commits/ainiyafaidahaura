@@ -1,22 +1,28 @@
 import { useRef, useState } from "react";
-import { BookOpen, FileBadge2, FolderHeart, MailOpen } from "lucide-react";
+import {
+  BookOpen,
+  FolderHeart,
+  MailOpen,
+  ShieldCheck,
+  Download,
+} from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 
 const quickLinks = [
+  {
+    id: "cybersecurity",
+    to: "/cybersecurity",
+    icon: ShieldCheck,
+    title: "Cybersecurity",
+    sub: "Learning, challenges, and technical growth",
+  },
   {
     id: "journey",
     to: "/journey",
     icon: BookOpen,
     title: "My Journey",
     sub: "The story behind who I am today",
-  },
-  {
-    id: "experience",
-    to: "/experience",
-    icon: FileBadge2,
-    title: "Experience & Honors",
-    sub: "Things I've done, and proud of",
   },
   {
     id: "archive",
@@ -45,6 +51,7 @@ function getOffset(index: number, activeIndex: number) {
 
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
+
   const startX = useRef<number | null>(null);
   const moved = useRef(false);
 
@@ -92,6 +99,7 @@ export function Hero() {
       id="home"
       className="relative flex min-h-screen items-center justify-center px-5 pt-28 pb-20"
     >
+      {/* Background */}
       <img
         src="/images/sky.jpg"
         alt=""
@@ -111,6 +119,7 @@ export function Hero() {
       />
 
       <div className="relative mx-auto w-full max-w-xl text-center">
+        {/* Welcome */}
         <Reveal>
           <h1 className="text-6xl font-medium tracking-tight sm:text-7xl">
             Welcome
@@ -121,40 +130,112 @@ export function Hero() {
           </p>
         </Reveal>
 
-        <Reveal delay={120} className="my-10 flex justify-center">
-          <div className="animate-floaty relative grid size-44 place-items-center rounded-full border border-primary/40 p-1.5 shadow-[0_0_50px_oklch(0.88_0.13_90/25%)]">
-            <img
-              src="/images/ainiya.jpg"
-              alt="Portrait of Ainiya Faida Haura"
-              width={440}
-              height={440}
-              className="size-full rounded-full object-cover object-top"
-            />
+        {/* ========================= */}
+        {/* ID CARD */}
+        {/* ========================= */}
 
-            <span className="animate-twinkle absolute -top-1 left-4 text-primary">
+        <Reveal delay={120} className="my-10 flex justify-center">
+          <div className="id-card-float">
+            <div className="id-card-scene">
+              <div className="id-card">
+                {/* FRONT */}
+                <div className="id-card-face id-card-front">
+                  <img
+                    src="/images/id-card.png"
+                    alt="Ainiya Faida Haura digital ID card"
+                    className="id-card-image"
+                  />
+
+                  {/* Shine */}
+                  <span
+                    aria-hidden
+                    className="id-card-shine"
+                  />
+                </div>
+
+                {/* BACK */}
+                <div className="id-card-face id-card-back">
+                  <div className="id-back-inner">
+                    <div className="id-back-top">
+                      <span>AFH</span>
+                      <span>✦</span>
+                    </div>
+
+                    <div className="id-back-symbol">
+                      ◈
+                    </div>
+
+                    <p className="id-back-title">
+                      DIGITAL IDENTITY
+                    </p>
+
+                    <p className="id-back-code">
+                      SHA256: AB29DAF6
+                    </p>
+
+                    <div className="id-back-lines">
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+
+                    <p className="id-back-footer">
+                      AINIYA FAIDA HAURA
+                    </p>
+                  </div>
+
+                  {/* Shine on back */}
+                  <span
+                    aria-hidden
+                    className="id-card-shine"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative stars */}
+            <span
+              aria-hidden
+              className="id-card-star id-card-star-one animate-twinkle"
+            >
               ✦
             </span>
 
-            <span className="animate-twinkle absolute right-2 -bottom-1 text-primary">
+            <span
+              aria-hidden
+              className="id-card-star id-card-star-two animate-twinkle"
+            >
               ✦
+            </span>
+
+            <span
+              aria-hidden
+              className="id-card-star id-card-star-three animate-twinkle"
+            >
+              ✧
             </span>
           </div>
         </Reveal>
 
+        {/* Introduction */}
         <Reveal delay={200}>
-          <p className="font-display text-lg text-primary">✦ Hi I'm ✦</p>
+          <p className="font-display text-lg text-primary">
+            ✦ Hi I'm ✦
+          </p>
 
           <p className="font-display mt-1 text-4xl font-medium sm:text-5xl">
             Ainiya Faida Haura
           </p>
 
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-            I am a young writer and creative thinker who explores the
-            intersection of literature, youth advocacy, technology, and
-            digital creativity. I believe in learning continuously, creating
-            meaningfully, and using ideas to make an impact.
+            Somewhere between curiosity and code, I'm discovering the
+            endless possibilities of the digital world.
           </p>
         </Reveal>
+
+        {/* ========================= */}
+        {/* QUICK LINKS */}
+        {/* ========================= */}
 
         <Reveal delay={300} className="mt-8">
           <div
@@ -176,13 +257,20 @@ export function Hero() {
                 const isActive = offset === 0;
                 const isLeft = offset === -1;
                 const isRight = offset === 1;
-                const isBack = Math.abs(offset) === 2;
 
                 let positionClass = "orbit-position-back";
 
-                if (isActive) positionClass = "orbit-position-active";
-                if (isLeft) positionClass = "orbit-position-left";
-                if (isRight) positionClass = "orbit-position-right";
+                if (isActive) {
+                  positionClass = "orbit-position-active";
+                }
+
+                if (isLeft) {
+                  positionClass = "orbit-position-left";
+                }
+
+                if (isRight) {
+                  positionClass = "orbit-position-right";
+                }
 
                 return (
                   <Link
@@ -213,7 +301,9 @@ export function Hero() {
                       </span>
                     </span>
 
-                    <span className="orbit-card-star">✦</span>
+                    <span className="orbit-card-star">
+                      ✦
+                    </span>
                   </Link>
                 );
               })}
@@ -234,4 +324,4 @@ export function Hero() {
       </div>
     </section>
   );
-}
+                              }
