@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  GraduationCap,
-  Briefcase,
-  Trophy,
-  MapPin,
-  Sparkles,
-} from "lucide-react";
+import { MapPin, Sparkles, Trophy, ChevronLeft, ChevronRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 
@@ -74,80 +66,80 @@ const experiences = [
 
 const honors = [
   {
-    title: "Bronze League",
-    organization: "TryHackMe",
+    emoji: "🥇",
+    title: "1st Place — National Writing Competition",
+    organizer: "Antero Literasi",
+    logo: "/images/antero.jpg",
     year: "2026",
-    description:
-      "A milestone in my hands-on cybersecurity learning journey.",
   },
   {
-    title: "Chapter Founder",
-    organization: "LegallyYouth",
+    emoji: "🏆",
+    title: "Best Analytical Thinking Essay, VERTEX 2026",
+    organizer: "PT. Vetrion Amartya Indonesia",
+    logo: "/images/vertex.jpg",
     year: "2026",
-    description:
-      "Selected as a Chapter Founder for the LegallyYouth YOUth Ambassador Program.",
   },
   {
-    title: "Poetry Publication",
-    organization: "International Publication",
+    emoji: "⭐",
+    title: "Best Rookies in Cybersecurity",
+    organizer: "Generation Girl Tangerang",
+    logo: "/images/generation-girl.jpg",
     year: "2026",
-    description:
-      "An English poem accepted for publication by an international publication.",
+  },
+  {
+    emoji: "🏆🥉",
+    title: "1st Place Bronze League",
+    organizer: "TryHackMe",
+    logo: "/images/TryHackMe.jpg",
+    year: "2026",
+  },
+  {
+    emoji: "🇮🇩",
+    title: "Indonesian Student Recognition – Pelajar Merah Putih",
+    organizer: "Patriot Pelajar Mahasiswa",
+    logo: "/images/pmp.jpg",
+    year: "2025",
   },
 ];
 
-function CarouselControls({
+function NavigationButtons({
   current,
   total,
   onPrevious,
   onNext,
-  onSelect,
 }: {
   current: number;
   total: number;
   onPrevious: () => void;
   onNext: () => void;
-  onSelect: (index: number) => void;
 }) {
   return (
     <div className="mt-5 flex items-center justify-between">
       <button
         onClick={onPrevious}
+        disabled={current === 0}
         aria-label="Previous"
-        className="glass glass-hover flex size-10 items-center justify-center rounded-full transition-transform hover:scale-105"
+        className="glass glass-hover flex size-10 items-center justify-center rounded-full transition disabled:pointer-events-none disabled:opacity-30"
       >
         <ChevronLeft className="size-5" />
       </button>
 
-      <div className="flex items-center gap-3">
-        <span className="font-display text-sm text-primary">
-          {String(current + 1).padStart(2, "0")}
-        </span>
-
-        <div className="flex items-center gap-1.5">
-          {Array.from({ length: total }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => onSelect(index)}
-              aria-label={`Go to item ${index + 1}`}
-              className={`h-1.5 rounded-full transition-all ${
-                index === current
-                  ? "w-7 bg-primary"
-                  : "w-1.5 bg-primary/30"
-              }`}
-            />
-          ))}
-        </div>
-
-        <span className="font-display text-sm text-muted-foreground">
-          {String(total).padStart(2, "0")}
-        </span>
+      <div className="flex items-center gap-2">
+        {Array.from({ length: total }).map((_, i) => (
+          <span
+            key={i}
+            className={`h-1.5 rounded-full transition-all ${
+              i === current ? "w-6 bg-primary" : "w-1.5 bg-primary/30"
+            }`}
+          />
+        ))}
       </div>
 
       <button
         onClick={onNext}
+        disabled={current === total - 1}
         aria-label="Next"
-        className="glass glass-hover flex size-10 items-center justify-center rounded-full transition-transform hover:scale-105"
+        className="glass glass-hover flex size-10 items-center justify-center rounded-full transition disabled:pointer-events-none disabled:opacity-30"
       >
         <ChevronRight className="size-5" />
       </button>
@@ -156,109 +148,86 @@ function CarouselControls({
 }
 
 export function Journey() {
-  const [educationIndex, setEducationIndex] = useState(2);
   const [experienceIndex, setExperienceIndex] = useState(0);
   const [honorIndex, setHonorIndex] = useState(0);
 
-  const nextEducation = () => {
-    setEducationIndex((i) => (i + 1) % education.length);
-  };
-
-  const previousEducation = () => {
-    setEducationIndex(
-      (i) => (i - 1 + education.length) % education.length
-    );
-  };
-
-  const nextExperience = () => {
-    setExperienceIndex((i) => (i + 1) % experiences.length);
-  };
-
-  const previousExperience = () => {
-    setExperienceIndex(
-      (i) => (i - 1 + experiences.length) % experiences.length
-    );
-  };
-
-  const nextHonor = () => {
-    setHonorIndex((i) => (i + 1) % honors.length);
-  };
-
-  const previousHonor = () => {
-    setHonorIndex((i) => (i - 1 + honors.length) % honors.length
-    );
-  };
-
-  const currentEducation = education[educationIndex];
-  const currentExperience = experiences[experienceIndex];
-  const currentHonor = honors[honorIndex];
+  const experience = experiences[experienceIndex];
+  const honor = honors[honorIndex];
 
   return (
     <section id="journey" className="relative px-5 py-24">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-3xl">
+
+        {/* ==================== */}
+        {/* MY JOURNEY */}
+        {/* ==================== */}
+
         <SectionTitle
           title="My Journey"
-          subtitle="The chapters that shaped who I am today."
+          subtitle="Every experience shapes who I am today."
         />
 
-        {/* ================= EDUCATION ================= */}
+        {/* ==================== */}
+        {/* EDUCATION */}
+        {/* ==================== */}
 
-        <Reveal>
-          <div className="mb-16">
-            <div className="mb-5 flex items-center gap-2">
-              <GraduationCap className="size-5 text-primary" />
-              <h2 className="font-display text-xl text-primary">
-                Education
-              </h2>
-            </div>
+        <div className="mb-20">
+          <h2 className="font-display mb-8 text-2xl text-primary">
+            Education
+          </h2>
 
-            <article className="glass glass-hover min-h-[260px] p-7 md:p-9">
-              <div className="flex min-h-[210px] flex-col justify-center text-center">
-                <p className="font-display text-2xl text-primary md:text-3xl">
-                  {currentEducation.year}
-                </p>
-
-                <h3 className="mx-auto mt-3 max-w-xl font-display text-xl leading-snug md:text-2xl">
-                  {currentEducation.title}
-                </h3>
-
-                <p className="mt-3 text-sm text-muted-foreground">
-                  {currentEducation.text}
-                </p>
-              </div>
-            </article>
-
-            <CarouselControls
-              current={educationIndex}
-              total={education.length}
-              onPrevious={previousEducation}
-              onNext={nextEducation}
-              onSelect={setEducationIndex}
+          <div className="relative pl-10">
+            <span
+              aria-hidden
+              className="absolute top-2 bottom-2 left-3 w-px origin-top bg-gradient-to-b from-primary/80 via-accent/60 to-transparent"
+              style={{ animation: "draw-line 2.5s ease-out both" }}
             />
 
-            <p className="mt-3 text-center text-[11px] tracking-wide text-muted-foreground/50">
-              Swipe / explore each chapter
-            </p>
+            <ul className="grid gap-8">
+              {education.map((e, i) => (
+                <li key={e.year}>
+                  <Reveal delay={i * 120} className="relative">
+                    <span
+                      aria-hidden
+                      className="animate-twinkle absolute top-6 -left-[1.86rem] size-3 rounded-full bg-primary shadow-[0_0_16px_oklch(0.88_0.13_90/80%)]"
+                    />
+
+                    <div>
+                      <p className="font-display text-2xl text-gold">
+                        {e.year}
+                      </p>
+
+                      <p className="font-display mt-1 text-lg leading-snug text-primary">
+                        {e.title}
+                      </p>
+
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {e.text}
+                      </p>
+                    </div>
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
           </div>
-        </Reveal>
+        </div>
 
-        {/* ================= EXPERIENCE ================= */}
+        {/* ==================== */}
+        {/* EXPERIENCE */}
+        {/* ==================== */}
 
-        <Reveal>
-          <div className="mb-16">
-            <div className="mb-5 flex items-center gap-2">
-              <Briefcase className="size-5 text-primary" />
-              <h2 className="font-display text-xl text-primary">
-                Experience
-              </h2>
-            </div>
+        <div className="mb-20">
+          <h2 className="font-display mb-8 text-2xl text-primary">
+            Experience
+          </h2>
 
-            <article className="glass glass-hover min-h-[310px] p-6 md:p-8">
-              <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4 md:gap-6">
-                <div className="logo-frame size-16 shrink-0 overflow-hidden md:size-20">
+          <Reveal key={experience.position + experience.org}>
+            <article className="glass glass-hover p-5">
+              <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
+                <div className="logo-frame size-14 shrink-0 overflow-hidden">
                   <img
-                    src={currentExperience.logo}
-                    alt={`${currentExperience.org} logo`}
+                    src={experience.logo}
+                    alt={`${experience.org} logo`}
                     loading="lazy"
                     className="size-full rounded-[inherit] object-contain"
                   />
@@ -266,100 +235,120 @@ export function Journey() {
 
                 <div className="min-w-0">
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-display text-xl leading-snug md:text-2xl">
-                      {currentExperience.position}
+                    <h3 className="font-display text-xl leading-snug">
+                      {experience.position}
                     </h3>
 
                     <Sparkles className="animate-twinkle mt-1 size-4 shrink-0 text-primary" />
                   </div>
 
-                  <p className="mt-1 text-sm text-primary">
-                    {currentExperience.org}
+                  <p className="text-sm text-primary">
+                    {experience.org}
                   </p>
 
-                  <p className="mt-2 text-xs text-muted-foreground">
-                    {currentExperience.duration}
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {experience.duration}
                   </p>
 
                   <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
                     <MapPin className="size-3 shrink-0" />
-                    {currentExperience.location}
+                    {experience.location}
                   </p>
 
-                  <span className="mt-4 inline-block rounded-full border border-primary/40 px-3 py-1 text-[11px] tracking-wide text-primary">
-                    {currentExperience.type}
+                  <span className="mt-3 inline-block rounded-full border border-primary/40 px-3 py-1 text-[11px] tracking-wide text-primary">
+                    {experience.type}
                   </span>
                 </div>
               </div>
 
-              <div className="my-6 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-
-              <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
-                {currentExperience.description}
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {experience.description}
               </p>
             </article>
+          </Reveal>
 
-            <CarouselControls
-              current={experienceIndex}
-              total={experiences.length}
-              onPrevious={previousExperience}
-              onNext={nextExperience}
-              onSelect={setExperienceIndex}
-            />
+          <NavigationButtons
+            current={experienceIndex}
+            total={experiences.length}
+            onPrevious={() =>
+              setExperienceIndex((prev) => Math.max(prev - 1, 0))
+            }
+            onNext={() =>
+              setExperienceIndex((prev) =>
+                Math.min(prev + 1, experiences.length - 1)
+              )
+            }
+          />
 
-            <p className="mt-3 text-center text-[11px] tracking-wide text-muted-foreground/50">
-              Swipe / explore each experience
-            </p>
-          </div>
-        </Reveal>
+          <p className="mt-3 text-center text-xs text-muted-foreground">
+            {experienceIndex + 1} / {experiences.length}
+          </p>
+        </div>
 
-        {/* ================= HONORS ================= */}
+        {/* ==================== */}
+        {/* HONORS */}
+        {/* ==================== */}
 
-        <Reveal>
-          <div>
-            <div className="mb-5 flex items-center gap-2">
-              <Trophy className="size-5 text-primary" />
-              <h2 className="font-display text-xl text-primary">
-                Honors & Achievements
-              </h2>
-            </div>
+        <div>
+          <h2 className="font-display mb-8 text-2xl text-primary">
+            Honors & Achievements
+          </h2>
 
-            <article className="glass glass-hover min-h-[270px] p-7 md:p-9">
-              <div className="flex min-h-[210px] flex-col items-center justify-center text-center">
-                <Trophy className="mb-5 size-8 text-primary" />
+          <Reveal key={honor.title}>
+            <article className="glass glass-hover p-5">
+              <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
+                <div className="logo-frame size-14 shrink-0 overflow-hidden">
+                  <img
+                    src={honor.logo}
+                    alt={`${honor.organizer} logo`}
+                    loading="lazy"
+                    className="size-full rounded-[inherit] object-contain"
+                  />
+                </div>
 
-                <p className="font-display text-2xl text-primary">
-                  {currentHonor.year}
-                </p>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">
+                      {honor.emoji}
+                    </span>
 
-                <h3 className="mt-2 font-display text-xl md:text-2xl">
-                  {currentHonor.title}
-                </h3>
+                    <Trophy className="size-4 text-primary" />
+                  </div>
 
-                <p className="mt-1 text-sm text-primary">
-                  {currentHonor.organization}
-                </p>
+                  <h3 className="font-display mt-2 text-lg leading-snug">
+                    {honor.title}
+                  </h3>
 
-                <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground">
-                  {currentHonor.description}
-                </p>
+                  <p className="mt-1 text-sm text-primary">
+                    {honor.organizer}
+                  </p>
+
+                  <p className="text-xs text-muted-foreground">
+                    {honor.year}
+                  </p>
+                </div>
               </div>
             </article>
+          </Reveal>
 
-            <CarouselControls
-              current={honorIndex}
-              total={honors.length}
-              onPrevious={previousHonor}
-              onNext={nextHonor}
-              onSelect={setHonorIndex}
-            />
+          <NavigationButtons
+            current={honorIndex}
+            total={honors.length}
+            onPrevious={() =>
+              setHonorIndex((prev) => Math.max(prev - 1, 0))
+            }
+            onNext={() =>
+              setHonorIndex((prev) =>
+                Math.min(prev + 1, honors.length - 1)
+              )
+            }
+          />
 
-            <p className="mt-3 text-center text-[11px] tracking-wide text-muted-foreground/50">
-              Swipe / explore each achievement
-            </p>
-          </div>
-        </Reveal>
+          <p className="mt-3 text-center text-xs text-muted-foreground">
+            {honorIndex + 1} / {honors.length}
+          </p>
+        </div>
       </div>
     </section>
   );
-        }
+}
