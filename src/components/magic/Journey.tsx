@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { MapPin, Sparkles, Trophy, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  MapPin,
+  Sparkles,
+  Trophy,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 
@@ -102,51 +108,6 @@ const honors = [
   },
 ];
 
-function NavigationButtons({
-  current,
-  total,
-  onPrevious,
-  onNext,
-}: {
-  current: number;
-  total: number;
-  onPrevious: () => void;
-  onNext: () => void;
-}) {
-  return (
-    <div className="mt-5 flex items-center justify-between">
-      <button
-        onClick={onPrevious}
-        disabled={current === 0}
-        aria-label="Previous"
-        className="glass glass-hover flex size-10 items-center justify-center rounded-full transition disabled:pointer-events-none disabled:opacity-30"
-      >
-        <ChevronLeft className="size-5" />
-      </button>
-
-      <div className="flex items-center gap-2">
-        {Array.from({ length: total }).map((_, i) => (
-          <span
-            key={i}
-            className={`h-1.5 rounded-full transition-all ${
-              i === current ? "w-6 bg-primary" : "w-1.5 bg-primary/30"
-            }`}
-          />
-        ))}
-      </div>
-
-      <button
-        onClick={onNext}
-        disabled={current === total - 1}
-        aria-label="Next"
-        className="glass glass-hover flex size-10 items-center justify-center rounded-full transition disabled:pointer-events-none disabled:opacity-30"
-      >
-        <ChevronRight className="size-5" />
-      </button>
-    </div>
-  );
-}
-
 export function Journey() {
   const [experienceIndex, setExperienceIndex] = useState(0);
   const [honorIndex, setHonorIndex] = useState(0);
@@ -154,57 +115,76 @@ export function Journey() {
   const experience = experiences[experienceIndex];
   const honor = honors[honorIndex];
 
+  const previousExperience = () => {
+    setExperienceIndex((current) =>
+      current === 0 ? experiences.length - 1 : current - 1
+    );
+  };
+
+  const nextExperience = () => {
+    setExperienceIndex((current) =>
+      current === experiences.length - 1 ? 0 : current + 1
+    );
+  };
+
+  const previousHonor = () => {
+    setHonorIndex((current) =>
+      current === 0 ? honors.length - 1 : current - 1
+    );
+  };
+
+  const nextHonor = () => {
+    setHonorIndex((current) =>
+      current === honors.length - 1 ? 0 : current + 1
+    );
+  };
+
   return (
     <section id="journey" className="relative px-5 py-24">
       <div className="mx-auto max-w-3xl">
-
-        {/* ==================== */}
-        {/* MY JOURNEY */}
-        {/* ==================== */}
-
         <SectionTitle
           title="My Journey"
           subtitle="Every experience shapes who I am today."
         />
 
-        {/* ==================== */}
         {/* EDUCATION */}
-        {/* ==================== */}
-
-        <div className="mb-20">
-          <h2 className="font-display mb-8 text-2xl text-primary">
+        <div className="mb-24">
+          <h2 className="font-display mb-10 text-2xl text-primary">
             Education
           </h2>
 
           <div className="relative pl-10">
             <span
               aria-hidden
-              className="absolute top-2 bottom-2 left-3 w-px origin-top bg-gradient-to-b from-primary/80 via-accent/60 to-transparent"
-              style={{ animation: "draw-line 2.5s ease-out both" }}
+              className="absolute bottom-2 left-3 top-2 w-px bg-gradient-to-b from-primary/80 via-accent/60 to-transparent"
+              style={{
+                animation: "draw-line 2.5s ease-out both",
+              }}
             />
 
-            <ul className="grid gap-8">
-              {education.map((e, i) => (
-                <li key={e.year}>
-                  <Reveal delay={i * 120} className="relative">
+            <ul className="grid gap-10">
+              {education.map((item, index) => (
+                <li key={item.year}>
+                  <Reveal
+                    delay={index * 120}
+                    className="relative"
+                  >
                     <span
                       aria-hidden
-                      className="animate-twinkle absolute top-6 -left-[1.86rem] size-3 rounded-full bg-primary shadow-[0_0_16px_oklch(0.88_0.13_90/80%)]"
+                      className="animate-twinkle absolute -left-[1.86rem] top-6 size-3 rounded-full bg-primary shadow-[0_0_16px_oklch(0.88_0.13_90/80%)]"
                     />
 
-                    <div>
-                      <p className="font-display text-2xl text-gold">
-                        {e.year}
-                      </p>
+                    <p className="font-display text-2xl text-gold">
+                      {item.year}
+                    </p>
 
-                      <p className="font-display mt-1 text-lg leading-snug text-primary">
-                        {e.title}
-                      </p>
+                    <p className="font-display mt-1 text-lg leading-snug text-primary">
+                      {item.title}
+                    </p>
 
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                        {e.text}
-                      </p>
-                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {item.text}
+                    </p>
                   </Reveal>
                 </li>
               ))}
@@ -212,16 +192,13 @@ export function Journey() {
           </div>
         </div>
 
-        {/* ==================== */}
         {/* EXPERIENCE */}
-        {/* ==================== */}
-
-        <div className="mb-20">
+        <div className="mb-24">
           <h2 className="font-display mb-8 text-2xl text-primary">
             Experience
           </h2>
 
-          <Reveal key={experience.position + experience.org}>
+          <Reveal key={experienceIndex}>
             <article className="glass glass-hover p-5">
               <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
                 <div className="logo-frame size-14 shrink-0 overflow-hidden">
@@ -267,34 +244,54 @@ export function Journey() {
             </article>
           </Reveal>
 
-          <NavigationButtons
-            current={experienceIndex}
-            total={experiences.length}
-            onPrevious={() =>
-              setExperienceIndex((prev) => Math.max(prev - 1, 0))
-            }
-            onNext={() =>
-              setExperienceIndex((prev) =>
-                Math.min(prev + 1, experiences.length - 1)
-              )
-            }
-          />
+          <div className="mt-5 flex items-center justify-between">
+            <button
+              type="button"
+              onClick={previousExperience}
+              aria-label="Previous experience"
+              className="glass glass-hover flex size-10 items-center justify-center rounded-full"
+            >
+              <ChevronLeft className="size-5" />
+            </button>
+
+            <div className="flex items-center gap-2">
+              {experiences.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => setExperienceIndex(index)}
+                  aria-label={`Go to experience ${index + 1}`}
+                  className={`h-1.5 rounded-full transition-all ${
+                    index === experienceIndex
+                      ? "w-6 bg-primary"
+                      : "w-1.5 bg-primary/30"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={nextExperience}
+              aria-label="Next experience"
+              className="glass glass-hover flex size-10 items-center justify-center rounded-full"
+            >
+              <ChevronRight className="size-5" />
+            </button>
+          </div>
 
           <p className="mt-3 text-center text-xs text-muted-foreground">
             {experienceIndex + 1} / {experiences.length}
           </p>
         </div>
 
-        {/* ==================== */}
         {/* HONORS */}
-        {/* ==================== */}
-
         <div>
           <h2 className="font-display mb-8 text-2xl text-primary">
             Honors & Achievements
           </h2>
 
-          <Reveal key={honor.title}>
+          <Reveal key={honorIndex}>
             <article className="glass glass-hover p-5">
               <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
                 <div className="logo-frame size-14 shrink-0 overflow-hidden">
@@ -331,18 +328,41 @@ export function Journey() {
             </article>
           </Reveal>
 
-          <NavigationButtons
-            current={honorIndex}
-            total={honors.length}
-            onPrevious={() =>
-              setHonorIndex((prev) => Math.max(prev - 1, 0))
-            }
-            onNext={() =>
-              setHonorIndex((prev) =>
-                Math.min(prev + 1, honors.length - 1)
-              )
-            }
-          />
+          <div className="mt-5 flex items-center justify-between">
+            <button
+              type="button"
+              onClick={previousHonor}
+              aria-label="Previous honor"
+              className="glass glass-hover flex size-10 items-center justify-center rounded-full"
+            >
+              <ChevronLeft className="size-5" />
+            </button>
+
+            <div className="flex items-center gap-2">
+              {honors.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => setHonorIndex(index)}
+                  aria-label={`Go to honor ${index + 1}`}
+                  className={`h-1.5 rounded-full transition-all ${
+                    index === honorIndex
+                      ? "w-6 bg-primary"
+                      : "w-1.5 bg-primary/30"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={nextHonor}
+              aria-label="Next honor"
+              className="glass glass-hover flex size-10 items-center justify-center rounded-full"
+            >
+              <ChevronRight className="size-5" />
+            </button>
+          </div>
 
           <p className="mt-3 text-center text-xs text-muted-foreground">
             {honorIndex + 1} / {honors.length}
@@ -351,4 +371,4 @@ export function Journey() {
       </div>
     </section>
   );
-        }
+}
