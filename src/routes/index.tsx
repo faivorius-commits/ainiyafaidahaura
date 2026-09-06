@@ -6,7 +6,7 @@ import { GuestBook } from "@/components/magic/GuestBook";
 import { Footer } from "@/components/magic/Contact";
 
 const title = "Ainiya Faida Haura — Writer, Creator & Youth Advocate";
-// ✅ DIUBAH: achievements → honors
+
 const description =
   "A magical portfolio of Ainiya Faida Haura: journey, experience, honors, digital archive, and guest book.";
 
