@@ -1,17 +1,15 @@
-import { Honors } from "@/components/magic/Honors";
-import { Experience } from "@/components/magic/Experience";
+import { Journey } from "@/components/magic/Journey";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/magic/PageShell";
 
-export const Route = createFileRoute("/experience")({
-  component: ExperiencePage,
+export const Route = createFileRoute("/journey")({
+  component: JourneyPage,
 });
 
-function ExperiencePage() {
+function JourneyPage() {
   return (
     <PageShell>
-      <Experience />
-      <Honors />
+      <Journey />
     </PageShell>
   );
 }
