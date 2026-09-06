@@ -261,13 +261,11 @@
 
 /* =========================================================
    ID CARD
-   TAMBAHAN SAJA — desain lain tidak diubah
 ========================================================= */
 
 .id-card-scene {
   position: relative;
 
-  /* lebih besar */
   width: min(300px, 84vw);
 
   aspect-ratio: 1.586 / 1;
@@ -333,7 +331,6 @@
   transform: rotateY(180deg);
 }
 
-/* gambar bagian depan */
 
 .id-card-face img {
   display: block;
