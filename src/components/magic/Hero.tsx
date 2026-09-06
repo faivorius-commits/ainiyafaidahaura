@@ -149,7 +149,7 @@ export function Hero() {
               {/* FRONT */}
               <div className="id-card-face id-card-front">
                 <img
-                  src="/images/id-card.png"
+                  src="public/images/id-card.png"
                   alt="Digital ID card"
                 />
               </div>
