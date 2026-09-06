@@ -257,57 +257,46 @@
   }
 }
 
-/* =========================================
+/* =========================
    ID CARD
-========================================= */
+========================= */
 
 .id-card-scene {
-  position: relative;
-  width: min(280px, 78vw);
-  aspect-ratio: 1.58 / 1;
-  margin: 0 auto;
+  width: min(300px, 82vw);
+  aspect-ratio: 1.586 / 1;
   perspective: 1200px;
-
-  animation: id-card-float 6s ease-in-out infinite;
-
+  animation: id-card-float 5s ease-in-out infinite;
   filter:
-    drop-shadow(0 22px 35px oklch(0.05 0.05 293 / 45%))
-    drop-shadow(0 0 28px oklch(0.88 0.13 90 / 14%));
+    drop-shadow(0 22px 35px oklch(0.08 0.04 293 / 35%))
+    drop-shadow(0 5px 12px oklch(0.08 0.04 293 / 20%));
 }
 
 .id-card {
   position: relative;
   width: 100%;
   height: 100%;
-
   transform-style: preserve-3d;
-  animation: id-card-flip 9s ease-in-out infinite;
-
-  will-change: transform;
+  animation: id-card-flip 8s ease-in-out infinite;
 }
 
 .id-card-face {
   position: absolute;
   inset: 0;
-
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   border-radius: 18px;
-
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-
-  border: 1px solid oklch(0.88 0.13 90 / 48%);
-
-  box-shadow:
-    inset 0 0 25px oklch(0.88 0.13 90 / 8%),
-    0 0 22px oklch(0.88 0.13 90 / 12%);
-
+  border: 1px solid oklch(0.8 0.1 293 / 45%);
   background: linear-gradient(
     135deg,
-    oklch(0.22 0.1 293 / 92%),
-    oklch(0.32 0.12 300 / 82%),
-    oklch(0.2 0.09 293 / 94%)
+    oklch(0.2 0.08 293 / 95%),
+    oklch(0.12 0.05 293 / 98%)
   );
+  box-shadow:
+    inset 0 0 25px oklch(0.8 0.1 293 / 8%),
+    0 0 30px oklch(0.7 0.1 293 / 12%);
 }
 
 .id-card-front {
@@ -325,43 +314,97 @@
   object-fit: cover;
 }
 
+/* Holographic shine */
 .id-card-face::before {
   content: "";
-
   position: absolute;
-  inset: 0;
-  z-index: 2;
-
-  pointer-events: none;
-  border-radius: inherit;
-
-  box-shadow:
-    inset 0 0 0 1px oklch(0.95 0.12 90 / 20%),
-    inset 0 0 25px oklch(0.88 0.13 90 / 8%);
-
-  opacity: 0.9;
-}
-
-.id-card-face::after {
-  content: "";
-
-  position: absolute;
-  inset: -80%;
+  inset: -100%;
   z-index: 3;
-
   pointer-events: none;
-
   background: linear-gradient(
     115deg,
-    transparent 38%,
-    oklch(0.95 0.9 95 / 8%) 44%,
-    oklch(0.95 0.9 95 / 28%) 49%,
-    oklch(0.7 0.3 300 / 16%) 53%,
-    transparent 60%
+    transparent 35%,
+    oklch(0.95 0.12 293 / 8%) 45%,
+    oklch(0.95 0.15 220 / 18%) 50%,
+    oklch(0.95 0.15 330 / 14%) 55%,
+    transparent 65%
   );
-
-  transform: translateX(-75%) rotate(8deg);
   animation: id-card-shine 5s ease-in-out infinite;
+}
+
+/* Border glow */
+.id-card-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px oklch(0.9 0.1 293 / 18%),
+    inset 0 0 18px oklch(0.7 0.1 293 / 8%);
+}
+
+/* =========================
+   ID CARD ANIMATIONS
+========================= */
+
+@keyframes id-card-float {
+  0%,
+  100% {
+    transform: translateY(0) rotateZ(-1deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotateZ(1deg);
+  }
+}
+
+@keyframes id-card-flip {
+  0%,
+  35% {
+    transform: rotateY(0deg);
+  }
+
+  45%,
+  85% {
+    transform: rotateY(180deg);
+  }
+
+  95%,
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes id-card-shine {
+  0%,
+  20% {
+    transform: translateX(-30%) rotate(15deg);
+  }
+
+  55% {
+    transform: translateX(30%) rotate(15deg);
+  }
+
+  100% {
+    transform: translateX(30%) rotate(15deg);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 640px) {
+  .id-card-scene {
+    width: min(285px, 84vw);
+  }
+}
+
+@media (max-width: 400px) {
+  .id-card-scene {
+    width: min(260px, 82vw);
+  }
 }
 
 /* =========================================
