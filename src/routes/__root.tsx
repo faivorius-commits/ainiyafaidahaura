@@ -120,7 +120,7 @@ export const Route =
         // Google Search Console verification
         {
           name: "google-site-verification",
-          content: "MASUKKAN_KODE_GOOGLE_DI_SINI",
+          content: "TSbUG0or8OOIr4txvcnZPCR_d18sN11QyQrSAm7VKI4",
         },
 
         // Open Graph
