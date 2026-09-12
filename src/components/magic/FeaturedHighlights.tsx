@@ -42,6 +42,7 @@ export function FeaturedHighlights() {
   const isDragging = useRef(false);
   const touchStartX = useRef(0);
   const scrollPos = useRef(0);
+  const cardWidth = useRef(0);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -53,8 +54,13 @@ export function FeaturedHighlights() {
       if (!isHovered && !isDragging.current) {
         scrollPos.current += speed;
         el.scrollLeft = scrollPos.current;
-        // Kembali ke awal secara halus tanpa macet
-        if (el.scrollWidth > el.clientWidth && scrollPos.current >= el.scrollWidth) {
+
+        // Hitung lebar total 4 kartu lalu balik ke awal persis
+        if (cardWidth.current === 0 && el.children[0]) {
+          cardWidth.current = (el.children[0] as HTMLElement).offsetWidth + 24; // tambah jarak antar kartu
+        }
+        const totalWidth = cardWidth.current * 4;
+        if (totalWidth > 0 && scrollPos.current >= totalWidth) {
           scrollPos.current = 0;
           el.scrollLeft = 0;
         }
