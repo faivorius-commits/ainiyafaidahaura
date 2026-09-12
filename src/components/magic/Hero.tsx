@@ -7,6 +7,7 @@ import {
   MailOpen,
 } from "lucide-react";
 import { Reveal } from "./Reveal";
+import { FeaturedHighlights } from "./FeaturedHighlights";
 
 const quickLinks = [
   {
@@ -74,7 +75,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center px-5 pt-28"
+      className="relative flex min-h-screen items-center justify-center px-5 pt-28 pb-20"
     >
       <img
         src="/images/sky.jpg"
@@ -216,6 +217,8 @@ export function Hero() {
           </div>
         </Reveal>
       </div>
+
+      <FeaturedHighlights />
     </section>
   );
 }
