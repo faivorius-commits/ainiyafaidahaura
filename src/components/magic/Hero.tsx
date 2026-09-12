@@ -94,7 +94,6 @@ export function Hero() {
         }}
       />
 
-      {/* Bagian tengah tetap terpusat & sempit */}
       <div className="relative mx-auto w-full max-w-xl text-center">
         <Reveal>
           <h1 className="text-6xl font-medium tracking-tight sm:text-7xl">Welcome</h1>
@@ -107,7 +106,7 @@ export function Hero() {
           <div className="id-card-scene">
             <div className="id-card">
               <div className="id-card-face id-card-front">
-                <img src="images/id-card.png" alt="Digital ID card" />
+                <img src="/images/id-card.png" alt="Digital ID card" />
               </div>
               <div className="id-card-face id-card-back">
                 <div className="flex h-full w-full flex-col items-center justify-center p-5 text-center">
@@ -147,7 +146,7 @@ export function Hero() {
 
         <Reveal delay={200}>
           <p className="font-display text-lg text-primary">✦ Hi I'm ✦</p>
-          <p className="font-display mt-1 text-4xl font-medium sm:text-5xl">
+          <p className="font-display mt-1 text-4xl font-medium sm:text-5xl animate-name-twinkle">
             Ainiya Faida Haura
           </p>
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -218,6 +217,7 @@ export function Hero() {
           </div>
         </Reveal>
       </div>
+
       <FeaturedHighlights />
     </section>
   );
