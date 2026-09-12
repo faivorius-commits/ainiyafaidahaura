@@ -7,6 +7,7 @@ import {
   MailOpen,
 } from "lucide-react";
 import { Reveal } from "./Reveal";
+import { FeaturedHighlights } from "./FeaturedHighlights";
 
 const quickLinks = [
   {
@@ -216,6 +217,8 @@ export function Hero() {
           </div>
         </Reveal>
       </div>
+
+      <FeaturedHighlights />
     </section>
   );
-}
+    }
