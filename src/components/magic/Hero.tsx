@@ -75,7 +75,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center px-5 pt-28 pb-20"
+      className="relative flex flex-col items-center px-5 pt-28 pb-20"
     >
       <img
         src="/images/sky.jpg"
@@ -94,6 +94,7 @@ export function Hero() {
         }}
       />
 
+      {/* Bagian tengah tetap terpusat & sempit */}
       <div className="relative mx-auto w-full max-w-xl text-center">
         <Reveal>
           <h1 className="text-6xl font-medium tracking-tight sm:text-7xl">Welcome</h1>
@@ -154,7 +155,7 @@ export function Hero() {
           </p>
         </Reveal>
 
-        <Reveal delay={300} className="mt-8">
+        <Reveal delay={300} className="mt-8 mb-16">
           <div
             className="orbit-carousel"
             onPointerDown={handlePointerDown}
@@ -217,7 +218,6 @@ export function Hero() {
           </div>
         </Reveal>
       </div>
-
       <FeaturedHighlights />
     </section>
   );
