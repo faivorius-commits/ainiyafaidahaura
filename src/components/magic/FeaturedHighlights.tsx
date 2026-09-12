@@ -77,7 +77,7 @@ function HighlightCard({ icon: Icon, title, subtitle, description, link, label, 
 
 export function FeaturedHighlights() {
   return (
-    <div className="w-full clear-both mt-24 px-5">
+    <div className="w-full mt-12 px-5 clear-both">
       <div className="mx-auto max-w-4xl w-full">
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
           {highlights.map((item, i) => (
