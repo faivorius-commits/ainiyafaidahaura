@@ -14,7 +14,6 @@ const highlights = [
     title: "LegallyYOUth Chapter Founder",
     subtitle: "Southeast & East Asia Region",
     description: "Leading regional chapter for youth empowerment.",
-    image: "/images/legallyyouth.jpg",
     link: "/archive",
     label: "View Role",
     isExternal: false
@@ -24,7 +23,6 @@ const highlights = [
     title: "Published Writer",
     subtitle: "Kompasiana",
     description: "Social action and community care stories.",
-    image: "/images/kompasiana.jpg",
     link: "https://www.kompasiana.com/ainiyaainiya3343/6aa3bbb534777c412472b2a3/youthsaction-1-by-beyouth-id-menumbuhkan-kepedulian-terhadap-sesama",
     label: "Read Article",
     isExternal: true
@@ -34,7 +32,6 @@ const highlights = [
     title: "Author of 5 Books",
     subtitle: "Publications",
     description: "Collection of writings and ideas.",
-    image: "/images/books.jpg",
     link: "/archive",
     label: "View Works",
     isExternal: false
@@ -44,16 +41,15 @@ const highlights = [
     title: "Professional Profile",
     subtitle: "LinkedIn",
     description: "Connect and see my journey.",
-    image: "/images/linkedin.jpg",
     link: "https://linkedin.com/in/ainiyafaidahaura",
     label: "Visit Profile",
     isExternal: true
   }
 ];
 
-function HighlightCard({ icon: Icon, title, subtitle, description, image, link, label, isExternal }: any) {
+function HighlightCard({ icon: Icon, title, subtitle, description, link, label, isExternal }: any) {
   return (
-    <div className="relative overflow-hidden rounded-[3rem] rounded-t-[4rem] p-6 min-h-[270px] flex flex-col justify-between group transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+    <div className="relative overflow-hidden rounded-[3rem] rounded-t-[4rem] p-6 min-h-[220px] flex flex-col justify-between group transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/90 via-purple-900/90 to-violet-900/90"></div>
       <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_top_left,rgba(255,220,255,0.15),transparent_60%),radial-gradient(ellipse_at_bottom_right,rgba(200,220,255,0.12),transparent_55%),radial-gradient(ellipse_at_center,rgba(255,255,255,0.08),transparent_70%)]"></div>
       <div className="absolute top-4 left-6 w-1.5 h-1.5 bg-white/70 rounded-full animate-pulse"></div>
@@ -62,10 +58,7 @@ function HighlightCard({ icon: Icon, title, subtitle, description, image, link, 
       <div className="absolute bottom-6 right-6 w-1.5 h-1.5 bg-amber-200/40 rounded-full animate-pulse delay-500"></div>
 
       <div className="relative z-10">
-        <div className="mb-3 w-full h-36 rounded-2xl overflow-hidden bg-white/10 mb-4">
-          <img src={image} alt={title} className="w-full h-full object-cover" />
-        </div>
-        <div className="inline-flex items-center justify-center size-10 rounded-full bg-white/10 backdrop-blur-sm text-white mb-3">
+        <div className="mb-3 inline-flex items-center justify-center size-10 rounded-full bg-white/10 backdrop-blur-sm text-white">
           <Icon className="size-5" />
         </div>
         <h4 className="text-white font-display text-lg leading-snug">{title}</h4>
@@ -73,7 +66,7 @@ function HighlightCard({ icon: Icon, title, subtitle, description, image, link, 
         <p className="text-white/65 text-sm mt-2">{description}</p>
       </div>
 
-      <div className="relative z-10 mt-4 text-center">
+      <div className="relative z-10 mt-3 text-center">
         {isExternal ? (
           <a
             href={link}
