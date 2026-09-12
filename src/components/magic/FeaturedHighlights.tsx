@@ -7,7 +7,7 @@ const highlights = [
     title: "Chapter Founder",
     subtitle: "LegallyYOUth — Southeast & East Asia Region",
     description: "Building a space for youth to learn legal awareness, grow leadership, and create impact across Southeast and East Asia.",
-    imageUrl: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80",
+    imageUrl: "/images/featured-legallyyouth.jpg",
     link: "#",
   },
   {
@@ -15,7 +15,7 @@ const highlights = [
     title: "Published on Kompasiana",
     subtitle: "Youthsaction#1 by Beyouth.id",
     description: "Fostering care and kindness — sharing joy and supplies at Erlazet Orphanage, Jakarta Timur, to build a more compassionate society.",
-    imageUrl: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=700&q=80",
+    imageUrl: "/images/featured-kompasiana.jpg",
     link: "https://www.kompasiana.com/ainiyaainiya3343/6aa3bbb534777c412472b2a3/youthsaction-1-by-beyouth-id-menumbuhkan-kepedulian-terhadap-sesama",
   },
   {
@@ -23,7 +23,7 @@ const highlights = [
     title: "Author of 5 Books",
     subtitle: "Writings & Publications",
     description: "A collection of stories, essays, and creative works published and shared with readers everywhere.",
-    imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=700&q=80",
+    imageUrl: "/images/featured-books.jpg",
     link: "#",
   },
   {
@@ -31,7 +31,7 @@ const highlights = [
     title: "LinkedIn Profile",
     subtitle: "Ainiya Faida Haura",
     description: "Professional journey in youth leadership, writing, cybersecurity, and community building.",
-    imageUrl: "https://images.unsplash.com/photo-1611944212129-29977ae1398c?auto=format&fit=crop&w=700&q=80",
+    imageUrl: "/images/featured-linkedin.jpg",
     link: "https://linkedin.com/in/ainiyafaidahaura",
   },
 ];
@@ -39,6 +39,7 @@ const highlights = [
 export function FeaturedHighlights() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const animationRef = useRef<number | null>(null);
   const positionRef = useRef(0);
   const isDragging = useRef(false);
   const touchStartX = useRef(0);
@@ -46,34 +47,34 @@ export function FeaturedHighlights() {
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    let animId: number;
-    const speed = 0.35;
+    const speed = 0.4;
 
-    const loop = () => {
+    const animate = () => {
       if (!isHovered && !isDragging.current) {
         positionRef.current += speed;
-        const max = el.scrollWidth - el.clientWidth;
-        if (positionRef.current >= max) positionRef.current = 0;
+        const maxScroll = el.scrollWidth - el.clientWidth;
+        if (maxScroll > 0 && positionRef.current >= maxScroll) positionRef.current = 0;
         el.scrollLeft = positionRef.current;
       }
-      animId = requestAnimationFrame(loop);
+      animationRef.current = requestAnimationFrame(animate);
     };
-    animId = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(animId);
+
+    animationRef.current = requestAnimationFrame(animate);
+    return () => { if (animationRef.current) cancelAnimationFrame(animationRef.current); };
   }, [isHovered]);
 
-  const handleStart = (e: React.TouchEvent) => {
+  const handleTouchStart = (e: React.TouchEvent) => {
     isDragging.current = true;
     touchStartX.current = e.touches[0].clientX;
   };
-  const handleMove = (e: React.TouchEvent) => {
+  const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging.current || !scrollRef.current) return;
     const dx = touchStartX.current - e.touches[0].clientX;
     scrollRef.current.scrollLeft += dx;
     positionRef.current = scrollRef.current.scrollLeft;
     touchStartX.current = e.touches[0].clientX;
   };
-  const handleEnd = () => { isDragging.current = false; };
+  const handleTouchEnd = () => { isDragging.current = false; };
 
   return (
     <section className="w-full max-w-6xl mx-auto mt-20 px-5">
@@ -83,9 +84,9 @@ export function FeaturedHighlights() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onTouchStart={handleStart}
-        onTouchMove={handleMove}
-        onTouchEnd={handleEnd}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {highlights.map((item) => (
           <Reveal key={item.id} delay={100}>
@@ -106,6 +107,7 @@ export function FeaturedHighlights() {
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   loading="lazy"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                 />
               </div>
               <div className="p-5">
