@@ -1,11 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import {
-  UserCheck,
-  PenLine,
-  BookOpen,
-  Linkedin,
-  ArrowRight
-} from "lucide-react";
+import { UserCheck, PenLine, BookOpen, Linkedin, ArrowRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const highlights = [
@@ -68,22 +62,12 @@ function HighlightCard({ icon: Icon, title, subtitle, description, link, label, 
 
       <div className="relative z-10 mt-3 text-center">
         {isExternal ? (
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all duration-300"
-          >
-            {label}
-            <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
+          <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium">
+            {label}<ArrowRight className="size-3.5" />
           </a>
         ) : (
-          <Link
-            to={link}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all duration-300"
-          >
-            {label}
-            <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
+          <Link to={link} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium">
+            {label}<ArrowRight className="size-3.5" />
           </Link>
         )}
       </div>
@@ -93,8 +77,8 @@ function HighlightCard({ icon: Icon, title, subtitle, description, link, label, 
 
 export function FeaturedHighlights() {
   return (
-    <section className="px-5 pb-20">
-      <div className="mx-auto max-w-4xl">
+    <div className="w-full clear-both mt-24 px-5">
+      <div className="mx-auto max-w-4xl w-full">
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
           {highlights.map((item, i) => (
             <Reveal key={i} delay={i * 120}>
@@ -103,6 +87,6 @@ export function FeaturedHighlights() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
