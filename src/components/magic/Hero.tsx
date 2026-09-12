@@ -218,7 +218,7 @@ export function Hero() {
         </Reveal>
       </div>
 
-  
+
       <FeaturedHighlights />
     </section>
   );
