@@ -1,33 +1,65 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Reveal } from "./Reveal";
 
 const highlights = [
-  { id: "legallyyouth", title: "Chapter Founder", subtitle: "LegallyYOUth — Southeast & East Asia Region", description: "Building a space for youth to learn legal awareness, grow leadership, and create impact across Southeast and East Asia.", imageUrl: "/images/featured-legallyyouth.jpg", link: "#" },
-  { id: "kompasiana", title: "Published on Kompasiana", subtitle: "Youthsaction#1 by Beyouth.id", description: "Fostering care and kindness — sharing joy and supplies at Erlazet Orphanage, Jakarta Timur, to build a more compassionate society.", imageUrl: "/images/featured-kompasiana.jpg", link: "https://www.kompasiana.com/ainiyaainiya3343/6aa3bbb534777c412472b2a3/youthsaction-1-by-beyouth-id-menumbuhkan-kepedulian-terhadap-sesama" },
-  { id: "books", title: "Author of 5 Books", subtitle: "Writings & Publications", description: "A collection of stories, essays, and creative works published and shared with readers everywhere.", imageUrl: "/images/featured-books.jpg", link: "#" },
-  { id: "linkedin", title: "LinkedIn Profile", subtitle: "Ainiya Faida Haura", description: "Professional journey in youth leadership, writing, cybersecurity, and community building.", imageUrl: "/images/featured-linkedin.jpg", link: "https://linkedin.com/in/ainiyafaidahaura" },
+  {
+    id: "legallyyouth",
+    title: "Chapter Founder",
+    subtitle: "LegallyYOUth — Southeast & East Asia Region",
+    description: "Building a space for youth to learn legal awareness, grow leadership, and create impact across Southeast and East Asia.",
+    imageUrl: "/images/featured-legallyyouth.jpg",
+    link: "#",
+  },
+  {
+    id: "kompasiana",
+    title: "Published on Kompasiana",
+    subtitle: "Youthsaction#1 by Beyouth.id",
+    description: "Fostering care and kindness — sharing joy and supplies at Erlazet Orphanage, Jakarta Timur, to build a more compassionate society.",
+    imageUrl: "/images/featured-kompasiana.jpg",
+    link: "https://www.kompasiana.com/ainiyaainiya3343/6aa3bbb534777c412472b2a3/youthsaction-1-by-beyouth-id-menumbuhkan-kepedulian-terhadap-sesama",
+  },
+  {
+    id: "books",
+    title: "Author of 5 Books",
+    subtitle: "Writings & Publications",
+    description: "A collection of stories, essays, and creative works published and shared with readers everywhere.",
+    imageUrl: "/images/featured-books.jpg",
+    link: "#",
+  },
+  {
+    id: "linkedin",
+    title: "LinkedIn Profile",
+    subtitle: "Ainiya Faida Haura",
+    description: "Professional journey in youth leadership, writing, cybersecurity, and community building.",
+    imageUrl: "/images/featured-linkedin.jpg",
+    link: "https://linkedin.com/in/ainiyafaidahaura",
+  },
 ];
 
-const CARD_FULL = 384 + 24; 
+
+const CARD_TOTAL_WIDTH = 384 + 24;
 
 export function FeaturedHighlights() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const posRef = useRef(0);
+  const positionRef = useRef(0);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    let id: number;
-    const speed = 0.35;
+    let animationId: number;
+    const speed = 0.48; 
 
     const loop = () => {
-      posRef.current += speed;
-      if (posRef.current >= CARD_FULL * 4) posRef.current = 0;
-      el.scrollLeft = posRef.current;
-      id = requestAnimationFrame(loop);
+      positionRef.current += speed;
+      if (positionRef.current >= CARD_TOTAL_WIDTH * 4) {
+        positionRef.current = 0;
+      }
+      el.scrollLeft = positionRef.current;
+      animationId = requestAnimationFrame(loop);
     };
-    id = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(id);
+
+    animationId = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(animationId);
   }, []);
 
   return (
@@ -35,7 +67,7 @@ export function FeaturedHighlights() {
       <div
         ref={scrollRef}
         className="flex gap-6 overflow-x-hidden pb-4"
-        style={{ width: "100%", overflow: "hidden" }}
+        style={{ overflow: "hidden" }}
       >
         {highlights.map((item) => (
           <Reveal key={item.id} delay={100}>
@@ -51,7 +83,12 @@ export function FeaturedHighlights() {
               }}
             >
               <div className="w-full h-48 overflow-hidden">
-                <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
+                <img
+                  src={item.imageUrl}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  loading="lazy"
+                />
               </div>
               <div className="p-5">
                 <h3 className="font-display text-xl text-primary">{item.title}</h3>
