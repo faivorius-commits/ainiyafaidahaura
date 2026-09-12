@@ -94,7 +94,7 @@ function HighlightCard({ icon: Icon, title, subtitle, description, link, label, 
 
 export function FeaturedHighlights() {
   return (
-    <section className="mt-20 px-5">
+    <section className="mt-24 px-5">
       <div className="mx-auto max-w-4xl">
         <Reveal>
           <div className="text-center mb-10">
@@ -108,7 +108,7 @@ export function FeaturedHighlights() {
           </div>
         </Reveal>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
           {highlights.map((item, i) => (
             <Reveal key={i} delay={i * 120}>
               <HighlightCard {...item} />
@@ -119,4 +119,3 @@ export function FeaturedHighlights() {
     </section>
   );
 }
-
