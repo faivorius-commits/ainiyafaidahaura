@@ -36,30 +36,30 @@ const highlights = [
   },
 ];
 
-
-const CARD_TOTAL_WIDTH = 384 + 24;
-
 export function FeaturedHighlights() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const positionRef = useRef(0);
+  const posRef = useRef(0);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    let animationId: number;
-    const speed = 0.48; 
+    let animId: number;
+    const speed = 0.4;
 
-    const loop = () => {
-      positionRef.current += speed;
-      if (positionRef.current >= CARD_TOTAL_WIDTH * 4) {
-        positionRef.current = 0;
+    const run = () => {
+      posRef.current += speed;
+      
+      const total = el.scrollWidth;
+      const tampil = el.clientWidth;
+      if (total > tampil && posRef.current >= total - tampil) {
+        posRef.current = 0;
       }
-      el.scrollLeft = positionRef.current;
-      animationId = requestAnimationFrame(loop);
+      el.scrollLeft = posRef.current;
+      animId = requestAnimationFrame(run);
     };
 
-    animationId = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(animationId);
+    animId = requestAnimationFrame(run);
+    return () => cancelAnimationFrame(animId);
   }, []);
 
   return (
@@ -67,7 +67,7 @@ export function FeaturedHighlights() {
       <div
         ref={scrollRef}
         className="flex gap-6 overflow-x-hidden pb-4"
-        style={{ overflow: "hidden" }}
+        style={{ width: "100%" }}
       >
         {highlights.map((item) => (
           <Reveal key={item.id} delay={100}>
