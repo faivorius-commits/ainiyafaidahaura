@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { UserCheck, PenLine, BookOpen, Linkedin, ArrowRight } from "lucide-react";
+import { UserCheck, PenLine, BookOpen, Linkedin, ArrowRight, Sparkles } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const highlights = [
@@ -14,9 +14,9 @@ const highlights = [
   },
   {
     icon: PenLine,
-    title: "Published Writer",
+    title: "Youth’s Action — By BeYouth ID",
     subtitle: "Kompasiana",
-    description: "Social action and community care stories.",
+    description: "Caring for others and growing together through community service.",
     link: "https://www.kompasiana.com/ainiyaainiya3343/6aa3bbb534777c412472b2a3/youthsaction-1-by-beyouth-id-menumbuhkan-kepedulian-terhadap-sesama",
     label: "Read Article",
     isExternal: true
@@ -25,7 +25,7 @@ const highlights = [
     icon: BookOpen,
     title: "Author of 5 Books",
     subtitle: "Publications",
-    description: "Collection of writings and ideas.",
+    description: "Stories, thoughts, and ideas written with heart.",
     link: "/archive",
     label: "View Works",
     isExternal: false
@@ -34,7 +34,7 @@ const highlights = [
     icon: Linkedin,
     title: "Professional Profile",
     subtitle: "LinkedIn",
-    description: "Connect and see my journey.",
+    description: "Connect, collaborate, and grow together.",
     link: "https://linkedin.com/in/ainiyafaidahaura",
     label: "Visit Profile",
     isExternal: true
@@ -43,31 +43,47 @@ const highlights = [
 
 function HighlightCard({ icon: Icon, title, subtitle, description, link, label, isExternal }: any) {
   return (
-    <div className="relative overflow-hidden rounded-[3rem] rounded-t-[4rem] p-6 min-h-[220px] flex flex-col justify-between group transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/90 via-purple-900/90 to-violet-900/90"></div>
-      <div className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_top_left,rgba(255,220,255,0.15),transparent_60%),radial-gradient(ellipse_at_bottom_right,rgba(200,220,255,0.12),transparent_55%),radial-gradient(ellipse_at_center,rgba(255,255,255,0.08),transparent_70%)]"></div>
-      <div className="absolute top-4 left-6 w-1.5 h-1.5 bg-white/70 rounded-full animate-pulse"></div>
-      <div className="absolute top-8 right-10 w-1 h-1 bg-pink-200/60 rounded-full animate-pulse delay-150"></div>
-      <div className="absolute bottom-10 left-12 w-1 h-1 bg-sky-200/50 rounded-full animate-pulse delay-300"></div>
-      <div className="absolute bottom-6 right-6 w-1.5 h-1.5 bg-amber-200/40 rounded-full animate-pulse delay-500"></div>
+    <div className="relative overflow-hidden rounded-[3rem] rounded-t-[4rem] p-6 min-h-[240px] flex flex-col justify-between group transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_0_30px_rgba(139,111,217,0.3)]">
+      
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/90 via-purple-900/90 to-violet-900/90 animate-gradient-shift bg-[length:200%_200%]"></div>
+      
+      <div className="absolute inset-0 opacity-30">
+        <span className="absolute top-4 left-6 w-1.5 h-1.5 bg-white/80 rounded-full animate-pulse"></span>
+        <span className="absolute top-8 right-10 w-1 h-1 bg-pink-200/70 rounded-full animate-pulse delay-150"></span>
+        <span className="absolute bottom-12 left-10 w-1 h-1 bg-sky-200/60 rounded-full animate-pulse delay-300"></span>
+        <span className="absolute bottom-6 right-8 w-1.5 h-1.5 bg-amber-200/50 rounded-full animate-pulse delay-500"></span>
+        <Sparkles className="absolute top-5 right-5 size-4 text-white/20 group-hover:scale-125 group-hover:rotate-12 transition-all duration-700" />
+      </div>
+      
+      <div className="absolute inset-0 rounded-[3rem] rounded-t-[4rem] border border-white/10 group-hover:border-white/30 transition-colors duration-500"></div>
 
       <div className="relative z-10">
-        <div className="mb-3 inline-flex items-center justify-center size-10 rounded-full bg-white/10 backdrop-blur-sm text-white">
-          <Icon className="size-5" />
+        <div className="mb-3 inline-flex items-center justify-center size-10 rounded-full bg-white/10 backdrop-blur-sm text-white group-hover:bg-white/20 transition-colors duration-300">
+          <Icon className="size-5 group-hover:scale-110 transition-transform duration-300" />
         </div>
-        <h4 className="text-white font-display text-lg leading-snug">{title}</h4>
+        <h4 className="text-white font-display text-lg leading-snug font-medium">{title}</h4>
         <p className="text-white/75 text-sm mt-1">{subtitle}</p>
-        <p className="text-white/65 text-sm mt-2">{description}</p>
+        <p className="text-white/65 text-sm mt-2 leading-relaxed">{description}</p>
       </div>
 
       <div className="relative z-10 mt-3 text-center">
         {isExternal ? (
-          <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium">
-            {label}<ArrowRight className="size-3.5" />
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all duration-300 group-hover:px-6"
+          >
+            {label}
+            <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
           </a>
         ) : (
-          <Link to={link} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium">
-            {label}<ArrowRight className="size-3.5" />
+          <Link
+            to={link}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all duration-300 group-hover:px-6"
+          >
+            {label}
+            <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
           </Link>
         )}
       </div>
@@ -81,7 +97,7 @@ export function FeaturedHighlights() {
       <div className="mx-auto max-w-4xl w-full">
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
           {highlights.map((item, i) => (
-            <Reveal key={i} delay={i * 120}>
+            <Reveal key={i} delay={i * 150}>
               <HighlightCard {...item} />
             </Reveal>
           ))}
