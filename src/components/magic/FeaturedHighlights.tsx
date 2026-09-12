@@ -39,54 +39,57 @@ const highlights = [
 export function FeaturedHighlights() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const animationRef = useRef<number | null>(null);
-  const positionRef = useRef(0);
   const isDragging = useRef(false);
   const touchStartX = useRef(0);
+  const scrollPos = useRef(0);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
+    let animId: number;
     const speed = 0.4;
 
-    const animate = () => {
+    const run = () => {
       if (!isHovered && !isDragging.current) {
-        positionRef.current += speed;
-        const maxScroll = el.scrollWidth - el.clientWidth;
-        if (maxScroll > 0 && positionRef.current >= maxScroll) positionRef.current = 0;
-        el.scrollLeft = positionRef.current;
+        scrollPos.current += speed;
+        el.scrollLeft = scrollPos.current;
+        // Kembali ke awal secara halus tanpa macet
+        if (el.scrollWidth > el.clientWidth && scrollPos.current >= el.scrollWidth) {
+          scrollPos.current = 0;
+          el.scrollLeft = 0;
+        }
       }
-      animationRef.current = requestAnimationFrame(animate);
+      animId = requestAnimationFrame(run);
     };
 
-    animationRef.current = requestAnimationFrame(animate);
-    return () => { if (animationRef.current) cancelAnimationFrame(animationRef.current); };
+    animId = requestAnimationFrame(run);
+    return () => cancelAnimationFrame(animId);
   }, [isHovered]);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const handleStart = (e: React.TouchEvent) => {
     isDragging.current = true;
     touchStartX.current = e.touches[0].clientX;
   };
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleMove = (e: React.TouchEvent) => {
     if (!isDragging.current || !scrollRef.current) return;
     const dx = touchStartX.current - e.touches[0].clientX;
     scrollRef.current.scrollLeft += dx;
-    positionRef.current = scrollRef.current.scrollLeft;
+    scrollPos.current = scrollRef.current.scrollLeft;
     touchStartX.current = e.touches[0].clientX;
   };
-  const handleTouchEnd = () => { isDragging.current = false; };
+  const handleEnd = () => { isDragging.current = false; };
 
   return (
     <section className="w-full max-w-6xl mx-auto mt-20 px-5">
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4 scroll-smooth"
+        className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+        onTouchStart={handleStart}
+        onTouchMove={handleMove}
+        onTouchEnd={handleEnd}
       >
         {highlights.map((item) => (
           <Reveal key={item.id} delay={100}>
@@ -107,7 +110,6 @@ export function FeaturedHighlights() {
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   loading="lazy"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                 />
               </div>
               <div className="p-5">
