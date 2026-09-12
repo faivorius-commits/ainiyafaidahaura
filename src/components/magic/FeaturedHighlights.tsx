@@ -54,8 +54,6 @@ export function FeaturedHighlights() {
       if (!isHovered && !isDragging.current) {
         scrollPos.current += speed;
         el.scrollLeft = scrollPos.current;
-
-        // Hitung lebar total 4 kartu lalu balik ke awal persis
         if (cardWidth.current === 0 && el.children[0]) {
           cardWidth.current = (el.children[0] as HTMLElement).offsetWidth + 24; // tambah jarak antar kartu
         }
