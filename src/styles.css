@@ -229,7 +229,6 @@
   }
 }
 
-/* Animasi untuk kartu bergerak */
 @keyframes gradient-shift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -238,6 +237,24 @@
 .animate-gradient-shift {
   animation: gradient-shift 8s ease infinite;
   background-size: 200% 200%;
+}
+
+@keyframes name-twinkle {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1) drop-shadow(0 0 4px oklch(0.88 0.13 90 / 40%));
+  }
+  30% {
+    opacity: 0.35;
+    filter: brightness(0.7) drop-shadow(0 0 1px oklch(0.88 0.13 90 / 10%));
+  }
+  60% {
+    opacity: 0.85;
+    filter: brightness(1.1) drop-shadow(0 0 6px oklch(0.88 0.13 90 / 50%));
+  }
+}
+.animate-name-twinkle {
+  animation: name-twinkle 3.5s ease-in-out infinite;
 }
 
 .id-card-scene {
@@ -771,5 +788,5 @@
   .orbit-dots { bottom: 0; gap: 7px; }
   .orbit-dot { width: 5px; height: 5px; }
   .orbit-dot-active { width: 16px; }
-  }
+    }
   
