@@ -1,99 +1,41 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
 
 const highlights = [
-  {
-    id: "legallyyouth",
-    title: "Chapter Founder",
-    subtitle: "LegallyYOUth — Southeast & East Asia Region",
-    description: "Building a space for youth to learn legal awareness, grow leadership, and create impact across Southeast and East Asia.",
-    imageUrl: "/images/featured-legallyyouth.jpg",
-    link: "#",
-  },
-  {
-    id: "kompasiana",
-    title: "Published on Kompasiana",
-    subtitle: "Youthsaction#1 by Beyouth.id",
-    description: "Fostering care and kindness — sharing joy and supplies at Erlazet Orphanage, Jakarta Timur, to build a more compassionate society.",
-    imageUrl: "/images/featured-kompasiana.jpg",
-    link: "https://www.kompasiana.com/ainiyaainiya3343/6aa3bbb534777c412472b2a3/youthsaction-1-by-beyouth-id-menumbuhkan-kepedulian-terhadap-sesama",
-  },
-  {
-    id: "books",
-    title: "Author of 5 Books",
-    subtitle: "Writings & Publications",
-    description: "A collection of stories, essays, and creative works published and shared with readers everywhere.",
-    imageUrl: "/images/featured-books.jpg",
-    link: "#",
-  },
-  {
-    id: "linkedin",
-    title: "LinkedIn Profile",
-    subtitle: "Ainiya Faida Haura",
-    description: "Professional journey in youth leadership, writing, cybersecurity, and community building.",
-    imageUrl: "/images/featured-linkedin.jpg",
-    link: "https://linkedin.com/in/ainiyafaidahaura",
-  },
+  { id: "legallyyouth", title: "Chapter Founder", subtitle: "LegallyYOUth — Southeast & East Asia Region", description: "Building a space for youth to learn legal awareness, grow leadership, and create impact across Southeast and East Asia.", imageUrl: "/images/featured-legallyyouth.jpg", link: "#" },
+  { id: "kompasiana", title: "Published on Kompasiana", subtitle: "Youthsaction#1 by Beyouth.id", description: "Fostering care and kindness — sharing joy and supplies at Erlazet Orphanage, Jakarta Timur, to build a more compassionate society.", imageUrl: "/images/featured-kompasiana.jpg", link: "https://www.kompasiana.com/ainiyaainiya3343/6aa3bbb534777c412472b2a3/youthsaction-1-by-beyouth-id-menumbuhkan-kepedulian-terhadap-sesama" },
+  { id: "books", title: "Author of 5 Books", subtitle: "Writings & Publications", description: "A collection of stories, essays, and creative works published and shared with readers everywhere.", imageUrl: "/images/featured-books.jpg", link: "#" },
+  { id: "linkedin", title: "LinkedIn Profile", subtitle: "Ainiya Faida Haura", description: "Professional journey in youth leadership, writing, cybersecurity, and community building.", imageUrl: "/images/featured-linkedin.jpg", link: "https://linkedin.com/in/ainiyafaidahaura" },
 ];
 
-const CARD_WIDTH = 384 + 24; 
+const CARD_FULL = 384 + 24; 
 
 export function FeaturedHighlights() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const isDragging = useRef(false);
-  const touchStartX = useRef(0);
-  const scrollPos = useRef(0);
-  const animId = useRef<number | null>(null);
-
-
-  const updateScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    if (!isHovered && !isDragging.current) {
-      scrollPos.current += 0.4; 
-    }
-    if (scrollPos.current >= CARD_WIDTH * 4) {
-      scrollPos.current = 0;
-    }
-
-    if (scrollPos.current < 0) {
-      scrollPos.current = CARD_WIDTH * 4 - CARD_WIDTH;
-    }
-
-    el.scrollLeft = scrollPos.current;
-    animId.current = requestAnimationFrame(updateScroll);
-  }, [isHovered]);
+  const posRef = useRef(0);
 
   useEffect(() => {
-    animId.current = requestAnimationFrame(updateScroll);
-    return () => { if (animId.current) cancelAnimationFrame(animId.current); };
-  }, [updateScroll]);
+    const el = scrollRef.current;
+    if (!el) return;
+    let id: number;
+    const speed = 0.35;
 
-  const handleStart = (e: React.TouchEvent) => {
-    isDragging.current = true;
-    touchStartX.current = e.touches[0].clientX;
-  };
-  const handleMove = (e: React.TouchEvent) => {
-    if (!isDragging.current || !scrollRef.current) return;
-    const dx = touchStartX.current - e.touches[0].clientX;
-    scrollPos.current += dx;
-    touchStartX.current = e.touches[0].clientX;
-  };
-  const handleEnd = () => { isDragging.current = false; };
+    const loop = () => {
+      posRef.current += speed;
+      if (posRef.current >= CARD_FULL * 4) posRef.current = 0;
+      el.scrollLeft = posRef.current;
+      id = requestAnimationFrame(loop);
+    };
+    id = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   return (
     <section className="w-full max-w-6xl mx-auto mt-20 px-5">
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onTouchStart={handleStart}
-        onTouchMove={handleMove}
-        onTouchEnd={handleEnd}
+        className="flex gap-6 overflow-x-hidden pb-4"
+        style={{ width: "100%", overflow: "hidden" }}
       >
         {highlights.map((item) => (
           <Reveal key={item.id} delay={100}>
@@ -109,12 +51,7 @@ export function FeaturedHighlights() {
               }}
             >
               <div className="w-full h-48 overflow-hidden">
-                <img
-                  src={item.imageUrl}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  loading="lazy"
-                />
+                <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
               </div>
               <div className="p-5">
                 <h3 className="font-display text-xl text-primary">{item.title}</h3>
