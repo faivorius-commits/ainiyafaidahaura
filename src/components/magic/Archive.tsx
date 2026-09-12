@@ -1,4 +1,4 @@
-import { PenLine, Code2, Image as GalleryIcon, Library as LibraryIcon, Feather, BookOpen, ExternalLink, Camera } from "lucide-react";
+import { PenLine, Code2, Image as GalleryIcon, Library as LibraryIcon, Feather, BookOpen, ExternalLink, Camera, FlaskConical } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
@@ -22,18 +22,20 @@ export function Archive() {
               </ul>
             </article>
           </Reveal>
+
           {/* PROJECTS */}
           <Reveal key="Projects" delay={110}>
             <article className="glass glass-hover h-full p-5">
               <span className="logo-frame mb-4 size-12"><Code2 className="size-5 text-primary" /></span>
               <h3 className="font-display text-xl">Projects</h3>
               <ul className="mt-3 grid gap-2">
-                <li><Link to="/website-apps" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"><span className="text-primary">✦</span>Website / Apps<Code2 className="ml-auto size-3.5 text-primary" /></Link></li>
-                <li><span className="flex items-center gap-2 text-sm text-muted-foreground"><span className="text-primary">✦</span>UI/UX</span></li>
                 <li><span className="flex items-center gap-2 text-sm text-muted-foreground"><span className="text-primary">✦</span>Cybersecurity</span></li>
+                <li><Link to="/website-apps" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"><span className="text-primary">✦</span>Web, App & Interface Design<Code2 className="ml-auto size-3.5 text-primary" /></Link></li>
+                <li><span className="flex items-center gap-2 text-sm text-muted-foreground"><span className="text-primary">✦</span>Research & Analysis<FlaskConical className="ml-auto size-3.5 text-primary" /></span></li>
               </ul>
             </article>
           </Reveal>
+
           {/* GALLERY */}
           <Reveal key="Gallery" delay={220}>
             <article className="glass glass-hover h-full p-5">
@@ -46,6 +48,7 @@ export function Archive() {
               </ul>
             </article>
           </Reveal>
+
           {/* LIBRARY */}
           <Reveal key="Library" delay={330}>
             <article className="glass glass-hover h-full p-5">
@@ -58,6 +61,7 @@ export function Archive() {
               </ul>
             </article>
           </Reveal>
+
           {/* PUBLICATION */}
           <Reveal key="Publication" delay={440}>
             <article className="glass glass-hover h-full p-5">
@@ -74,6 +78,7 @@ export function Archive() {
             </article>
           </Reveal>
         </div>
+
         {/* BUTTON */}
         <Reveal delay={550} className="mt-12 flex flex-wrap justify-center gap-3">
           <Button variant="magic" size="pill" asChild><Link to="/library">Open the Library</Link></Button>
