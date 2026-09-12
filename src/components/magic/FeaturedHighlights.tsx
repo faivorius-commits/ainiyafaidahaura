@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Reveal } from "./Reveal";
 
 const highlights = [
@@ -36,39 +36,40 @@ const highlights = [
   },
 ];
 
+const CARD_WIDTH = 384 + 24; 
+
 export function FeaturedHighlights() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const isDragging = useRef(false);
   const touchStartX = useRef(0);
   const scrollPos = useRef(0);
-  const cardWidth = useRef(0);
+  const animId = useRef<number | null>(null);
 
-  useEffect(() => {
+
+  const updateScroll = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
-    let animId: number;
-    const speed = 0.4;
 
-    const run = () => {
-      if (!isHovered && !isDragging.current) {
-        scrollPos.current += speed;
-        el.scrollLeft = scrollPos.current;
-        if (cardWidth.current === 0 && el.children[0]) {
-          cardWidth.current = (el.children[0] as HTMLElement).offsetWidth + 24; // tambah jarak antar kartu
-        }
-        const totalWidth = cardWidth.current * 4;
-        if (totalWidth > 0 && scrollPos.current >= totalWidth) {
-          scrollPos.current = 0;
-          el.scrollLeft = 0;
-        }
-      }
-      animId = requestAnimationFrame(run);
-    };
+    if (!isHovered && !isDragging.current) {
+      scrollPos.current += 0.4; 
+    }
+    if (scrollPos.current >= CARD_WIDTH * 4) {
+      scrollPos.current = 0;
+    }
 
-    animId = requestAnimationFrame(run);
-    return () => cancelAnimationFrame(animId);
+    if (scrollPos.current < 0) {
+      scrollPos.current = CARD_WIDTH * 4 - CARD_WIDTH;
+    }
+
+    el.scrollLeft = scrollPos.current;
+    animId.current = requestAnimationFrame(updateScroll);
   }, [isHovered]);
+
+  useEffect(() => {
+    animId.current = requestAnimationFrame(updateScroll);
+    return () => { if (animId.current) cancelAnimationFrame(animId.current); };
+  }, [updateScroll]);
 
   const handleStart = (e: React.TouchEvent) => {
     isDragging.current = true;
@@ -77,8 +78,7 @@ export function FeaturedHighlights() {
   const handleMove = (e: React.TouchEvent) => {
     if (!isDragging.current || !scrollRef.current) return;
     const dx = touchStartX.current - e.touches[0].clientX;
-    scrollRef.current.scrollLeft += dx;
-    scrollPos.current = scrollRef.current.scrollLeft;
+    scrollPos.current += dx;
     touchStartX.current = e.touches[0].clientX;
   };
   const handleEnd = () => { isDragging.current = false; };
