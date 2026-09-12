@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import {
-  Sparkles,
   UserCheck,
   PenLine,
   BookOpen,
@@ -14,41 +13,45 @@ const highlights = [
     icon: UserCheck,
     title: "LegallyYOUth Chapter Founder",
     subtitle: "Southeast & East Asia Region",
-    description: "Memimpin chapter regional untuk isu hukum, pendidikan, dan pemberdayaan pemuda di kawasan Asia Tenggara dan Asia Timur.",
+    description: "Leading regional chapter for youth empowerment.",
+    image: "/images/legallyyouth.jpg",
     link: "/archive",
-    label: "Lihat Peran",
+    label: "View Role",
     isExternal: false
   },
   {
     icon: PenLine,
-    title: "Tulisanku di Kompasiana",
-    subtitle: "YouthAction #1 by BeYouth ID",
-    description: "Kegiatan sosial di Panti Asuhan Erlazet — menumbuhkan kepedulian sesama, berbagi kebaikan, dan mendukung kesejahteraan bersama.",
+    title: "Published Writer",
+    subtitle: "Kompasiana",
+    description: "Social action and community care stories.",
+    image: "/images/kompasiana.jpg",
     link: "https://www.kompasiana.com/ainiyaainiya3343/6aa3bbb534777c412472b2a3/youthsaction-1-by-beyouth-id-menumbuhkan-kepedulian-terhadap-sesama",
-    label: "Baca Tulisan",
+    label: "Read Article",
     isExternal: true
   },
   {
     icon: BookOpen,
     title: "Author of 5 Books",
-    subtitle: "Kumpulan Karya Tulis & Publikasi",
-    description: "Lima buku yang telah diterbitkan, berisi pemikiran, catatan perjalanan, dan gagasan tentang pemuda, sosial, dan pendidikan.",
+    subtitle: "Publications",
+    description: "Collection of writings and ideas.",
+    image: "/images/books.jpg",
     link: "/archive",
-    label: "Lihat Karya",
+    label: "View Works",
     isExternal: false
   },
   {
     icon: Linkedin,
-    title: "Profil LinkedIn",
-    subtitle: "Ainiya Faida Haura",
-    description: "Perjalanan, kolaborasi, dan koneksi profesional — tempat saya berbagi langkah tumbuh dan berkembang bersama.",
+    title: "Professional Profile",
+    subtitle: "LinkedIn",
+    description: "Connect and see my journey.",
+    image: "/images/linkedin.jpg",
     link: "https://linkedin.com/in/ainiyafaidahaura",
-    label: "Kunjungi Profil",
+    label: "Visit Profile",
     isExternal: true
   }
 ];
 
-function HighlightCard({ icon: Icon, title, subtitle, description, link, label, isExternal }: any) {
+function HighlightCard({ icon: Icon, title, subtitle, description, image, link, label, isExternal }: any) {
   return (
     <div className="relative overflow-hidden rounded-[3rem] rounded-t-[4rem] p-6 min-h-[270px] flex flex-col justify-between group transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/90 via-purple-900/90 to-violet-900/90"></div>
@@ -59,15 +62,18 @@ function HighlightCard({ icon: Icon, title, subtitle, description, link, label, 
       <div className="absolute bottom-6 right-6 w-1.5 h-1.5 bg-amber-200/40 rounded-full animate-pulse delay-500"></div>
 
       <div className="relative z-10">
-        <div className="mb-4 inline-flex items-center justify-center size-11 rounded-full bg-white/10 backdrop-blur-sm text-white shadow-inner">
+        <div className="mb-3 w-full h-36 rounded-2xl overflow-hidden bg-white/10 mb-4">
+          <img src={image} alt={title} className="w-full h-full object-cover" />
+        </div>
+        <div className="inline-flex items-center justify-center size-10 rounded-full bg-white/10 backdrop-blur-sm text-white mb-3">
           <Icon className="size-5" />
         </div>
         <h4 className="text-white font-display text-lg leading-snug">{title}</h4>
         <p className="text-white/75 text-sm mt-1">{subtitle}</p>
-        <p className="text-white/65 text-sm mt-3 leading-relaxed">{description}</p>
+        <p className="text-white/65 text-sm mt-2">{description}</p>
       </div>
 
-      <div className="relative z-10 mt-5 text-center">
+      <div className="relative z-10 mt-4 text-center">
         {isExternal ? (
           <a
             href={link}
@@ -94,20 +100,8 @@ function HighlightCard({ icon: Icon, title, subtitle, description, link, label, 
 
 export function FeaturedHighlights() {
   return (
-    <section className="mt-24 px-5">
+    <section className="px-5 pb-20">
       <div className="mx-auto max-w-4xl">
-        <Reveal>
-          <div className="text-center mb-10">
-            <h3 className="font-display text-2xl flex items-center justify-center gap-2">
-              <Sparkles className="size-6 text-primary" />
-              Featured Highlights
-            </h3>
-            <p className="text-muted-foreground text-sm mt-2 max-w-2xl mx-auto">
-              Sorotan utama tentang peran, tulisan, buku, dan perjalanan profesional saya.
-            </p>
-          </div>
-        </Reveal>
-
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
           {highlights.map((item, i) => (
             <Reveal key={i} delay={i * 120}>
