@@ -1,89 +1,128 @@
 import { useEffect, useState } from "react";
 
+type SecurityScanProps = {
+  onComplete: () => void;
+};
+
 const messages = [
-  "> initializing security layer...",
-  "> scanning interface...",
-  "> verifying credentials...",
-  "> integrity check: OK",
-  "> access granted_",
+  "INITIALIZING SECURITY LAYER",
+  "SCANNING DIGITAL SPACE",
+  "VERIFYING CONNECTION",
+  "CHECKING ACCESS",
 ];
 
-export function SecurityScan({ onComplete }: { onComplete: () => void }) {
-  const [index, setIndex] = useState(0);
+export function SecurityScan({ onComplete }: SecurityScanProps) {
+  const [step, setStep] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [closing, setClosing] = useState(false);
+  const [granted, setGranted] = useState(false);
 
   useEffect(() => {
-    const messageTimer = setInterval(() => {
-      setIndex((current) => {
-        if (current < messages.length - 1) return current + 1;
-        return current;
+    const progressTimer = setInterval(() => {
+      setProgress((value) => {
+        if (value >= 100) {
+          clearInterval(progressTimer);
+          return 100;
+        }
+        return value + 2;
       });
+    }, 55);
+
+    const stepTimer = setInterval(() => {
+      setStep((value) => Math.min(value + 1, messages.length));
     }, 650);
 
-    const progressTimer = setInterval(() => {
-      setProgress((current) => Math.min(current + 2, 100));
-    }, 45);
+    const completeTimer = setTimeout(() => {
+      setGranted(true);
+    }, 3400);
 
-    const finishTimer = setTimeout(() => {
-      setClosing(true);
-
-      setTimeout(() => {
-        onComplete();
-      }, 700);
-    }, 3900);
+    const exitTimer = setTimeout(() => {
+      onComplete();
+    }, 4400);
 
     return () => {
-      clearInterval(messageTimer);
       clearInterval(progressTimer);
-      clearTimeout(finishTimer);
+      clearInterval(stepTimer);
+      clearTimeout(completeTimer);
+      clearTimeout(exitTimer);
     };
   }, [onComplete]);
 
   return (
-    <div
-      className={`security-scan ${closing ? "security-scan-closing" : ""}`}
-    >
+    <div className={`security-scan ${granted ? "security-scan-exit" : ""}`}>
       <div className="security-stars" />
-
       <div className="security-grid" />
+      <div className="security-vignette" />
 
       <div className="security-scan-line" />
 
       <div className="security-content">
-        <div className="security-symbol">◈</div>
+        <div className="security-symbol">✦</div>
 
-        <p className="security-title">DIGITAL SECURITY LAYER</p>
+        <p className="security-brand">AINIYA'S UNIVERSE</p>
 
-        <div className="security-terminal">
-          {messages.slice(0, index + 1).map((message, i) => (
-            <div
-              key={message}
-              className={`security-message ${
-                i === index ? "security-message-active" : ""
-              }`}
-            >
-              {message}
-            </div>
-          ))}
+        <div className="security-divider">
+          <span />
+          <span>SECURITY PROTOCOL</span>
+          <span />
         </div>
 
-        <div className="security-progress">
-          <div
-            className="security-progress-bar"
-            style={{ width: `${progress}%` }}
-          />
+        <div className="security-panel">
+          <div className="security-panel-header">
+            <span>SYSTEM STATUS</span>
+            <span className="security-active">
+              <i />
+              ACTIVE
+            </span>
+          </div>
+
+          <div className="security-messages">
+            {messages.slice(0, step).map((message, index) => (
+              <div className="security-message" key={message}>
+                <span className="security-index">0{index + 1}</span>
+                <span>{message}</span>
+                <span className="security-check">✓</span>
+              </div>
+            ))}
+
+            {step < messages.length && (
+              <div className="security-message security-current">
+                <span className="security-index">0{step + 1}</span>
+                <span>{messages[step]}...</span>
+                <span className="security-cursor" />
+              </div>
+            )}
+          </div>
+
+          <div className="security-progress-info">
+            <span>SECURITY CHECK</span>
+            <span>{progress}%</span>
+          </div>
+
+          <div className="security-progress">
+            <div style={{ width: `${progress}%` }} />
+          </div>
+
+          <div className="security-code">
+            <span>ENCRYPTED CONNECTION</span>
+            <span>SHA-256</span>
+          </div>
         </div>
 
-        <div className="security-status">
-          <span>SECURITY CHECK</span>
-          <span>{progress}%</span>
+        <div className={`security-granted ${granted ? "show" : ""}`}>
+          <span className="security-granted-symbol">✦</span>
+          <span>ACCESS GRANTED</span>
+          <span className="security-granted-symbol">✦</span>
         </div>
 
-        {index === messages.length - 1 && (
-          <div className="security-access">ACCESS GRANTED ✓</div>
-        )}
+        <p className="security-entering">
+          {granted ? "ENTERING MY UNIVERSE..." : "PLEASE WAIT..."}
+        </p>
       </div>
+
+      <div className="security-corner security-corner-tl" />
+      <div className="security-corner security-corner-tr" />
+      <div className="security-corner security-corner-bl" />
+      <div className="security-corner security-corner-br" />
     </div>
   );
 }
