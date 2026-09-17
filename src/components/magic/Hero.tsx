@@ -266,4 +266,4 @@ export function Hero() {
       <FeaturedHighlights />
     </section>
   );
-                    }
+}
