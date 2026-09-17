@@ -142,7 +142,6 @@ export function Hero() {
               <div className="id-card-face id-card-back">
                 <div className="flex h-full w-full flex-col items-center justify-center p-5 text-center">
 
-                  {/* HEADER */}
                   <div className="flex w-full items-center justify-between">
                     <span className="font-display text-sm text-primary">
                       AFH
@@ -153,7 +152,6 @@ export function Hero() {
                     </span>
                   </div>
 
-                  {/* DIGITAL IDENTITY */}
                   <div className="my-auto">
 
                     <div className="mb-3 text-3xl text-primary">
@@ -168,12 +166,10 @@ export function Hero() {
                       AINIYA FAIDA HAURA
                     </p>
 
-                    {/* SHA-256 */}
                     <p className="mt-3 text-[8px] tracking-[0.16em] text-muted-foreground">
                       SHA256: AB29DAF6
                     </p>
 
-                    {/* BARCODE */}
                     <div className="mt-5 flex h-8 items-end justify-center gap-[2px]">
                       <span className="h-5 w-[2px] bg-primary/60" />
                       <span className="h-8 w-[3px] bg-primary/80" />
@@ -187,9 +183,9 @@ export function Hero() {
                       <span className="h-8 w-[3px] bg-primary/70" />
                       <span className="h-4 w-[2px] bg-primary/60" />
                     </div>
+
                   </div>
 
-                  {/* FOOTER */}
                   <p className="text-[7px] tracking-[0.18em] text-muted-foreground">
                     KEEP EXPLORING · KEEP LEARNING
                   </p>
@@ -207,7 +203,6 @@ export function Hero() {
             ✦ Hi I'm ✦
           </p>
 
-          {/* ✨ NAMA DENGAN SERPIHAN BINTANG */}
           <div className="relative mx-auto mt-1 inline-block">
 
             <span className="sparkle sparkle-1" />
@@ -231,7 +226,7 @@ export function Hero() {
           </p>
         </Reveal>
 
-        {/* QUICK LINKS ORBIT */}
+        {/* QUICK LINKS */}
         <Reveal delay={300} className="mt-8 mb-16">
           <div
             className="orbit-carousel"
@@ -304,7 +299,6 @@ export function Hero() {
 
             </div>
 
-            {/* DOTS */}
             <div className="orbit-dots" aria-hidden="true">
               {quickLinks.map((_, index) => (
                 <span
@@ -317,6 +311,7 @@ export function Hero() {
                 />
               ))}
             </div>
+
           </div>
         </Reveal>
 
@@ -325,4 +320,4 @@ export function Hero() {
       <FeaturedHighlights />
     </section>
   );
-                  }
+          }
