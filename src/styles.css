@@ -1870,3 +1870,115 @@
     transition: none !important;
   }
 }
+
+/* =========================================================
+   SECURITY ENTER BUTTON
+   ========================================================= */
+
+.security-enter-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 26px;
+  padding: 13px 24px;
+  border: 1px solid oklch(0.88 0.13 90 / 60%);
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      135deg,
+      oklch(0.45 0.19 290 / 55%),
+      oklch(0.32 0.11 295 / 65%)
+    );
+  color: oklch(0.95 0.06 95);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  box-shadow:
+    0 0 18px oklch(0.88 0.13 90 / 18%),
+    0 0 35px oklch(0.45 0.19 290 / 20%),
+    inset 0 1px 0 oklch(1 0 0 / 15%);
+  backdrop-filter: blur(12px);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+  animation: security-button-in 0.8s
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.security-enter-button::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  border: 1px solid oklch(0.88 0.13 90 / 12%);
+  pointer-events: none;
+}
+
+.security-enter-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: oklch(0.88 0.13 90 / 90%);
+  background:
+    linear-gradient(
+      135deg,
+      oklch(0.5 0.2 290 / 65%),
+      oklch(0.35 0.13 295 / 75%)
+    );
+  box-shadow:
+    0 0 20px oklch(0.88 0.13 90 / 35%),
+    0 0 45px oklch(0.45 0.19 290 / 35%),
+    0 12px 35px oklch(0.08 0.06 293 / 45%);
+}
+
+.security-enter-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.security-enter-arrow {
+  font-family: var(--font-body);
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.security-enter-button:hover .security-enter-arrow {
+  transform: translateX(5px);
+}
+
+@keyframes security-button-in {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   SECURITY READY STATE
+   ========================================================= */
+
+.security-scan-ready .security-panel {
+  border-color: oklch(0.88 0.13 90 / 45%);
+  box-shadow:
+    inset 0 0 30px oklch(0.88 0.13 90 / 8%),
+    0 0 30px oklch(0.88 0.13 90 / 14%),
+    0 0 70px oklch(0.45 0.19 290 / 20%);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .security-enter-button {
+    margin-top: 22px;
+    padding: 12px 19px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+}
