@@ -33,32 +33,40 @@ const channels = [
 
 export function Contact() {
   return (
-    <section id="contact" className="relative min-h-[85vh] overflow-hidden px-5 py-24">
-      {/* Ambient background */}
+    <section id="contact" className="relative min-h-[90vh] overflow-hidden px-5 py-24">
+      {/* Ambient floating lights */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-1/4 size-72 -translate-x-1/2 rounded-full bg-primary/10 blur-[100px]" />
-        <div className="absolute left-[10%] top-[20%] size-1 animate-pulse rounded-full bg-primary" />
-        <div className="absolute right-[15%] top-[35%] size-1 animate-pulse rounded-full bg-primary [animation-delay:1s]" />
-        <div className="absolute bottom-[20%] left-[25%] size-1 animate-pulse rounded-full bg-primary [animation-delay:2s]" />
-        <div className="absolute bottom-[30%] right-[25%] size-1 animate-pulse rounded-full bg-primary [animation-delay:1.5s]" />
+        <div className="absolute left-1/2 top-[20%] size-80 -translate-x-1/2 animate-pulse rounded-full bg-primary/10 blur-[110px]" />
+        <div className="absolute left-[8%] top-[25%] size-1.5 animate-ping rounded-full bg-primary" />
+        <div className="absolute right-[12%] top-[40%] size-1 animate-ping rounded-full bg-primary [animation-delay:1.2s]" />
+        <div className="absolute bottom-[20%] left-[20%] size-1 animate-ping rounded-full bg-primary [animation-delay:2s]" />
+        <div className="absolute bottom-[30%] right-[22%] size-1.5 animate-ping rounded-full bg-primary [animation-delay:1.6s]" />
+
+        {/* Cyber grid */}
+        <div className="absolute inset-0 opacity-[0.025] [background-image:linear-gradient(hsl(var(--primary))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--primary))_1px,transparent_1px)] [background-size:50px_50px]" />
       </div>
 
       <div className="relative mx-auto max-w-4xl">
-        {/* Terminal header */}
+        {/* Header */}
         <Reveal>
-          <div className="mb-10 text-center">
-            <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 font-mono text-[10px] tracking-[0.25em] text-primary">
-              <ShieldCheck className="size-3.5 animate-pulse" />
+          <div className="animate-[fadeIn_0.8s_ease-out] text-center">
+            <div className="mx-auto mb-6 flex w-fit animate-pulse items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-4 py-2 font-mono text-[10px] tracking-[0.25em] text-primary">
+              <ShieldCheck className="size-3.5" />
               SECURE CHANNEL
-              <span className="size-1.5 animate-pulse rounded-full bg-primary" />
+              <span className="size-1.5 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]" />
             </div>
 
             <div className="mb-3 font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
-              &gt; initializing_connection...
+              <span className="text-primary">&gt;</span>{" "}
+              initializing_connection...
+              <span className="animate-pulse">▌</span>
             </div>
 
             <h2 className="font-display text-5xl tracking-tight md:text-6xl">
-              Access <span className="italic text-primary">Point</span>
+              Access{" "}
+              <span className="italic text-primary drop-shadow-[0_0_20px_hsl(var(--primary)/0.25)]">
+                Point
+              </span>
             </h2>
 
             <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-muted-foreground">
@@ -69,59 +77,71 @@ export function Contact() {
           </div>
         </Reveal>
 
-        {/* Terminal status */}
-        <Reveal delay={150}>
-          <div className="mb-8 rounded-xl border border-border/60 bg-black/10 px-4 py-3 font-mono text-[10px] text-muted-foreground backdrop-blur-md">
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 md:justify-start">
+        {/* Status terminal */}
+        <Reveal delay={200}>
+          <div className="group relative my-10 overflow-hidden rounded-xl border border-border/60 bg-background/30 px-4 py-4 font-mono text-[9px] backdrop-blur-xl transition-all duration-500 hover:border-primary/30">
+            {/* Moving scan */}
+            <div className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 bg-gradient-to-r from-transparent via-primary/10 to-transparent blur-sm transition-transform duration-[1800ms] group-hover:translate-x-[400%]" />
+
+            <div className="relative flex flex-wrap items-center justify-center gap-x-7 gap-y-3 md:justify-start">
               <span>
                 <span className="text-primary">&gt;</span> IDENTITY:{" "}
                 <span className="text-foreground">AINIYA</span>
               </span>
+
               <span>
                 <span className="text-primary">&gt;</span> STATUS:{" "}
-                <span className="text-primary">READY</span>
+                <span className="animate-pulse text-primary">ONLINE</span>
               </span>
+
               <span>
                 <span className="text-primary">&gt;</span> CHANNELS:{" "}
                 <span className="text-foreground">03</span>
+              </span>
+
+              <span className="ml-auto hidden text-primary/60 md:block">
+                [ ACCESS_GRANTED ]
               </span>
             </div>
           </div>
         </Reveal>
 
-        {/* Connection cards */}
+        {/* Cards */}
         <div className="grid gap-4 md:grid-cols-3">
           {channels.map((channel, i) => {
             const Icon = channel.icon;
 
             return (
-              <Reveal key={channel.label} delay={250 + i * 120}>
+              <Reveal key={channel.label} delay={350 + i * 150}>
                 <a
                   href={channel.href}
                   target={channel.href.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
-                  className="group relative block h-full overflow-hidden rounded-2xl border border-border/70 bg-background/40 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-primary/[0.04] hover:shadow-[0_20px_60px_-25px_hsl(var(--primary)/0.35)]"
+                  className="group relative block h-full overflow-hidden rounded-2xl border border-border/70 bg-background/40 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-primary/50 hover:bg-primary/[0.04] hover:shadow-[0_25px_70px_-30px_hsl(var(--primary)/0.5)]"
                 >
-                  {/* Scan line */}
-                  <span className="pointer-events-none absolute inset-x-0 top-0 h-px -translate-x-full bg-gradient-to-r from-transparent via-primary to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                  {/* Top scan beam */}
+                  <span className="pointer-events-none absolute left-0 top-0 h-px w-full -translate-x-full bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-full group-hover:opacity-100" />
 
-                  {/* Glow */}
-                  <span className="pointer-events-none absolute -right-16 -top-16 size-32 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+                  {/* Corner glow */}
+                  <span className="pointer-events-none absolute -right-20 -top-20 size-40 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100" />
 
+                  {/* Card number */}
+                  <div className="relative mb-8 flex items-center justify-between">
+                    <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
+                      CHANNEL_{channel.number}
+                    </span>
+
+                    <ArrowUpRight className="size-4 text-muted-foreground transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+                  </div>
+
+                  {/* Icon */}
+                  <div className="relative mb-6 flex size-14 items-center justify-center rounded-xl border border-primary/20 bg-primary/5 transition-all duration-500 group-hover:rotate-3 group-hover:scale-110 group-hover:border-primary/60 group-hover:bg-primary/10 group-hover:shadow-[0_0_30px_hsl(var(--primary)/0.18)]">
+                    <Icon className="size-6 text-primary transition-transform duration-500 group-hover:scale-110" />
+                  </div>
+
+                  {/* Content */}
                   <div className="relative">
-                    <div className="mb-8 flex items-center justify-between">
-                      <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
-                        CHANNEL_{channel.number}
-                      </span>
-
-                      <ArrowUpRight className="size-4 text-muted-foreground transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
-                    </div>
-
-                    <div className="mb-6 flex size-14 items-center justify-center rounded-xl border border-primary/20 bg-primary/5 transition-all duration-500 group-hover:rotate-3 group-hover:scale-110 group-hover:border-primary/50 group-hover:bg-primary/10">
-                      <Icon className="size-6 text-primary transition-transform duration-500 group-hover:scale-110" />
-                    </div>
-
-                    <div className="font-mono text-xs tracking-[0.2em] text-primary">
+                    <div className="font-mono text-[10px] tracking-[0.22em] text-primary">
                       {channel.label}
                     </div>
 
@@ -133,25 +153,29 @@ export function Contact() {
                       {channel.description}
                     </p>
 
-                    <div className="mt-7 flex items-center gap-2 font-mono text-[9px] tracking-[0.18em] text-muted-foreground transition-colors group-hover:text-primary">
-                      <span className="size-1.5 rounded-full bg-muted-foreground transition-colors group-hover:bg-primary group-hover:shadow-[0_0_8px_hsl(var(--primary))]" />
+                    <div className="mt-7 flex items-center gap-2 font-mono text-[9px] tracking-[0.18em] text-muted-foreground transition-colors duration-300 group-hover:text-primary">
+                      <span className="size-1.5 rounded-full bg-muted-foreground transition-all duration-300 group-hover:bg-primary group-hover:shadow-[0_0_10px_hsl(var(--primary))]" />
                       {channel.action}
                       <span className="opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                         _
                       </span>
                     </div>
                   </div>
+
+                  {/* Bottom progress line */}
+                  <span className="absolute bottom-0 left-0 h-px w-0 bg-primary shadow-[0_0_10px_hsl(var(--primary))] transition-all duration-700 group-hover:w-full" />
                 </a>
               </Reveal>
             );
           })}
         </div>
 
-        {/* Footer terminal message */}
-        <Reveal delay={700}>
-          <div className="mt-12 text-center font-mono text-[10px] tracking-[0.15em] text-muted-foreground">
-            <span className="text-primary">&gt;</span> connection_ready
-            <span className="ml-1 inline-block animate-pulse">▌</span>
+        {/* Bottom terminal */}
+        <Reveal delay={850}>
+          <div className="mt-14 text-center font-mono text-[9px] tracking-[0.18em] text-muted-foreground">
+            <span className="text-primary">&gt;</span>{" "}
+            connection_ready
+            <span className="animate-pulse text-primary">▌</span>
           </div>
         </Reveal>
       </div>
@@ -165,6 +189,7 @@ export function Footer() {
       <p className="font-display text-lg">
         Made with curiosity, imagination, and a little bit of magic ✨
       </p>
+
       <p className="mt-2 font-mono text-[10px] tracking-wider text-muted-foreground">
         © 2026 Ainiya Faida Haura · CONNECTION TERMINATED_
       </p>
