@@ -1,127 +1,46 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import { BookOpen, FileText, FolderHeart, MailOpen } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { FeaturedHighlights } from "./FeaturedHighlights";
 
 const quickLinks = [
-  { id: "journey", href: "/journey", icon: BookOpen, title: "My Journey", sub: "The story behind who I am today" },
-  { id: "resume", href: "/Ainiya-Faida-Haura-CV.pdf", icon: FileText, title: "My Resume", sub: "A glimpse into my experience and skills" },
-  { id: "archive", href: "/archive", icon: FolderHeart, title: "My Digital Archive", sub: "Writings, projects, and moments" },
-  { id: "contact", href: "/contact", icon: MailOpen, title: "Contact Me", sub: "Let's connect and create together" },
+  {
+    id: "journey",
+    href: "/journey",
+    icon: BookOpen,
+    title: "My Journey",
+    sub: "The story behind who I am today",
+  },
+  {
+    id: "resume",
+    href: "/Ainiya-Faida-Haura-CV.pdf",
+    icon: FileText,
+    title: "My Resume",
+    sub: "A glimpse into my experience and skills",
+  },
+  {
+    id: "archive",
+    href: "/archive",
+    icon: FolderHeart,
+    title: "My Digital Archive",
+    sub: "Writings, projects, and moments",
+  },
+  {
+    id: "contact",
+    href: "/contact",
+    icon: MailOpen,
+    title: "Contact Me",
+    sub: "Let's connect and create together",
+  },
 ];
-
-const scanLines = [
-  "> initializing security layer...",
-  "> scanning interface...",
-  "> verifying credentials...",
-  "> integrity check: OK",
-  "> access granted_",
-];
-
-function SecurityScan() {
-  const [lineIndex, setLineIndex] = useState(0);
-  const [typedText, setTypedText] = useState("");
-  const [finished, setFinished] = useState(false);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const currentLine = scanLines[lineIndex];
-    let charIndex = 0;
-
-    const typing = setInterval(() => {
-      setTypedText(currentLine.slice(0, charIndex + 1));
-      charIndex++;
-
-      if (charIndex >= currentLine.length) {
-        clearInterval(typing);
-
-        setTimeout(() => {
-          if (lineIndex < scanLines.length - 1) {
-            setLineIndex((prev) => prev + 1);
-            setTypedText("");
-          } else {
-            setFinished(true);
-
-            setTimeout(() => {
-              setVisible(false);
-            }, 900);
-          }
-        }, 350);
-      }
-    }, 28);
-
-    return () => clearInterval(typing);
-  }, [lineIndex]);
-
-  if (!visible) return null;
-
-  return (
-    <div
-      className={`absolute inset-0 z-30 flex items-center justify-center rounded-[inherit] bg-black/45 backdrop-blur-[2px] transition-all duration-900 ${
-        finished ? "opacity-0" : "opacity-100"
-      }`}
-    >
-      {/* Moving scan beam */}
-      {!finished && (
-        <span
-          className="pointer-events-none absolute left-0 top-0 h-[2px] w-full animate-[scanLine_2.2s_ease-in-out_infinite] bg-primary shadow-[0_0_12px_hsl(var(--primary)),0_0_25px_hsl(var(--primary)/0.6)]"
-        />
-      )}
-
-      <div className="relative w-[82%] rounded-lg border border-primary/30 bg-background/70 px-4 py-3 shadow-[0_0_35px_hsl(var(--primary)/0.15)] backdrop-blur-md">
-        <div className="mb-2 flex items-center justify-between border-b border-border/40 pb-2">
-          <span className="font-mono text-[7px] tracking-[0.18em] text-muted-foreground">
-            SECURITY PROTOCOL
-          </span>
-
-          <span className="flex items-center gap-1 font-mono text-[7px] text-primary">
-            <span className="size-1 animate-pulse rounded-full bg-primary" />
-            ACTIVE
-          </span>
-        </div>
-
-        <div className="min-h-[58px] font-mono text-[7px] leading-4 text-muted-foreground">
-          {scanLines.slice(0, lineIndex).map((line) => (
-            <div key={line}>
-              <span className="text-primary">&gt;</span>
-              {line.slice(1)}
-            </div>
-          ))}
-
-          {!finished && (
-            <div>
-              <span className="text-primary">{typedText.slice(0, 1)}</span>
-              {typedText.slice(1)}
-              <span className="ml-0.5 animate-pulse text-primary">▌</span>
-            </div>
-          )}
-
-          {finished && (
-            <div className="animate-pulse text-primary">
-              <span className="text-primary">&gt;</span> ACCESS GRANTED ✓
-            </div>
-          )}
-        </div>
-
-        {/* Progress */}
-        <div className="mt-2 h-[2px] overflow-hidden rounded-full bg-border/40">
-          <div
-            className="h-full bg-primary shadow-[0_0_8px_hsl(var(--primary))] transition-all duration-500"
-            style={{
-              width: `${finished ? 100 : ((lineIndex + 1) / scanLines.length) * 100}%`,
-            }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function getOffset(index: number, activeIndex: number) {
   let offset = index - activeIndex;
+
   if (offset > 2) offset -= 4;
   if (offset < -2) offset += 4;
+
   return offset;
 }
 
@@ -130,27 +49,39 @@ export function Hero() {
   const startX = useRef<number | null>(null);
   const moved = useRef(false);
 
-  const next = () => setActiveIndex((c) => (c + 1) % quickLinks.length);
-  const prev = () => setActiveIndex((c) => (c - 1 + quickLinks.length) % quickLinks.length);
+  const next = () =>
+    setActiveIndex((current) => (current + 1) % quickLinks.length);
 
-  const handleDown = (e: PointerEvent) => {
-    startX.current = e.clientX;
+  const prev = () =>
+    setActiveIndex(
+      (current) => (current - 1 + quickLinks.length) % quickLinks.length,
+    );
+
+  const handleDown = (event: PointerEvent) => {
+    startX.current = event.clientX;
     moved.current = false;
   };
 
-  const handleMove = (e: PointerEvent) => {
-    if (startX.current && Math.abs(e.clientX - startX.current) > 12) {
+  const handleMove = (event: PointerEvent) => {
+    if (
+      startX.current !== null &&
+      Math.abs(event.clientX - startX.current) > 12
+    ) {
       moved.current = true;
     }
   };
 
-  const handleUp = (e: PointerEvent) => {
-    if (!startX.current) return;
+  const handleUp = (event: PointerEvent) => {
+    if (startX.current === null) return;
 
-    const dist = e.clientX - startX.current;
+    const distance = event.clientX - startX.current;
 
-    if (Math.abs(dist) > 45) {
-      dist < 0 ? next() : prev();
+    if (Math.abs(distance) > 45) {
+      if (distance < 0) {
+        next();
+      } else {
+        prev();
+      }
     }
 
     startX.current = null;
@@ -180,6 +111,7 @@ export function Hero() {
       />
 
       <div className="relative mx-auto w-full max-w-xl text-center">
+        {/* Welcome */}
         <Reveal>
           <h1 className="text-6xl font-medium tracking-tight sm:text-7xl">
             Welcome
@@ -190,69 +122,41 @@ export function Hero() {
           </p>
         </Reveal>
 
-        {/* DIGITAL IDENTITY CARD */}
+        {/* ORIGINAL ID CARD */}
         <Reveal delay={120} className="my-10 flex justify-center">
-          <div className="id-card-scene relative">
+          <div className="id-card-scene">
             <div className="id-card">
               <div className="id-card-face id-card-front">
                 <img
                   src="/images/id-card.png"
-                  alt="Digital ID card"
+                  alt="Ainiya Faida Haura digital ID card"
                 />
               </div>
 
               <div className="id-card-face id-card-back">
-                <div className="flex h-full w-full flex-col items-center justify-center p-5 text-center">
-                  <div className="flex w-full items-center justify-between">
-                    <span className="font-display text-sm text-primary">
-                      AFH
-                    </span>
+                <div className="id-card-back-content">
+                  <div className="id-card-back-star">✦</div>
 
-                    <span className="text-primary">✦</span>
-                  </div>
+                  <p className="font-display text-sm tracking-[0.25em] text-primary">
+                    AINIYA
+                  </p>
 
-                  <div className="my-auto">
-                    <div className="mb-3 text-3xl text-primary">◈</div>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Writer · Creator · Dreamer
+                  </p>
 
-                    <p className="font-display text-sm tracking-[0.2em] text-primary">
-                      DIGITAL IDENTITY
-                    </p>
+                  <div className="id-card-back-line" />
 
-                    <p className="mt-2 font-display text-lg font-medium">
-                      AINIYA FAIDA HAURA
-                    </p>
-
-                    <p className="mt-3 text-[8px] tracking-[0.16em] text-muted-foreground">
-                      SHA256: AB29DAF6
-                    </p>
-
-                    <div className="mt-5 flex h-8 items-end justify-center gap-[2px]">
-                      <span className="h-5 w-[2px] bg-primary/60" />
-                      <span className="h-8 w-[3px] bg-primary/80" />
-                      <span className="h-6 w-[1px] bg-primary/50" />
-                      <span className="h-8 w-[4px] bg-primary/70" />
-                      <span className="h-4 w-[2px] bg-primary/50" />
-                      <span className="h-7 w-[1px] bg-primary/70" />
-                      <span className="h-8 w-[3px] bg-primary/60" />
-                      <span className="h-5 w-[2px] bg-primary/80" />
-                      <span className="h-7 w-[1px] bg-primary/50" />
-                      <span className="h-8 w-[3px] bg-primary/70" />
-                      <span className="h-4 w-[2px] bg-primary/60" />
-                    </div>
-                  </div>
-
-                  <p className="text-[7px] tracking-[0.18em] text-muted-foreground">
-                    KEEP EXPLORING · KEEP LEARNING
+                  <p className="text-[9px] tracking-[0.16em] text-muted-foreground">
+                    LEARNING · DREAMING · ACHIEVING
                   </p>
                 </div>
               </div>
             </div>
-
-            {/* SECURITY SCANNING */}
-            <SecurityScan />
           </div>
         </Reveal>
 
+        {/* Introduction */}
         <Reveal delay={200}>
           <p className="font-display text-lg text-primary">
             ✦ Hi I'm ✦
@@ -268,7 +172,7 @@ export function Hero() {
             <span className="sparkle sparkle-7" />
             <span className="sparkle sparkle-8" />
 
-            <p className="relative font-display text-4xl font-medium animate-name-starfield animate-star-glow sm:text-5xl">
+            <p className="relative animate-name-starfield animate-star-glow font-display text-4xl font-medium sm:text-5xl">
               Ainiya Faida Haura
             </p>
           </div>
@@ -279,6 +183,7 @@ export function Hero() {
           </p>
         </Reveal>
 
+        {/* Navigation Cards */}
         <Reveal delay={300} className="mt-8 mb-16">
           <div
             className="orbit-carousel"
@@ -292,28 +197,33 @@ export function Hero() {
             <div className="orbit-carousel-stage">
               <div className="orbit-carousel-ring" aria-hidden="true" />
 
-              {quickLinks.map((link, i) => {
-                const offset = getOffset(i, activeIndex);
+              {quickLinks.map((link, index) => {
+                const offset = getOffset(index, activeIndex);
                 const Icon = link.icon;
+
                 const isActive = offset === 0;
                 const isLeft = offset === -1;
                 const isRight = offset === 1;
 
-                let pos = "orbit-position-back";
+                let position = "orbit-position-back";
 
-                if (isActive) pos = "orbit-position-active";
-                else if (isLeft) pos = "orbit-position-left";
-                else if (isRight) pos = "orbit-position-right";
+                if (isActive) {
+                  position = "orbit-position-active";
+                } else if (isLeft) {
+                  position = "orbit-position-left";
+                } else if (isRight) {
+                  position = "orbit-position-right";
+                }
 
                 return (
                   <a
                     key={link.id}
                     href={link.href}
                     download={link.id === "resume" ? true : undefined}
-                    className={`orbit-card ${pos}`}
-                    onClick={(e) => {
+                    className={`orbit-card ${position}`}
+                    onClick={(event) => {
                       if (moved.current) {
-                        e.preventDefault();
+                        event.preventDefault();
                         moved.current = false;
                       }
                     }}
@@ -324,7 +234,7 @@ export function Hero() {
                     </span>
 
                     <span className="orbit-card-content">
-                      <span className="font-display block truncate text-base">
+                      <span className="block truncate font-display text-base">
                         {link.title}
                       </span>
 
@@ -340,11 +250,11 @@ export function Hero() {
             </div>
 
             <div className="orbit-dots" aria-hidden="true">
-              {quickLinks.map((_, i) => (
+              {quickLinks.map((_, index) => (
                 <span
-                  key={i}
+                  key={index}
                   className={`orbit-dot ${
-                    i === activeIndex ? "orbit-dot-active" : ""
+                    index === activeIndex ? "orbit-dot-active" : ""
                   }`}
                 />
               ))}
@@ -356,4 +266,4 @@ export function Hero() {
       <FeaturedHighlights />
     </section>
   );
-        }
+                    }
