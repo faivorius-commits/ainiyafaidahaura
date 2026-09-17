@@ -27,12 +27,12 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const [scanning, setScanning] = useState(true);
+  const [showSecurity, setShowSecurity] = useState(true);
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {scanning && (
-        <SecurityScan onComplete={() => setScanning(false)} />
+      {showSecurity && (
+        <SecurityScan onComplete={() => setShowSecurity(false)} />
       )}
 
       <MagicBackground />
