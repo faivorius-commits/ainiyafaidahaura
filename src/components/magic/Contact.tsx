@@ -123,12 +123,7 @@ export function Contact() {
 
       <div className="relative mx-auto max-w-4xl">
         <Reveal>
-          <div
-            className="mx-auto mb-10 w-full max-w-xl rounded-xl border border-border/60 bg-background/30 p-5 text-left shadow-[0_0_50px_hsl(var(--primary)/0.05)] backdrop-blur-xl"
-            style={{
-              marginTop: "clamp(-4rem, -6vh, -1rem)",
-            }}
-          >
+          <div className="mx-auto mb-10 max-w-xl rounded-xl border border-border/60 bg-background/30 p-5 text-left shadow-[0_0_50px_hsl(var(--primary)/0.05)] backdrop-blur-xl">
             <div className="mb-4 flex items-center gap-2 border-b border-border/50 pb-3">
               <span className="size-2 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary))]" />
               <span className="font-mono text-[9px] tracking-[0.2em] text-muted-foreground">
@@ -257,4 +252,4 @@ export function Footer() {
       </p>
     </footer>
   );
-}
+  }
