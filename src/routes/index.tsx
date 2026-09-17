@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { MagicBackground } from "@/components/magic/MagicBackground";
 import { Navbar } from "@/components/magic/Navbar";
 import { Hero } from "@/components/magic/Hero";
 import { GuestBook } from "@/components/magic/GuestBook";
 import { Footer } from "@/components/magic/Contact";
+import { SecurityScan } from "@/components/magic/SecurityScan";
 
 const title = "Ainiya Faida Haura — Writer, Creator & Youth Advocate";
 
@@ -25,14 +27,23 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [scanning, setScanning] = useState(true);
+
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      {scanning && (
+        <SecurityScan onComplete={() => setScanning(false)} />
+      )}
+
       <MagicBackground />
+
       <Navbar />
+
       <main className="relative z-10">
         <Hero />
         <GuestBook />
       </main>
+
       <Footer />
     </div>
   );
