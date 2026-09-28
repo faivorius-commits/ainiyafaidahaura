@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MagicBackground } from "@/components/magic/MagicBackground";
 import { Navbar } from "@/components/magic/Navbar";
 import { Hero } from "@/components/magic/Hero";
@@ -31,13 +31,22 @@ function Index() {
     return sessionStorage.getItem("introShown") !== "true";
   });
 
+  const [introLeaving, setIntroLeaving] = useState(false);
+
   const [showSecurity, setShowSecurity] = useState(() => {
     return sessionStorage.getItem("securityScanShown") !== "true";
   });
 
   const handleIntroComplete = () => {
-    sessionStorage.setItem("introShown", "true");
-    setShowIntro(false);
+    if (introLeaving) return;
+
+    setIntroLeaving(true);
+
+    // Give the cinematic intro time to fade out
+    setTimeout(() => {
+      sessionStorage.setItem("introShown", "true");
+      setShowIntro(false);
+    }, 900);
   };
 
   const handleSecurityComplete = () => {
@@ -45,27 +54,56 @@ function Index() {
     setShowSecurity(false);
   };
 
+  // Safety fallback in case the video cannot trigger onEnded
+  useEffect(() => {
+    if (!showIntro) return;
+
+    const videoFallback = setTimeout(() => {
+      handleIntroComplete();
+    }, 30000);
+
+    return () => clearTimeout(videoFallback);
+  }, [showIntro]);
+
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      {/* CINEMATIC INTRO */}
       {showIntro && (
-        <div className="cinematic-intro">
+        <div
+          className={`cinematic-intro ${
+            introLeaving ? "cinematic-intro-leaving" : ""
+          }`}
+        >
           <video
             className="cinematic-intro-video"
             src="/intro.mp4"
             autoPlay
             muted
             playsInline
+            preload="auto"
             onEnded={handleIntroComplete}
+            onError={handleIntroComplete}
           />
 
           <div className="cinematic-intro-overlay" />
+
+          <div className="cinematic-intro-vignette" />
+
+          <div className="cinematic-intro-corners">
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
       )}
 
+      {/* SECURITY SCAN */}
       {!showIntro && showSecurity && (
         <SecurityScan onComplete={handleSecurityComplete} />
       )}
 
+      {/* MAIN WEBSITE */}
       <MagicBackground />
 
       <Navbar />
