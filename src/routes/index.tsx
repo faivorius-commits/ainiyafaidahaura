@@ -27,9 +27,18 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [showIntro, setShowIntro] = useState(() => {
+    return sessionStorage.getItem("introShown") !== "true";
+  });
+
   const [showSecurity, setShowSecurity] = useState(() => {
     return sessionStorage.getItem("securityScanShown") !== "true";
   });
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem("introShown", "true");
+    setShowIntro(false);
+  };
 
   const handleSecurityComplete = () => {
     sessionStorage.setItem("securityScanShown", "true");
@@ -38,7 +47,22 @@ function Index() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {showSecurity && (
+      {showIntro && (
+        <div className="cinematic-intro">
+          <video
+            className="cinematic-intro-video"
+            src="/intro.mp4"
+            autoPlay
+            muted
+            playsInline
+            onEnded={handleIntroComplete}
+          />
+
+          <div className="cinematic-intro-overlay" />
+        </div>
+      )}
+
+      {!showIntro && showSecurity && (
         <SecurityScan onComplete={handleSecurityComplete} />
       )}
 
