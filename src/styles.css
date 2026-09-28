@@ -1982,3 +1982,211 @@
     letter-spacing: 0.1em;
   }
 }
+
+/* =========================================================
+   CINEMATIC INTRO
+   ========================================================= */
+
+.cinematic-intro {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100vh;
+
+  z-index: 100000;
+
+  overflow: hidden;
+
+  background: #000;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity 0.9s ease,
+    visibility 0.9s ease;
+}
+
+.cinematic-intro-leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+
+/* VIDEO */
+
+.cinematic-intro-video {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center center;
+
+  background: #000;
+
+  transform: scale(1);
+}
+
+
+/* DARK / CINEMATIC OVERLAY */
+
+.cinematic-intro-overlay {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 30%,
+      rgba(0, 0, 0, 0.18) 60%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+
+  mix-blend-mode: normal;
+}
+
+
+/* CINEMATIC VIGNETTE */
+
+.cinematic-intro-vignette {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.45),
+      transparent 20%,
+      transparent 80%,
+      rgba(0, 0, 0, 0.45)
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5),
+      transparent 20%,
+      transparent 80%,
+      rgba(0, 0, 0, 0.35)
+    );
+}
+
+
+/* CORNER FRAME */
+
+.cinematic-intro-corners {
+  position: absolute;
+  inset: 22px;
+
+  pointer-events: none;
+}
+
+.cinematic-intro-corners span {
+  position: absolute;
+
+  width: 70px;
+  height: 70px;
+
+  opacity: 0.55;
+}
+
+
+/* TOP LEFT */
+
+.cinematic-intro-corners span:nth-child(1) {
+  top: 0;
+  left: 0;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  border-left: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+
+/* TOP RIGHT */
+
+.cinematic-intro-corners span:nth-child(2) {
+  top: 0;
+  right: 0;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  border-right: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+
+/* BOTTOM LEFT */
+
+.cinematic-intro-corners span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  border-left: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+
+/* BOTTOM RIGHT */
+
+.cinematic-intro-corners span:nth-child(4) {
+  bottom: 0;
+  right: 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  border-right: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+
+/* DESKTOP */
+
+@media (min-width: 769px) {
+  .cinematic-intro-video {
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .cinematic-intro {
+    width: 100vw;
+    height: 100dvh;
+  }
+
+  .cinematic-intro-video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .cinematic-intro-corners {
+    inset: 14px;
+  }
+
+  .cinematic-intro-corners span {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro {
+    transition: opacity 0.3s ease;
+  }
+  }
