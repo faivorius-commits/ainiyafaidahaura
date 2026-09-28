@@ -56,7 +56,7 @@ export function SecurityScan({ onComplete }: SecurityScanProps) {
         <div className="security-symbol">✦</div>
 
         <p className="security-brand">
-          AINIYA'S UNIVERSE
+          AINIYA'S DIGITAL UNIVERSE
         </p>
 
         <div className="security-divider">
