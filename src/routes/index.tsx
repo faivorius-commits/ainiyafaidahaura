@@ -27,12 +27,19 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const [showSecurity, setShowSecurity] = useState(true);
+  const [showSecurity, setShowSecurity] = useState(() => {
+    return sessionStorage.getItem("securityScanShown") !== "true";
+  });
+
+  const handleSecurityComplete = () => {
+    sessionStorage.setItem("securityScanShown", "true");
+    setShowSecurity(false);
+  };
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       {showSecurity && (
-        <SecurityScan onComplete={() => setShowSecurity(false)} />
+        <SecurityScan onComplete={handleSecurityComplete} />
       )}
 
       <MagicBackground />
