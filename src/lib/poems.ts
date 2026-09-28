@@ -49,9 +49,9 @@ export const poems: Poem[] = [
   slug: "that-fool-me",
   title: "That Fool, Me",
   author: "Ainiya Faida Haura",
-    date: "July 27th, 2026",
   excerpt:
     "I was sitting on the sofa, listening to rock music loud enough to make the windows forget there was a world outside.",
+  date: "July 27th, 2026",
   stanzas: [
     [
       "I was sitting on the sofa,",
