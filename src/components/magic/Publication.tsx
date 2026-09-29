@@ -774,4 +774,193 @@ export function Publication() {
         }
 
         .reader-line svg {
-          color: #f
+          color: #fbbf24;
+        }
+
+        .reader-page > p {
+          color: #c4b5fd;
+          font-size: 13px;
+          line-height: 1.9;
+        }
+
+        .reader-identifier {
+          margin-top: 25px;
+          padding: 13px;
+          border-left: 2px solid #a855f7;
+          background: rgba(139,92,246,.12);
+        }
+
+        .reader-identifier span {
+          display: block;
+          color: #a78bfa;
+          font-size: 8px;
+          letter-spacing: .15em;
+        }
+
+        .reader-identifier strong {
+          display: block;
+          margin-top: 5px;
+          color: #fef3c7;
+          font-family: monospace;
+          font-size: 12px;
+        }
+
+        .reader-actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 25px;
+        }
+
+        .reader-verify,
+        .reader-next {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 7px;
+          min-height: 40px;
+          padding: 10px 15px;
+          border-radius: 999px;
+          font-size: 9px;
+          font-weight: 700;
+          cursor: pointer;
+          text-decoration: none;
+          transition: .3s ease;
+        }
+
+        .reader-verify {
+          border: 1px solid #a855f7;
+          background: linear-gradient(135deg, #7c3aed, #db2777);
+          color: white;
+        }
+
+        .reader-next {
+          border: 1px solid rgba(196,181,253,.3);
+          background: rgba(139,92,246,.1);
+          color: #ddd6fe;
+        }
+
+        .reader-verify:hover,
+        .reader-next:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 0 25px rgba(168,85,247,.4);
+        }
+
+        @keyframes floatingBook {
+          0%, 100% {
+            transform: rotateY(-12deg) translateY(0);
+          }
+
+          50% {
+            transform: rotateY(-7deg) translateY(-15px);
+          }
+        }
+
+        @keyframes bookShadow {
+          0%, 100% {
+            transform: scaleX(1);
+            opacity: .7;
+          }
+
+          50% {
+            transform: scaleX(.8);
+            opacity: .45;
+          }
+        }
+
+        @keyframes particleFloat {
+          0%, 100% {
+            transform: translateY(0) scale(1);
+            opacity: .5;
+          }
+
+          50% {
+            transform: translateY(-25px) scale(1.4);
+            opacity: 1;
+          }
+        }
+
+        @keyframes archiveStars {
+          from {
+            transform: translateY(0);
+          }
+
+          to {
+            transform: translateY(-80px);
+          }
+        }
+
+        @keyframes readerAppear {
+          from {
+            opacity: 0;
+            transform: scale(.94);
+          }
+
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @media (max-width: 700px) {
+          .publication-archive {
+            min-height: 720px;
+            padding: 55px 15px 75px;
+          }
+
+          .archive-content {
+            padding: 25px 15px;
+          }
+
+          .archive-counter {
+            position: static;
+            margin-top: 12px;
+            text-align: center;
+          }
+
+          .archive-stage {
+            height: 350px;
+          }
+
+          .archive-book {
+            width: 205px;
+            height: 280px;
+          }
+
+          .archive-meta {
+            gap: 15px;
+          }
+
+          .archive-meta strong {
+            max-width: 110px;
+            font-size: 8px;
+          }
+
+          .reader-window {
+            display: block;
+            max-height: 90vh;
+            overflow-y: auto;
+          }
+
+          .reader-cover {
+            min-height: 300px;
+            border-right: 0;
+            border-bottom: 1px solid rgba(216,180,254,.15);
+          }
+
+          .reader-cover h2 {
+            font-size: 34px;
+          }
+
+          .reader-page {
+            padding: 40px 25px;
+          }
+
+          .reader-page h2 {
+            font-size: 30px;
+          }
+        }
+      `}</style>
+    </>
+  );
+}
