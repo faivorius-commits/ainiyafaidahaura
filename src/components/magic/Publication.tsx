@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from "react";
+import { useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -67,13 +67,8 @@ export function Publication() {
     setOpen(false);
   };
 
-  const bookStyle = {
-    "--accent": current.accent,
-  } as CSSProperties;
-
   return (
     <>
-      {/* NORMAL WEBSITE BACKGROUND */}
       <section className="relative px-5 py-24">
         <div className="mx-auto max-w-4xl">
           <SectionTitle
@@ -83,15 +78,14 @@ export function Publication() {
         </div>
       </section>
 
-      {/* COSMIC BACKGROUND ONLY AROUND THE BOOK */}
       <section className="publication-archive">
         <div className="archive-stars" />
-        <div className="archive-glow archive-glow-one" />
-        <div className="archive-glow archive-glow-two" />
+        <div className="archive-glow glow-one" />
+        <div className="archive-glow glow-two" />
 
         <div className="archive-content">
           <div className="archive-heading">
-            <Library size={15} />
+            <Library size={16} />
             <span>PERSONAL PUBLICATION ARCHIVE</span>
           </div>
 
@@ -99,25 +93,27 @@ export function Publication() {
             0{active + 1} / 0{publications.length}
           </div>
 
-          {/* BOOK STAGE */}
           <div className="archive-stage">
             <div className="book-shadow" />
 
             <button
-              type="button"
               className="archive-book"
               onClick={() => setOpen(true)}
               aria-label={`Open ${current.title}`}
             >
               <div
                 className="book-cover"
-                style={bookStyle}
+                style={
+                  {
+                    "--accent": current.accent,
+                  } as React.CSSProperties
+                }
               >
                 <div className="book-light" />
 
                 <Sparkles
                   className="book-sparkle"
-                  size={27}
+                  size={28}
                 />
 
                 <span className="book-type">
@@ -141,7 +137,6 @@ export function Publication() {
             <span className="archive-particle particle-c" />
           </div>
 
-          {/* INFORMATION */}
           <div className="archive-info">
             <span className="archive-label">
               NOW EXPLORING
@@ -169,30 +164,26 @@ export function Publication() {
             </div>
 
             <button
-              type="button"
               className="archive-open"
               onClick={() => setOpen(true)}
             >
-              <BookOpen size={15} />
+              <BookOpen size={16} />
               OPEN PUBLICATION
-              <Sparkles size={13} />
+              <Sparkles size={14} />
             </button>
           </div>
 
-          {/* NAVIGATION */}
           <div className="archive-navigation">
             <button
-              type="button"
               onClick={previous}
               aria-label="Previous publication"
             >
-              <ArrowLeft size={16} />
+              <ArrowLeft size={17} />
             </button>
 
             <div className="archive-dots">
               {publications.map((publication, index) => (
                 <button
-                  type="button"
                   key={publication.title}
                   className={
                     index === active
@@ -209,34 +200,35 @@ export function Publication() {
             </div>
 
             <button
-              type="button"
               onClick={next}
               aria-label="Next publication"
             >
-              <ArrowRight size={16} />
+              <ArrowRight size={17} />
             </button>
           </div>
         </div>
       </section>
 
-      {/* PUBLICATION READER */}
       {open && (
         <div className="publication-reader">
           <div className="reader-window">
             <button
-              type="button"
               className="reader-close"
               onClick={() => setOpen(false)}
               aria-label="Close"
             >
-              <X size={19} />
+              <X size={20} />
             </button>
 
             <div
               className="reader-cover"
-              style={bookStyle}
+              style={
+                {
+                  "--accent": current.accent,
+                } as React.CSSProperties
+              }
             >
-              <FileText size={29} />
+              <FileText size={30} />
 
               <span>{current.type}</span>
 
@@ -256,7 +248,7 @@ export function Publication() {
 
               <div className="reader-line">
                 <i />
-                <Sparkles size={12} />
+                <Sparkles size={13} />
                 <i />
               </div>
 
@@ -275,18 +267,17 @@ export function Publication() {
                     rel="noreferrer"
                     className="reader-verify"
                   >
-                    <ExternalLink size={13} />
+                    <ExternalLink size={14} />
                     VERIFY PUBLICATION
                   </a>
                 )}
 
                 <button
-                  type="button"
                   className="reader-next"
                   onClick={next}
                 >
                   NEXT
-                  <ArrowRight size={13} />
+                  <ArrowRight size={14} />
                 </button>
               </div>
             </div>
@@ -295,83 +286,51 @@ export function Publication() {
       )}
 
       <style>{`
-        /* =================================
-           PUBLICATION ARCHIVE
-           Cosmic background ONLY here
-           ================================= */
-
         .publication-archive {
           position: relative;
           width: 100%;
-          min-height: 720px;
+          min-height: 760px;
           overflow: hidden;
-          padding: 55px 15px 70px;
+          padding: 70px 20px 90px;
           color: white;
           background:
-            radial-gradient(
-              circle at 50% 20%,
-              rgba(139, 92, 246, 0.24),
-              transparent 34%
-            ),
-            radial-gradient(
-              circle at 10% 70%,
-              rgba(76, 29, 149, 0.18),
-              transparent 30%
-            ),
-            radial-gradient(
-              circle at 90% 75%,
-              rgba(168, 85, 247, 0.14),
-              transparent 32%
-            ),
-            linear-gradient(
-              180deg,
-              #18052f 0%,
-              #0e0320 55%,
-              #07020f 100%
-            );
+            radial-gradient(circle at 50% 20%, rgba(139,92,246,.28), transparent 34%),
+            radial-gradient(circle at 10% 70%, rgba(76,29,149,.24), transparent 30%),
+            radial-gradient(circle at 90% 70%, rgba(168,85,247,.18), transparent 32%),
+            linear-gradient(180deg, #18052f 0%, #0e0320 55%, #07020f 100%);
         }
 
         .archive-stars {
           position: absolute;
           inset: 0;
           pointer-events: none;
-          opacity: 0.65;
+          opacity: .7;
           background-image:
-            radial-gradient(
-              circle,
-              rgba(255, 255, 255, 0.9) 1px,
-              transparent 1.5px
-            ),
-            radial-gradient(
-              circle,
-              rgba(196, 181, 253, 0.7) 1px,
-              transparent 1.5px
-            );
-          background-size:
-            75px 75px,
-            135px 135px;
-          animation: archiveStars 22s linear infinite;
+            radial-gradient(circle, white 1px, transparent 1.5px),
+            radial-gradient(circle, rgba(196,181,253,.8) 1px, transparent 1.5px);
+          background-size: 75px 75px, 135px 135px;
+          animation: archiveStars 20s linear infinite;
         }
 
         .archive-glow {
           position: absolute;
-          width: 400px;
-          height: 400px;
+          width: 420px;
+          height: 420px;
           border-radius: 50%;
           pointer-events: none;
           filter: blur(110px);
-          opacity: 0.15;
+          opacity: .18;
         }
 
-        .archive-glow-one {
-          top: -160px;
-          left: -170px;
+        .glow-one {
+          top: -150px;
+          left: -160px;
           background: #8b5cf6;
         }
 
-        .archive-glow-two {
-          right: -180px;
-          bottom: -170px;
+        .glow-two {
+          right: -170px;
+          bottom: -160px;
           background: #ec4899;
         }
 
@@ -379,65 +338,61 @@ export function Publication() {
           position: relative;
           z-index: 2;
           max-width: 950px;
-          min-height: 640px;
           margin: 0 auto;
-          padding: 28px 22px 32px;
-          overflow: hidden;
-          border: 1px solid rgba(216, 180, 254, 0.2);
-          border-radius: 28px;
-          background: rgba(20, 5, 40, 0.42);
+          padding: 30px 25px;
+          border: 1px solid rgba(216,180,254,.2);
+          border-radius: 30px;
+          background: rgba(20,5,40,.45);
           box-shadow:
-            0 40px 100px rgba(0, 0, 0, 0.5),
-            inset 0 1px rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(12px);
+            0 40px 100px rgba(0,0,0,.55),
+            inset 0 1px rgba(255,255,255,.06);
+          backdrop-filter: blur(15px);
         }
 
         .archive-heading {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 7px;
+          gap: 8px;
           color: #d8b4fe;
-          font-size: 9px;
+          font-size: 10px;
           font-weight: 700;
-          letter-spacing: 0.18em;
+          letter-spacing: .2em;
         }
 
         .archive-counter {
           position: absolute;
-          top: 28px;
-          right: 25px;
+          top: 30px;
+          right: 30px;
           color: #a78bfa;
           font-family: monospace;
-          font-size: 9px;
+          font-size: 11px;
         }
-
-        /* BOOK */
 
         .archive-stage {
           position: relative;
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 360px;
+          height: 390px;
           perspective: 1000px;
         }
 
         .book-shadow {
           position: absolute;
-          bottom: 30px;
-          width: 250px;
-          height: 40px;
+          bottom: 35px;
+          width: 270px;
+          height: 45px;
           border-radius: 50%;
-          background: rgba(0, 0, 0, 0.7);
-          filter: blur(19px);
+          background: rgba(0,0,0,.7);
+          filter: blur(20px);
           animation: bookShadow 5s ease-in-out infinite;
         }
 
         .archive-book {
           position: relative;
-          width: 215px;
-          height: 290px;
+          width: 230px;
+          height: 310px;
           padding: 0;
           border: 0;
           background: transparent;
@@ -445,14 +400,11 @@ export function Publication() {
           transform: rotateY(-12deg);
           transform-style: preserve-3d;
           animation: floatingBook 5s ease-in-out infinite;
-          transition: 0.45s ease;
+          transition: .5s ease;
         }
 
         .archive-book:hover {
-          transform:
-            rotateY(-3deg)
-            translateY(-12px)
-            scale(1.04);
+          transform: rotateY(-2deg) translateY(-14px) scale(1.05);
         }
 
         .book-cover {
@@ -463,102 +415,80 @@ export function Publication() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          padding: 24px;
+          padding: 25px;
           border: 1px solid var(--accent);
           border-radius: 7px 16px 16px 7px;
           background:
-            radial-gradient(
-              circle at 50% 25%,
-              rgba(168, 85, 247, 0.35),
-              transparent 45%
-            ),
-            linear-gradient(
-              145deg,
-              #35115c,
-              #0b0217
-            );
+            radial-gradient(circle at 50% 25%, rgba(168,85,247,.35), transparent 45%),
+            linear-gradient(145deg, #35115c, #0b0217);
           box-shadow:
-            0 0 30px rgba(168, 85, 247, 0.32),
-            18px 25px 45px rgba(0, 0, 0, 0.65);
+            0 0 30px rgba(168,85,247,.35),
+            18px 25px 45px rgba(0,0,0,.65);
         }
 
         .book-light {
           position: absolute;
           top: -70px;
-          right: -55px;
+          right: -50px;
           width: 170px;
           height: 170px;
           border-radius: 50%;
           background: var(--accent);
-          opacity: 0.27;
-          filter: blur(42px);
+          opacity: .28;
+          filter: blur(40px);
         }
 
         .book-sparkle {
           position: relative;
           color: #fbbf24;
-          filter: drop-shadow(
-            0 0 10px rgba(251, 191, 36, 0.8)
-          );
+          filter: drop-shadow(0 0 10px #fbbf24);
         }
 
         .book-type {
           position: relative;
-          margin-top: 17px;
+          margin-top: 18px;
           color: #c4b5fd;
-          font-size: 7px;
-          letter-spacing: 0.15em;
+          font-size: 8px;
+          letter-spacing: .16em;
           text-align: center;
           text-transform: uppercase;
         }
 
         .book-cover h2 {
           position: relative;
-          margin: 11px 0 6px;
+          margin: 12px 0 6px;
           color: #fef3c7;
           font-family: Georgia, serif;
-          font-size: 30px;
+          font-size: 32px;
           font-weight: 500;
-          text-shadow:
-            0 0 17px rgba(251, 191, 36, 0.4);
+          text-shadow: 0 0 18px rgba(251,191,36,.4);
         }
 
         .book-cover p {
           position: relative;
-          max-width: 165px;
-          margin: 0;
+          max-width: 170px;
           color: #ddd6fe;
-          font-size: 8px;
+          font-size: 9px;
           line-height: 1.5;
           text-align: center;
         }
 
         .book-divider {
-          position: relative;
-          width: 68%;
+          width: 70%;
           height: 1px;
-          margin-top: 17px;
-          background:
-            linear-gradient(
-              90deg,
-              transparent,
-              #fbbf24,
-              transparent
-            );
-          box-shadow:
-            0 0 10px rgba(251, 191, 36, 0.7);
+          margin-top: 18px;
+          background: linear-gradient(90deg, transparent, #fbbf24, transparent);
+          box-shadow: 0 0 10px #fbbf24;
         }
 
         .book-year {
           position: relative;
-          margin-top: 12px;
+          margin-top: 13px;
           color: #fbbf24;
           font-family: monospace;
-          font-size: 8px;
-          letter-spacing: 0.2em;
+          font-size: 9px;
+          letter-spacing: .2em;
         }
-
-        /* PARTICLES */
 
         .archive-particle {
           position: absolute;
@@ -566,13 +496,8 @@ export function Publication() {
           height: 5px;
           border-radius: 50%;
           background: #f9a8d4;
-          box-shadow:
-            0 0 15px rgba(249, 168, 212, 0.9);
-          animation:
-            particleFloat
-            4s
-            ease-in-out
-            infinite;
+          box-shadow: 0 0 15px #f9a8d4;
+          animation: particleFloat 4s ease-in-out infinite;
         }
 
         .particle-a {
@@ -581,24 +506,20 @@ export function Publication() {
         }
 
         .particle-b {
-          top: 135px;
+          top: 140px;
           right: 27%;
           background: #c4b5fd;
-          box-shadow:
-            0 0 15px rgba(196, 181, 253, 0.9);
-          animation-delay: 0.8s;
+          box-shadow: 0 0 15px #c4b5fd;
+          animation-delay: .8s;
         }
 
         .particle-c {
-          bottom: 65px;
+          bottom: 70px;
           left: 35%;
           background: #fbbf24;
-          box-shadow:
-            0 0 15px rgba(251, 191, 36, 0.9);
+          box-shadow: 0 0 15px #fbbf24;
           animation-delay: 1.4s;
         }
-
-        /* INFORMATION */
 
         .archive-info {
           max-width: 650px;
@@ -608,9 +529,9 @@ export function Publication() {
 
         .archive-label {
           color: #a78bfa;
-          font-size: 8px;
+          font-size: 9px;
           font-weight: 700;
-          letter-spacing: 0.2em;
+          letter-spacing: .2em;
         }
 
         .archive-info h3 {
@@ -622,18 +543,18 @@ export function Publication() {
         }
 
         .archive-info > p {
-          max-width: 550px;
+          max-width: 560px;
           margin: 0 auto;
           color: #c4b5fd;
-          font-size: 12px;
+          font-size: 13px;
           line-height: 1.8;
         }
 
         .archive-meta {
           display: flex;
           justify-content: center;
-          gap: 42px;
-          margin-top: 23px;
+          gap: 45px;
+          margin-top: 25px;
         }
 
         .archive-meta div {
@@ -644,78 +565,69 @@ export function Publication() {
 
         .archive-meta span {
           color: #8b5cf6;
-          font-size: 7px;
-          letter-spacing: 0.15em;
+          font-size: 8px;
+          letter-spacing: .15em;
         }
 
         .archive-meta strong {
-          max-width: 170px;
+          max-width: 180px;
           color: #e9d5ff;
-          font-size: 9px;
+          font-size: 10px;
           font-weight: 500;
         }
 
         .archive-open {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          margin-top: 23px;
-          padding: 11px 18px;
+          gap: 9px;
+          margin-top: 25px;
+          padding: 12px 20px;
           border: 1px solid #a855f7;
           border-radius: 999px;
-          background:
-            linear-gradient(
-              135deg,
-              rgba(124, 58, 237, 0.38),
-              rgba(219, 39, 119, 0.18)
-            );
+          background: linear-gradient(135deg, rgba(124,58,237,.4), rgba(219,39,119,.2));
           color: #fef3c7;
-          font-size: 9px;
+          font-size: 10px;
           font-weight: 700;
-          letter-spacing: 0.1em;
+          letter-spacing: .1em;
           cursor: pointer;
-          transition: 0.3s ease;
+          transition: .3s ease;
         }
 
         .archive-open:hover {
           transform: translateY(-3px);
-          box-shadow:
-            0 0 28px rgba(168, 85, 247, 0.4);
+          box-shadow: 0 0 30px rgba(168,85,247,.4);
         }
-
-        /* NAVIGATION */
 
         .archive-navigation {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 22px;
-          margin-top: 27px;
+          gap: 25px;
+          margin-top: 30px;
         }
 
         .archive-navigation > button {
           display: grid;
-          width: 37px;
-          height: 37px;
+          width: 38px;
+          height: 38px;
           place-items: center;
-          border: 1px solid rgba(196, 181, 253, 0.28);
+          border: 1px solid rgba(196,181,253,.3);
           border-radius: 50%;
-          background: rgba(139, 92, 246, 0.1);
+          background: rgba(139,92,246,.12);
           color: #ddd6fe;
           cursor: pointer;
-          transition: 0.3s ease;
+          transition: .3s ease;
         }
 
         .archive-navigation > button:hover {
-          background: rgba(139, 92, 246, 0.28);
+          background: rgba(139,92,246,.3);
           border-color: #a855f7;
-          box-shadow:
-            0 0 20px rgba(139, 92, 246, 0.4);
+          box-shadow: 0 0 20px rgba(139,92,246,.4);
         }
 
         .archive-dots {
           display: flex;
-          gap: 7px;
+          gap: 8px;
         }
 
         .archive-dot {
@@ -729,19 +641,11 @@ export function Publication() {
         }
 
         .archive-dot.active {
-          width: 24px;
+          width: 25px;
           border-radius: 10px;
-          background:
-            linear-gradient(
-              90deg,
-              #a855f7,
-              #ec4899
-            );
-          box-shadow:
-            0 0 15px rgba(168, 85, 247, 0.8);
+          background: linear-gradient(90deg, #a855f7, #ec4899);
+          box-shadow: 0 0 15px #a855f7;
         }
-
-        /* READER */
 
         .publication-reader {
           position: fixed;
@@ -751,50 +655,41 @@ export function Publication() {
           align-items: center;
           justify-content: center;
           padding: 20px;
-          background: rgba(4, 1, 12, 0.88);
+          background: rgba(4,1,12,.88);
           backdrop-filter: blur(18px);
         }
 
         .reader-window {
           position: relative;
           display: grid;
-          grid-template-columns: 0.8fr 1.2fr;
+          grid-template-columns: .8fr 1.2fr;
           width: min(850px, 100%);
           min-height: 500px;
           overflow: hidden;
-          border: 1px solid rgba(216, 180, 254, 0.3);
+          border: 1px solid rgba(216,180,254,.3);
           border-radius: 28px;
-          background:
-            linear-gradient(
-              145deg,
-              #1b0733,
-              #090313
-            );
-          box-shadow:
-            0 50px 120px rgba(0, 0, 0, 0.8);
-          animation:
-            readerAppear
-            0.3s
-            ease;
+          background: linear-gradient(145deg, #1b0733, #090313);
+          box-shadow: 0 50px 120px rgba(0,0,0,.8);
+          animation: readerAppear .3s ease;
         }
 
         .reader-close {
           position: absolute;
-          top: 15px;
-          right: 15px;
+          top: 16px;
+          right: 16px;
           z-index: 5;
           display: grid;
           width: 38px;
           height: 38px;
           place-items: center;
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          border: 1px solid rgba(255,255,255,.15);
           border-radius: 50%;
-          background: rgba(0, 0, 0, 0.3);
+          background: rgba(0,0,0,.3);
           color: #ddd6fe;
           cursor: pointer;
         }
 
-                .reader-cover {
+        .reader-cover {
           position: relative;
           display: flex;
           flex-direction: column;
@@ -802,29 +697,21 @@ export function Publication() {
           justify-content: center;
           min-height: 500px;
           padding: 40px;
-          border-right: 1px solid rgba(216, 180, 254, 0.15);
-          background:
-            linear-gradient(
-              145deg,
-              #321052,
-              #090313
-            );
+          border-right: 1px solid rgba(216,180,254,.15);
+          background: linear-gradient(145deg, #321052, #090313);
           text-align: center;
         }
 
         .reader-cover svg {
           color: #fbbf24;
-          filter:
-            drop-shadow(
-              0 0 12px rgba(251, 191, 36, 0.8)
-            );
+          filter: drop-shadow(0 0 12px #fbbf24);
         }
 
         .reader-cover span {
           margin-top: 20px;
           color: #c4b5fd;
           font-size: 9px;
-          letter-spacing: 0.16em;
+          letter-spacing: .16em;
         }
 
         .reader-cover h2 {
@@ -837,7 +724,6 @@ export function Publication() {
 
         .reader-cover p {
           max-width: 220px;
-          margin: 0;
           color: #c4b5fd;
           font-size: 11px;
           line-height: 1.6;
@@ -849,7 +735,7 @@ export function Publication() {
           color: #fbbf24;
           font-family: monospace;
           font-size: 10px;
-          letter-spacing: 0.2em;
+          letter-spacing: .2em;
         }
 
         .reader-page {
@@ -863,7 +749,7 @@ export function Publication() {
           color: #a78bfa;
           font-size: 9px;
           font-weight: 700;
-          letter-spacing: 0.2em;
+          letter-spacing: .2em;
         }
 
         .reader-page h2 {
@@ -888,264 +774,4 @@ export function Publication() {
         }
 
         .reader-line svg {
-          color: #fbbf24;
-        }
-
-        .reader-page > p {
-          margin: 0;
-          color: #c4b5fd;
-          font-size: 13px;
-          line-height: 1.9;
-        }
-
-        .reader-identifier {
-          margin-top: 25px;
-          padding: 13px;
-          border-left: 2px solid #a855f7;
-          background: rgba(139, 92, 246, 0.12);
-        }
-
-        .reader-identifier span {
-          display: block;
-          color: #a78bfa;
-          font-size: 8px;
-          letter-spacing: 0.15em;
-        }
-
-        .reader-identifier strong {
-          display: block;
-          margin-top: 5px;
-          color: #fef3c7;
-          font-family: monospace;
-          font-size: 12px;
-        }
-
-        .reader-actions {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          margin-top: 25px;
-        }
-
-        .reader-verify,
-        .reader-next {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 7px;
-          min-height: 40px;
-          padding: 10px 15px;
-          border-radius: 999px;
-          font-size: 9px;
-          font-weight: 700;
-          cursor: pointer;
-          text-decoration: none;
-          transition: 0.3s ease;
-        }
-
-        .reader-verify {
-          border: 1px solid #a855f7;
-          background:
-            linear-gradient(
-              135deg,
-              #7c3aed,
-              #db2777
-            );
-          color: white;
-        }
-
-        .reader-next {
-          border: 1px solid rgba(196, 181, 253, 0.3);
-          background: rgba(139, 92, 246, 0.1);
-          color: #ddd6fe;
-        }
-
-        .reader-verify:hover,
-        .reader-next:hover {
-          transform: translateY(-2px);
-          box-shadow:
-            0 0 25px rgba(168, 85, 247, 0.4);
-        }
-
-        /* ANIMATIONS */
-
-        @keyframes floatingBook {
-          0%,
-          100% {
-            transform:
-              rotateY(-12deg)
-              translateY(0);
-          }
-
-          50% {
-            transform:
-              rotateY(-7deg)
-              translateY(-15px);
-          }
-        }
-
-        @keyframes bookShadow {
-          0%,
-          100% {
-            transform: scaleX(1);
-            opacity: 0.7;
-          }
-
-          50% {
-            transform: scaleX(0.8);
-            opacity: 0.45;
-          }
-        }
-
-        @keyframes particleFloat {
-          0%,
-          100% {
-            transform:
-              translateY(0)
-              scale(1);
-            opacity: 0.5;
-          }
-
-          50% {
-            transform:
-              translateY(-25px)
-              scale(1.4);
-            opacity: 1;
-          }
-        }
-
-        @keyframes archiveStars {
-          from {
-            transform: translateY(0);
-          }
-
-          to {
-            transform: translateY(-80px);
-          }
-        }
-
-        @keyframes readerAppear {
-          from {
-            opacity: 0;
-            transform: scale(0.94);
-          }
-
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 700px) {
-          .publication-archive {
-            min-height: 720px;
-            padding: 45px 12px 65px;
-          }
-
-          .archive-content {
-            min-height: 640px;
-            padding: 25px 14px 30px;
-            border-radius: 24px;
-          }
-
-          .archive-heading {
-            font-size: 8px;
-          }
-
-          .archive-counter {
-            position: static;
-            margin-top: 10px;
-            text-align: center;
-          }
-
-          .archive-stage {
-            height: 350px;
-          }
-
-          .archive-book {
-            width: 200px;
-            height: 275px;
-          }
-
-          .archive-info h3 {
-            font-size: 25px;
-          }
-
-          .archive-info > p {
-            padding: 0 10px;
-            font-size: 11px;
-          }
-
-          .archive-meta {
-            gap: 14px;
-          }
-
-          .archive-meta strong {
-            max-width: 105px;
-            font-size: 8px;
-          }
-
-          .archive-open {
-            font-size: 8px;
-            padding: 10px 15px;
-          }
-
-          .archive-navigation {
-            margin-top: 24px;
-          }
-
-          .publication-reader {
-            padding: 12px;
-          }
-
-          .reader-window {
-            display: block;
-            width: 100%;
-            max-height: 92vh;
-            overflow-y: auto;
-            border-radius: 22px;
-          }
-
-          .reader-cover {
-            min-height: 300px;
-            padding: 35px 25px;
-            border-right: 0;
-            border-bottom: 1px solid rgba(216, 180, 254, 0.15);
-          }
-
-          .reader-cover h2 {
-            font-size: 34px;
-          }
-
-          .reader-cover strong {
-            bottom: 20px;
-          }
-
-          .reader-page {
-            padding: 38px 24px;
-          }
-
-          .reader-page h2 {
-            font-size: 30px;
-          }
-
-          .reader-page > p {
-            font-size: 12px;
-          }
-
-          .reader-actions {
-            flex-direction: column;
-          }
-
-          .reader-verify,
-          .reader-next {
-            width: 100%;
-          }
-        }
-      `}</style>
-    </>
-  );
-}
-   
+          color: #f
