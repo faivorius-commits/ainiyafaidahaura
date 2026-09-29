@@ -39,8 +39,7 @@ const publications: PublicationItem[] = [
     identifier: "62-6264-2709-644",
     description:
       "A short story published as part of Festival Sastra Volume 6, preserving a small fictional world within a collective literary anthology.",
-    quote:
-      "Some stories heal, even when they are still being written.",
+    quote: "Some stories heal, even when they are still being written.",
     url: "https://qrcbn.com/check/62-6264-2709-644",
     coverTitle: "Heal",
     coverSubtitle: "Festival Sastra\nVolume 6",
@@ -56,8 +55,7 @@ const publications: PublicationItem[] = [
     identifier: "978-81-904011-0-4",
     description:
       "A poetry contribution included in the anthology Her Story In Your Poem, bringing a small collection of words into a shared literary space.",
-    quote:
-      "There is always a little more spring waiting between the lines.",
+    quote: "There is always a little more spring waiting between the lines.",
     url: "",
     coverTitle: "A Little\nMore Spring",
     coverSubtitle: "Her Story\nIn Your Poem",
@@ -68,46 +66,42 @@ const timelineYears = ["2026", "2025", "2024"];
 
 export function Publication() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isBookOpen, setIsBookOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [showIdentifier, setShowIdentifier] = useState(false);
 
   const selected = publications[selectedIndex];
 
-  const nextPublication = () => {
-    setIsOpen(false);
+  const selectPublication = (index: number) => {
+    setSelectedIndex(index);
+    setIsBookOpen(false);
     setPage(1);
     setShowIdentifier(false);
-
-    setTimeout(() => {
-      setSelectedIndex((current) =>
-        current === publications.length - 1 ? 0 : current + 1
-      );
-    }, 180);
   };
 
   const previousPublication = () => {
-    setIsOpen(false);
-    setPage(1);
-    setShowIdentifier(false);
+    const nextIndex =
+      selectedIndex === 0 ? publications.length - 1 : selectedIndex - 1;
 
-    setTimeout(() => {
-      setSelectedIndex((current) =>
-        current === 0 ? publications.length - 1 : current - 1
-      );
-    }, 180);
+    selectPublication(nextIndex);
+  };
+
+  const nextPublication = () => {
+    const nextIndex =
+      selectedIndex === publications.length - 1 ? 0 : selectedIndex + 1;
+
+    selectPublication(nextIndex);
   };
 
   const openBook = () => {
-    setIsOpen(true);
+    setIsBookOpen(true);
     setPage(1);
     setShowIdentifier(false);
   };
 
   const closeBook = () => {
-    setIsOpen(false);
+    setIsBookOpen(false);
     setPage(1);
-    setShowIdentifier(false);
   };
 
   const nextPage = () => {
@@ -119,250 +113,232 @@ export function Publication() {
   };
 
   return (
-    <section className="publication-stage relative overflow-hidden px-5 py-24">
-      {/* COSMIC AMBIENCE */}
-      <div className="publication-stars pointer-events-none absolute inset-0" />
+    <section className="publication-stage">
+      <div className="publication-stars" />
+      <div className="publication-orb publication-orb-one" />
+      <div className="publication-orb publication-orb-two" />
 
-      <div className="publication-orb publication-orb-one pointer-events-none" />
-      <div className="publication-orb publication-orb-two pointer-events-none" />
-
-      <div className="relative z-10 mx-auto max-w-6xl">
+      <div className="publication-container">
         <SectionTitle
           title="Publication"
           subtitle="Stories, books & words preserved in time."
         />
 
-        {/* INTRO */}
         <div className="publication-intro">
-          <span className="publication-intro-line" />
-          <Sparkles className="size-4 text-primary" />
-          <span className="publication-intro-line" />
-
+          <span />
+          <Sparkles />
+          <span />
           <p>
             A little archive of things I have written, published, and left
             between the pages.
           </p>
         </div>
 
-        {/* PUBLICATION COUNTER */}
-        <div className="publication-stats">
+        {/* ARCHIVE HEADER */}
+        <div className="publication-header">
           <div>
+            <small>PRIVATE LITERARY ARCHIVE</small>
+            <h2>
+              Words that
+              <br />
+              <em>remain.</em>
+            </h2>
+          </div>
+
+          <div className="publication-count">
             <strong>{String(publications.length).padStart(2, "0")}</strong>
-            <span>PUBLICATIONS</span>
-          </div>
-
-          <div>
-            <strong>
-              {
-                publications.filter((publication) =>
-                  publication.type.includes("Anthology")
-                ).length
-              }
-            </strong>
-            <span>ANTHOLOGIES</span>
-          </div>
-
-          <div>
-            <strong>2026</strong>
-            <span>LATEST YEAR</span>
+            <span>published works</span>
           </div>
         </div>
 
-        {/* MAIN ARCHIVE */}
-        <div className="publication-room mt-12">
-          {/* LEFT: PUBLICATION INDEX */}
+        {/* MAIN EXPERIENCE */}
+        <div className="publication-room">
+          {/* INDEX */}
           <aside className="publication-index">
-            <div className="publication-index-heading">
-              <Library className="size-4" />
-              <span>PUBLICATION INDEX</span>
+            <div className="publication-index-title">
+              <Library />
+              <span>ARCHIVE INDEX</span>
             </div>
 
-            <div className="publication-index-list">
-              {publications.map((publication, index) => {
-                const active = selectedIndex === index;
+            {publications.map((publication, index) => {
+              const active = selectedIndex === index;
 
-                return (
-                  <button
-                    key={publication.id}
-                    type="button"
-                    onClick={() => {
-                      setSelectedIndex(index);
-                      setIsOpen(false);
-                      setPage(1);
-                      setShowIdentifier(false);
-                    }}
-                    className={`publication-index-item ${
-                      active ? "publication-index-active" : ""
-                    }`}
-                  >
-                    <span className="publication-index-number">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+              return (
+                <button
+                  key={publication.id}
+                  type="button"
+                  className={`publication-index-item ${
+                    active ? "active" : ""
+                  }`}
+                  onClick={() => selectPublication(index)}
+                >
+                  <span className="publication-index-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-                    <span className="publication-index-content">
-                      <strong>{publication.title}</strong>
-                      <small>
-                        {publication.type} · {publication.year}
-                      </small>
-                    </span>
+                  <span className="publication-index-text">
+                    <strong>{publication.title}</strong>
+                    <small>
+                      {publication.type}
+                      <br />
+                      {publication.year}
+                    </small>
+                  </span>
 
-                    {active && (
-                      <span className="publication-index-light">
-                        ✦
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
+                  {active && <span className="publication-index-star">✦</span>}
+                </button>
+              );
+            })}
 
-            <div className="publication-index-note">
+            <div className="publication-index-status">
               <span>ARCHIVE STATUS</span>
-              <strong>● PRESERVED</strong>
+              <strong>
+                <i /> PRESERVED
+              </strong>
             </div>
           </aside>
 
-          {/* CENTER: FLOATING BOOK */}
-          <div className="publication-book-area">
+          {/* BOOK */}
+          <div className="publication-book-zone">
             <button
               type="button"
+              className="publication-arrow publication-arrow-left"
               onClick={previousPublication}
-              className="publication-nav publication-nav-left"
               aria-label="Previous publication"
             >
-              <ArrowLeft className="size-4" />
+              <ArrowLeft />
             </button>
 
-            <div className="publication-orbit publication-orbit-one" />
-            <div className="publication-orbit publication-orbit-two" />
-
-            <div
-              className={`publication-floating-book ${
-                isOpen ? "publication-book-opened" : ""
-              }`}
-              onClick={openBook}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  openBook();
-                }
-              }}
-            >
-              <div className="publication-book-glow" />
-
-              <div className="publication-book-cover">
-                <div className="publication-cover-decoration top" />
-                <div className="publication-cover-moon">☾</div>
-
-                <div className="publication-cover-content">
-                  <span>AINIYA F. HAURA</span>
-
-                  <h3>
-                    {selected.coverTitle.split("\n").map((line, index) => (
-                      <span key={index}>
-                        {line}
-                        {index < selected.coverTitle.split("\n").length - 1 && (
-                          <br />
-                        )}
-                      </span>
-                    ))}
-                  </h3>
-
-                  <div className="publication-cover-divider">
-                    ✦
-                  </div>
-
-                  <p>
-                    {selected.coverSubtitle.split("\n").map((line, index) => (
-                      <span key={index}>
-                        {line}
-                        {index <
-                          selected.coverSubtitle.split("\n").length - 1 && (
-                          <br />
-                        )}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-
-                <div className="publication-cover-decoration bottom" />
-              </div>
-
-              <div className="publication-book-spine" />
-
-              <span className="publication-click-hint">
-                <BookOpen className="size-3.5" />
-                Click to open
-              </span>
-            </div>
+            <div className="publication-orbit orbit-one" />
+            <div className="publication-orbit orbit-two" />
 
             <button
               type="button"
-              onClick={nextPublication}
-              className="publication-nav publication-nav-right"
-              aria-label="Next publication"
+              className={`publication-book ${
+                isBookOpen ? "book-opened" : ""
+              }`}
+              onClick={openBook}
+              aria-label={`Open ${selected.title}`}
             >
-              <ArrowRight className="size-4" />
+              <span className="publication-book-light" />
+
+              <span className="publication-book-cover">
+                <span className="cover-top">AINIYA F. HAURA</span>
+
+                <span className="cover-moon">☾</span>
+
+                <span className="cover-title">
+                  {selected.coverTitle.split("\n").map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </span>
+
+                <span className="cover-symbol">✦</span>
+
+                <span className="cover-subtitle">
+                  {selected.coverSubtitle.split("\n").map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </span>
+
+                <span className="cover-bottom">LITERARY ARCHIVE · 2026</span>
+              </span>
+
+              <span className="publication-book-spine" />
+
+              <span className="publication-click">
+                <BookOpen />
+                CLICK TO OPEN
+              </span>
             </button>
 
-            <div className="publication-book-caption">
-              <span>{selected.type}</span>
+            <button
+              type="button"
+              className="publication-arrow publication-arrow-right"
+              onClick={nextPublication}
+              aria-label="Next publication"
+            >
+              <ArrowRight />
+            </button>
+
+            <div className="publication-caption">
+              <small>{selected.type}</small>
               <h3>{selected.title}</h3>
               <p>{selected.subtitle}</p>
             </div>
           </div>
 
-          {/* RIGHT: QUICK INFO */}
-          <aside className="publication-quick-info">
-            <div className="publication-quick-heading">
+          {/* RECORD */}
+          <aside className="publication-record">
+            <div className="record-top">
               <span>SELECTED RECORD</span>
-              <span className="publication-record-dot">●</span>
+              <i />
             </div>
 
-            <div className="publication-quick-title">
-              {selected.title}
+            <div className="record-number">
+              {String(selectedIndex + 1).padStart(2, "0")}
+              <span>/ {String(publications.length).padStart(2, "0")}</span>
             </div>
 
-            <div className="publication-quick-meta">
-              <span>TYPE</span>
-              <strong>{selected.type}</strong>
-            </div>
+            <h3>{selected.title}</h3>
 
-            <div className="publication-quick-meta">
-              <span>YEAR</span>
-              <strong>{selected.year}</strong>
+            <p>{selected.description}</p>
+
+            <div className="record-meta">
+              <div>
+                <span>TYPE</span>
+                <strong>{selected.type}</strong>
+              </div>
+
+              <div>
+                <span>YEAR</span>
+                <strong>{selected.year}</strong>
+              </div>
+
+              <div>
+                <span>AUTHOR</span>
+                <strong>{selected.author}</strong>
+              </div>
             </div>
 
             <button
               type="button"
+              className={`identifier-trigger ${
+                showIdentifier ? "opened" : ""
+              }`}
               onClick={() => setShowIdentifier((value) => !value)}
-              className="publication-identifier-button"
             >
-              <span>{selected.identifierType}</span>
-              <span>{showIdentifier ? "HIDE" : "VIEW"}</span>
+              <span>
+                {selected.identifierType === "QRCBN" ? "▦" : "▥"}
+              </span>
+
+              <span>
+                {showIdentifier
+                  ? `HIDE ${selected.identifierType}`
+                  : `VIEW ${selected.identifierType}`}
+              </span>
+
+              <ArrowRight />
             </button>
 
             {showIdentifier && (
-              <div className="publication-identifier-panel">
-                <div className="publication-scan-line" />
-
-                <div className="publication-fake-code">
+              <div className="identifier-reveal">
+                <div className="identifier-code">
                   {selected.identifierType === "QRCBN" ? (
                     <>
-                      <span>▦</span>
-                      <span>▦</span>
-                      <span>▦</span>
-                      <span>▦</span>
-                      <span>▦</span>
-                      <span>▦</span>
-                      <span>▦</span>
-                      <span>▦</span>
-                      <span>▦</span>
+                      <b>▦</b>
+                      <b>▦</b>
+                      <b>▦</b>
+                      <b>▦</b>
+                      <b>▦</b>
+                      <b>▦</b>
+                      <b>▦</b>
+                      <b>▦</b>
+                      <b>▦</b>
                     </>
                   ) : (
-                    <div className="publication-barcode">
-                      || ||| | |||| || | |||
+                    <div className="isbn-bars">
+                      || ||| | |||| || | ||| || || | ||||
                     </div>
                   )}
                 </div>
@@ -376,28 +352,31 @@ export function Publication() {
           </aside>
         </div>
 
-        {/* OPEN BOOK DETAILS */}
-        {isOpen && (
-          <div className="publication-open-area">
-            <div className="publication-open-book">
-              <div className="publication-open-page publication-open-left">
-                <div className="publication-page-number">
-                  {page} / 4
-                </div>
+        {/* OPEN BOOK */}
+        {isBookOpen && (
+          <div className="publication-reader">
+            <div className="reader-topbar">
+              <span>READING MODE</span>
+
+              <button type="button" onClick={closeBook}>
+                <X />
+                CLOSE
+              </button>
+            </div>
+
+            <div className="reader-book">
+              {/* LEFT PAGE */}
+              <div className="reader-page reader-left-page">
+                <span className="reader-page-number">{page} / 4</span>
 
                 {page === 1 && (
                   <>
-                    <span className="publication-page-label">
-                      PUBLICATION RECORD
-                    </span>
-
+                    <small>PUBLICATION RECORD</small>
                     <h3>{selected.title}</h3>
-
-                    <div className="publication-page-rule" />
-
+                    <div className="reader-rule" />
                     <p>{selected.subtitle}</p>
 
-                    <div className="publication-page-small">
+                    <div className="reader-date">
                       Published · {selected.year}
                     </div>
                   </>
@@ -405,26 +384,18 @@ export function Publication() {
 
                 {page === 2 && (
                   <>
-                    <span className="publication-page-label">
-                      ABOUT THE WORK
-                    </span>
-
+                    <small>ABOUT THE WORK</small>
                     <h3>A small world between pages.</h3>
 
                     <p>{selected.description}</p>
 
-                    <div className="publication-page-quote">
-                      “{selected.quote}”
-                    </div>
+                    <blockquote>“{selected.quote}”</blockquote>
                   </>
                 )}
 
                 {page === 3 && (
                   <>
-                    <span className="publication-page-label">
-                      AUTHOR'S NOTE
-                    </span>
-
+                    <small>AUTHOR'S NOTE</small>
                     <h3>Ainiya Faida Haura</h3>
 
                     <p>
@@ -432,108 +403,96 @@ export function Publication() {
                       somewhere beyond the moment in which they were created.
                     </p>
 
-                    <div className="publication-page-signature">
-                      — Ainiya
-                    </div>
+                    <div className="reader-signature">— Ainiya</div>
                   </>
                 )}
 
                 {page === 4 && (
                   <>
-                    <span className="publication-page-label">
-                      PUBLICATION INFORMATION
-                    </span>
+                    <small>PUBLICATION INFORMATION</small>
+                    <h3>Archive Details</h3>
 
-                    <div className="publication-detail-row">
-                      <span>Author</span>
-                      <strong>{selected.author}</strong>
-                    </div>
+                    <div className="reader-details">
+                      <div>
+                        <span>Author</span>
+                        <strong>{selected.author}</strong>
+                      </div>
 
-                    <div className="publication-detail-row">
-                      <span>Year</span>
-                      <strong>{selected.year}</strong>
-                    </div>
+                      <div>
+                        <span>Year</span>
+                        <strong>{selected.year}</strong>
+                      </div>
 
-                    <div className="publication-detail-row">
-                      <span>Type</span>
-                      <strong>{selected.type}</strong>
-                    </div>
+                      <div>
+                        <span>Type</span>
+                        <strong>{selected.type}</strong>
+                      </div>
 
-                    <div className="publication-detail-row">
-                      <span>{selected.identifierType}</span>
-                      <strong>{selected.identifier}</strong>
+                      <div>
+                        <span>{selected.identifierType}</span>
+                        <strong>{selected.identifier}</strong>
+                      </div>
                     </div>
                   </>
                 )}
               </div>
 
-              <div className="publication-open-divider">
+              {/* CENTER SPINE */}
+              <div className="reader-spine">
                 <span />
               </div>
 
-              <div className="publication-open-page publication-open-right">
-                <button
-                  type="button"
-                  onClick={closeBook}
-                  className="publication-close"
-                  aria-label="Close publication"
-                >
-                  <X className="size-4" />
-                </button>
+              {/* RIGHT PAGE */}
+              <div className="reader-page reader-right-page">
+                <FileText className="reader-icon" />
 
-                <FileText className="publication-page-icon" />
-
-                <span className="publication-page-label">
-                  ARCHIVE ENTRY
-                </span>
+                <small>ARCHIVE ENTRY</small>
 
                 <h3>{selected.title}</h3>
 
                 <p>{selected.quote}</p>
 
-                <div className="publication-page-actions">
-                  {selected.url ? (
-                    <a
-                      href={selected.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="publication-open-button"
-                    >
-                      Open Publication
-                      <ExternalLink className="size-4" />
-                    </a>
-                  ) : (
-                    <span className="publication-unavailable">
-                      Publication link unavailable
-                    </span>
-                  )}
-                </div>
+                {selected.url ? (
+                  <a
+                    href={selected.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="reader-link"
+                  >
+                    Open Publication
+                    <ExternalLink />
+                  </a>
+                ) : (
+                  <span className="reader-unavailable">
+                    Publication link unavailable
+                  </span>
+                )}
 
-                <div className="publication-page-counter">
+                <div className="reader-bottom">
                   PAGE {page} OF 4
                 </div>
               </div>
             </div>
 
-            {/* PAGE CONTROLS */}
-            <div className="publication-page-controls">
+            {/* PAGE NAVIGATION */}
+            <div className="reader-controls">
               <button
                 type="button"
                 onClick={previousPage}
                 disabled={page === 1}
               >
-                <ArrowLeft className="size-4" />
-                Previous Page
+                <ArrowLeft />
+                Previous
               </button>
 
-              <div className="publication-page-dots">
+              <div className="reader-dots">
                 {[1, 2, 3, 4].map((number) => (
                   <button
                     key={number}
                     type="button"
                     onClick={() => setPage(number)}
                     className={page === number ? "active" : ""}
-                    aria-label={`Go to page ${number}`}
+                    aria-label={`Page ${number}`}
                   />
                 ))}
               </div>
@@ -543,8 +502,8 @@ export function Publication() {
                 onClick={nextPage}
                 disabled={page === 4}
               >
-                Next Page
-                <ArrowRight className="size-4" />
+                Next
+                <ArrowRight />
               </button>
             </div>
           </div>
@@ -552,55 +511,47 @@ export function Publication() {
 
         {/* TIMELINE */}
         <div className="publication-timeline">
-          <div className="publication-timeline-heading">
-            <span>PUBLICATION TIMELINE</span>
-            <small>Every publication is a piece of the journey.</small>
+          <div className="timeline-heading">
+            <span>THE WRITING JOURNEY</span>
+            <small>Selected moments from the archive.</small>
           </div>
 
-          <div className="publication-timeline-line">
+          <div className="timeline-line">
             {timelineYears.map((year) => {
-              const yearPublications = publications.filter(
+              const works = publications.filter(
                 (publication) => publication.year === year
               );
 
               return (
-                <div key={year} className="publication-timeline-year">
-                  <span className="publication-timeline-year-label">
-                    {year}
-                  </span>
+                <div className="timeline-year" key={year}>
+                  <strong>{year}</strong>
 
-                  <div className="publication-timeline-node" />
+                  <span className="timeline-dot" />
 
-                  <div className="publication-timeline-items">
-                    {yearPublications.length > 0 ? (
-                      yearPublications.map((publication) => {
+                  <div className="timeline-work">
+                    {works.length > 0 ? (
+                      works.map((work) => {
                         const index = publications.findIndex(
-                          (item) => item.id === publication.id
+                          (item) => item.id === work.id
                         );
 
                         return (
                           <button
-                            key={publication.id}
                             type="button"
-                            onClick={() => {
-                              setSelectedIndex(index);
-                              setIsOpen(false);
-                              setPage(1);
-                            }}
+                            key={work.id}
+                            onClick={() => selectPublication(index)}
                             className={
-                              selectedIndex === index
-                                ? "publication-timeline-item active"
-                                : "publication-timeline-item"
+                              selectedIndex === index ? "active" : ""
                             }
                           >
-                            <strong>{publication.title}</strong>
-                            <small>{publication.type}</small>
+                            <span>{work.title}</span>
+                            <small>{work.type}</small>
                           </button>
                         );
                       })
                     ) : (
-                      <span className="publication-timeline-empty">
-                        Archive waiting...
+                      <span className="timeline-empty">
+                        More stories may appear here...
                       </span>
                     )}
                   </div>
@@ -610,24 +561,131 @@ export function Publication() {
           </div>
         </div>
 
-        {/* CLOSING */}
-        <div className="publication-closing">
-          <Sparkles className="size-4" />
-
+        {/* ENDING */}
+        <div className="publication-ending">
+          <Sparkles />
           <p>
-            Because every story deserves
+            Every story deserves
             <br />
             a place to be remembered.
           </p>
-
-          <Sparkles className="size-4" />
+          <Sparkles />
         </div>
       </div>
 
-      {/* COMPONENT-LOCAL STYLES */}
       <style>{`
         .publication-stage {
+          position: relative;
           min-height: 100vh;
+          overflow: hidden;
+          padding: 80px 20px 120px;
           background:
-            radial-gradient(circle at 50% 30%, rgba(151, 89, 255, 0.13), transparent 32%),
-            radial-g
+            radial-gradient(
+              circle at 50% 20%,
+              rgba(173, 103, 255, 0.18),
+              transparent 34%
+            ),
+            radial-gradient(
+              circle at 20% 80%,
+              rgba(255, 157, 92, 0.08),
+              transparent 30%
+            );
+        }
+
+        .publication-container {
+          position: relative;
+          z-index: 5;
+          max-width: 1180px;
+          margin: 0 auto;
+        }
+
+        /* STARS */
+
+        .publication-stars {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          opacity: 0.8;
+          background-image:
+            radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1.5px),
+            radial-gradient(circle, rgba(255,221,151,.65) 1px, transparent 1.5px);
+          background-size: 110px 110px, 170px 170px;
+          animation: archiveStars 18s linear infinite;
+        }
+
+        @keyframes archiveStars {
+          from {
+            transform: translateY(0);
+          }
+          to {
+            transform: translateY(-110px);
+          }
+        }
+
+        .publication-orb {
+          position: absolute;
+          width: 320px;
+          height: 320px;
+          border-radius: 50%;
+          filter: blur(70px);
+          pointer-events: none;
+          opacity: 0.15;
+          animation: archiveOrb 8s ease-in-out infinite alternate;
+        }
+
+        .publication-orb-one {
+          top: 22%;
+          left: -120px;
+          background: #a45cff;
+        }
+
+        .publication-orb-two {
+          right: -120px;
+          bottom: 20%;
+          background: #ff9d72;
+          animation-delay: 2s;
+        }
+
+        @keyframes archiveOrb {
+          from {
+            transform: translateY(-20px) scale(.95);
+          }
+          to {
+            transform: translateY(25px) scale(1.08);
+          }
+        }
+
+        /* INTRO */
+
+        .publication-intro {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          margin: 24px auto 55px;
+          max-width: 650px;
+          text-align: center;
+        }
+
+        .publication-intro span {
+          width: 70px;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(244, 207, 124, .7)
+          );
+        }
+
+        .publication-intro span:last-of-type {
+          transform: rotate(180deg);
+        }
+
+        .publication-intro svg {
+          width: 16px;
+          height: 16px;
+          color: #f5d17d;
+          animation: sparkleSpin 4s linear infinite;
+        }
+
+        @keyframes sparkleSpin 
