@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   PenLine,
   Code2,
@@ -9,75 +10,136 @@ import {
   Camera,
   FlaskConical,
   Sparkles,
+  ShieldCheck,
+  Palette,
+  FileText,
+  ScrollText,
+  Quote,
+  Award,
 } from "lucide-react";
+
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 
-const archiveNodes = [
+type ArchiveItem = {
+  label: string;
+  icon: React.ElementType;
+  to?: string;
+};
+
+type ArchiveNode = {
+  title: string;
+  description: string;
+  icon: React.ElementType;
+  position: string;
+  delay: number;
+  items: ArchiveItem[];
+};
+
+const archiveNodes: ArchiveNode[] = [
   {
     title: "Projects",
     description: "Build · Explore · Research",
     icon: Code2,
-    position:
-      "left-0 top-[27%] sm:left-[5%] sm:top-[30%]",
+    position: "left-0 top-[27%] sm:left-[4%] sm:top-[28%]",
     delay: 0,
     items: [
-      { label: "Cybersecurity", icon: Code2 },
-      { label: "Web & Interface Design", icon: Code2, to: "/website-apps" },
-      { label: "Research & Analysis", icon: FlaskConical },
+      {
+        label: "Cybersecurity",
+        icon: ShieldCheck,
+        to: "/cybersecurity",
+      },
+      {
+        label: "App, Website & UI/UX",
+        icon: Palette,
+        to: "/website-apps",
+      },
+      {
+        label: "Research & Analysis",
+        icon: FlaskConical,
+        to: "/research",
+      },
     ],
   },
+
   {
     title: "Writing",
     description: "Poetry · Stories · Articles",
     icon: PenLine,
-    position:
-      "right-0 top-[27%] sm:right-[5%] sm:top-[30%]",
+    position: "right-0 top-[27%] sm:right-[4%] sm:top-[28%]",
     delay: 110,
-    to: "/poetry",
     items: [
-      { label: "Poetry", icon: Feather, to: "/poetry" },
-      { label: "Short Stories", icon: PenLine },
-      { label: "Articles", icon: PenLine },
+      {
+        label: "Poetry",
+        icon: Feather,
+        to: "/poetry",
+      },
+      {
+        label: "Short Stories",
+        icon: ScrollText,
+      },
+      {
+        label: "Articles",
+        icon: FileText,
+      },
     ],
   },
+
   {
     title: "Gallery",
     description: "Moments · Memories · Milestones",
     icon: GalleryIcon,
-    position:
-      "left-[3%] bottom-[5%] sm:left-[15%] sm:bottom-[3%]",
+    position: "left-[3%] bottom-[5%] sm:left-[12%] sm:bottom-[3%]",
     delay: 220,
     items: [
-      { label: "Certificates", icon: GalleryIcon },
-      { label: "Documentation", icon: Camera, to: "/documentation" },
-      { label: "Event Photos", icon: GalleryIcon, to: "/gallery" },
+      {
+        label: "Certificates",
+        icon: Award,
+      },
+      {
+        label: "Documentation",
+        icon: Camera,
+        to: "/documentation",
+      },
+      {
+        label: "Event Photos",
+        icon: GalleryIcon,
+        to: "/gallery",
+      },
     ],
   },
+
   {
     title: "Library",
     description: "Books · Notes · Quotes",
     icon: LibraryIcon,
-    position:
-      "right-[3%] bottom-[5%] sm:right-[15%] sm:bottom-[3%]",
+    position: "right-[3%] bottom-[5%] sm:right-[12%] sm:bottom-[3%]",
     delay: 330,
-    to: "/library",
     items: [
-      { label: "Book Collection", icon: BookOpen, to: "/library" },
-      { label: "Reading Notes", icon: LibraryIcon },
-      { label: "Favourite Quotes", icon: LibraryIcon },
+      {
+        label: "Book Collection",
+        icon: BookOpen,
+        to: "/library",
+      },
+      {
+        label: "Reading Notes",
+        icon: LibraryIcon,
+      },
+      {
+        label: "Favourite Quotes",
+        icon: Quote,
+      },
     ],
   },
+
   {
     title: "Publication",
     description: "Published Works",
     icon: PenLine,
-    position:
-      "left-1/2 top-0 -translate-x-1/2",
+    position: "left-1/2 top-0 -translate-x-1/2",
     delay: 440,
-    to: "/publication",
     items: [
       {
         label: "Published Works",
@@ -89,6 +151,12 @@ const archiveNodes = [
 ];
 
 export function Archive() {
+  const [openNode, setOpenNode] = useState<string | null>(null);
+
+  const toggleNode = (title: string) => {
+    setOpenNode((current) => (current === title ? null : title));
+  };
+
   return (
     <section
       id="archive"
@@ -136,12 +204,11 @@ export function Archive() {
           subtitle="Writings, projects, and moments — all in one constellation."
         />
 
-
         {/* =====================================================
             CONSTELLATION
         ===================================================== */}
 
-        <div className="relative mx-auto mt-10 h-[610px] w-full max-w-5xl sm:h-[680px]">
+        <div className="relative mx-auto mt-10 h-[680px] w-full max-w-5xl sm:h-[730px]">
 
           {/* =================================================
               ORBIT RINGS
@@ -174,7 +241,7 @@ export function Archive() {
           <div
             className="
               pointer-events-none absolute left-1/2 top-1/2
-              h-[470px] w-[58%]
+              h-[500px] w-[65%]
               -translate-x-1/2 -translate-y-1/2
               rounded-full
               border border-primary/10
@@ -183,7 +250,6 @@ export function Archive() {
             "
           />
 
-
           {/* =================================================
               CONSTELLATION LINES
           ================================================= */}
@@ -191,10 +257,9 @@ export function Archive() {
           <svg
             className="
               pointer-events-none absolute inset-0
-              h-full w-full
-              opacity-40
+              h-full w-full opacity-40
             "
-            viewBox="0 0 1000 680"
+            viewBox="0 0 1000 730"
             preserveAspectRatio="none"
             aria-hidden="true"
           >
@@ -226,9 +291,9 @@ export function Archive() {
               </linearGradient>
             </defs>
 
-            {/* Publication → center */}
+            {/* Publication → Center */}
             <path
-              d="M500 80 C500 175 500 235 500 340"
+              d="M500 65 C500 175 500 250 500 365"
               fill="none"
               stroke="url(#archiveLine)"
               strokeWidth="1"
@@ -236,9 +301,9 @@ export function Archive() {
               className="text-primary"
             />
 
-            {/* Projects → center */}
+            {/* Projects → Center */}
             <path
-              d="M125 280 C255 290 370 315 500 340"
+              d="M120 270 C250 290 375 330 500 365"
               fill="none"
               stroke="url(#archiveLine)"
               strokeWidth="1"
@@ -246,9 +311,9 @@ export function Archive() {
               className="text-primary"
             />
 
-            {/* Writing → center */}
+            {/* Writing → Center */}
             <path
-              d="M875 280 C745 290 630 315 500 340"
+              d="M880 270 C750 290 625 330 500 365"
               fill="none"
               stroke="url(#archiveLine)"
               strokeWidth="1"
@@ -256,9 +321,9 @@ export function Archive() {
               className="text-primary"
             />
 
-            {/* Gallery → center */}
+            {/* Gallery → Center */}
             <path
-              d="M210 570 C300 475 395 405 500 340"
+              d="M200 610 C300 500 405 420 500 365"
               fill="none"
               stroke="url(#archiveLine)"
               strokeWidth="1"
@@ -266,9 +331,9 @@ export function Archive() {
               className="text-primary"
             />
 
-            {/* Library → center */}
+            {/* Library → Center */}
             <path
-              d="M790 570 C700 475 605 405 500 340"
+              d="M800 610 C700 500 595 420 500 365"
               fill="none"
               stroke="url(#archiveLine)"
               strokeWidth="1"
@@ -277,39 +342,39 @@ export function Archive() {
             />
           </svg>
 
-
           {/* =================================================
               FLOATING STARS
           ================================================= */}
 
-          <span className="absolute left-[20%] top-[18%] text-primary/70 animate-pulse">
+          <span className="absolute left-[19%] top-[18%] text-primary/70 animate-pulse">
             ✦
           </span>
 
-          <span className="absolute right-[19%] top-[20%] text-primary/50 text-xs animate-pulse [animation-delay:700ms]">
+          <span className="absolute right-[19%] top-[19%] text-primary/50 text-xs animate-pulse [animation-delay:700ms]">
             ✦
           </span>
 
-          <span className="absolute left-[37%] top-[15%] text-primary/50 text-[10px] animate-pulse [animation-delay:1200ms]">
+          <span className="absolute left-[36%] top-[13%] text-primary/50 text-[10px] animate-pulse [animation-delay:1200ms]">
             ✦
           </span>
 
-          <span className="absolute right-[35%] bottom-[24%] text-primary/50 text-xs animate-pulse [animation-delay:400ms]">
+          <span className="absolute right-[34%] bottom-[22%] text-primary/50 text-xs animate-pulse [animation-delay:400ms]">
             ✦
           </span>
 
-          <span className="absolute left-[28%] bottom-[25%] text-primary/40 text-[10px] animate-pulse [animation-delay:1800ms]">
+          <span className="absolute left-[27%] bottom-[25%] text-primary/40 text-[10px] animate-pulse [animation-delay:1800ms]">
             ✦
           </span>
 
+          <span className="absolute right-[8%] top-[46%] text-primary/40 text-[10px] animate-pulse [animation-delay:2200ms]">
+            ✦
+          </span>
 
           {/* =================================================
-              CENTER CONSTELLATION
+              CENTER AINIYA
           ================================================= */}
 
           <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
-
-            {/* Outer glow */}
 
             <div
               className="
@@ -321,8 +386,6 @@ export function Archive() {
               "
             />
 
-            {/* Outer ring */}
-
             <div
               className="
                 absolute -inset-5
@@ -331,8 +394,6 @@ export function Archive() {
                 animate-[spin_12s_linear_infinite]
               "
             />
-
-            {/* Main orb */}
 
             <div
               className="
@@ -347,7 +408,6 @@ export function Archive() {
                 hover:scale-110
               "
             >
-
               <Sparkles
                 className="
                   mb-1 size-7
@@ -363,84 +423,16 @@ export function Archive() {
               <span className="mt-1 text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
                 Archive
               </span>
-
             </div>
           </div>
 
-
           {/* =================================================
-              ARCHIVE NODES
+              MAIN ARCHIVE NODES
           ================================================= */}
 
           {archiveNodes.map((node) => {
-
             const Icon = node.icon;
-
-            const NodeContent = (
-              <>
-                {/* glowing aura */}
-
-                <span
-                  className="
-                    pointer-events-none absolute
-                    -inset-3
-                    rounded-3xl
-                    bg-primary/5
-                    opacity-0
-                    blur-xl
-                    transition-all duration-500
-                    group-hover:opacity-100
-                  "
-                />
-
-                {/* icon */}
-
-                <span
-                  className="
-                    relative mx-auto flex size-14
-                    items-center justify-center
-                    rounded-2xl
-                    border border-primary/30
-                    bg-background/40
-                    text-primary
-                    shadow-[0_0_25px_hsl(var(--primary)/0.08)]
-                    backdrop-blur-md
-                    transition-all duration-500
-                    group-hover:scale-110
-                    group-hover:border-primary/70
-                    group-hover:shadow-[0_0_35px_hsl(var(--primary)/0.25)]
-                  "
-                >
-                  <Icon className="size-6" />
-                </span>
-
-                {/* title */}
-
-                <span
-                  className="
-                    mt-3 block
-                    font-display text-lg
-                    text-foreground
-                    transition-colors
-                    group-hover:text-primary
-                  "
-                >
-                  {node.title}
-                </span>
-
-                {/* description */}
-
-                <span className="mt-1 block text-[10px] tracking-wide text-muted-foreground">
-                  {node.description}
-                </span>
-
-                {/* mini stars */}
-
-                <span className="mx-auto mt-2 block text-[9px] text-primary/60">
-                  ✦ · ✦
-                </span>
-              </>
-            );
+            const isOpen = openNode === node.title;
 
             return (
               <Reveal
@@ -448,42 +440,201 @@ export function Archive() {
                 delay={node.delay}
                 className={`absolute z-30 ${node.position}`}
               >
-                {node.to ? (
-                  <Link
-                    to={node.to}
+                <div className="relative">
+
+                  {/* =================================================
+                      SUB-NODES
+                  ================================================= */}
+
+                  {isOpen && (
+                    <div
+                      className="
+                        absolute left-1/2 top-full
+                        z-50 mt-5
+                        -translate-x-1/2
+                        flex flex-col items-center gap-2
+                      "
+                    >
+                      {node.items.map((item, index) => {
+                        const ItemIcon = item.icon;
+
+                        const itemContent = (
+                          <>
+                            <span
+                              className="
+                                flex size-8 shrink-0
+                                items-center justify-center
+                                rounded-full
+                                border border-primary/30
+                                bg-background/70
+                                text-primary
+                                backdrop-blur-md
+                              "
+                            >
+                              <ItemIcon className="size-3.5" />
+                            </span>
+
+                            <span className="whitespace-nowrap text-[11px] text-muted-foreground transition-colors group-hover:text-primary">
+                              {item.label}
+                            </span>
+                          </>
+                        );
+
+                        if (item.to) {
+                          return (
+                            <Link
+                              key={item.label}
+                              to={item.to}
+                              className="
+                                group flex items-center gap-2
+                                rounded-full
+                                border border-primary/20
+                                bg-background/70
+                                px-2 py-1.5
+                                shadow-[0_0_20px_hsl(var(--primary)/0.08)]
+                                backdrop-blur-xl
+                                transition-all duration-300
+                                hover:-translate-y-1
+                                hover:border-primary/60
+                                hover:bg-primary/10
+                              "
+                              style={{
+                                animationDelay: `${index * 80}ms`,
+                              }}
+                            >
+                              {itemContent}
+                            </Link>
+                          );
+                        }
+
+                        return (
+                          <button
+                            key={item.label}
+                            type="button"
+                            className="
+                              group flex items-center gap-2
+                              rounded-full
+                              border border-primary/20
+                              bg-background/70
+                              px-2 py-1.5
+                              shadow-[0_0_20px_hsl(var(--primary)/0.08)]
+                              backdrop-blur-xl
+                              transition-all duration-300
+                              hover:-translate-y-1
+                              hover:border-primary/60
+                              hover:bg-primary/10
+                            "
+                          >
+                            {itemContent}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* =================================================
+                      MAIN NODE
+                  ================================================= */}
+
+                  <button
+                    type="button"
+                    onClick={() => toggleNode(node.title)}
+                    aria-expanded={isOpen}
                     className="
                       group relative block
                       w-[145px]
                       text-center
-                      transition-transform
-                      duration-500
-                      hover:-translate-y-2
                       sm:w-[180px]
                     "
                   >
-                    {NodeContent}
-                  </Link>
-                ) : (
-                  <div
-                    className="
-                      group relative block
-                      w-[145px]
-                      text-center
-                      transition-transform
-                      duration-500
-                      hover:-translate-y-2
-                      sm:w-[180px]
-                    "
-                  >
-                    {NodeContent}
-                  </div>
-                )}
+
+                    {/* Glow */}
+
+                    <span
+                      className={`
+                        pointer-events-none absolute
+                        -inset-5
+                        rounded-3xl
+                        bg-primary/10
+                        blur-2xl
+                        transition-all duration-500
+                        ${isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-100"}
+                      `}
+                    />
+
+                    {/* Icon */}
+
+                    <span
+                      className={`
+                        relative mx-auto flex size-14
+                        items-center justify-center
+                        rounded-2xl
+                        border
+                        bg-background/50
+                        text-primary
+                        backdrop-blur-md
+                        transition-all duration-500
+                        ${
+                          isOpen
+                            ? "scale-110 border-primary/80 shadow-[0_0_40px_hsl(var(--primary)/0.3)]"
+                            : "border-primary/30 shadow-[0_0_25px_hsl(var(--primary)/0.08)] group-hover:scale-110 group-hover:border-primary/70"
+                        }
+                      `}
+                    >
+                      <Icon className="size-6" />
+                    </span>
+
+                    {/* Title */}
+
+                    <span
+                      className={`
+                        mt-3 block
+                        font-display text-lg
+                        transition-colors
+                        ${
+                          isOpen
+                            ? "text-primary"
+                            : "text-foreground group-hover:text-primary"
+                        }
+                      `}
+                    >
+                      {node.title}
+                    </span>
+
+                    {/* Description */}
+
+                    <span className="mt-1 block text-[10px] tracking-wide text-muted-foreground">
+                      {node.description}
+                    </span>
+
+                    {/* Constellation dots */}
+
+                    <span className="mx-auto mt-2 block text-[9px] text-primary/60">
+                      {isOpen ? "✦ · ✦ · ✦" : "✦ · ✦"}
+                    </span>
+
+                    {/* Open indicator */}
+
+                    <span
+                      className={`
+                        mx-auto mt-1 block text-[8px]
+                        uppercase tracking-[0.18em]
+                        transition-colors
+                        ${
+                          isOpen
+                            ? "text-primary"
+                            : "text-muted-foreground/50"
+                        }
+                      `}
+                    >
+                      {isOpen ? "Close" : "Explore"}
+                    </span>
+                  </button>
+                </div>
               </Reveal>
             );
           })}
-
         </div>
-
 
         {/* =====================================================
             QUICK CATEGORIES
@@ -508,44 +659,4 @@ export function Archive() {
             </span>
 
             <span className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur-md">
-              ✦ Creative Work
-            </span>
-
-          </div>
-        </Reveal>
-
-
-        {/* =====================================================
-            BUTTONS
-        ===================================================== */}
-
-        <Reveal
-          delay={600}
-          className="mt-10 flex flex-wrap justify-center gap-3"
-        >
-          <Button
-            variant="magic"
-            size="pill"
-            asChild
-          >
-            <Link to="/library">
-              <BookOpen className="mr-2 size-4" />
-              Open the Library
-            </Link>
-          </Button>
-
-          <Button
-            variant="magic"
-            size="pill"
-            asChild
-          >
-            <Link to="/contact">
-              Let's Connect
-            </Link>
-          </Button>
-        </Reveal>
-
-      </div>
-    </section>
-  );
-}
+ 
