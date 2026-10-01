@@ -146,7 +146,6 @@ export function Journey() {
           subtitle="Every experience shapes who I am today."
         />
 
-        {/* EDUCATION */}
         <div className="mb-24">
           <h2 className="font-display mb-10 text-2xl text-primary">
             Education
@@ -188,7 +187,6 @@ export function Journey() {
           </div>
         </div>
 
-        {/* EXPERIENCE */}
         <div className="mb-24">
           <h2 className="font-display mb-8 text-2xl text-primary">
             Experience
@@ -211,23 +209,19 @@ export function Journey() {
                     <h3 className="font-display text-xl leading-snug">
                       {experience.position}
                     </h3>
-
                     <Sparkles className="animate-twinkle mt-1 size-4 shrink-0 text-primary" />
                   </div>
 
                   <p className="text-sm text-primary">
                     {experience.org}
                   </p>
-
                   <p className="mt-1 text-xs text-muted-foreground">
                     {experience.duration}
                   </p>
-
                   <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
                     <MapPin className="size-3 shrink-0" />
                     {experience.location}
                   </p>
-
                   <span className="mt-3 inline-block rounded-full border border-primary/40 px-3 py-1 text-[11px] tracking-wide text-primary">
                     {experience.type}
                   </span>
@@ -281,7 +275,6 @@ export function Journey() {
           </p>
         </div>
 
-        {/* HONORS — STACKED / EXPANDABLE */}
         <div>
           <h2 className="font-display mb-8 text-2xl text-primary">
             Honors & Achievements
@@ -292,30 +285,36 @@ export function Journey() {
               className="relative cursor-pointer group"
               onClick={() => setHonorsOpen(true)}
             >
+              <div className="absolute -top-4 -left-4 w-20 h-20 rounded-full border border-primary/15 animate-spin-slow opacity-50" />
+              <div className="absolute -bottom-6 -right-6 w-28 h-28 rounded-full border border-accent/15 animate-spin-slow-reverse opacity-40" />
+
               {honors.map((item, index) => {
-                const offsetX = index * 10;
-                const offsetY = index * 8;
+                const offsetX = index * 12;
+                const offsetY = index * 10;
                 const zIndex = honors.length - index;
-                const opacity = 1 - index * 0.12;
+                const opacity = 1 - index * 0.15;
                 const isTop = index === 0;
 
                 return (
                   <div
                     key={item.title}
-                    className="absolute w-full rounded-2xl p-4 transition-all duration-300 group-hover:-translate-y-1"
+                    className="absolute w-full rounded-2xl p-4 transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:scale-[1.01]"
                     style={{
                       transform: `translate(${offsetX}px, ${offsetY}px)`,
                       zIndex,
                       opacity,
                       background: isTop
-                        ? "linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(245, 158, 11, 0.2))"
-                        : "linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(245, 158, 11, 0.1))",
+                        ? "linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(245, 158, 11, 0.25))"
+                        : "linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(245, 158, 11, 0.12))",
                       border: "1px solid rgba(245, 158, 11, 0.25)",
-                      backdropFilter: "blur(8px)",
+                      backdropFilter: "blur(12px)",
+                      boxShadow: isTop
+                        ? "0 10px 30px rgba(139, 92, 246, 0.15), 0 0 20px rgba(245, 158, 11, 0.08)"
+                        : "0 5px 15px rgba(0, 0, 0, 0.1)",
                     }}
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-lg">{item.emoji}</span>
+                      <span className="text-xl">{item.emoji}</span>
                       <div className="min-w-0">
                         <p className="font-medium text-white text-sm truncate">
                           {item.title}
@@ -329,24 +328,28 @@ export function Journey() {
                 );
               })}
 
-              <div className="pt-32 pb-4 text-center">
-                <p className="text-amber-200/60 text-sm">
-                  Click to reveal all ✨
-                </p>
-                <ChevronDown className="w-4 h-4 text-amber-200/60 mx-auto mt-1 animate-bounce" />
+              <div className="pt-36 pb-6 text-center relative z-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-primary/20 backdrop-blur-sm">
+                  <Sparkles className="size-4 text-primary animate-twinkle" />
+                  <p className="text-amber-200/70 text-sm">
+                    Click to reveal all ✨
+                  </p>
+                  <ChevronDown className="w-4 h-4 text-amber-200/70 animate-bounce" />
+                </div>
               </div>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-5">
               {honors.map((item, index) => (
-                <Reveal key={item.title} delay={index * 100}>
+                <Reveal key={item.title} delay={index * 120}>
                   <article
-                    className="glass glass-hover p-4 transition-all duration-300 hover:scale-[1.01]"
+                    className="glass glass-hover p-5 transition-all duration-300 hover:scale-[1.03] h-full"
                     style={{
                       background:
-                        "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(245, 158, 11, 0.12))",
+                        "linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(245, 158, 11, 0.14))",
                       border: "1px solid rgba(245, 158, 11, 0.25)",
-                      backdropFilter: "blur(8px)",
+                      backdropFilter: "blur(12px)",
+                      boxShadow: "0 8px 25px rgba(139, 92, 246, 0.12)",
                     }}
                   >
                     <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
@@ -358,7 +361,6 @@ export function Journey() {
                           className="size-full rounded-[inherit] object-contain"
                         />
                       </div>
-
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
                           <span className="text-lg">{item.emoji}</span>
@@ -379,17 +381,19 @@ export function Journey() {
                 </Reveal>
               ))}
 
-              <button
-                onClick={() => setHonorsOpen(false)}
-                className="w-full mt-2 py-2 text-amber-200/60 text-sm hover:text-amber-200 transition-colors flex items-center justify-center gap-2"
-              >
-                <ChevronUp className="w-4 h-4" />
-                Collapse
-              </button>
+              <div className="md:col-span-full flex justify-center mt-6">
+                <button
+                  onClick={() => setHonorsOpen(false)}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-primary/20 text-amber-200/70 text-sm hover:text-amber-200 transition-colors"
+                >
+                  <ChevronUp className="w-4 h-4" />
+                  Collapse
+                </button>
+              </div>
             </div>
           )}
         </div>
       </div>
     </section>
   );
-}
+                          }
