@@ -282,106 +282,111 @@ export function Journey() {
 
           {!honorsOpen ? (
             <div
-              className="relative pb-48"
+              className="relative flex justify-center items-start pb-28"
               onClick={() => setHonorsOpen(true)}
             >
               {honors.map((item, index) => {
                 const isTop = index === 0;
-                const shiftY = index * 28;
-                const shiftX = index * 8;
-                const rotate = (index - 2) * 1.5;
+                const shiftY = index * 32;
+                const shiftX = (index - 2) * 12;
+                const rotate = (index - 2) * 3;
                 const zIndex = honors.length - index;
 
                 return (
                   <div
                     key={item.title}
-                    className="absolute w-full rounded-2xl p-4 transition-all duration-400 ease-out cursor-pointer hover:scale-[1.02]"
+                    className="absolute w-44 h-28 rounded-xl p-3 transition-all duration-500 ease-out cursor-pointer hover:scale-[1.05] hover:-translate-y-1"
                     style={{
                       top: shiftY,
-                      left: shiftX,
-                      right: -shiftX,
+                      left: `calc(50% + ${shiftX}px - 88px)`,
                       zIndex,
                       transform: `rotate(${rotate}deg)`,
                       background: isTop
-                        ? "linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(245, 158, 11, 0.3))"
-                        : "linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(245, 158, 11, 0.16))",
-                      border: "1px solid rgba(245, 158, 11, 0.35)",
+                        ? "linear-gradient(135deg, rgba(139, 92, 246, 0.45), rgba(245, 158, 11, 0.35))"
+                        : "linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(245, 158, 11, 0.18))",
+                      border: "1px solid rgba(245, 158, 11, 0.4)",
                       backdropFilter: "blur(12px)",
                       boxShadow: isTop
-                        ? "0 0 0 1px rgba(255, 215, 0, 0.25), 0 10px 30px rgba(139, 92, 246, 0.2), 0 0 40px rgba(245, 158, 11, 0.12)"
-                        : "0 6px 18px rgba(0, 0, 0, 0.15)",
+                        ? "0 0 0 1px rgba(255, 215, 0, 0.3), 0 12px 28px rgba(139, 92, 246, 0.25), 0 0 45px rgba(245, 158, 11, 0.15)"
+                        : "0 8px 18px rgba(0, 0, 0, 0.18)",
                     }}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="logo-frame size-10 shrink-0 overflow-hidden rounded-lg">
-                        <img
-                          src={item.logo}
-                          alt={`${item.organizer} logo`}
-                          loading="lazy"
-                          className="size-full object-contain"
-                        />
+                    <div className="flex flex-col h-full">
+                      <div className="flex items-center gap-2">
+                        <div className="logo-frame size-8 shrink-0 overflow-hidden rounded-lg">
+                          <img
+                            src={item.logo}
+                            alt={`${item.organizer} logo`}
+                            loading="lazy"
+                            className="size-full object-contain"
+                          />
+                        </div>
+                        <span className="text-base">{item.emoji}</span>
                       </div>
-                      <div className="min-w-0">
-                        <p className="font-medium text-white text-sm leading-snug">
-                          {item.emoji} {item.title}
-                        </p>
-                        <p className="text-xs text-amber-200/70 mt-0.5">
-                          {item.organizer} • {item.year}
-                        </p>
-                      </div>
+
+                      <p className="mt-2 font-medium text-white text-[13px] leading-snug line-clamp-2">
+                        {item.title}
+                      </p>
+
+                      <p className="mt-auto text-[11px] text-amber-200/70">
+                        {item.year}
+                      </p>
                     </div>
                   </div>
                 );
               })}
 
-              <div className="pt-6 text-center relative z-10">
-                <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-amber-300/30 backdrop-blur-sm">
+              <div className="pt-48 relative z-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-amber-300/30 backdrop-blur-sm">
                   <Sparkles className="size-4 text-amber-300 animate-twinkle" />
-                  <span className="text-amber-200/80 text-sm font-medium">Click to expand all ✨</span>
+                  <span className="text-amber-200/80 text-xs font-medium">Click to reveal</span>
                   <ChevronDown className="w-4 h-4 text-amber-200/80 animate-bounce" />
                 </div>
               </div>
             </div>
           ) : (
-            <div className="space-y-4 md:grid md:grid-cols-2 md:gap-5 md:space-y-0">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
               {honors.map((item, index) => (
-                <Reveal key={item.title} delay={index * 100}>
+                <Reveal key={item.title} delay={index * 80}>
                   <article
-                    className="p-4 rounded-2xl transition-all duration-300 hover:scale-[1.03] cursor-pointer h-full"
+                    className="w-full aspect-[4/3] rounded-xl p-3 transition-all duration-300 hover:scale-[1.05] cursor-pointer"
                     style={{
                       background:
-                        "linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(245, 158, 11, 0.15))",
-                      border: "1px solid rgba(245, 158, 11, 0.3)",
+                        "linear-gradient(135deg, rgba(139, 92, 246, 0.28), rgba(245, 158, 11, 0.18))",
+                      border: "1px solid rgba(245, 158, 11, 0.35)",
                       backdropFilter: "blur(12px)",
-                      boxShadow: "0 6px 20px rgba(139, 92, 246, 0.12), 0 0 1px rgba(245, 158, 11, 0.2)",
+                      boxShadow: "0 8px 20px rgba(139, 92, 246, 0.15), 0 0 1px rgba(245, 158, 11, 0.25)",
                     }}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="logo-frame size-10 shrink-0 overflow-hidden rounded-lg">
-                        <img
-                          src={item.logo}
-                          alt={`${item.organizer} logo`}
-                          loading="lazy"
-                          className="size-full object-contain"
-                        />
+                    <div className="flex flex-col h-full">
+                      <div className="flex items-center gap-2">
+                        <div className="logo-frame size-8 shrink-0 overflow-hidden rounded-lg">
+                          <img
+                            src={item.logo}
+                            alt={`${item.organizer} logo`}
+                            loading="lazy"
+                            className="size-full object-contain"
+                          />
+                        </div>
+                        <span className="text-base">{item.emoji}</span>
                       </div>
-                      <div className="min-w-0">
-                        <p className="font-medium text-white leading-snug">
-                          {item.emoji} {item.title}
-                        </p>
-                        <p className="text-xs text-amber-200/70 mt-0.5">
-                          {item.organizer} • {item.year}
-                        </p>
-                      </div>
+
+                      <p className="mt-2 font-medium text-white text-[13px] leading-snug line-clamp-2">
+                        {item.title}
+                      </p>
+
+                      <p className="mt-auto text-[11px] text-amber-200/70">
+                        {item.year}
+                      </p>
                     </div>
                   </article>
                 </Reveal>
               ))}
 
-              <div className="md:col-span-full flex justify-center mt-4">
+              <div className="col-span-full flex justify-center mt-2">
                 <button
                   onClick={() => setHonorsOpen(false)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-amber-300/30 text-amber-200/80 text-sm hover:text-amber-200 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-amber-300/30 text-amber-200/80 text-xs hover:text-amber-200 transition-colors"
                 >
                   <ChevronUp className="w-4 h-4" />
                   Collapse
