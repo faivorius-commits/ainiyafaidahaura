@@ -5,6 +5,8 @@ import {
   Trophy,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
@@ -120,10 +122,9 @@ const honors = [
 
 export function Journey() {
   const [experienceIndex, setExperienceIndex] = useState(0);
-  const [honorIndex, setHonorIndex] = useState(0);
+  const [honorsOpen, setHonorsOpen] = useState(false);
 
   const experience = experiences[experienceIndex];
-  const honor = honors[honorIndex];
 
   const previousExperience = () => {
     setExperienceIndex((current) =>
@@ -134,18 +135,6 @@ export function Journey() {
   const nextExperience = () => {
     setExperienceIndex((current) =>
       current === experiences.length - 1 ? 0 : current + 1
-    );
-  };
-
-  const previousHonor = () => {
-    setHonorIndex((current) =>
-      current === 0 ? honors.length - 1 : current - 1
-    );
-  };
-
-  const nextHonor = () => {
-    setHonorIndex((current) =>
-      current === honors.length - 1 ? 0 : current + 1
     );
   };
 
@@ -292,87 +281,115 @@ export function Journey() {
           </p>
         </div>
 
-        {/* HONORS */}
+        {/* HONORS — STACKED / EXPANDABLE */}
         <div>
           <h2 className="font-display mb-8 text-2xl text-primary">
             Honors & Achievements
           </h2>
 
-          <Reveal key={honorIndex}>
-            <article className="glass glass-hover p-5">
-              <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
-                <div className="logo-frame size-14 shrink-0 overflow-hidden">
-                  <img
-                    src={honor.logo}
-                    alt={`${honor.organizer} logo`}
-                    loading="lazy"
-                    className="size-full rounded-[inherit] object-contain"
-                  />
-                </div>
+          {!honorsOpen ? (
+            <div
+              className="relative cursor-pointer group"
+              onClick={() => setHonorsOpen(true)}
+            >
+              {honors.map((item, index) => {
+                const offsetX = index * 10;
+                const offsetY = index * 8;
+                const zIndex = honors.length - index;
+                const opacity = 1 - index * 0.12;
+                const isTop = index === 0;
 
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl">{honor.emoji}</span>
-                    <Trophy className="size-4 text-primary" />
+                return (
+                  <div
+                    key={item.title}
+                    className="absolute w-full rounded-2xl p-4 transition-all duration-300 group-hover:-translate-y-1"
+                    style={{
+                      transform: `translate(${offsetX}px, ${offsetY}px)`,
+                      zIndex,
+                      opacity,
+                      background: isTop
+                        ? "linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(245, 158, 11, 0.2))"
+                        : "linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(245, 158, 11, 0.1))",
+                      border: "1px solid rgba(245, 158, 11, 0.25)",
+                      backdropFilter: "blur(8px)",
+                    }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-lg">{item.emoji}</span>
+                      <div className="min-w-0">
+                        <p className="font-medium text-white text-sm truncate">
+                          {item.title}
+                        </p>
+                        <p className="text-xs text-amber-200/70 mt-0.5">
+                          {item.organizer} • {item.year}
+                        </p>
+                      </div>
+                    </div>
                   </div>
+                );
+              })}
 
-                  <h3 className="font-display mt-2 text-lg leading-snug">
-                    {honor.title}
-                  </h3>
-
-                  <p className="mt-1 text-sm text-primary">
-                    {honor.organizer}
-                  </p>
-
-                  <p className="text-xs text-muted-foreground">
-                    {honor.year}
-                  </p>
-                </div>
+              <div className="pt-32 pb-4 text-center">
+                <p className="text-amber-200/60 text-sm">
+                  Click to reveal all ✨
+                </p>
+                <ChevronDown className="w-4 h-4 text-amber-200/60 mx-auto mt-1 animate-bounce" />
               </div>
-            </article>
-          </Reveal>
-
-          <div className="mt-5 flex items-center justify-between">
-            <button
-              type="button"
-              onClick={previousHonor}
-              aria-label="Previous honor"
-              className="glass glass-hover flex size-10 items-center justify-center rounded-full"
-            >
-              <ChevronLeft className="size-5" />
-            </button>
-
-            <div className="flex items-center gap-2">
-              {honors.map((_, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  onClick={() => setHonorIndex(index)}
-                  aria-label={`Go to honor ${index + 1}`}
-                  className={`h-1.5 rounded-full transition-all ${
-                    index === honorIndex
-                      ? "w-6 bg-primary"
-                      : "w-1.5 bg-primary/30"
-                  }`}
-                />
-              ))}
             </div>
+          ) : (
+            <div className="space-y-4">
+              {honors.map((item, index) => (
+                <Reveal key={item.title} delay={index * 100}>
+                  <article
+                    className="glass glass-hover p-4 transition-all duration-300 hover:scale-[1.01]"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(245, 158, 11, 0.12))",
+                      border: "1px solid rgba(245, 158, 11, 0.25)",
+                      backdropFilter: "blur(8px)",
+                    }}
+                  >
+                    <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
+                      <div className="logo-frame size-12 shrink-0 overflow-hidden">
+                        <img
+                          src={item.logo}
+                          alt={`${item.organizer} logo`}
+                          loading="lazy"
+                          className="size-full rounded-[inherit] object-contain"
+                        />
+                      </div>
 
-            <button
-              type="button"
-              onClick={nextHonor}
-              aria-label="Next honor"
-              className="glass glass-hover flex size-10 items-center justify-center rounded-full"
-            >
-              <ChevronRight className="size-5" />
-            </button>
-          </div>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">{item.emoji}</span>
+                          <Trophy className="size-4 text-primary" />
+                        </div>
+                        <h3 className="font-display mt-1 text-base leading-snug">
+                          {item.title}
+                        </h3>
+                        <p className="mt-1 text-sm text-primary">
+                          {item.organizer}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {item.year}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
 
-          <p className="mt-3 text-center text-xs text-muted-foreground">
-            {honorIndex + 1} / {honors.length}
-          </p>
+              <button
+                onClick={() => setHonorsOpen(false)}
+                className="w-full mt-2 py-2 text-amber-200/60 text-sm hover:text-amber-200 transition-colors flex items-center justify-center gap-2"
+              >
+                <ChevronUp className="w-4 h-4" />
+                Collapse
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
   );
-      }
+}
