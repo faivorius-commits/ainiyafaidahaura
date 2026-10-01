@@ -282,45 +282,50 @@ export function Journey() {
 
           {!honorsOpen ? (
             <div
-              className="relative cursor-pointer pb-4"
+              className="relative cursor-pointer pb-6"
               onClick={() => setHonorsOpen(true)}
             >
               {honors.map((item, index) => {
                 const isTop = index === 0;
-                const shiftY = index * 6;
+                const offsetX = index * 10;
+                const offsetY = index * 12;
+                const rotate = (index - 2) * 2;
                 const zIndex = honors.length - index;
 
                 return (
                   <div
                     key={item.title}
-                    className="w-full rounded-2xl p-4 transition-all duration-400 ease-out"
+                    className="w-full rounded-2xl p-4 transition-all duration-500 ease-out"
                     style={{
-                      position: isTop ? "relative" : "absolute",
-                      top: shiftY,
-                      left: index * 6,
+                      position: "absolute",
+                      top: offsetY,
+                      left: offsetX,
+                      right: -offsetX,
                       zIndex,
-                      opacity: isTop ? 1 : 1 - index * 0.1,
+                      transform: `rotate(${rotate}deg)`,
+                      opacity: isTop ? 1 : 1 - index * 0.12,
                       background: isTop
-                        ? "linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(245, 158, 11, 0.25))"
-                        : "linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(245, 158, 11, 0.12))",
-                      border: "1px solid rgba(245, 158, 11, 0.25)",
+                        ? "linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(245, 158, 11, 0.3))"
+                        : "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(245, 158, 11, 0.15))",
+                      border: "1px solid rgba(245, 158, 11, 0.35)",
+                      borderRadius: "16px",
                       backdropFilter: "blur(12px)",
                       boxShadow: isTop
-                        ? "0 8px 25px rgba(139, 92, 246, 0.15), 0 0 15px rgba(245, 158, 11, 0.08)"
-                        : "0 4px 12px rgba(0, 0, 0, 0.1)",
+                        ? "0 0 0 1px rgba(255, 215, 0, 0.2), 0 8px 30px rgba(139, 92, 246, 0.2), 0 0 40px rgba(245, 158, 11, 0.1)"
+                        : "0 4px 15px rgba(0, 0, 0, 0.15)",
                     }}
                   >
                     <div className="flex items-center gap-3">
-                      <div className="logo-frame size-10 shrink-0 overflow-hidden">
+                      <div className="logo-frame size-10 shrink-0 overflow-hidden rounded-lg">
                         <img
                           src={item.logo}
                           alt={`${item.organizer} logo`}
                           loading="lazy"
-                          className="size-full rounded-[inherit] object-contain"
+                          className="size-full object-contain"
                         />
                       </div>
                       <div className="min-w-0">
-                        <p className="font-medium text-white text-sm">
+                        <p className="font-medium text-white text-sm leading-snug">
                           {item.emoji} {item.title}
                         </p>
                         <p className="text-xs text-amber-200/70 mt-0.5">
@@ -332,38 +337,39 @@ export function Journey() {
                 );
               })}
 
-              <div className="pt-40 text-center">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-primary/20 backdrop-blur-sm">
-                  <Sparkles className="size-4 text-primary animate-twinkle" />
-                  <span className="text-amber-200/70 text-sm">Click to reveal all ✨</span>
-                  <ChevronDown className="w-4 h-4 text-amber-200/70 animate-bounce" />
+              <div className="pt-48 text-center relative z-10">
+                <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-amber-300/30 backdrop-blur-sm">
+                  <Sparkles className="size-4 text-amber-300 animate-twinkle" />
+                  <span className="text-amber-200/80 text-sm font-medium">Click to reveal all ✨</span>
+                  <ChevronDown className="w-4 h-4 text-amber-200/80 animate-bounce" />
                 </div>
               </div>
             </div>
           ) : (
             <div className="space-y-4 md:grid md:grid-cols-2 md:gap-5 md:space-y-0">
               {honors.map((item, index) => (
-                <Reveal key={item.title} delay={index * 100}>
+                <Reveal key={item.title} delay={index * 10}>
                   <article
-                    className="glass glass-hover p-4 transition-all duration-300 hover:scale-[1.02] h-full"
+                    className="p-4 rounded-2xl transition-all duration-300 hover:scale-[1.03] h-full"
                     style={{
                       background:
-                        "linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(245, 158, 11, 0.14))",
-                      border: "1px solid rgba(245, 158, 11, 0.25)",
+                        "linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(245, 158, 11, 0.15))",
+                      border: "1px solid rgba(245, 158, 11, 0.3)",
                       backdropFilter: "blur(12px)",
+                      boxShadow: "0 6px 20px rgba(139, 92, 246, 0.12), 0 0 1px rgba(245, 158, 11, 0.2)",
                     }}
                   >
                     <div className="flex items-center gap-3">
-                      <div className="logo-frame size-10 shrink-0 overflow-hidden">
+                      <div className="logo-frame size-10 shrink-0 overflow-hidden rounded-lg">
                         <img
                           src={item.logo}
                           alt={`${item.organizer} logo`}
                           loading="lazy"
-                          className="size-full rounded-[inherit] object-contain"
+                          className="size-full object-contain"
                         />
                       </div>
                       <div className="min-w-0">
-                        <p className="font-medium text-white">
+                        <p className="font-medium text-white leading-snug">
                           {item.emoji} {item.title}
                         </p>
                         <p className="text-xs text-amber-200/70 mt-0.5">
@@ -378,7 +384,7 @@ export function Journey() {
               <div className="md:col-span-full flex justify-center mt-4">
                 <button
                   onClick={() => setHonorsOpen(false)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-primary/20 text-amber-200/70 text-sm hover:text-amber-200 transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-amber-300/30 text-amber-200/80 text-sm hover:text-amber-200 transition-colors"
                 >
                   <ChevronUp className="w-4 h-4" />
                   Collapse
