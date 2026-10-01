@@ -282,37 +282,34 @@ export function Journey() {
 
           {!honorsOpen ? (
             <div
-              className="relative cursor-pointer pb-6"
+              className="relative pb-48"
               onClick={() => setHonorsOpen(true)}
             >
               {honors.map((item, index) => {
                 const isTop = index === 0;
-                const offsetX = index * 10;
-                const offsetY = index * 12;
-                const rotate = (index - 2) * 2;
+                const shiftY = index * 28;
+                const shiftX = index * 8;
+                const rotate = (index - 2) * 1.5;
                 const zIndex = honors.length - index;
 
                 return (
                   <div
                     key={item.title}
-                    className="w-full rounded-2xl p-4 transition-all duration-500 ease-out"
+                    className="absolute w-full rounded-2xl p-4 transition-all duration-400 ease-out cursor-pointer hover:scale-[1.02]"
                     style={{
-                      position: "absolute",
-                      top: offsetY,
-                      left: offsetX,
-                      right: -offsetX,
+                      top: shiftY,
+                      left: shiftX,
+                      right: -shiftX,
                       zIndex,
                       transform: `rotate(${rotate}deg)`,
-                      opacity: isTop ? 1 : 1 - index * 0.12,
                       background: isTop
                         ? "linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(245, 158, 11, 0.3))"
-                        : "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(245, 158, 11, 0.15))",
+                        : "linear-gradient(135deg, rgba(139, 92, 246, 0.22), rgba(245, 158, 11, 0.16))",
                       border: "1px solid rgba(245, 158, 11, 0.35)",
-                      borderRadius: "16px",
                       backdropFilter: "blur(12px)",
                       boxShadow: isTop
-                        ? "0 0 0 1px rgba(255, 215, 0, 0.2), 0 8px 30px rgba(139, 92, 246, 0.2), 0 0 40px rgba(245, 158, 11, 0.1)"
-                        : "0 4px 15px rgba(0, 0, 0, 0.15)",
+                        ? "0 0 0 1px rgba(255, 215, 0, 0.25), 0 10px 30px rgba(139, 92, 246, 0.2), 0 0 40px rgba(245, 158, 11, 0.12)"
+                        : "0 6px 18px rgba(0, 0, 0, 0.15)",
                     }}
                   >
                     <div className="flex items-center gap-3">
@@ -337,10 +334,10 @@ export function Journey() {
                 );
               })}
 
-              <div className="pt-48 text-center relative z-10">
+              <div className="pt-6 text-center relative z-10">
                 <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-amber-300/30 backdrop-blur-sm">
                   <Sparkles className="size-4 text-amber-300 animate-twinkle" />
-                  <span className="text-amber-200/80 text-sm font-medium">Click to reveal all ✨</span>
+                  <span className="text-amber-200/80 text-sm font-medium">Click to expand all ✨</span>
                   <ChevronDown className="w-4 h-4 text-amber-200/80 animate-bounce" />
                 </div>
               </div>
@@ -348,9 +345,9 @@ export function Journey() {
           ) : (
             <div className="space-y-4 md:grid md:grid-cols-2 md:gap-5 md:space-y-0">
               {honors.map((item, index) => (
-                <Reveal key={item.title} delay={index * 10}>
+                <Reveal key={item.title} delay={index * 100}>
                   <article
-                    className="p-4 rounded-2xl transition-all duration-300 hover:scale-[1.03] h-full"
+                    className="p-4 rounded-2xl transition-all duration-300 hover:scale-[1.03] cursor-pointer h-full"
                     style={{
                       background:
                         "linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(245, 158, 11, 0.15))",
