@@ -1,3 +1,4 @@
+
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { MagicBackground } from "@/components/magic/MagicBackground";
@@ -27,48 +28,71 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const [showIntro, setShowIntro] = useState(() => {
-    return sessionStorage.getItem("introShown") !== "true";
-  });
-
+  const [showIntro, setShowIntro] = useState(false);
   const [introLeaving, setIntroLeaving] = useState(false);
+  const [showSecurity, setShowSecurity] = useState(false);
+  const [sessionReady, setSessionReady] = useState(false);
 
-  const [showSecurity, setShowSecurity] = useState(() => {
-    return sessionStorage.getItem("securityScanShown") !== "true";
-  });
+  useEffect(() => {
+    try {
+      setShowIntro(
+        window.sessionStorage.getItem("introShown") !== "true",
+      );
+      setShowSecurity(
+        window.sessionStorage.getItem("securityScanShown") !== "true",
+      );
+    } catch {
+      setShowIntro(true);
+      setShowSecurity(true);
+    } finally {
+      setSessionReady(true);
+    }
+  }, []);
+
+  const saveSessionFlag = (key: string) => {
+    try {
+      window.sessionStorage.setItem(key, "true");
+    } catch {
+      // Keep the website usable if browser storage is unavailable.
+    }
+  };
 
   const handleIntroComplete = () => {
     if (introLeaving) return;
 
     setIntroLeaving(true);
 
-    // Give the cinematic intro time to fade out
-    setTimeout(() => {
-      sessionStorage.setItem("introShown", "true");
+    window.setTimeout(() => {
+      saveSessionFlag("introShown");
       setShowIntro(false);
     }, 900);
   };
 
   const handleSecurityComplete = () => {
-    sessionStorage.setItem("securityScanShown", "true");
+    saveSessionFlag("securityScanShown");
     setShowSecurity(false);
   };
 
-  // Safety fallback in case the video cannot trigger onEnded
   useEffect(() => {
     if (!showIntro) return;
 
-    const videoFallback = setTimeout(() => {
+    const videoFallback = window.setTimeout(() => {
       handleIntroComplete();
     }, 30000);
 
-    return () => clearTimeout(videoFallback);
+    return () => window.clearTimeout(videoFallback);
   }, [showIntro]);
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {/* CINEMATIC INTRO */}
-      {showIntro && (
+      {!sessionReady && (
+        <div
+          className="fixed inset-0 z-[100] bg-[#0b0813]"
+          aria-hidden="true"
+        />
+      )}
+
+      {sessionReady && showIntro && (
         <div
           className={`cinematic-intro ${
             introLeaving ? "cinematic-intro-leaving" : ""
@@ -86,7 +110,6 @@ function Index() {
           />
 
           <div className="cinematic-intro-overlay" />
-
           <div className="cinematic-intro-vignette" />
 
           <div className="cinematic-intro-corners">
@@ -98,12 +121,10 @@ function Index() {
         </div>
       )}
 
-      {/* SECURITY SCAN */}
-      {!showIntro && showSecurity && (
+      {sessionReady && !showIntro && showSecurity && (
         <SecurityScan onComplete={handleSecurityComplete} />
       )}
 
-      {/* MAIN WEBSITE */}
       <MagicBackground />
 
       <Navbar />
