@@ -53,7 +53,7 @@ export function Publication() {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
 
-  const current = publications[active];
+  const current = publications[active]!;
 
   const previous = () => {
     setActive(
