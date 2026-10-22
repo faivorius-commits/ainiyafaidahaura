@@ -112,54 +112,47 @@ export function Journey() {
           <h2 className="font-display mb-8 text-2xl text-primary">Honors & Achievements</h2>
 
           {!honorsOpen ? (
-            <div className="relative flex justify-center items-start pt-8 pb-32" onClick={() => setHonorsOpen(true)}>
+            <div className="relative flex justify-center items-start pt-12 pb-40" onClick={() => setHonorsOpen(true)}>
               {honors.map((item, index) => {
                 const isTop = index === 0;
-                const shiftY = index * 38;
-                const shiftX = (index - 2) * 16;
-                const rotate = (index - 2) * 2.8;
+                const shiftY = index * 36;
+                const shiftX = (index - 2) * 14;
+                const rotate = (index - 2) * 2.5;
                 const zIndex = honors.length - index;
                 return (
-                  <div
-                    key={item.title}
-                    className="absolute w-56 h-40 rounded-xl p-4 transition-all duration-500 ease-out cursor-pointer hover:scale-[1.03]"
+                  <div key={item.title} className="absolute w-52 h-36 rounded-xl p-3 transition-all duration-500 ease-out cursor-pointer hover:scale-[1.05]"
                     style={{
                       top: shiftY,
-                      left: `calc(50% + ${shiftX}px - 112px)`,
+                      left: `calc(50% + ${shiftX}px - 104px)`,
                       zIndex,
                       transform: `rotate(${rotate}deg)`,
                       background: isTop
-                        ? "linear-gradient(135deg, rgba(167, 139, 250, 0.55), rgba(96, 165, 250, 0.45), rgba(251, 191, 36, 0.35))"
-                        : "linear-gradient(135deg, rgba(167, 139, 250, 0.35), rgba(96, 165, 250, 0.25), rgba(251, 191, 36, 0.25))",
-                      border: "1px solid rgba(251, 191, 36, 0.45)",
-                      backdropFilter: "blur(14px)",
+                        ? "linear-gradient(135deg, rgba(139, 92, 246, 0.45), rgba(245, 158, 11, 0.35))"
+                        : "linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(245, 158, 11, 0.18))",
+                      border: "1px solid rgba(245, 158, 11, 0.4)",
+                      backdropFilter: "blur(12px)",
                       boxShadow: isTop
-                        ? "0 0 0 1px rgba(255, 255, 255, 0.3), 0 15px 35px rgba(167, 139, 250, 0.35), 0 0 50px rgba(251, 191, 36, 0.25)"
-                        : "0 10px 20px rgba(0, 0, 0, 0.2)",
-                    }}
-                  >
+                        ? "0 0 0 1px rgba(255, 215, 0, 0.3), 0 12px 28px rgba(139, 92, 246, 0.25), 0 0 45px rgba(245, 158, 11, 0.15)"
+                        : "0 8px 18px rgba(0,0,0,0.18)",
+                    }}>
                     <div className="flex flex-col h-full">
                       <div className="flex items-center gap-2">
-                        <div className="logo-frame size-9 shrink-0 overflow-hidden rounded-lg">
+                        <div className="logo-frame size-8 shrink-0 overflow-hidden rounded-lg">
                           <img src={item.logo} alt={`${item.organizer} logo`} loading="lazy" className="size-full object-contain" />
                         </div>
-                        <span className="text-xl">{item.emoji}</span>
+                        <span className="text-lg">{item.emoji}</span>
                       </div>
-                      <p className="mt-3 font-medium text-white text-sm leading-snug">
+                      <p className="mt-2 font-medium text-white text-sm leading-snug">
                         {item.title}
                       </p>
-                      <p className="mt-1 text-[11px] text-amber-200/80">
-                        {item.organizer}
-                      </p>
-                      <p className="mt-auto text-xs text-amber-200/80 font-medium">
-                        {item.year}
-                      </p>
+                      <p className="mt-1 text-[11px] text-amber-200/70">{item.organizer}</p>
+                      <p className="mt-auto text-xs text-amber-200/80 font-medium">{item.year}</p>
                     </div>
                   </div>
                 );
               })}
-              <div className="pt-56 relative z-10">
-                <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-amber-300/30 backdrop-blur-sm">
+              <div className="pt-52 relative z-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-amber-300/30 backdrop-blur-sm">
                   <Sparkles className="size-4 text-amber-300 animate-twinkle" />
                   <span className="text-amber-200/80 text-sm font-medium">Click to reveal all ✨</span>
                   <ChevronDown className="w-4 h-4 text-amber-200/80 animate-bounce" />
@@ -167,43 +160,33 @@ export function Journey() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
               {honors.map((item, index) => (
                 <Reveal key={item.title} delay={index * 80}>
-                  <article
-                    className="w-full h-44 rounded-xl p-4 transition-all duration-300 hover:scale-[1.05] cursor-pointer"
+                  <article className="w-full aspect-[4/3] rounded-xl p-3 transition-all duration-300 hover:scale-[1.05] cursor-pointer"
                     style={{
-                      background: "linear-gradient(135deg, rgba(167, 139, 250, 0.45), rgba(96, 165, 250, 0.35), rgba(251, 191, 36, 0.25))",
-                      border: "1px solid rgba(251, 191, 36, 0.45)",
-                      backdropFilter: "blur(14px)",
-                      boxShadow: "0 10px 25px rgba(167, 139, 250, 0.25), 0 0 1px rgba(255, 255, 255, 0.3)",
-                    }}
-                  >
+                      background: "linear-gradient(135deg, rgba(139, 92, 246, 0.28), rgba(245, 158, 11, 0.18))",
+                      border: "1px solid rgba(245, 158, 11, 0.35)",
+                      backdropFilter: "blur(12px)",
+                      boxShadow: "0 8px 20px rgba(139, 92, 246, 0.15), 0 0 1px rgba(245, 158, 11, 0.25)",
+                    }}>
                     <div className="flex flex-col h-full">
                       <div className="flex items-center gap-2">
-                        <div className="logo-frame size-9 shrink-0 overflow-hidden rounded-lg">
+                        <div className="logo-frame size-8 shrink-0 overflow-hidden rounded-lg">
                           <img src={item.logo} alt={`${item.organizer} logo`} loading="lazy" className="size-full object-contain" />
                         </div>
-                        <span className="text-xl">{item.emoji}</span>
+                        <span className="text-lg">{item.emoji}</span>
                       </div>
-                      <p className="mt-3 font-medium text-white text-sm leading-snug">
-                        {item.title}
-                      </p>
-                      <p className="mt-1 text-[11px] text-amber-200/80">
-                        {item.organizer}
-                      </p>
-                      <p className="mt-auto text-xs text-amber-200/80 font-medium">
-                        {item.year}
-                      </p>
+                      <p className="mt-2 font-medium text-white text-sm leading-snug">{item.title}</p>
+                      <p className="mt-1 text-[11px] text-amber-200/70">{item.organizer}</p>
+                      <p className="mt-auto text-xs text-amber-200/80 font-medium">{item.year}</p>
                     </div>
                   </article>
                 </Reveal>
               ))}
               <div className="col-span-full flex justify-center mt-4">
-                <button
-                  onClick={() => setHonorsOpen(false)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-amber-300/30 text-amber-200/80 text-sm hover:text-amber-200 transition-colors"
-                >
+                <button onClick={() => setHonorsOpen(false)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-amber-300/30 text-amber-200/80 text-sm hover:text-amber-200 transition-colors">
                   <ChevronUp className="w-4 h-4" />
                   Collapse
                 </button>
