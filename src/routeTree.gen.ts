@@ -12,10 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArchiveRouteImport } from './routes/archive'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DocumentationRouteImport } from './routes/documentation'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as PoetryRouteImport } from './routes/poetry'
+import { Route as PublicationRouteImport } from './routes/publication'
+import { Route as WebsiteAppsRouteImport } from './routes/website-apps'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,6 +33,11 @@ const ArchiveRoute = ArchiveRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentationRoute = DocumentationRouteImport.update({
+  id: '/documentation',
+  path: '/documentation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExperienceRoute = ExperienceRouteImport.update({
@@ -52,34 +60,53 @@ const PoetryRoute = PoetryRouteImport.update({
   path: '/poetry',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicationRoute = PublicationRouteImport.update({
+  id: '/publication',
+  path: '/publication',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebsiteAppsRoute = WebsiteAppsRouteImport.update({
+  id: '/website-apps',
+  path: '/website-apps',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/archive': typeof ArchiveRoute
   '/contact': typeof ContactRoute
+  '/documentation': typeof DocumentationRoute
   '/experience': typeof ExperienceRoute
   '/journey': typeof JourneyRoute
   '/library': typeof LibraryRoute
   '/poetry': typeof PoetryRoute
+  '/publication': typeof PublicationRoute
+  '/website-apps': typeof WebsiteAppsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/archive': typeof ArchiveRoute
   '/contact': typeof ContactRoute
+  '/documentation': typeof DocumentationRoute
   '/experience': typeof ExperienceRoute
   '/journey': typeof JourneyRoute
   '/library': typeof LibraryRoute
   '/poetry': typeof PoetryRoute
+  '/publication': typeof PublicationRoute
+  '/website-apps': typeof WebsiteAppsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/archive': typeof ArchiveRoute
   '/contact': typeof ContactRoute
+  '/documentation': typeof DocumentationRoute
   '/experience': typeof ExperienceRoute
   '/journey': typeof JourneyRoute
   '/library': typeof LibraryRoute
   '/poetry': typeof PoetryRoute
+  '/publication': typeof PublicationRoute
+  '/website-apps': typeof WebsiteAppsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,38 +114,50 @@ export interface FileRouteTypes {
     | '/'
     | '/archive'
     | '/contact'
+    | '/documentation'
     | '/experience'
     | '/journey'
     | '/library'
     | '/poetry'
+    | '/publication'
+    | '/website-apps'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/archive'
     | '/contact'
+    | '/documentation'
     | '/experience'
     | '/journey'
     | '/library'
     | '/poetry'
+    | '/publication'
+    | '/website-apps'
   id:
     | '__root__'
     | '/'
     | '/archive'
     | '/contact'
+    | '/documentation'
     | '/experience'
     | '/journey'
     | '/library'
     | '/poetry'
+    | '/publication'
+    | '/website-apps'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArchiveRoute: typeof ArchiveRoute
   ContactRoute: typeof ContactRoute
+  DocumentationRoute: typeof DocumentationRoute
   ExperienceRoute: typeof ExperienceRoute
   JourneyRoute: typeof JourneyRoute
   LibraryRoute: typeof LibraryRoute
   PoetryRoute: typeof PoetryRoute
+  PublicationRoute: typeof PublicationRoute
+  WebsiteAppsRoute: typeof WebsiteAppsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -142,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentation': {
+      id: '/documentation'
+      path: '/documentation'
+      fullPath: '/documentation'
+      preLoaderRoute: typeof DocumentationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/experience': {
@@ -172,6 +218,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PoetryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/publication': {
+      id: '/publication'
+      path: '/publication'
+      fullPath: '/publication'
+      preLoaderRoute: typeof PublicationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/website-apps': {
+      id: '/website-apps'
+      path: '/website-apps'
+      fullPath: '/website-apps'
+      preLoaderRoute: typeof WebsiteAppsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -179,10 +239,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArchiveRoute: ArchiveRoute,
   ContactRoute: ContactRoute,
+  DocumentationRoute: DocumentationRoute,
   ExperienceRoute: ExperienceRoute,
   JourneyRoute: JourneyRoute,
   LibraryRoute: LibraryRoute,
   PoetryRoute: PoetryRoute,
+  PublicationRoute: PublicationRoute,
+  WebsiteAppsRoute: WebsiteAppsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

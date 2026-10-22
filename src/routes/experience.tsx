@@ -2,7 +2,7 @@ import { Journey } from "@/components/magic/Journey";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/magic/PageShell";
 
-export const Route = createFileRoute("/journey")({
+export const Route = createFileRoute("/experience")({
   component: JourneyPage,
 });
 
