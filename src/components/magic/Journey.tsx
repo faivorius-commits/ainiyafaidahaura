@@ -17,13 +17,14 @@ const education = [
 ];
 
 const experiences = [
-  { position: "Cybersecurity Intern", org: "CodeAlpha", logo: "/images/codealpha.jpg", duration: "August 2026 – September 2026", location: "Remote", type: "Internship", description: "Gained hands-on experience in cybersecurity through practical tasks, security exercises, and real-world learning during a one-month internship." },
   { position: "Content Maker", org: "Srikandi Cahaya Nusantara Batch 2", logo: "/images/scn.jpg", duration: "June 2026 – Present", location: "Indonesia", type: "Organization", description: "Create educational and creative digital content while supporting campaigns for women empowerment and social awareness." },
   { position: "Event Coordinator", org: "Pustaka Sastra Publisher", logo: "/images/pustaka.jpg", duration: "May 2026 – Present", location: "Indonesia", type: "Work", description: "Organize national writing competitions, coordinate participants, and assist in managing literary publishing events." },
   { position: "Event Coordinator", org: "Lamina Press Publisher", logo: "/images/lamina.png", duration: "February 2026 – July 2026", location: "Indonesia", type: "Work", description: "Coordinated literary events, managed schedules, collaborated with committees, and supported publication activities." },
   { position: "Registrar Staff", org: "International Language Programme", logo: "/images/ilp.jpg", duration: "2021 – 2025", location: "Grand Wisata, Indonesia", type: "Part-Time Work", description: "Managed participant registration, administrative tasks, and communication to support international language programs." },
 ];
 
+
+  
 const honors = [
   { emoji: "🥇", title: "1st Place — National Writing Competition", organizer: "Antero Literasi", logo: "/images/antero.jpg", year: "2026" },
   { emoji: "🏆", title: "Best Analytical Thinking Essay, VERTEX 2026", organizer: "PT. Vetrion Amartya Indonesia", logo: "/images/vertex.jpg", year: "2026" },
