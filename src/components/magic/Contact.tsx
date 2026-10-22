@@ -51,7 +51,7 @@ function TerminalTyping({ onComplete }: { onComplete: () => void }) {
       return;
     }
 
-    const currentLine = terminalLines[lineIndex];
+    const currentLine = terminalLines[lineIndex]!;
     let characterIndex = 0;
 
     const typing = setInterval(() => {
