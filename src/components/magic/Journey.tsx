@@ -11,9 +11,8 @@ import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 
 const education = [
-  { year: "2015 – 2021", title: "Al-Huda Islamic Elementary School", text: "Elementary School Diploma." },
-  { year: "2021 – 2024", title: "Sixteen Junior High School Bekasi", text: "Middle School Diploma." },
   { year: "2024 – 2027", title: "Yadika 8 Senior High School", text: "High School Diploma." },
+  { year: "2027 – Present", title: " President University", text: "Bachelor of Computer Science." },
 ];
 
 const experiences = [ 
@@ -26,7 +25,16 @@ const experiences = [
     type: "Part-time Work",
     description: "Managed and optimized the digital infrastructure for Economics Policy Lab, ensuring seamless platform operations to support youth-led economic policy research and public education initiatives."
   },
- { position: "Content Maker", org: "Srikandi Cahaya Nusantara Batch 2", logo: "/images/scn.jpg", duration: "June 2026 – Present", location: "Indonesia", type: "Organization", description: "Create educational and creative digital content while supporting campaigns for women empowerment and social awareness." },
+    {
+    position: "IT Division Team",
+    org: "YouthFunded",
+    logo: "/images/youthfunded.jpg",
+    duration: "October 2026 – Present",
+    location: "Indonesia",
+    type: "Part-time Work",
+    description: "Managed and optimized the digital infrastructure for Economics Policy Lab, ensuring seamless platform operations to support youth-led economic policy research and public education initiatives."
+  },
+  { position: "Content Maker", org: "Srikandi Cahaya Nusantara Batch 2", logo: "/images/scn.jpg", duration: "June 2026 – Present", location: "Indonesia", type: "Organization", description: "Create educational and creative digital content while supporting campaigns for women empowerment and social awareness." },
   { position: "Event Coordinator", org: "Pustaka Sastra Publisher", logo: "/images/pustaka.jpg", duration: "May 2026 – Present", location: "Indonesia", type: "Work", description: "Organize national writing competitions, coordinate participants, and assist in managing literary publishing events." },
   { position: "Event Coordinator", org: "Lamina Press Publisher", logo: "/images/lamina.png", duration: "February 2026 – July 2026", location: "Indonesia", type: "Work", description: "Coordinated literary events, managed schedules, collaborated with committees, and supported publication activities." },
   { position: "Registrar Staff", org: "International Language Programme", logo: "/images/ilp.jpg", duration: "2021 – 2025", location: "Grand Wisata, Indonesia", type: "Part-Time Work", description: "Managed participant registration, administrative tasks, and communication to support international language programs." },
