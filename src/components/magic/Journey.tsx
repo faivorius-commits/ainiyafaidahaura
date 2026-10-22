@@ -43,7 +43,7 @@ const honors = [
 export function Journey() {
   const [experienceIndex, setExperienceIndex] = useState(0);
   const [honorsOpen, setHonorsOpen] = useState(false);
-  const experience = experiences[experienceIndex];
+  const experience = experiences[experienceIndex]!;
 
   const previousExperience = () => setExperienceIndex(c => c === 0 ? experiences.length - 1 : c - 1);
   const nextExperience = () => setExperienceIndex(c => c === experiences.length - 1 ? 0 : c + 1);
