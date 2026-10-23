@@ -4,6 +4,11 @@ import {
   Code2,
   Image as GalleryIcon,
   Library as LibraryIcon,
+  Users,
+  Handshake,
+  MonitorPlay,
+  Megaphone,
+  CalendarDays,
   Feather,
   BookOpen,
   ExternalLink,
@@ -64,24 +69,30 @@ const archiveNodes: ArchiveNode[] = [
 
   {
     title: "Writing",
-    description: "Poetry · Stories · Articles",
+    description: "Publication · Poetry · Stories · Articles",
     icon: PenLine,
     position: "right-[2%] top-[27%] sm:right-[5%] sm:top-[29%]",
     delay: 110,
-    items: [
-      {
-        label: "Poetry",
-        icon: Feather,
-        to: "/poetry",
-      },
-      {
-        label: "Short Stories",
-        icon: ScrollText,
-      },
-      {
-        label: "Articles",
-        icon: FileText,
-      },
+    items: [ 
+    {
+    label: "Publications",
+    icon: ExternalLink,
+    to: "/publication",
+  },
+    {
+    label: "Poetry",
+    icon: Feather,
+    to: "/poetry",
+  },
+  {
+    label: "Articles",
+    icon: FileText,
+  },
+  {
+    label: "Short Stories",
+    icon: ScrollText,
+  },
+      
     ],
   },
 
@@ -131,21 +142,35 @@ const archiveNodes: ArchiveNode[] = [
       },
     ],
   },
-
   {
-    title: "Publication",
-    description: "Published Works",
-    icon: PenLine,
-    position: "left-1/2 top-[2%] -translate-x-1/2",
-    delay: 440,
-    items: [
-      {
-        label: "Published Works",
-        icon: ExternalLink,
-        to: "/publication",
-      },
-    ],
-  },
+  title: "Activities",
+  description: "Engage · Contribute · Connect",
+  icon: Users,
+  position: "left-1/2 top-[2%] -translate-x-1/2",
+  delay: 440,
+  items: [
+    {
+      label: "Forums & Conferences",
+      icon: Users,
+    },
+    {
+      label: "Volunteering",
+      icon: Handshake,
+    },
+    {
+      label: "Webinars & Workshops",
+      icon: MonitorPlay,
+    },
+    {
+      label: "Campaigns & Advocacy",
+      icon: Megaphone,
+    },
+    {
+      label: "Youth Programs",
+      icon: CalendarDays,
+    },
+  ],
+},
 ];
 
 export function Archive() {
