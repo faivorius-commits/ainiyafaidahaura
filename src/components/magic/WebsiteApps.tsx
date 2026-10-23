@@ -22,6 +22,17 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "YouthFunded Official Website",
+    category: "website",
+    icon: "/images/youthfunded-preview.jpg",
+    preview: "/images/youthfunded-preview.jpg",
+    description:
+    "Collaborated with a team to develop a website for YouthFunded, a youth-focused organization, with the goal of establishing a professional digital presence and improving access to organizational information. The project involved collaborative planning, website development, and creating a user-friendly digital experience that reflects the organization's identity and mission." , 
+    label: "Website Project", 
+    url: "https://youthfunded.vercel.app",
+  },
+
+  {
     title: "Refill Reminder",
     category: "website",
     icon: "/images/refill-reminder-preview.jpg",
@@ -33,10 +44,10 @@ const projects: Project[] = [
   },
 
   {
-    title: "Cozy Teddy Town — Minisuperasep",
+    title: "Today — To Do List of The Day",
     category: "application",
-    icon: "/images/teddy-town-logo.jpg",
-    preview: "/images/teddy-town-preview.jpg",
+    icon: "/images/today-logo.jpg",
+    preview: "/images/today-preview.jpg",
     description:
       "A cozy interactive application where users can build friendships with virtual teddy bears, read daily letters, collect unique characters, and track their progress through an interactive interface.",
     label: "Private Project",
