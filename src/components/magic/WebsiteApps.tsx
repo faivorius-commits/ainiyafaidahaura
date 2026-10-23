@@ -102,7 +102,7 @@ export function WebsiteApps() {
         {/* =========================
             WEBSITE
         ========================== */}
-        {website && (
+        {websites.length > 0 && (
           <div className="mb-20">
             {/* SECTION HEADER */}
             <div className="mb-5 flex items-center gap-3">
@@ -121,70 +121,73 @@ export function WebsiteApps() {
               </div>
             </div>
 
-            {/* WEBSITE LINK */}
-            <a
-              href={website.url}
-              target="_blank"
-              rel="noreferrer"
-              className="group block"
-            >
-              <Reveal>
-                <article className="glass glass-hover overflow-hidden rounded-2xl transition-all duration-500 group-hover:-translate-y-1">
+            {/* WEBSITE LINKS */}
+            {websites.map((website, index) => (
+              <a
+                key={website.title}
+                href={website.url}
+                target="_blank"
+                rel="noreferrer"
+                className={`group block ${index < websites.length - 1 ? "mb-10" : ""}`}
+              >
+                <Reveal>
+                  <article className="glass glass-hover overflow-hidden rounded-2xl transition-all duration-500 group-hover:-translate-y-1">
 
-                  {/* BROWSER HEADER */}
-                  <div className="flex items-center gap-2 border-b border-white/10 bg-black/20 px-4 py-3">
-                    <span className="size-2.5 rounded-full bg-red-400/70" />
-                    <span className="size-2.5 rounded-full bg-yellow-400/70" />
-                    <span className="size-2.5 rounded-full bg-green-400/70" />
+                    {/* BROWSER HEADER */}
+                    <div className="flex items-center gap-2 border-b border-white/10 bg-black/20 px-4 py-3">
+                      <span className="size-2.5 rounded-full bg-red-400/70" />
+                      <span className="size-2.5 rounded-full bg-yellow-400/70" />
+                      <span className="size-2.5 rounded-full bg-green-400/70" />
 
-                    <div className="ml-3 flex-1 rounded-md border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-muted-foreground">
-                      green-refill-reminder.netlify.app
+                      <div className="ml-3 flex-1 rounded-md border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-muted-foreground">
+                        {website.url?.replace(/^https?:\/\//, "")}
+                      </div>
+
+                      <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
                     </div>
 
-                    <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
-                  </div>
+                    {/* WEBSITE PREVIEW */}
+                    <div className="relative aspect-video overflow-hidden bg-black/30">
+                      <img
+                        src={website.preview}
+                        alt={`${website.title} preview`}
+                        className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      />
 
-                  {/* WEBSITE PREVIEW */}
-                  <div className="relative aspect-video overflow-hidden bg-black/30">
-                    <img
-                      src={website.preview}
-                      alt={`${website.title} preview`}
-                      className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                    />
-
-                    {/* HOVER OVERLAY */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-500 group-hover:bg-black/20">
-                      <span className="translate-y-2 rounded-full border border-white/20 bg-black/60 px-5 py-2 text-sm opacity-0 backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                        Open Website
-                        <ExternalLink className="ml-2 inline size-4" />
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* WEBSITE INFO */}
-                  <div className="p-6">
-                    <div className="mb-2 flex items-center justify-between gap-4">
-                      <h3 className="font-display text-2xl">
-                        {website.title}
-                      </h3>
-
-                      <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs text-primary">
-                        {website.label}
-                      </span>
+                      {/* HOVER OVERLAY */}
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-500 group-hover:bg-black/20">
+                        <span className="translate-y-2 rounded-full border border-white/20 bg-black/60 px-5 py-2 text-sm opacity-0 backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                          Open Website
+                          <ExternalLink className="ml-2 inline size-4" />
+                        </span>
+                      </div>
                     </div>
 
-                    <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
-                      {website.description}
-                    </p>
+                    {/* WEBSITE INFO */}
+                    <div className="p-6">
+                      <div className="mb-2 flex items-center justify-between gap-4">
+                        <h3 className="font-display text-2xl">
+                          {website.title}
+                        </h3>
 
-                    <div className="mt-5 inline-flex items-center gap-2 text-sm text-primary">
-                      Visit Website
-                      <ExternalLink className="size-4 transition-transform group-hover:translate-x-1" />
+                        <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs text-primary">
+                          {website.label}
+                        </span>
+                      </div>
+
+                      <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                        {website.description}
+                      </p>
+
+                      <div className="mt-5 inline-flex items-center gap-2 text-sm text-primary">
+                        Visit Website
+                        <ExternalLink className="size-4 transition-transform group-hover:translate-x-1" />
+                      </div>
                     </div>
-                  </div>
-                </article>
-              </Reveal>
-            </a>
+                  </article>
+                </Reveal>
+              </a>
+            ))}
           </div>
         )}
 
