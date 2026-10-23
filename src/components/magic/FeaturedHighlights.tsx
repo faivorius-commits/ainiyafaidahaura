@@ -16,7 +16,7 @@ const highlights = [
     subtitle: "Youthfunded Official Website",
     description: "Collaborated with a team to develop YouthFunded's official website, helping establish a professional digital presence for a youth-focused organization.",
     imageUrl: "/images/youthfunded-preview.jpg",
-    link: "https://www.youthfunded.vercel.app",
+    link: "https://youthfunded.vercel.app",
   },
   {
     id: "honor",
