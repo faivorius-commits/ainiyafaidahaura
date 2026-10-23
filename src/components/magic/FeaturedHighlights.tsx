@@ -11,12 +11,12 @@ const highlights = [
     link: "https://www.kompasiana.com/ainiyaainiya3343/6aa3bbb534777c412472b2a3/youthsaction-1-by-beyouth-id-menumbuhkan-kepedulian-terhadap-sesama",
   },
   {
-    id: "legallyyouth",
-    title: "Chapter Founder",
-    subtitle: "LegallyYOUth — Southeast & East Asia Region",
-    description: "Building a space for youth to learn legal awareness, grow leadership, and create impact across Southeast and East Asia.",
-    imageUrl: "/images/featured-legallyyouth.jpg",
-    link: "#",
+    id: "youthfunded",
+    title: "Website Project",
+    subtitle: "Youthfunded Official Website",
+    description: "Collaborated with a team to develop YouthFunded's official website, helping establish a professional digital presence for a youth-focused organization.",
+    imageUrl: "/youthfunded-preview.jpg",
+    link: "https://www.youthfunded.vercel.app",
   },
   {
     id: "books",
