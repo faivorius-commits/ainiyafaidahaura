@@ -69,7 +69,7 @@ const projects: Project[] = [
 export function WebsiteApps() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const website = projects.find(
+  const websites = projects.filter(
     (project) => project.category === "website"
   );
 
