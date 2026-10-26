@@ -23,7 +23,7 @@ const highlights = [
     title: "Best Rookies in Cybersecurity",
     subtitle: "Cybersecurity Award",
     description: "Recognized as Best Rookies in Cybersecurity by Generation Girl Tangerang for outstanding potential and dedication to cybersecurity.",
-    imageUrl: "/images/certificate-best-rookies.jpg",
+    imageUrl: "/images/certificate-bestrookiesincybersecurity.jpg",
     link: " https://ainiyafaidahaura.vercel.app/archive",
   },
   {
