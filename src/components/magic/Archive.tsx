@@ -63,7 +63,7 @@ const archiveNodes: ArchiveNode[] = [
       {
         label: "Research & Analysis",
         icon: FlaskConical,
-      },
+        to: "/research-analysis",       },
     ],
   },
 
