@@ -17,14 +17,6 @@ export const books: Book[] = [
     note: "A swordsman's timeless notes on strategy, discipline, and stillness.",
   },
   {
-    slug: "heart-of-thorns",
-    title: "A Heart of Thorns",
-    author: "Tessonja Odette",
-    format: "epub",
-    file: "/books/heart-of-thorns.epub",
-    note: "A fae-touched fantasy about courage, choice, and hidden magic.",
-  },
-  {
     slug: "classical-chinese-philosophy",
     title: "Classical Chinese Philosophy",
     author: "Anthology",

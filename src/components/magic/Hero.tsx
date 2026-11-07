@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import type { PointerEvent } from "react";
-import { BookOpen, FileText, FolderHeart, MailOpen } from "lucide-react";
+import { BookOpen, Code2, FolderHeart, MailOpen } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { FeaturedHighlights } from "./FeaturedHighlights";
 
@@ -13,11 +13,11 @@ const quickLinks = [
     sub: "The story behind who I am today",
   },
   {
-    id: "resume",
-    href: "/Ainiya-Faida-Haura-CV.pdf",
-    icon: FileText,
-    title: "My Resume",
-    sub: "A glimpse into my experience and skills",
+    id: "projects",
+    href: "/website-apps",
+    icon: Code2,
+    title: "My Projects",
+    sub: "Websites and applications I've created",
   },
   {
     id: "archive",
@@ -266,7 +266,6 @@ export function Hero() {
                   <a
                     key={link.id}
                     href={link.href}
-                    download={link.id === "resume" ? true : undefined}
                     className={`orbit-card ${position}`}
                     onClick={(e) => {
                       if (moved.current) {

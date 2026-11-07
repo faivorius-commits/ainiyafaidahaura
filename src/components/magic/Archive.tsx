@@ -1,7 +1,6 @@
 import { useState, type ElementType } from "react";
 import {
   PenLine,
-  Code2,
   Image as GalleryIcon,
   Library as LibraryIcon,
   Users,
@@ -13,10 +12,7 @@ import {
   BookOpen,
   ExternalLink,
   Camera,
-  FlaskConical,
   Sparkles,
-  ShieldCheck,
-  Palette,
   FileText,
   ScrollText,
   Quote,
@@ -44,29 +40,6 @@ type ArchiveNode = {
 };
 
 const archiveNodes: ArchiveNode[] = [
-  {
-    title: "Projects",
-    description: "Build · Explore · Research",
-    icon: Code2,
-    position: "left-[2%] top-[27%] sm:left-[5%] sm:top-[29%]",
-    delay: 0,
-    items: [
-      {
-        label: "Cybersecurity",
-        icon: ShieldCheck,
-      },
-      {
-        label: "App, Website & UI/UX",
-        icon: Palette,
-        to: "/website-apps",
-      },
-      {
-        label: "Research & Analysis",
-        icon: FlaskConical,
-        to: "/research-analysis",       },
-    ],
-  },
-
   {
     title: "Writing",
     description: "Publication · Poetry · Stories · Articles",
@@ -230,7 +203,7 @@ export function Archive() {
 
         <SectionTitle
           title="My Digital Archive"
-          subtitle="Writings, projects, and moments — all in one constellation."
+          subtitle="Writings, collections, and moments — all in one constellation."
         />
 
         {/* =====================================================
