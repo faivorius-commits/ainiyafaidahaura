@@ -65,12 +65,16 @@ export function FeaturedHighlights() {
   return (
     <section className="w-full max-w-6xl mx-auto mt-10 px-5">
       <div
-        ref={scrollRef}
-        className="flex gap-5 overflow-x-hidden pb-2"
-        style={{ width: "100%" }}
-      >
+  ref={scrollRef}
+  className="flex gap-5 overflow-hidden py-2"
+  style={{ width: "100%" }}
+        >
         {highlights.map((item) => (
-          <Reveal key={item.id} delay={100}>
+          <Reveal
+           key={item.id}
+           delay={100}
+           className="shrink-0"
+>
             <a
               href={item.link}
               target="_blank"
