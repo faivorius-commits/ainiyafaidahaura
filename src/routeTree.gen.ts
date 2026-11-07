@@ -18,6 +18,7 @@ import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as PoetryRouteImport } from './routes/poetry'
 import { Route as PublicationRouteImport } from './routes/publication'
+import { Route as ResearchAnalysisRouteImport } from './routes/research-analysis'
 import { Route as WebsiteAppsRouteImport } from './routes/website-apps'
 
 const IndexRoute = IndexRouteImport.update({
@@ -65,6 +66,11 @@ const PublicationRoute = PublicationRouteImport.update({
   path: '/publication',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchAnalysisRoute = ResearchAnalysisRouteImport.update({
+  id: '/research-analysis',
+  path: '/research-analysis',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WebsiteAppsRoute = WebsiteAppsRouteImport.update({
   id: '/website-apps',
   path: '/website-apps',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/library': typeof LibraryRoute
   '/poetry': typeof PoetryRoute
   '/publication': typeof PublicationRoute
+  '/research-analysis': typeof ResearchAnalysisRoute
   '/website-apps': typeof WebsiteAppsRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/library': typeof LibraryRoute
   '/poetry': typeof PoetryRoute
   '/publication': typeof PublicationRoute
+  '/research-analysis': typeof ResearchAnalysisRoute
   '/website-apps': typeof WebsiteAppsRoute
 }
 export interface FileRoutesById {
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/library': typeof LibraryRoute
   '/poetry': typeof PoetryRoute
   '/publication': typeof PublicationRoute
+  '/research-analysis': typeof ResearchAnalysisRoute
   '/website-apps': typeof WebsiteAppsRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/poetry'
     | '/publication'
+    | '/research-analysis'
     | '/website-apps'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/poetry'
     | '/publication'
+    | '/research-analysis'
     | '/website-apps'
   id:
     | '__root__'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/poetry'
     | '/publication'
+    | '/research-analysis'
     | '/website-apps'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +169,7 @@ export interface RootRouteChildren {
   LibraryRoute: typeof LibraryRoute
   PoetryRoute: typeof PoetryRoute
   PublicationRoute: typeof PublicationRoute
+  ResearchAnalysisRoute: typeof ResearchAnalysisRoute
   WebsiteAppsRoute: typeof WebsiteAppsRoute
 }
 
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research-analysis': {
+      id: '/research-analysis'
+      path: '/research-analysis'
+      fullPath: '/research-analysis'
+      preLoaderRoute: typeof ResearchAnalysisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/website-apps': {
       id: '/website-apps'
       path: '/website-apps'
@@ -245,6 +265,7 @@ const rootRouteChildren: RootRouteChildren = {
   LibraryRoute: LibraryRoute,
   PoetryRoute: PoetryRoute,
   PublicationRoute: PublicationRoute,
+  ResearchAnalysisRoute: ResearchAnalysisRoute,
   WebsiteAppsRoute: WebsiteAppsRoute,
 }
 export const routeTree = rootRouteImport
