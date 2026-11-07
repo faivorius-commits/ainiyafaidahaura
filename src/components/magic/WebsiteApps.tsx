@@ -82,16 +82,6 @@ export function WebsiteApps() {
       <div className="mx-auto max-w-5xl">
 
         {/* =========================
-            BACK
-        ========================== */}
-        <Link
-          to="/archive"
-          className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-        >
-          ← Kembali ke Digital Archive
-        </Link>
-
-        {/* =========================
             TITLE
         ========================== */}
         <SectionTitle
