@@ -44,7 +44,7 @@ const archiveNodes: ArchiveNode[] = [
     title: "Writing",
     description: "Publication · Poetry · Stories · Articles",
     icon: PenLine,
-    position: "right-[2%] top-[27%] sm:right-[5%] sm:top-[29%]",
+    position: "right-[4%] top-[5%] sm:right-[13%] sm:top-[4%]",
     delay: 110,
     items: [ 
     {
@@ -119,7 +119,7 @@ const archiveNodes: ArchiveNode[] = [
   title: "Activities",
   description: "Engage · Contribute · Connect",
   icon: Users,
-  position: "left-[2%] top-[27%] sm:left-[5%] sm:top-[29%]",
+  position: "left-[4%] top-[5%] sm:left-[13%] sm:top-[4%]",
   delay: 440,
   items: [
     {
@@ -284,10 +284,10 @@ export function Archive() {
               className="text-primary"
             />
 
-            {/* Projects → Center */}
+            {/* Activities → Center */}
 
             <path
-              d="M120 270 C250 295 380 335 500 370"
+              d="M120 70 C250 145 380 275 500 370"
               fill="none"
               stroke="currentColor"
               strokeWidth="1"
@@ -298,7 +298,7 @@ export function Archive() {
             {/* Writing → Center */}
 
             <path
-              d="M880 270 C750 295 620 335 500 370"
+              d="M880 70 C750 145 620 275 500 370"
               fill="none"
               stroke="currentColor"
               strokeWidth="1"
