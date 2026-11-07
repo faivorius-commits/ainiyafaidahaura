@@ -119,7 +119,7 @@ const archiveNodes: ArchiveNode[] = [
   title: "Activities",
   description: "Engage · Contribute · Connect",
   icon: Users,
-  position: "left-1/2 top-[2%] -translate-x-1/2",
+  position: "left-[2%] top-[27%] sm:left-[5%] sm:top-[29%]",
   delay: 440,
   items: [
     {
