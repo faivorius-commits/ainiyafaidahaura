@@ -115,7 +115,7 @@ const archiveNodes: ArchiveNode[] = [
       },
     ],
   },
-  {
+ {
   title: "Activities",
   description: "Engage · Contribute · Connect",
   icon: Users,
@@ -123,24 +123,9 @@ const archiveNodes: ArchiveNode[] = [
   delay: 440,
   items: [
     {
-      label: "Forums & Conferences",
-      icon: Users,
-    },
-    {
-      label: "Volunteering",
-      icon: Handshake,
-    },
-    {
-      label: "Webinars & Workshops",
-      icon: MonitorPlay,
-    },
-    {
-      label: "Campaigns & Advocacy",
-      icon: Megaphone,
-    },
-    {
-      label: "Youth Programs",
-      icon: CalendarDays,
+      label: "Explore Activities",
+      icon: ExternalLink,
+      to: "/activities",
     },
   ],
 },
