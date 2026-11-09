@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { to: "/", label: "Home" },
   { to: "/journey", label: "My Journey" },
-  { to: "/experience", label: "Experience & Honors" },
+  { to: "/website-apps", label: "Projects" },
   { to: "/archive", label: "Digital Archive" },
   { to: "/contact", label: "Contact Me" },
 ] as const;
@@ -34,7 +34,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-4">
         <Link to="/" className="flex min-w-0 items-center gap-2">
           <Sparkles className="size-5 shrink-0 text-primary" />
-          <span className="font-display truncate text-lg tracking-wide">Ainiya F. Haura</span>
+          <span className="font-display truncate text-lg tracking-wide">Faivorius</span>
         </Link>
 
         <ul className="hidden items-center gap-5 lg:flex">
