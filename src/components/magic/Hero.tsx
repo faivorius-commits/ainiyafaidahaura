@@ -221,8 +221,7 @@ export function Hero() {
           </div>
 
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Somewhere between curiosity and code, I'm discovering the endless
-            possibilities of the digital world.
+            Explore my digital journey book!
           </p>
         </Reveal>
 
