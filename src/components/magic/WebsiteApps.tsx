@@ -85,8 +85,8 @@ export function WebsiteApps() {
             TITLE
         ========================== */}
         <SectionTitle
-          title="Website / Apps"
-          subtitle="Things I built with code, curiosity, and a bit of magic."
+          title="Projects"
+          subtitle="A collection of projects, experiments, and initiatives exploring ideas."
         />
 
         {/* =========================
