@@ -7,6 +7,10 @@ const certificates = [
     image: "/images/certificate-online-volunteer.jpg",
   },
   {
+    title: "Best Rookies in Cybersecurity",
+    image: "/images/certificate-bestrookiesincybersecurity.jpg",
+  },
+  {
     title: "Position Paper Runner Up",
     image: "/images/certificate-position-paper-runner-up.jpg",
   },
