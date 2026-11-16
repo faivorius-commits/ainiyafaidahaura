@@ -27,7 +27,24 @@ const education = [
   },
 ];
 
-const experiences = [
+type ExperienceDocumentation = {
+  image?: string;
+  link?: string;
+  linkLabel?: string;
+};
+
+type JourneyExperience = {
+  position: string;
+  org: string;
+  logo: string;
+  duration: string;
+  location: string;
+  type: string;
+  description: string;
+  documentation?: ExperienceDocumentation;
+};
+
+const experiences: JourneyExperience[] = [
   {
     position: "IT Division Team",
     org: "Economics Policy Lab",
@@ -339,6 +356,33 @@ export function Journey() {
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 {experience.description}
               </p>
+
+              {experience.documentation &&
+                (experience.documentation.image || experience.documentation.link) && (
+                  <div className="mt-4 border-t border-border/60 pt-3">
+                    <p className="text-[10px] font-semibold tracking-wider text-muted-foreground">
+                      DOCUMENTATION
+                    </p>
+                    {experience.documentation.image && (
+                      <img
+                        src={experience.documentation.image}
+                        alt={`${experience.org} documentation`}
+                        loading="lazy"
+                        className="mt-2 max-h-36 w-auto max-w-full rounded-md object-cover"
+                      />
+                    )}
+                    {experience.documentation.link && (
+                      <a
+                        href={experience.documentation.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-2 inline-flex text-sm text-primary transition-colors hover:text-accent hover:underline"
+                      >
+                        {experience.documentation.linkLabel || "View documentation"}
+                      </a>
+                    )}
+                  </div>
+                )}
             </article>
           </Reveal>
 

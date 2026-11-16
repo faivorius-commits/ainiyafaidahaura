@@ -19,6 +19,7 @@ type Publication = {
   identifierLabel: string;
   identifier: string;
   description: string;
+  cover?: string;
   url?: string;
   accent: string;
 };
@@ -109,26 +110,36 @@ export function Publication() {
                   } as React.CSSProperties
                 }
               >
-                <div className="book-light" />
+                {current.cover ? (
+                  <img
+                    src={current.cover}
+                    alt={`${current.title} publication cover`}
+                    className="publication-cover-image"
+                  />
+                ) : (
+                  <>
+                    <div className="book-light" />
 
-                <Sparkles
-                  className="book-sparkle"
-                  size={28}
-                />
+                    <Sparkles
+                      className="book-sparkle"
+                      size={28}
+                    />
 
-                <span className="book-type">
-                  {current.type}
-                </span>
+                    <span className="book-type">
+                      {current.type}
+                    </span>
 
-                <h2>{current.title}</h2>
+                    <h2>{current.title}</h2>
 
-                <p>{current.subtitle}</p>
+                    <p>{current.subtitle}</p>
 
-                <div className="book-divider" />
+                    <div className="book-divider" />
 
-                <span className="book-year">
-                  {current.year}
-                </span>
+                    <span className="book-year">
+                      {current.year}
+                    </span>
+                  </>
+                )}
               </div>
             </button>
 
@@ -228,15 +239,25 @@ export function Publication() {
                 } as React.CSSProperties
               }
             >
-              <FileText size={30} />
+              {current.cover ? (
+                <img
+                  src={current.cover}
+                  alt={`${current.title} publication cover`}
+                  className="publication-cover-image"
+                />
+              ) : (
+                <>
+                  <FileText size={30} />
 
-              <span>{current.type}</span>
+                  <span>{current.type}</span>
 
-              <h2>{current.title}</h2>
+                  <h2>{current.title}</h2>
 
-              <p>{current.subtitle}</p>
+                  <p>{current.subtitle}</p>
 
-              <strong>{current.year}</strong>
+                  <strong>{current.year}</strong>
+                </>
+              )}
             </div>
 
             <div className="reader-page">
@@ -424,6 +445,14 @@ export function Publication() {
           box-shadow:
             0 0 30px rgba(168,85,247,.35),
             18px 25px 45px rgba(0,0,0,.65);
+        }
+
+        .publication-cover-image {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .book-light {
