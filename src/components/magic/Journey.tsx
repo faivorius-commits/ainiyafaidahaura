@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
+import { FeaturedHighlights } from "./FeaturedHighlights";
 
 const education = [
   {
@@ -274,6 +275,8 @@ export function Journey() {
           title="My Journey"
           subtitle="My interest in the digital world began at an early age. Growing up, I was already familiar with computers and spent much of my time exploring games. What started as a childhood pastime gradually became part of my everyday life, and even today, gaming remains one of my interests."
         />
+
+        <FeaturedHighlights compact />
 
         {/* EDUCATION */}
         <div className="mb-24">

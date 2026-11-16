@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import { BookOpen, Code2, FolderHeart, MailOpen } from "lucide-react";
 import { Reveal } from "./Reveal";
-import { FeaturedHighlights } from "./FeaturedHighlights";
 
 const quickLinks = [
   {
@@ -314,8 +313,6 @@ export function Hero() {
         </Reveal>
 
       </div>
-
-      <FeaturedHighlights />
     </section>
   );
           }
