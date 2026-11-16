@@ -119,7 +119,7 @@ const favoriteBooks = [
     year: "2026",
     language: "Indonesian",
     category: "Short Story Anthology",
-    cover: "/images/books/heal.jpg",
+    cover: "/images/books/heal-cover.jpg",
     description:
       "An anthology of short stories inspired by emotional wounds, trauma, and experiences that can reflect real life.",
     comment:
