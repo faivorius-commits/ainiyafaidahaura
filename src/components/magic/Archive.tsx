@@ -79,6 +79,7 @@ const archiveNodes: ArchiveNode[] = [
       {
         label: "Certificates",
         icon: Award,
+        to: "/certificates",
       },
       {
         label: "Documentation",
