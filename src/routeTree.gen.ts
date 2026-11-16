@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ActivitiesRouteImport } from './routes/activities'
 import { Route as ArchiveRouteImport } from './routes/archive'
+import { Route as CertificatesRouteImport } from './routes/certificates'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DocumentationRouteImport } from './routes/documentation'
 import { Route as ExperienceRouteImport } from './routes/experience'
@@ -26,9 +28,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ActivitiesRoute = ActivitiesRouteImport.update({
+  id: '/activities',
+  path: '/activities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArchiveRoute = ArchiveRouteImport.update({
   id: '/archive',
   path: '/archive',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CertificatesRoute = CertificatesRouteImport.update({
+  id: '/certificates',
+  path: '/certificates',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -79,7 +91,9 @@ const WebsiteAppsRoute = WebsiteAppsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/activities': typeof ActivitiesRoute
   '/archive': typeof ArchiveRoute
+  '/certificates': typeof CertificatesRoute
   '/contact': typeof ContactRoute
   '/documentation': typeof DocumentationRoute
   '/experience': typeof ExperienceRoute
@@ -92,7 +106,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/activities': typeof ActivitiesRoute
   '/archive': typeof ArchiveRoute
+  '/certificates': typeof CertificatesRoute
   '/contact': typeof ContactRoute
   '/documentation': typeof DocumentationRoute
   '/experience': typeof ExperienceRoute
@@ -106,7 +122,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/activities': typeof ActivitiesRoute
   '/archive': typeof ArchiveRoute
+  '/certificates': typeof CertificatesRoute
   '/contact': typeof ContactRoute
   '/documentation': typeof DocumentationRoute
   '/experience': typeof ExperienceRoute
@@ -121,7 +139,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/activities'
     | '/archive'
+    | '/certificates'
     | '/contact'
     | '/documentation'
     | '/experience'
@@ -134,7 +154,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/activities'
     | '/archive'
+    | '/certificates'
     | '/contact'
     | '/documentation'
     | '/experience'
@@ -147,7 +169,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/activities'
     | '/archive'
+    | '/certificates'
     | '/contact'
     | '/documentation'
     | '/experience'
@@ -161,7 +185,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ActivitiesRoute: typeof ActivitiesRoute
   ArchiveRoute: typeof ArchiveRoute
+  CertificatesRoute: typeof CertificatesRoute
   ContactRoute: typeof ContactRoute
   DocumentationRoute: typeof DocumentationRoute
   ExperienceRoute: typeof ExperienceRoute
@@ -182,11 +208,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/activities': {
+      id: '/activities'
+      path: '/activities'
+      fullPath: '/activities'
+      preLoaderRoute: typeof ActivitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/archive': {
       id: '/archive'
       path: '/archive'
       fullPath: '/archive'
       preLoaderRoute: typeof ArchiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/certificates': {
+      id: '/certificates'
+      path: '/certificates'
+      fullPath: '/certificates'
+      preLoaderRoute: typeof CertificatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -257,7 +297,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ActivitiesRoute: ActivitiesRoute,
   ArchiveRoute: ArchiveRoute,
+  CertificatesRoute: CertificatesRoute,
   ContactRoute: ContactRoute,
   DocumentationRoute: DocumentationRoute,
   ExperienceRoute: ExperienceRoute,
