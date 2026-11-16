@@ -54,6 +54,10 @@ const experiences: JourneyExperience[] = [
     type: "Part-time Work",
     description:
       "Managed and optimized the digital infrastructure for Economics Policy Lab, ensuring seamless platform operations to support youth-led economic policy research and public education initiatives.",
+    documentation: {
+    link: "https://economic-policy-lab.cloud",
+    linkLabel: "Visit The Creation",
+  },
   },
   {
     position: "IT Division Team",
