@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import {
   MapPin,
@@ -6,16 +7,17 @@ import {
   ChevronRight,
   ChevronDown,
   ChevronUp,
+  Gamepad2,
 } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 
 const education = [
   { year: "2024 – 2027", title: "Yadika 8 Senior High School", text: "High School Diploma." },
-  { year: "2027 – Present", title: " President University", text: "Bachelor of Computer Science." },
+  { year: "2027 – Present", title: "President University", text: "Bachelor of Computer Science." },
 ];
 
-const experiences = [ 
+const experiences = [
   {
     position: "IT Division Team",
     org: "Economics Policy Lab",
@@ -25,20 +27,90 @@ const experiences = [
     type: "Part-time Work",
     description: "Managed and optimized the digital infrastructure for Economics Policy Lab, ensuring seamless platform operations to support youth-led economic policy research and public education initiatives."
   },
-    {
+  {
     position: "IT Division Team",
     org: "YouthFunded",
     logo: "/images/youthfunded.jpg",
     duration: "October 2026 – Present",
     location: "Indonesia",
     type: "Part-time Work",
-    description: "Managed and optimized the digital infrastructure for Economics Policy Lab, ensuring seamless platform operations to support youth-led economic policy research and public education initiatives."
+    description: "Managed and optimized the digital infrastructure for YouthFunded, supporting its digital infrastructure and online initiatives."
   },
-  { position: "Content Maker", org: "Srikandi Cahaya Nusantara Batch 2", logo: "/images/scn.jpg", duration: "June 2026 – Present", location: "Indonesia", type: "Organization", description: "Create educational and creative digital content while supporting campaigns for women empowerment and social awareness." },
-  { position: "Event Coordinator", org: "Pustaka Sastra Publisher", logo: "/images/pustaka.jpg", duration: "May 2026 – Present", location: "Indonesia", type: "Work", description: "Organize national writing competitions, coordinate participants, and assist in managing literary publishing events." },
-  { position: "Event Coordinator", org: "Lamina Press Publisher", logo: "/images/lamina.png", duration: "February 2026 – July 2026", location: "Indonesia", type: "Work", description: "Coordinated literary events, managed schedules, collaborated with committees, and supported publication activities." },
-  { position: "Registrar Staff", org: "International Language Programme", logo: "/images/ilp.jpg", duration: "2021 – 2025", location: "Grand Wisata, Indonesia", type: "Part-Time Work", description: "Managed participant registration, administrative tasks, and communication to support international language programs." },
-]
+  {
+    position: "Content Maker",
+    org: "Srikandi Cahaya Nusantara Batch 2",
+    logo: "/images/scn.jpg",
+    duration: "June 2026 – Present",
+    location: "Indonesia",
+    type: "Organization",
+    description: "Create educational and creative digital content while supporting campaigns for women empowerment and social awareness."
+  },
+  {
+    position: "Event Coordinator",
+    org: "Pustaka Sastra Publisher",
+    logo: "/images/pustaka.jpg",
+    duration: "May 2026 – Present",
+    location: "Indonesia",
+    type: "Work",
+    description: "Organize national writing competitions, coordinate participants, and assist in managing literary publishing events."
+  },
+  {
+    position: "Event Coordinator",
+    org: "Lamina Press Publisher",
+    logo: "/images/lamina.png",
+    duration: "February 2026 – July 2026",
+    location: "Indonesia",
+    type: "Work",
+    description: "Coordinated literary events, managed schedules, collaborated with committees, and supported publication activities."
+  },
+  {
+    position: "Registrar Staff",
+    org: "International Language Programme",
+    logo: "/images/ilp.jpg",
+    duration: "2021 – 2025",
+    location: "Grand Wisata, Indonesia",
+    type: "Part-Time Work",
+    description: "Managed participant registration, administrative tasks, and communication to support international language programs."
+  },
+];
+
+const games = [
+  {
+    title: "Minecraft",
+    genre: "Sandbox · Survival",
+    description: "A world of creativity, exploration, and endless possibilities.",
+    image: "/images/games/minecraft.jpg",
+    number: "01",
+  },
+  {
+    title: "Desire",
+    genre: "Adventure · Indie",
+    description: "A unique narrative experience told through the perspective of a color-blind boy.",
+    image: "/images/games/desire.jpg",
+    number: "02",
+  },
+  {
+    title: "ALTER EGO",
+    genre: "Psychological · Interactive Fiction",
+    description: "An introspective experience exploring identity, personality, and self-discovery.",
+    image: "/images/games/alter-ego.jpg",
+    number: "03",
+  },
+  {
+    title: "PUBG",
+    genre: "Battle Royale · Action",
+    description: "A competitive survival experience built around strategy and teamwork.",
+    image: "/images/games/pubg.jpg",
+    number: "04",
+  },
+  {
+    title: "Once Human",
+    genre: "Open World · Survival",
+    description: "A mysterious post-apocalyptic world filled with exploration and discovery.",
+    image: "/images/games/once-human.jpg",
+    number: "05",
+  },
+];
 
 const honors = [
   { emoji: "🥇", title: "1st Place — National Writing Competition", organizer: "Antero Literasi", logo: "/images/antero.jpg", year: "2026" },
@@ -53,23 +125,40 @@ export function Journey() {
   const [honorsOpen, setHonorsOpen] = useState(false);
   const experience = experiences[experienceIndex]!;
 
-  const previousExperience = () => setExperienceIndex(c => c === 0 ? experiences.length - 1 : c - 1);
-  const nextExperience = () => setExperienceIndex(c => c === experiences.length - 1 ? 0 : c + 1);
+  const previousExperience = () =>
+    setExperienceIndex(c => c === 0 ? experiences.length - 1 : c - 1);
+
+  const nextExperience = () =>
+    setExperienceIndex(c => c === experiences.length - 1 ? 0 : c + 1);
 
   return (
     <section id="journey" className="relative px-5 py-24">
       <div className="mx-auto max-w-3xl">
-        <SectionTitle title="My Journey" subtitle="My interest in the digital world began at an early age. Growing up, I was already familiar with computers and spent much of my time exploring games. What started as a childhood pastime gradually became part of my everyday life, and even today, gaming remains one of my interests." />
 
+        <SectionTitle
+          title="My Journey"
+          subtitle="My interest in the digital world began at an early age. Growing up, I was already familiar with computers and spent much of my time exploring games. What started as a childhood pastime gradually became part of my everyday life, and even today, gaming remains one of my interests."
+        />
+
+        {/* Education */}
         <div className="mb-24">
           <h2 className="font-display mb-10 text-2xl text-primary">Education</h2>
+
           <div className="relative pl-10">
-            <span aria-hidden className="absolute bottom-2 left-3 top-2 w-px bg-gradient-to-b from-primary/80 via-accent/60 to-transparent" style={{ animation: "draw-line 2.5s ease-out both" }} />
+            <span
+              aria-hidden
+              className="absolute bottom-2 left-3 top-2 w-px bg-gradient-to-b from-primary/80 via-accent/60 to-transparent"
+              style={{ animation: "draw-line 2.5s ease-out both" }}
+            />
+
             <ul className="grid gap-10">
               {education.map((item, i) => (
                 <li key={item.year}>
                   <Reveal delay={i * 120} className="relative">
-                    <span aria-hidden className="animate-twinkle absolute -left-[1.86rem] top-6 size-3 rounded-full bg-primary shadow-[0_0_16px_oklch(0.88_0.13_90/80%)]" />
+                    <span
+                      aria-hidden
+                      className="animate-twinkle absolute -left-[1.86rem] top-6 size-3 rounded-full bg-primary shadow-[0_0_16px_oklch(0.88_0.13_90/80%)]"
+                    />
                     <p className="font-display text-2xl text-gold">{item.year}</p>
                     <p className="font-display mt-1 text-lg leading-snug text-primary">{item.title}</p>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
@@ -80,65 +169,156 @@ export function Journey() {
           </div>
         </div>
 
+        {/* Experience */}
         <div className="mb-24">
           <h2 className="font-display mb-8 text-2xl text-primary">Experience</h2>
+
           <Reveal key={experienceIndex}>
             <article className="glass glass-hover p-5">
               <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
                 <div className="logo-frame size-14 shrink-0 overflow-hidden rounded-lg">
-                  <img src={experience.logo} alt={`${experience.org} logo`} loading="lazy" className="size-full object-contain" />
+                  <img
+                    src={experience.logo}
+                    alt={`${experience.org} logo`}
+                    loading="lazy"
+                    className="size-full object-contain"
+                  />
                 </div>
+
                 <div className="min-w-0">
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="font-display text-xl leading-snug">{experience.position}</h3>
                     <Sparkles className="animate-twinkle mt-1 size-4 shrink-0 text-primary" />
                   </div>
+
                   <p className="text-sm text-primary">{experience.org}</p>
                   <p className="mt-1 text-xs text-muted-foreground">{experience.duration}</p>
+
                   <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
                     <MapPin className="size-3 shrink-0" />
                     {experience.location}
                   </p>
+
                   <span className="mt-3 inline-block rounded-full border border-primary/40 px-3 py-1 text-[11px] tracking-wide text-primary">
                     {experience.type}
                   </span>
                 </div>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{experience.description}</p>
+
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {experience.description}
+              </p>
             </article>
           </Reveal>
+
           <div className="mt-5 flex items-center justify-between">
-            <button onClick={previousExperience} aria-label="Previous" className="glass glass-hover flex size-10 items-center justify-center rounded-full">
+            <button
+              onClick={previousExperience}
+              aria-label="Previous"
+              className="glass glass-hover flex size-10 items-center justify-center rounded-full"
+            >
               <ChevronLeft className="size-5" />
             </button>
+
             <div className="flex items-center gap-2">
               {experiences.map((_, i) => (
-                <button key={i} onClick={() => setExperienceIndex(i)} aria-label={`Go to ${i + 1}`}
-                  className={`h-1.5 rounded-full transition-all ${i === experienceIndex ? "w-6 bg-primary" : "w-1.5 bg-primary/30"}`} />
+                <button
+                  key={i}
+                  onClick={() => setExperienceIndex(i)}
+                  aria-label={`Go to ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === experienceIndex ? "w-6 bg-primary" : "w-1.5 bg-primary/30"
+                  }`}
+                />
               ))}
             </div>
-            <button onClick={nextExperience} aria-label="Next" className="glass glass-hover flex size-10 items-center justify-center rounded-full">
+
+            <button
+              onClick={nextExperience}
+              aria-label="Next"
+              className="glass glass-hover flex size-10 items-center justify-center rounded-full"
+            >
               <ChevronRight className="size-5" />
             </button>
           </div>
-          <p className="mt-3 text-center text-xs text-muted-foreground">{experienceIndex + 1} / {experiences.length}</p>
+
+          <p className="mt-3 text-center text-xs text-muted-foreground">
+            {experienceIndex + 1} / {experiences.length}
+          </p>
         </div>
 
+        {/* Favorite Games */}
+        <div className="mb-24">
+          <div className="mb-8 flex items-center justify-between gap-3">
+            <div>
+              <h2 className="font-display text-2xl text-primary">Favorite Games</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                A few worlds I enjoy exploring.
+              </p>
+            </div>
+            <Gamepad2 className="size-6 shrink-0 text-primary/70" />
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            {games.map((game, index) => (
+              <Reveal key={game.title} delay={index * 90}>
+                <article className="group glass glass-hover relative h-full overflow-hidden rounded-xl">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-primary/10">
+                    <img
+                      src={game.image}
+                      alt={`${game.title} game artwork`}
+                      loading="lazy"
+                      className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      onError={(e) => {
+                        e.currentTarget.style.opacity = "0";
+                      }}
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+
+                    <span className="absolute right-4 top-4 font-display text-sm tracking-widest text-white/70">
+                      {game.number}
+                    </span>
+
+                    <h3 className="absolute bottom-4 left-5 font-display text-2xl text-white">
+                      {game.title}
+                    </h3>
+                  </div>
+
+                  <div className="p-5">
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-primary/80">
+                      {game.genre}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {game.description}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* Honors & Achievements */}
         <div>
           <h2 className="font-display mb-8 text-2xl text-primary">Honors & Achievements</h2>
 
           {!honorsOpen ? (
-            <div className="relative flex justify-center items-start pt-8 pb-32" onClick={() => setHonorsOpen(true)}>
+            <div
+              className="relative flex justify-center items-start pt-8 pb-32 cursor-pointer"
+              onClick={() => setHonorsOpen(true)}
+            >
               {honors.map((item, index) => {
                 const isTop = index === 0;
                 const shiftY = index * 38;
                 const shiftX = (index - 2) * 16;
                 const rotate = (index - 2) * 2.8;
                 const zIndex = honors.length - index;
+
                 return (
                   <div
                     key={item.title}
-                    className="absolute w-56 h-40 rounded-xl p-4 transition-all duration-500 ease-out cursor-pointer hover:scale-[1.03]"
+                    className="absolute w-56 h-40 rounded-xl p-4 transition-all duration-500 ease-out hover:scale-[1.03]"
                     style={{
                       top: shiftY,
                       left: `calc(50% + ${shiftX}px - 112px)`,
@@ -154,40 +334,49 @@ export function Journey() {
                         : "0 10px 20px rgba(0, 0, 0, 0.2)",
                     }}
                   >
-                    <div className="flex flex-col h-full">
+                    <div className="flex h-full flex-col">
                       <div className="flex items-center gap-2">
                         <div className="logo-frame size-9 shrink-0 overflow-hidden rounded-lg">
-                          <img src={item.logo} alt={`${item.organizer} logo`} loading="lazy" className="size-full object-contain" />
+                          <img
+                            src={item.logo}
+                            alt={`${item.organizer} logo`}
+                            loading="lazy"
+                            className="size-full object-contain"
+                          />
                         </div>
                         <span className="text-xl">{item.emoji}</span>
                       </div>
-                      <p className="mt-3 font-medium text-white text-sm leading-snug">
+
+                      <p className="mt-3 text-sm font-medium leading-snug text-white">
                         {item.title}
                       </p>
                       <p className="mt-1 text-[11px] text-amber-200/80">
                         {item.organizer}
                       </p>
-                      <p className="mt-auto text-xs text-amber-200/80 font-medium">
+                      <p className="mt-auto text-xs font-medium text-amber-200/80">
                         {item.year}
                       </p>
                     </div>
                   </div>
                 );
               })}
-              <div className="pt-56 relative z-10">
-                <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-amber-300/30 backdrop-blur-sm">
-                  <Sparkles className="size-4 text-amber-300 animate-twinkle" />
-                  <span className="text-amber-200/80 text-sm font-medium">Click to reveal all ✨</span>
-                  <ChevronDown className="w-4 h-4 text-amber-200/80 animate-bounce" />
+
+              <div className="relative z-10 pt-56">
+                <div className="inline-flex items-center gap-2 rounded-full border border-amber-300/30 bg-white/5 px-5 py-2.5 backdrop-blur-sm">
+                  <Sparkles className="size-4 animate-twinkle text-amber-300" />
+                  <span className="text-sm font-medium text-amber-200/80">
+                    Click to reveal all ✨
+                  </span>
+                  <ChevronDown className="size-4 animate-bounce text-amber-200/80" />
                 </div>
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
               {honors.map((item, index) => (
                 <Reveal key={item.title} delay={index * 80}>
                   <article
-                    className="w-full h-44 rounded-xl p-4 transition-all duration-300 hover:scale-[1.05] cursor-pointer"
+                    className="h-44 w-full cursor-pointer rounded-xl p-4 transition-all duration-300 hover:scale-[1.05]"
                     style={{
                       background: "linear-gradient(135deg, rgba(167, 139, 250, 0.45), rgba(96, 165, 250, 0.35), rgba(251, 191, 36, 0.25))",
                       border: "1px solid rgba(251, 191, 36, 0.45)",
@@ -195,39 +384,47 @@ export function Journey() {
                       boxShadow: "0 10px 25px rgba(167, 139, 250, 0.25), 0 0 1px rgba(255, 255, 255, 0.3)",
                     }}
                   >
-                    <div className="flex flex-col h-full">
+                    <div className="flex h-full flex-col">
                       <div className="flex items-center gap-2">
                         <div className="logo-frame size-9 shrink-0 overflow-hidden rounded-lg">
-                          <img src={item.logo} alt={`${item.organizer} logo`} loading="lazy" className="size-full object-contain" />
+                          <img
+                            src={item.logo}
+                            alt={`${item.organizer} logo`}
+                            loading="lazy"
+                            className="size-full object-contain"
+                          />
                         </div>
                         <span className="text-xl">{item.emoji}</span>
                       </div>
-                      <p className="mt-3 font-medium text-white text-sm leading-snug">
+
+                      <p className="mt-3 text-sm font-medium leading-snug text-white">
                         {item.title}
                       </p>
                       <p className="mt-1 text-[11px] text-amber-200/80">
                         {item.organizer}
                       </p>
-                      <p className="mt-auto text-xs text-amber-200/80 font-medium">
+                      <p className="mt-auto text-xs font-medium text-amber-200/80">
                         {item.year}
                       </p>
                     </div>
                   </article>
                 </Reveal>
               ))}
-              <div className="col-span-full flex justify-center mt-4">
+
+              <div className="col-span-full mt-4 flex justify-center">
                 <button
                   onClick={() => setHonorsOpen(false)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-amber-300/30 text-amber-200/80 text-sm hover:text-amber-200 transition-colors"
+                  className="inline-flex items-center gap-2 rounded-full border border-amber-300/30 bg-white/5 px-5 py-2.5 text-sm text-amber-200/80 transition-colors hover:text-amber-200"
                 >
-                  <ChevronUp className="w-4 h-4" />
+                  <ChevronUp className="size-4" />
                   Collapse
                 </button>
               </div>
             </div>
           )}
         </div>
+
       </div>
     </section>
   );
-}
+                  }
