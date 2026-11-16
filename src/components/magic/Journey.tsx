@@ -119,7 +119,7 @@ const favoriteBooks = [
     year: "2026",
     language: "Indonesian",
     category: "Short Story Anthology",
-    cover: "/images/books/heal-cover.jpg",
+    cover: "/images/heal-cover.jpg",
     description:
       "An anthology of short stories inspired by emotional wounds, trauma, and experiences that can reflect real life.",
     comment:
@@ -132,7 +132,7 @@ const favoriteBooks = [
     year: "2016",
     language: "English / Indonesian",
     category: "Mysticism · Folklore · Witchcraft",
-    cover: "/images/books/witchcraft1.jpg",
+    cover: "/images/witchcraft1.jpg",
     description:
       "A collection of knowledge about spells, potions, and mystical magical traditions from different parts of the world.",
     comment:
