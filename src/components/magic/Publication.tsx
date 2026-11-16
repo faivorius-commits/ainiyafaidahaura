@@ -34,6 +34,7 @@ const publications: Publication[] = [
     identifier: "62-6264-2709-644",
     description:
       "A short story published as part of Festival Sastra Volume 6.",
+    cover: "/images/heal-cover.jpg",
     url: "https://qrcbn.com/check/62-6264-2709-644",
     accent: "#a855f7",
   },
@@ -46,6 +47,7 @@ const publications: Publication[] = [
     identifier: "978-81-904011-0-4",
     description:
       "A poetry anthology featuring stories and voices expressed through poetry.",
+    cover: "/images/spring-cover.jpg",
     accent: "#ec4899",
   },
 ];
