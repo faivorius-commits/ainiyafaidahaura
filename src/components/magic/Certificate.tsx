@@ -1,5 +1,5 @@
+
 import { useState } from "react";
-import { BackToArchive } from "@/components/magic/BackToArchive";
 
 const certificates = [
   {
@@ -35,7 +35,6 @@ export function Certificate() {
 
   return (
     <section className="relative min-h-screen overflow-hidden px-5 py-24">
-      <BackToArchive />
       {/* Background glow */}
       <div className="pointer-events-none absolute -left-40 top-20 size-96 rounded-full bg-primary/10 blur-[120px]" />
       <div className="pointer-events-none absolute -right-40 bottom-20 size-96 rounded-full bg-purple-500/10 blur-[120px]" />
@@ -124,4 +123,3 @@ export function Certificate() {
 }
 
 export default Certificate;
-
