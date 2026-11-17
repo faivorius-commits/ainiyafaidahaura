@@ -9,6 +9,7 @@ import {
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { Link } from "@tanstack/react-router";
+import { BackToArchive } from "@/components/magic/BackToArchive";
 
 type Project = {
   title: string;
