@@ -1,5 +1,5 @@
-
 import { useState } from "react";
+import { BackToArchive } from "@/components/magic/BackToArchive";
 
 const certificates = [
   {
