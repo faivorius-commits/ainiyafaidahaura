@@ -428,7 +428,7 @@ export function Archive() {
                   text-primary
                 "
               >
-                Ainiya
+                Faivorius
               </span>
 
               <span
