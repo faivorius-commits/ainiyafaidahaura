@@ -18,7 +18,7 @@ export const Route = createFileRoute("/poetry")({
     ],
   }),
   component: () => (
-    <PageShell>
+    <PageShell backToArchive>
       <Poetry />
     </PageShell>
   ),

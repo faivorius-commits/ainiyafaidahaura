@@ -11,6 +11,10 @@ export const Route = createFileRoute("/certificates")({
         name: "description",
         content: "Certificates and achievements.",
       },
+      { property: "og:title", content: "Certificates — Ainiya Faida Haura" },
+      { property: "og:description", content: "Certificates and achievements." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
 
@@ -19,7 +23,7 @@ export const Route = createFileRoute("/certificates")({
 
 function CertificatesPage() {
   return (
-    <PageShell>
+    <PageShell backToArchive>
       <Certificate />
     </PageShell>
   );

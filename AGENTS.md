@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Shared page navigation is configured through `PageShell` so archive child pages return to `/archive`, while other pages retain their home link.

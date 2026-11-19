@@ -1,7 +1,16 @@
 import { useRef, useState } from "react";
 import type { PointerEvent } from "react";
-import { BookOpen, Code2, FolderHeart, MailOpen } from "lucide-react";
+import { BookOpen, Code2, FolderHeart, MailOpen, Star } from "lucide-react";
 import { Reveal } from "./Reveal";
+
+type StarUpdate = {
+  date: string;
+  title: string;
+  note: string;
+};
+
+// Add personal update entries here when ready.
+const starUpdates: StarUpdate[] = [];
 
 const quickLinks = [
   {
@@ -225,7 +234,7 @@ export function Hero() {
         </Reveal>
 
         {/* QUICK LINKS */}
-        <Reveal delay={300} className="mt-8 mb-16">
+        <Reveal delay={300} className="mt-8 mb-8">
           <div
             className="orbit-carousel"
             onPointerDown={handleDown}
@@ -311,6 +320,67 @@ export function Hero() {
 
           </div>
         </Reveal>
+
+        <section
+          aria-labelledby="star-notes-title"
+          className="relative mx-auto mt-0 w-full max-w-md px-4 pb-2"
+        >
+          <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-background/25 px-6 py-6 text-center shadow-lg backdrop-blur-lg">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute left-[12%] top-[23%] text-primary/60 animate-[twinkle_3.2s_ease-in-out_infinite] motion-reduce:animate-none"
+            >
+              ✦
+            </span>
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute right-[13%] top-[27%] text-xs text-primary/50 animate-[twinkle_2.6s_ease-in-out_infinite] motion-reduce:animate-none"
+            >
+              ✧
+            </span>
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute bottom-[18%] right-[24%] text-[10px] text-primary/50 animate-[twinkle_3.8s_ease-in-out_infinite] motion-reduce:animate-none"
+            >
+              ✦
+            </span>
+
+            <Star
+              aria-hidden="true"
+              className="mx-auto mb-1 size-7 fill-primary/25 text-primary animate-[twinkle_2.8s_ease-in-out_infinite] motion-reduce:animate-none"
+            />
+            <h2
+              id="star-notes-title"
+              className="font-display text-xl text-foreground"
+            >
+              Star Notes
+            </h2>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Little moments from my ever-changing universe.
+            </p>
+
+            {starUpdates.length > 0 && (
+              <div className="mt-5 grid gap-4 text-left">
+                {starUpdates.map((update) => (
+                  <article
+                    key={`${update.date}-${update.title}`}
+                    className="border-t border-primary/15 pt-4"
+                  >
+                    <p className="text-[10px] uppercase text-primary/80">
+                      {update.date}
+                    </p>
+                    <h3 className="mt-1 font-display text-lg text-foreground">
+                      {update.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {update.note}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
 
       </div>
     </section>

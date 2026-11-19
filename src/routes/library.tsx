@@ -20,7 +20,7 @@ export const Route = createFileRoute("/library")({
     ],
   }),
   component: () => (
-    <PageShell>
+    <PageShell backToArchive>
       <Library />
     </PageShell>
   ),

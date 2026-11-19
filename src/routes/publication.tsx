@@ -12,6 +12,8 @@ export const Route = createFileRoute("/publication")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: PublicationPage,
@@ -19,7 +21,7 @@ export const Route = createFileRoute("/publication")({
 
 function PublicationPage() {
   return (
-    <PageShell>
+    <PageShell backToArchive>
       <Publication />
     </PageShell>
   );

@@ -12,6 +12,10 @@ export const Route = createFileRoute("/research-analysis")({
     meta: [
       { title },
       { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ResearchAnalysisPage,
@@ -19,7 +23,7 @@ export const Route = createFileRoute("/research-analysis")({
 
 function ResearchAnalysisPage() {
   return (
-    <PageShell>
+    <PageShell backToArchive>
       <main className="mx-auto min-h-screen max-w-5xl px-5 py-20">
         <p className="mb-4 text-xs uppercase tracking-[0.3em] text-primary">
           Research & Analysis
