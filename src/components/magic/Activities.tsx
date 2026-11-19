@@ -1,40 +1,205 @@
+
 import {
   Users,
   Handshake,
   MonitorPlay,
   Megaphone,
   CalendarDays,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+import { useRef } from "react";
 import { SectionTitle } from "./SectionTitle";
 import { Reveal } from "./Reveal";
 
 const categories = [
   {
     title: "Forums & Conferences",
-    description: "Model United Nations, youth forums, and international conferences.",
+    description:
+      "Model United Nations, youth forums, and international conferences.",
     icon: Users,
+    activities: [
+      {
+        title: "World Online MUN",
+        year: "2026",
+        role: "Delegate",
+        image: "/images/doc-2.jpg",
+      },
+      {
+        title: "Indonesia–Malaysia Youth Forum",
+        year: "2026",
+        role: "Youth Forum Participant",
+        image: "/images/doc-3.jpg",
+      },
+    ],
   },
   {
     title: "Volunteering",
-    description: "Social contributions, volunteering, and community involvement.",
+    description:
+      "Social contributions, volunteering, and community involvement.",
     icon: Handshake,
+    activities: [
+      {
+        title: "YouthFunded",
+        year: "2026",
+        role: "Youth Chapter Founder",
+        image: "/images/doc-4.jpg",
+      },
+      {
+        title: "Batikara",
+        year: "2026",
+        role: "Content Maker",
+        image: "/images/doc-3.jpg",
+      },
+    ],
   },
   {
     title: "Webinars & Workshops",
-    description: "Learning experiences, workshops, and professional development.",
+    description:
+      "Learning experiences, workshops, and professional development.",
     icon: MonitorPlay,
+    activities: [
+      {
+        title: "ASEAN Cyber School",
+        year: "2026",
+        role: "Participant",
+        image: "/images/doc-5.jpg",
+      },
+      {
+        title: "Generation Girl Tangerang",
+        year: "2026",
+        role: "Best Rookies in Cybersecurity",
+        image: "/images/doc-6.jpg",
+      },
+      {
+        title: "ASEAN AI Career Readiness",
+        year: "2026",
+        role: "Program Participant",
+        image: "/images/doc-1.jpg",
+      },
+    ],
   },
   {
     title: "Campaigns & Advocacy",
-    description: "Initiatives, awareness campaigns, and advocacy projects.",
+    description:
+      "Initiatives, awareness campaigns, and advocacy projects.",
     icon: Megaphone,
+    activities: [
+      {
+        title: "Our Isyarat",
+        year: "2026",
+        role: "Campaign Participant",
+        image: "/images/doc-2.jpg",
+      },
+    ],
   },
   {
     title: "Youth Programs",
-    description: "Youth leadership programs, fellowships, and development initiatives.",
+    description:
+      "Youth leadership programs, fellowships, and development initiatives.",
     icon: CalendarDays,
+    activities: [
+      {
+        title: "UNA Indonesia IYD",
+        year: "2026",
+        role: "Youth Program Participant",
+        image: "/images/doc-4.jpg",
+      },
+      {
+        title: "IYC 14",
+        year: "2026",
+        role: "Online Delegate",
+        image: "/images/doc-5.jpg",
+      },
+    ],
   },
 ];
+
+function ActivityCarousel({
+  activities,
+}: {
+  activities: (typeof categories)[number]["activities"];
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -280 : 280,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <div className="mt-6">
+      <div className="mb-3 flex items-center justify-between">
+        <span className="text-xs text-muted-foreground">
+          {activities.length} experiences
+        </span>
+
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => scroll("left")}
+            aria-label="Scroll activities left"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/20 text-muted-foreground transition hover:border-primary/50 hover:text-primary"
+          >
+            <ChevronLeft size={17} />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scroll("right")}
+            aria-label="Scroll activities right"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/20 text-muted-foreground transition hover:border-primary/50 hover:text-primary"
+          >
+            <ChevronRight size={17} />
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory"
+        style={{
+          scrollbarWidth: "none",
+          WebkitOverflowScrolling: "touch",
+        }}
+      >
+        {activities.map((activity) => (
+          <article
+            key={activity.title}
+            className="w-[220px] min-w-[220px] snap-start overflow-hidden rounded-xl border border-primary/15 bg-background/60 transition hover:border-primary/40 sm:w-[240px] sm:min-w-[240px]"
+          >
+            <div className="aspect-[16/10] overflow-hidden bg-primary/5">
+              <img
+                src={activity.image}
+                alt={activity.title}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-500 hover:scale-105"
+              />
+            </div>
+
+            <div className="p-4">
+              <span className="text-xs tracking-wider text-primary">
+                {activity.year}
+              </span>
+
+              <h4 className="mt-1 line-clamp-2 text-sm font-semibold">
+                {activity.title}
+              </h4>
+
+              <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+                {activity.role}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function Activities() {
   return (
@@ -65,6 +230,8 @@ export function Activities() {
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {category.description}
                   </p>
+
+                  <ActivityCarousel activities={category.activities} />
                 </div>
               </Reveal>
             );
