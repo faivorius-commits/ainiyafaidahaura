@@ -11,7 +11,7 @@ const certificates = [
     image: "/images/certificate-bestrookiesincybersecurity.jpg",
   },
   {
-    title: "Position Paper Runner Up",
+    title: "Position Paper Runner Up — GYDMUN WOMUN 2026",
     image: "/images/certificate-position-paper-runner-up.jpg",
   },
   {
@@ -27,7 +27,7 @@ const certificates = [
     image: "/images/certificate-national-inspirational-writer.jpg",
   },
   {
-    title: "National First-Place Winner",
+    title: "National First-Place Winner — National Writing Event",
     image: "/images/certificate-national-first-place-winner.jpg",
   },
 ];
