@@ -15,6 +15,10 @@ const certificates = [
     image: "/images/certificate-position-paper-runner-up.jpg",
   },
   {
+    title: "3rd Place in the FOBIO 2026 – National Biology Photography Competition",
+    image: "/images/certificate-fobio-2026.jpg",
+  },
+  {
     title: "AI Career Readiness Training",
     image: "/images/certificate-ai-career-readiness.jpg",
   },
