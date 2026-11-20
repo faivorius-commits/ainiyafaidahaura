@@ -28,7 +28,7 @@ const categories = [
       {
         title: "Indonesia–Malaysia Youth Forum",
         year: "2026",
-        role: "Youth Forum Participant",
+        role: "Indonesia Participant",
         image: "/images/doc-3.jpg",
       },
     ],
@@ -60,10 +60,10 @@ const categories = [
     icon: MonitorPlay,
     activities: [
       {
-        title: "ASEAN Cyber School",
+        title: "ASEAN Cybersecurity School x HCSS",
         year: "2026",
         role: "Participant",
-        image: "/images/doc-5.jpg",
+        image: "/images/CSASEAN26.jpg",
       },
       {
         title: "Generation Girl Tangerang",
