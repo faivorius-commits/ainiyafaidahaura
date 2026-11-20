@@ -1,9 +1,7 @@
-
 import {
   Users,
   Handshake,
   MonitorPlay,
-  Megaphone,
   CalendarDays,
   ChevronLeft,
   ChevronRight,
@@ -28,7 +26,7 @@ const categories = [
       {
         title: "Indonesia–Malaysia Youth Forum",
         year: "2026",
-        role: "Indonesia Participant",
+        role: "Participant representing Indonesia",
         image: "/images/doc-3.jpg",
       },
     ],
@@ -40,13 +38,13 @@ const categories = [
     icon: Handshake,
     activities: [
       {
-        title: "2000s Gateaway To Advocacy Campaign ",
+        title: "2000s Gateaway to Advocacy Campaign",
         year: "2026",
         role: "Campaign Volunteer",
         image: "/images/GTA-Participant.jpg",
       },
       {
-        title: "Advocare Community Support Drive 2206",
+        title: "Advocare Community Support Drive 2026",
         year: "2026",
         role: "Donator",
         image: "/images/advocare-donator-acsd2026.jpg",
@@ -54,7 +52,7 @@ const categories = [
     ],
   },
   {
-    title: "Training Program & School & Workshops",
+    title: "Training, Schools & Workshops",
     description:
       "Learning experiences, workshops, and professional development.",
     icon: MonitorPlay,
@@ -79,8 +77,7 @@ const categories = [
       },
     ],
   },
-
-  { 
+  {
     title: "Youth Programs",
     description:
       "Youth leadership programs, fellowships, and development initiatives.",
@@ -88,7 +85,7 @@ const categories = [
     activities: [
       {
         title: "FOBIO 2026 (National Biology Photography Competition)",
-        year: "2026"
+        year: "2026",
         role: "Participant",
         image: "/images/FOBIO2026.jpg",
       },
