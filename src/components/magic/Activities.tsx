@@ -18,7 +18,7 @@ const categories = [
     icon: Users,
     activities: [
       {
-        title: "World Online MUN || UNHCR",
+        title: "World Online MUN - GYDMUN",
         year: "2026",
         role: "Delegate of Lebanon",
         image: "/images/WOMUN-GYDMUN-Lebanon-UNHCR.jpg",
@@ -52,13 +52,13 @@ const categories = [
     icon: MonitorPlay,
     activities: [
       {
-        title: "ASEAN Cybersecurity School x HCSS",
+        title: "ASEAN Cybersecurity School x HCSS x Binus University 2026",
         year: "2026",
         role: "Participant",
         image: "/images/CSASEAN26.jpg",
       },
       {
-        title: "Fundamental of Cybersecurity",
+        title: "Fundamental of Cybersecurity Workshop - GenG Tangerang",
         year: "2026",
         role: "Participant & Awardee",
         image: "/images/cyberworkshop-GenG.jpg",
@@ -72,13 +72,13 @@ const categories = [
     icon: CalendarDays,
     activities: [
       {
-        title: "FOBIO 2026 (National Biology Photography Competition)",
+        title: "FOBIO 2026 (National Biology Photography Competition) - HIMAPBIOUKI",
         year: "2026",
         role: "Participant & Awardee",
         image: "/images/FOBIO2026.jpg",
       },
       {
-        title: "UNA Indonesia IYD",
+        title: "International Youth Day- UNA Indonesia",
         year: "2026",
         role: "Youth Program Participant",
         image: "/images/UNAI-IYD2026.jpg",
