@@ -22,8 +22,8 @@ const categories = [
       {
         title: "World Online MUN",
         year: "2026",
-        role: "Delegate",
-        image: "/images/doc-2.jpg",
+        role: "Delegate of Lebanon",
+        image: "/images/WOMUN-GYDMUN-Lebanon-UNHCR.jpg",
       },
       {
         title: "Indonesia–Malaysia Youth Forum",
