@@ -63,10 +63,16 @@ const categories = [
         role: "Participant & Awardee",
         image: "/images/cyberworkshop-GenG.jpg",
       },
+         {
+        title: "CEO Academy 2026 - ousean",
+        year: "2026",
+        role: "Participant & Awardee",
+        image: "/images/ceo-academy-2026.jpg",
+      },
     ],
   },
   {
-    title: "Youth Programs",
+    title: "Youth Programs & Competition",
     description:
       "Youth leadership programs, fellowships, and development initiatives.",
     icon: CalendarDays,
