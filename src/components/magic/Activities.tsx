@@ -40,16 +40,10 @@ const categories = [
     icon: Handshake,
     activities: [
       {
-        title: "ECOCRAFT",
+        title: "YouthFunded",
         year: "2026",
-        role: "Publication, Design, and Documentation Team",
+        role: "Youth Chapter Founder",
         image: "/images/doc-4.jpg",
-      },
-      {
-        title: "Batikara",
-        year: "2026",
-        role: "Content Maker",
-        image: "/images/doc-3.jpg",
       },
     ],
   },
@@ -91,6 +85,12 @@ const categories = [
         role: "Campaign Participant",
         image: "/images/doc-2.jpg",
       },
+      {
+        title: "Batikara",
+        year: "2026",
+        role: "Creative & Promotional Contribution",
+        image: "/images/doc-3.jpg",
+      },
     ],
   },
   {
@@ -115,10 +115,12 @@ const categories = [
   },
 ];
 
+type Activity = (typeof categories)[number]["activities"][number];
+
 function ActivityCarousel({
   activities,
 }: {
-  activities: (typeof categories)[number]["activities"];
+  activities: Activity[];
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -126,42 +128,42 @@ function ActivityCarousel({
     if (!scrollRef.current) return;
 
     scrollRef.current.scrollBy({
-      left: direction === "left" ? -280 : 280,
+      left: direction === "left" ? -220 : 220,
       behavior: "smooth",
     });
   };
 
   return (
-    <div className="mt-6">
+    <div className="mt-5 w-full min-w-0">
       <div className="mb-3 flex items-center justify-between">
-        <span className="text-xs text-muted-foreground">
+        <span className="text-[11px] text-muted-foreground">
           {activities.length} experiences
         </span>
 
-        <div className="flex gap-2">
+        <div className="flex gap-1.5">
           <button
             type="button"
             onClick={() => scroll("left")}
-            aria-label="Scroll activities left"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/20 text-muted-foreground transition hover:border-primary/50 hover:text-primary"
+            aria-label="Previous activity"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-primary/20 text-muted-foreground transition hover:border-primary/50 hover:text-primary"
           >
-            <ChevronLeft size={17} />
+            <ChevronLeft size={15} />
           </button>
 
           <button
             type="button"
             onClick={() => scroll("right")}
-            aria-label="Scroll activities right"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/20 text-muted-foreground transition hover:border-primary/50 hover:text-primary"
+            aria-label="Next activity"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-primary/20 text-muted-foreground transition hover:border-primary/50 hover:text-primary"
           >
-            <ChevronRight size={17} />
+            <ChevronRight size={15} />
           </button>
         </div>
       </div>
 
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory"
+        className="flex w-full min-w-0 gap-3 overflow-x-auto overscroll-x-contain snap-x snap-mandatory pb-2"
         style={{
           scrollbarWidth: "none",
           WebkitOverflowScrolling: "touch",
@@ -170,9 +172,9 @@ function ActivityCarousel({
         {activities.map((activity) => (
           <article
             key={activity.title}
-            className="w-[220px] min-w-[220px] snap-start overflow-hidden rounded-xl border border-primary/15 bg-background/60 transition hover:border-primary/40 sm:w-[240px] sm:min-w-[240px]"
+            className="w-[78%] min-w-[78%] max-w-[230px] shrink-0 snap-start overflow-hidden rounded-xl border border-primary/15 bg-background/60 transition hover:border-primary/40"
           >
-            <div className="aspect-[16/10] overflow-hidden bg-primary/5">
+            <div className="aspect-[16/9] w-full overflow-hidden bg-primary/5">
               <img
                 src={activity.image}
                 alt={activity.title}
@@ -181,53 +183,59 @@ function ActivityCarousel({
               />
             </div>
 
-            <div className="p-4">
-              <span className="text-xs tracking-wider text-primary">
+            <div className="p-3">
+              <span className="text-[10px] tracking-wider text-primary">
                 {activity.year}
               </span>
 
-              <h4 className="mt-1 line-clamp-2 text-sm font-semibold">
+              <h4 className="mt-1 line-clamp-2 text-sm font-semibold leading-snug">
                 {activity.title}
               </h4>
 
-              <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+              <p className="mt-1.5 line-clamp-2 text-[11px] leading-relaxed text-muted-foreground">
                 {activity.role}
               </p>
             </div>
           </article>
         ))}
       </div>
+
+      {activities.length > 1 && (
+        <p className="mt-1 text-[10px] text-muted-foreground/60">
+          Swipe to explore more →
+        </p>
+      )}
     </div>
   );
 }
 
 export function Activities() {
   return (
-    <section className="relative overflow-hidden px-5 py-24">
+    <section className="relative w-full max-w-full overflow-hidden px-4 py-16 sm:px-5 sm:py-24">
       <div className="pointer-events-none absolute -left-40 top-1/3 h-80 w-80 rounded-full bg-violet-500/10 blur-[100px]" />
 
-      <div className="relative mx-auto max-w-5xl">
+      <div className="relative mx-auto w-full max-w-5xl min-w-0">
         <SectionTitle
           title="Activities"
           subtitle="A collection of experiences, initiatives, and contributions."
         />
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        <div className="mt-9 grid w-full min-w-0 grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5">
           {categories.map((category, index) => {
             const Icon = category.icon;
 
             return (
               <Reveal key={category.title} delay={index * 100}>
-                <div className="group h-full rounded-2xl border border-primary/15 bg-card/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Icon size={23} />
+                <div className="group w-full min-w-0 overflow-hidden rounded-2xl border border-primary/15 bg-card/50 p-4 transition-all duration-300 hover:border-primary/40 sm:p-6">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary sm:mb-5 sm:h-12 sm:w-12">
+                    <Icon size={21} />
                   </div>
 
-                  <h3 className="text-lg font-semibold">
+                  <h3 className="text-base font-semibold sm:text-lg">
                     {category.title}
                   </h3>
 
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground sm:text-sm">
                     {category.description}
                   </p>
 
