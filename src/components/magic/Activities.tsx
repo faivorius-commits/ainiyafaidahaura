@@ -29,6 +29,12 @@ const categories = [
         role: "Participant representing Indonesia",
         image: "/images/doc-3.jpg",
       },
+      {
+        title: "IYC 14",
+        year: "2026",
+        role: "Delegate",
+        image: "/images/iyc-14.jpg",
+      },
     ],
   },
   {
@@ -64,10 +70,10 @@ const categories = [
         image: "/images/CSASEAN26.jpg",
       },
       {
-        title: "Generation Girl Tangerang",
+        title: "Fundamental of Cybersecurity",
         year: "2026",
-        role: "Best Rookies in Cybersecurity",
-        image: "/images/doc-6.jpg",
+        role: "Participant & Awardee",
+        image: "/images/certificate-bestrookiesincybersecurity-laptop.jpg",
       },
       {
         title: "ASEAN AI Career Readiness",
@@ -86,7 +92,7 @@ const categories = [
       {
         title: "FOBIO 2026 (National Biology Photography Competition)",
         year: "2026",
-        role: "Participant",
+        role: "Participant & Awardee",
         image: "/images/FOBIO2026.jpg",
       },
       {
@@ -94,12 +100,6 @@ const categories = [
         year: "2026",
         role: "Youth Program Participant",
         image: "/images/UNAI-IYD2026.jpg",
-      },
-      {
-        title: "IYC 14",
-        year: "2026",
-        role: "Online Delegate",
-        image: "/images/doc-5.jpg",
       },
     ],
   },
