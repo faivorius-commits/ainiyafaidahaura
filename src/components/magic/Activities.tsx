@@ -54,7 +54,7 @@ const categories = [
     ],
   },
   {
-    title: "Webinars & Workshops",
+    title: "Training Program & School & Workshops",
     description:
       "Learning experiences, workshops, and professional development.",
     icon: MonitorPlay,
