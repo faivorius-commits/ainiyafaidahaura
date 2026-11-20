@@ -61,7 +61,7 @@ const categories = [
         title: "Fundamental of Cybersecurity",
         year: "2026",
         role: "Participant & Awardee",
-        image: "/images/doc-4.jpg",
+        image: "/images/cyberworkshop-GenG.jpg",
       },
     ],
   },
