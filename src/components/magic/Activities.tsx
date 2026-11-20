@@ -93,7 +93,7 @@ const categories = [
         title: "UNA Indonesia IYD",
         year: "2026",
         role: "Youth Program Participant",
-        image: "/images/doc-4.jpg",
+        image: "/images/UNAI-IYD2026.jpg",
       },
       {
         title: "IYC 14",
