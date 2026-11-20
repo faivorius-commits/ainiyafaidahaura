@@ -87,6 +87,12 @@ const categories = [
     icon: CalendarDays,
     activities: [
       {
+        title: "FOBIO 2026 (National Biology Photography Competition)",
+        year: "2026"
+        role: "Participant",
+        image: "/images/FOBIO2026.jpg",
+      },
+      {
         title: "UNA Indonesia IYD",
         year: "2026",
         role: "Youth Program Participant",
