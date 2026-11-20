@@ -75,31 +75,12 @@ const categories = [
         title: "ASEAN AI Career Readiness",
         year: "2026",
         role: "Program Participant",
-        image: "/images/doc-1.jpg",
+        image: "/images/ADAASEANCAREER.jpg",
       },
     ],
   },
-  {
-    title: "Campaigns & Advocacy",
-    description:
-      "Initiatives, awareness campaigns, and advocacy projects.",
-    icon: Megaphone,
-    activities: [
-      {
-        title: "Our Isyarat",
-        year: "2026",
-        role: "Campaign Participant",
-        image: "/images/doc-2.jpg",
-      },
-      {
-        title: "Batikara",
-        year: "2026",
-        role: "Creative & Promotional Contribution",
-        image: "/images/doc-3.jpg",
-      },
-    ],
-  },
-  {
+
+  { 
     title: "Youth Programs",
     description:
       "Youth leadership programs, fellowships, and development initiatives.",
