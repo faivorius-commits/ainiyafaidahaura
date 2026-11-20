@@ -18,22 +18,10 @@ const categories = [
     icon: Users,
     activities: [
       {
-        title: "World Online MUN",
+        title: "World Online MUN || UNHCR",
         year: "2026",
         role: "Delegate of Lebanon",
         image: "/images/WOMUN-GYDMUN-Lebanon-UNHCR.jpg",
-      },
-      {
-        title: "Indonesia–Malaysia Youth Forum",
-        year: "2026",
-        role: "Participant representing Indonesia",
-        image: "/images/doc-3.jpg",
-      },
-      {
-        title: "IYC 14",
-        year: "2026",
-        role: "Delegate",
-        image: "/images/iyc-14.jpg",
       },
     ],
   },
@@ -73,13 +61,7 @@ const categories = [
         title: "Fundamental of Cybersecurity",
         year: "2026",
         role: "Participant & Awardee",
-        image: "/images/certificate-bestrookiesincybersecurity-laptop.jpg",
-      },
-      {
-        title: "ASEAN AI Career Readiness",
-        year: "2026",
-        role: "Program Participant",
-        image: "/images/ADAASEANCAREER.jpg",
+        image: "/images/doc-4.jpg",
       },
     ],
   },
