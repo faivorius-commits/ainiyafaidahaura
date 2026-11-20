@@ -40,10 +40,16 @@ const categories = [
     icon: Handshake,
     activities: [
       {
-        title: "YouthFunded",
+        title: "2000s Gateaway To Advocacy Campaign ",
         year: "2026",
-        role: "Youth Chapter Founder",
-        image: "/images/doc-4.jpg",
+        role: "Campaign Volunteer",
+        image: "/images/GTA-Participant.jpg",
+      },
+      {
+        title: "Advocare Community Support Drive 2206",
+        year: "2026",
+        role: "Donator",
+        image: "/images/advocare-donator-acsd2026.jpg",
       },
     ],
   },
