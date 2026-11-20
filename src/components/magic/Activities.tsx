@@ -40,9 +40,9 @@ const categories = [
     icon: Handshake,
     activities: [
       {
-        title: "YouthFunded",
+        title: "ECOCRAFT",
         year: "2026",
-        role: "Youth Chapter Founder",
+        role: "Publication, Design, and Documentation Team",
         image: "/images/doc-4.jpg",
       },
       {
