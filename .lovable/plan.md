@@ -1,13 +1,14 @@
-# Mobile-style application gallery
+# Pieces of Story on My Journey
 
 ## What will change
-- Replace the large application cards with a compact icon grid inspired by a phone home screen.
-- Show each application name below its icon.
-- Open a focused detail pop-up when an icon is selected, containing the larger preview image, description, and visit link.
-- Keep the existing magical celestial styling and make the layout comfortable on mobile and desktop.
+- Add a new editorial photo composition beneath the My Journey introduction and Featured Highlights.
+- Provide 12 manually editable entries with empty image/content fields and individually defined positions, sizes, aspect ratios, and rotations.
+- Open each photo slot in an accessible story viewer with image, optional details, close control, and previous/next navigation.
+- Recompose the collection for phones with large, staggered photo slots and no title overlap.
+- Preserve all existing Journey sections and visual identity.
 
 ## Technical details
-- Reuse the existing local images in `public/images` so deployment remains self-contained.
-- Use the existing dialog and button controls for accessible keyboard, focus, and close behavior.
-- Add page-specific sharing metadata for the Website / Apps page.
-- Verify both mobile and desktop layouts after implementation.
+- Implement a reusable `PiecesOfStory.tsx` using the existing Button and Dialog components.
+- Keep the 12-entry data array in that component for direct source editing.
+- Add scoped, token-based styles in `src/styles.css`; no route or dependency changes.
+- Verify TypeScript/build output and inspect desktop and mobile layouts in the preview.
