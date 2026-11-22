@@ -5,7 +5,7 @@ import {
   CalendarDays,
   ChevronLeft,
   ChevronRight,
-} from "lucide-react";
+} from "lucide-react";c
 import { useRef } from "react";
 import { SectionTitle } from "./SectionTitle";
 import { Reveal } from "./Reveal";
@@ -22,6 +22,12 @@ const categories = [
         year: "2026",
         role: "Delegate of Lebanon",
         image: "/images/WOMUN-GYDMUN-Lebanon-UNHCR.jpg",
+      },
+      {
+        title: "Indonesia Malaysia Youth Forum 2026",
+        year: "2026",
+        role: "Participant",
+        image: "/images/imyf-2026.jpg",
       },
     ],
   },
