@@ -5,7 +5,7 @@ import {
   CalendarDays,
   ChevronLeft,
   ChevronRight,
-} from "lucide-react";c
+} from "lucide-react";
 import { useRef } from "react";
 import { SectionTitle } from "./SectionTitle";
 import { Reveal } from "./Reveal";
