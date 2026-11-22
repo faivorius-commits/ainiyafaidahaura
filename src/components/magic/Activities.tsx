@@ -32,6 +32,24 @@ const categories = [
     ],
   },
   {
+    title: "Organizational Memberships & Committees",
+    description:
+      "Social contributions, volunteering, and community involvement.",
+    icon: Membership,
+    activities: [
+      {
+        title: "BATIKARA 2026",
+        year: "2026",
+        role: "Content Maker",
+        image: "/images/GTA-Participant.jpg",
+      },
+      {
+        title: "ECOCRAFT 2026",
+        year: "2026",
+        role: "Publication, Design, and Documentation Team",
+        image: "/images/advocare-donator-acsd2026.jpg",
+      },
+  {
     title: "Volunteering",
     description:
       "Social contributions, volunteering, and community involvement.",
