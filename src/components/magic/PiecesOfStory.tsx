@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useState, type CSSProperties } from "react";
 import { ArrowLeft, ArrowRight, ImagePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +18,7 @@ type StoryLayout = {
   mobileAspectRatio: string;
   mobileAlignment: "flex-start" | "flex-end" | "center";
   mobileRotation: string;
+  mobileOrder: number;
 };
 
 type StoryPiece = {
@@ -32,7 +33,7 @@ type StoryPiece = {
   layout: StoryLayout;
 };
 
-// Fill these entries directly with local image paths and story details.
+// Edit this single array to add local image paths and story details.
 export const piecesOfStory: StoryPiece[] = [
   {
     id: "piece-01",
@@ -43,14 +44,15 @@ export const piecesOfStory: StoryPiece[] = [
     reflection: "",
     layout: {
       left: "2%",
-      top: "5%",
-      width: "18%",
-      aspectRatio: "1.3 / 1",
+      top: "2%",
+      width: "16%",
+      aspectRatio: "1.2 / 1",
       rotation: "-3deg",
       mobileWidth: "76%",
       mobileAspectRatio: "1.2 / 1",
       mobileAlignment: "flex-start",
       mobileRotation: "-1.5deg",
+      mobileOrder: 1,
     },
   },
   {
@@ -61,15 +63,16 @@ export const piecesOfStory: StoryPiece[] = [
     story: "",
     reflection: "",
     layout: {
-      left: "27%",
-      top: "4%",
-      width: "13%",
+      left: "22%",
+      top: "1%",
+      width: "14%",
       aspectRatio: "1 / 1",
       rotation: "2deg",
       mobileWidth: "68%",
       mobileAspectRatio: "1 / 1",
       mobileAlignment: "flex-end",
       mobileRotation: "1deg",
+      mobileOrder: 2,
     },
   },
   {
@@ -80,15 +83,16 @@ export const piecesOfStory: StoryPiece[] = [
     story: "",
     reflection: "",
     layout: {
-      left: "75%",
-      top: "3%",
-      width: "19%",
-      aspectRatio: "0.9 / 1",
+      left: "81%",
+      top: "2%",
+      width: "17%",
+      aspectRatio: "0.95 / 1",
       rotation: "3deg",
       mobileWidth: "82%",
       mobileAspectRatio: "0.95 / 1",
       mobileAlignment: "flex-start",
       mobileRotation: "2deg",
+      mobileOrder: 3,
     },
   },
   {
@@ -100,7 +104,7 @@ export const piecesOfStory: StoryPiece[] = [
     reflection: "",
     layout: {
       left: "85%",
-      top: "35%",
+      top: "40%",
       width: "13%",
       aspectRatio: "1.2 / 1",
       rotation: "-2deg",
@@ -108,6 +112,7 @@ export const piecesOfStory: StoryPiece[] = [
       mobileAspectRatio: "1.25 / 1",
       mobileAlignment: "flex-end",
       mobileRotation: "-1deg",
+      mobileOrder: 4,
     },
   },
   {
@@ -119,7 +124,7 @@ export const piecesOfStory: StoryPiece[] = [
     reflection: "",
     layout: {
       left: "76%",
-      top: "70%",
+      top: "74%",
       width: "19%",
       aspectRatio: "1.35 / 1",
       rotation: "2.5deg",
@@ -127,6 +132,7 @@ export const piecesOfStory: StoryPiece[] = [
       mobileAspectRatio: "1.3 / 1",
       mobileAlignment: "flex-start",
       mobileRotation: "1.5deg",
+      mobileOrder: 5,
     },
   },
   {
@@ -137,8 +143,8 @@ export const piecesOfStory: StoryPiece[] = [
     story: "",
     reflection: "",
     layout: {
-      left: "54%",
-      top: "82%",
+      left: "55%",
+      top: "84%",
       width: "14%",
       aspectRatio: "1 / 1",
       rotation: "-2deg",
@@ -146,6 +152,7 @@ export const piecesOfStory: StoryPiece[] = [
       mobileAspectRatio: "1 / 1",
       mobileAlignment: "flex-end",
       mobileRotation: "-1.5deg",
+      mobileOrder: 6,
     },
   },
   {
@@ -165,6 +172,7 @@ export const piecesOfStory: StoryPiece[] = [
       mobileAspectRatio: "1.4 / 1",
       mobileAlignment: "flex-start",
       mobileRotation: "1deg",
+      mobileOrder: 8,
     },
   },
   {
@@ -175,8 +183,8 @@ export const piecesOfStory: StoryPiece[] = [
     story: "",
     reflection: "",
     layout: {
-      left: "3%",
-      top: "67%",
+      left: "2%",
+      top: "72%",
       width: "17%",
       aspectRatio: "0.85 / 1",
       rotation: "-3deg",
@@ -184,6 +192,7 @@ export const piecesOfStory: StoryPiece[] = [
       mobileAspectRatio: "0.9 / 1",
       mobileAlignment: "flex-end",
       mobileRotation: "-2deg",
+      mobileOrder: 9,
     },
   },
   {
@@ -196,13 +205,14 @@ export const piecesOfStory: StoryPiece[] = [
     layout: {
       left: "1%",
       top: "40%",
-      width: "14%",
+      width: "15%",
       aspectRatio: "1.3 / 1",
       rotation: "2deg",
       mobileWidth: "74%",
       mobileAspectRatio: "1.25 / 1",
       mobileAlignment: "flex-start",
       mobileRotation: "1deg",
+      mobileOrder: 10,
     },
   },
   {
@@ -213,7 +223,7 @@ export const piecesOfStory: StoryPiece[] = [
     story: "",
     reflection: "",
     layout: {
-      left: "20%",
+      left: "18%",
       top: "22%",
       width: "16%",
       aspectRatio: "1.4 / 1",
@@ -222,6 +232,7 @@ export const piecesOfStory: StoryPiece[] = [
       mobileAspectRatio: "1.45 / 1",
       mobileAlignment: "flex-end",
       mobileRotation: "-1.5deg",
+      mobileOrder: 11,
     },
   },
   {
@@ -232,15 +243,16 @@ export const piecesOfStory: StoryPiece[] = [
     story: "",
     reflection: "",
     layout: {
-      left: "68%",
+      left: "69%",
       top: "24%",
-      width: "14%",
+      width: "15%",
       aspectRatio: "1.2 / 1",
       rotation: "2deg",
       mobileWidth: "70%",
       mobileAspectRatio: "1.2 / 1",
       mobileAlignment: "flex-start",
       mobileRotation: "1.5deg",
+      mobileOrder: 12,
     },
   },
   {
@@ -251,8 +263,8 @@ export const piecesOfStory: StoryPiece[] = [
     story: "",
     reflection: "",
     layout: {
-      left: "44%",
-      top: "4%",
+      left: "43%",
+      top: "2%",
       width: "14%",
       aspectRatio: "0.9 / 1",
       rotation: "-1.5deg",
@@ -260,6 +272,7 @@ export const piecesOfStory: StoryPiece[] = [
       mobileAspectRatio: "0.95 / 1",
       mobileAlignment: "flex-end",
       mobileRotation: "-1deg",
+      mobileOrder: 13,
     },
   },
 ];
@@ -274,6 +287,7 @@ type PieceStyle = CSSProperties & {
   "--piece-mobile-aspect": string;
   "--piece-mobile-align": string;
   "--piece-mobile-rotation": string;
+  "--piece-mobile-order": number;
 };
 
 function getPieceStyle(layout: StoryLayout): PieceStyle {
@@ -287,6 +301,7 @@ function getPieceStyle(layout: StoryLayout): PieceStyle {
     "--piece-mobile-aspect": layout.mobileAspectRatio,
     "--piece-mobile-align": layout.mobileAlignment,
     "--piece-mobile-rotation": layout.mobileRotation,
+    "--piece-mobile-order": layout.mobileOrder,
   };
 }
 
@@ -298,12 +313,12 @@ export function PiecesOfStory() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const activePiece = activeIndex === null ? undefined : piecesOfStory[activeIndex];
 
-  const moveStory = (direction: -1 | 1) => {
+  const moveStory = useCallback((direction: -1 | 1) => {
     setActiveIndex((current) => {
       if (current === null) return null;
       return (current + direction + piecesOfStory.length) % piecesOfStory.length;
     });
-  };
+  }, []);
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -320,7 +335,7 @@ export function PiecesOfStory() {
 
     window.addEventListener("keydown", handleArrowKeys);
     return () => window.removeEventListener("keydown", handleArrowKeys);
-  }, [activeIndex]);
+  }, [activeIndex, moveStory]);
 
   return (
     <section className="pieces-story-section" aria-labelledby="pieces-story-heading">
@@ -335,6 +350,7 @@ export function PiecesOfStory() {
             type="button"
             variant="ghost"
             aria-label={piece.title ? `Open ${piece.title}` : `Open story slot ${formatSlot(index)}`}
+            aria-haspopup="dialog"
             className="pieces-story-photo"
             style={getPieceStyle(piece.layout)}
             onClick={() => setActiveIndex(index)}
@@ -366,7 +382,7 @@ export function PiecesOfStory() {
       >
         {activePiece && activeIndex !== null && (
           <DialogContent className="pieces-story-dialog">
-            <div className="pieces-story-viewer">
+            <div key={activePiece.id} className="pieces-story-viewer">
               <div className="pieces-story-viewer-image">
                 {activePiece.imagePath ? (
                   <img
@@ -419,7 +435,7 @@ export function PiecesOfStory() {
                     <ArrowLeft />
                   </Button>
                   <span aria-live="polite">
-                    {formatSlot(activeIndex)} <span aria-hidden="true">/</span> {formatSlot(piecesOfStory.length - 1)}
+                    {formatSlot(activeIndex + 1)} <span aria-hidden="true">/</span> {formatSlot(piecesOfStory.length)}
                   </span>
                   <Button
                     type="button"

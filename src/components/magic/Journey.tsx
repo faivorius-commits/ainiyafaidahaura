@@ -14,6 +14,7 @@ import {
 import { Reveal } from "./Reveal";
 import { SectionTitle } from "./SectionTitle";
 import { FeaturedHighlights } from "./FeaturedHighlights";
+import { PiecesOfStory } from "./PiecesOfStory";
 
 const education = [
   {
@@ -277,6 +278,8 @@ export function Journey() {
         />
 
         <FeaturedHighlights compact />
+
+        <PiecesOfStory />
 
         {/* EDUCATION */}
         <div className="mb-24">
