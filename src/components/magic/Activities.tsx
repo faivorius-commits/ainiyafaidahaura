@@ -38,13 +38,13 @@ const categories = [
     icon: Users,
     activities: [
       {
-        title: "BATIKARA 2026",
+        title: "Committees Team - BATIKARA 2026",
         year: "2026",
         role: "Content Maker",
         image: "/images/batikara2026.jpg",
       },
       {
-        title: "ECOCRAFT 2026",
+        title: "Committees Team - ECOCRAFT 2026",
         year: "2026",
         role: "Publication, Design, and Documentation Team",
         image: "/images/ecocraft2026.jpg",
