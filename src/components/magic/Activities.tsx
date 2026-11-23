@@ -35,7 +35,7 @@ const categories = [
     title: "Organizational Memberships & Committees",
     description:
       "Social contributions, volunteering, and community involvement.",
-    icon: Membership,
+    icon: Users,
     activities: [
       {
         title: "BATIKARA 2026",
