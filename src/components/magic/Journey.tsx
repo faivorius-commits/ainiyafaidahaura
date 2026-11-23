@@ -229,18 +229,6 @@ export function Journey() {
 
   const touchStartX = useRef<number | null>(null);
 
-  const experience = experiences[experienceIndex]!;
-
-  const previousExperience = () =>
-    setExperienceIndex((c) =>
-      c === 0 ? experiences.length - 1 : c - 1
-    );
-
-  const nextExperience = () =>
-    setExperienceIndex((c) =>
-      c === experiences.length - 1 ? 0 : c + 1
-    );
-
   const previousBook = () =>
     setBookIndex((c) =>
       c === 0 ? favoriteBooks.length - 1 : c - 1
