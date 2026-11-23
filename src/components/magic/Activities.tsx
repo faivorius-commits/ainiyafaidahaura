@@ -50,7 +50,7 @@ const categories = [
         image: "/images/ecocraft2026.jpg",
       },
      {
-        title: "REOZAST16",
+        title: "REOZAST16 - SMPN 16 BEKASI Student Council",
         year: "2023-2024",
         role: "Head of the Religious Affairs Division",
         image: "/images/HeadoftheReligiousAffairsDivision.jpg",
