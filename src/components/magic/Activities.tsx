@@ -48,6 +48,7 @@ const categories = [
         year: "2026",
         role: "Publication, Design, and Documentation Team",
         image: "/images/ecocraft2026.jpg",
+      },
      {
         title: "Srikandi Cahaya Nusantara",
         year: "June 2026 - Present",
