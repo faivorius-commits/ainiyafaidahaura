@@ -49,6 +49,12 @@ const categories = [
         role: "Publication, Design, and Documentation Team",
         image: "/images/ecocraft2026.jpg",
       },
+      {
+        title: "Generasi OSIS Se-Kota Bekasi (GENOSI)",
+        year: "2023-2024",
+        role: "Academic Affairs Division – Zone 2",
+        image: "/images/genosi.jpg",
+      },
      {
         title: "REOZAST16 - SMPN 16 BEKASI Student Council",
         year: "2023-2024",
