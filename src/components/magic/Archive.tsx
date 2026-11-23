@@ -42,7 +42,6 @@ type ArchiveNode = {
 const archiveNodes: ArchiveNode[] = [
   {
     title: "Writing",
-    description: "Publication · Poetry · Stories · Articles",
     icon: PenLine,
     position: "right-[4%] top-[5%] sm:right-[13%] sm:top-[4%]",
     delay: 110,
@@ -71,7 +70,6 @@ const archiveNodes: ArchiveNode[] = [
 
   {
     title: "Gallery",
-    description: "Moments · Memories · Milestones",
     icon: GalleryIcon,
     position: "left-[4%] bottom-[5%] sm:left-[13%] sm:bottom-[4%]",
     delay: 220,
@@ -96,7 +94,6 @@ const archiveNodes: ArchiveNode[] = [
 
   {
     title: "Library",
-    description: "Books · Notes · Quotes",
     icon: LibraryIcon,
     position: "right-[4%] bottom-[5%] sm:right-[13%] sm:bottom-[4%]",
     delay: 330,
@@ -118,7 +115,6 @@ const archiveNodes: ArchiveNode[] = [
   },
  {
   title: "Activities",
-  description: "Engage · Contribute · Connect",
   icon: Users,
   position: "left-[4%] top-[5%] sm:left-[13%] sm:top-[4%]",
   delay: 440,
@@ -777,7 +773,7 @@ export function Archive() {
               text-muted-foreground/40
             "
           >
-            My Universe of Ideas
+            {/* teks tengah di bawah Faivorius tinggal tambah gaperlu , "*/}
           </div>
 
           {/* =================================================
