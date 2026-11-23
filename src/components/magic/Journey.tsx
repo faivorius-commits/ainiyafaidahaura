@@ -279,7 +279,7 @@ export function Journey() {
 
         <FeaturedHighlights compact />
 
-        <PiecesOfStory />
+
 
         {/* EDUCATION */}
         <div className="mb-24">
@@ -427,6 +427,9 @@ export function Journey() {
           </p>
         </div>
 
+        {/* PIECES OF STORY */}
+       <PiecesOfStory />
+        
         {/* BOOKS I LOVE */}
         <div className="mb-24">
           <div className="mb-8 flex items-center justify-between gap-3">
