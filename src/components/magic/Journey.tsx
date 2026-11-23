@@ -525,9 +525,6 @@ export function Journey() {
         </div>
         
 
-        {/* PIECES OF STORY */}
-       <PiecesOfStory />
-        
         {/* BOOKS I LOVE */}
         <div className="mb-24">
           <div className="mb-8 flex items-center justify-between gap-3">
@@ -780,6 +777,9 @@ export function Journey() {
                             className="size-full object-contain"
                           />
                         </div>
+
+                        {/* PIECES OF STORY */}  <PiecesOfStory />
+        
 
                         <span className="text-xl">{item.emoji}</span>
                       </div>
