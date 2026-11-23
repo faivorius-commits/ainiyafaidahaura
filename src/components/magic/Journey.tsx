@@ -224,7 +224,6 @@ const honors = [
 ];
 
 export function Journey() {
-  const [experienceIndex, setExperienceIndex] = useState(0);
   const [bookIndex, setBookIndex] = useState(0);
   const [honorsOpen, setHonorsOpen] = useState(false);
 
