@@ -37,7 +37,7 @@ type StoryPiece = {
 export const piecesOfStory: StoryPiece[] = [
   {
     id: "piece-01",
-    imagePath: "",
+    imagePath: "/images/story/piece-01.jpg",
     title: "",
     description: "",
     story: "",
@@ -57,7 +57,7 @@ export const piecesOfStory: StoryPiece[] = [
   },
   {
     id: "piece-02",
-    imagePath: "",
+    imagePath: "/images/story/piece-02.jpg",
     title: "",
     description: "",
     story: "",
@@ -77,7 +77,7 @@ export const piecesOfStory: StoryPiece[] = [
   },
   {
     id: "piece-03",
-    imagePath: "",
+    imagePath: "/images/story/piece-03.jpg",
     title: "",
     description: "",
     story: "",
@@ -97,7 +97,7 @@ export const piecesOfStory: StoryPiece[] = [
   },
   {
     id: "piece-04",
-    imagePath: "",
+    imagePath: "/images/story/piece-04.jpg",
     title: "",
     description: "",
     story: "",
