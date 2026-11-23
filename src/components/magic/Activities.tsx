@@ -55,7 +55,6 @@ const categories = [
         role: "Social Media Management",
         image: "/images/scn.jpg",
       },
-      },
       {
         title: "Generasi OSIS Se-Kota Bekasi (GENOSI)",
         year: "2023-2024",
