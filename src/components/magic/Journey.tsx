@@ -777,8 +777,6 @@ export function Journey() {
                             className="size-full object-contain"
                           />
                         </div>
-
-                        {/* PIECES OF STORY */}  <PiecesOfStory />
         
 
                         <span className="text-xl">{item.emoji}</span>
@@ -865,6 +863,7 @@ export function Journey() {
             </div>
           )}
         </div>
+        {/* PIECES OF STORY */}  <PiecesOfStory />
 
       </div>
     </section>
