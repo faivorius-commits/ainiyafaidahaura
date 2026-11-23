@@ -318,114 +318,225 @@ export function Journey() {
             </ul>
           </div>
         </div>
-
-        {/* EXPERIENCE */}
+        
+        {/* EXPERIENCE — LUXURY EDITORIAL MAGAZINE */}
         <div className="mb-24">
-          <h2 className="font-display mb-8 text-2xl text-primary">
-            Experience
-          </h2>
+          <div className="mb-8 flex items-end justify-between gap-3">
+            <div>
+              <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-gold">
+                Professional Portfolio · 2026
+              </p>
+              <h2 className="font-display text-3xl text-primary sm:text-4xl">
+                Experience
+              </h2>
+            </div>
+            <span className="font-display text-sm italic text-muted-foreground">
+              A record of growth.
+            </span>
+          </div>
 
-          <Reveal key={experienceIndex}>
-            <article className="glass glass-hover p-5">
-              <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
-                <div className="logo-frame size-14 shrink-0 overflow-hidden rounded-lg">
-                  <img
-                    src={experience.logo}
-                    alt={`${experience.org} logo`}
-                    loading="lazy"
-                    className="size-full object-contain"
-                  />
+          {/* FEATURED EXPERIENCE */}
+          <Reveal>
+            <article className="relative mb-5 overflow-hidden rounded-2xl border border-amber-200/20 bg-[#211832] p-5 text-[#F5EBDD] shadow-xl sm:p-8">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-purple-400/20 blur-3xl"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -bottom-24 -left-16 size-56 rounded-full bg-amber-300/10 blur-3xl"
+              />
+
+              <div className="relative">
+                <div className="mb-8 flex items-center justify-between gap-3">
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-[#D9C59B]">
+                    The Professional Journal
+                  </p>
+                  <span className="rounded-full border border-amber-200/30 px-3 py-1 text-[9px] tracking-widest text-[#D9C59B]">
+                    FEATURED · 01
+                  </span>
                 </div>
 
-                <div className="min-w-0">
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-display text-xl leading-snug">
-                      {experience.position}
+                <div className="grid items-center gap-6 sm:grid-cols-[1fr_150px]">
+                  <div className="order-2 sm:order-1">
+                    <p className="mb-2 text-xs uppercase tracking-[0.2em] text-[#D9C59B]">
+                      {experiences[0]!.type}
+                    </p>
+
+                    <h3 className="font-display text-3xl leading-tight sm:text-4xl">
+                      {experiences[0]!.position}
                     </h3>
-                    <Sparkles className="animate-twinkle mt-1 size-4 shrink-0 text-primary" />
+
+                    <p className="mt-2 font-display text-xl italic text-[#D9C59B]">
+                      {experiences[0]!.org}
+                    </p>
+
+                    <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-[#D6C9DF]">
+                      <span>{experiences[0]!.duration}</span>
+                      <span className="flex items-center gap-1">
+                        <MapPin className="size-3" />
+                        {experiences[0]!.location}
+                      </span>
+                    </div>
                   </div>
 
-                  <p className="text-sm text-primary">
-                    {experience.org}
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {experience.duration}
-                  </p>
+                  <div className="order-1 mx-auto flex size-32 items-center justify-center overflow-hidden rounded-2xl border border-amber-100/20 bg-white/95 p-3 shadow-2xl sm:order-2 sm:size-36">
+                    <img
+                      src={experiences[0]!.logo}
+                      alt={`${experiences[0]!.org} logo`}
+                      loading="lazy"
+                      className="size-full object-contain"
+                    />
+                  </div>
+                </div>
 
-                  <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
-                    <MapPin className="size-3 shrink-0" />
-                    {experience.location}
-                  </p>
+                <div className="my-7 h-px bg-gradient-to-r from-amber-200/60 via-purple-200/30 to-transparent" />
 
-                  <span className="mt-3 inline-block rounded-full border border-primary/40 px-3 py-1 text-[11px] tracking-wide text-primary">
-                    {experience.type}
+                <p className="max-w-2xl text-sm leading-7 text-[#E7DDED]">
+                  {experiences[0]!.description}
+                </p>
+
+                {experiences[0]!.documentation?.image && (
+                  <img
+                    src={experiences[0]!.documentation.image}
+                    alt={`${experiences[0]!.org} documentation`}
+                    loading="lazy"
+                    className="mt-5 max-h-48 w-auto max-w-full rounded-lg border border-white/10 object-cover"
+                  />
+                )}
+
+                {experiences[0]!.documentation?.link && (
+                  <a
+                    href={experiences[0]!.documentation.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center gap-2 text-xs tracking-wide text-[#E5C98D] transition-colors hover:text-white hover:underline"
+                  >
+                    {experiences[0]!.documentation.linkLabel || "View Documentation"}
+                    <span aria-hidden>↗</span>
+                  </a>
+                )}
+
+                <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-4">
+                  <span className="text-[9px] uppercase tracking-[0.2em] text-white/50">
+                    Selected Experience
+                  </span>
+                  <span className="font-display text-2xl italic text-[#D9C59B]">
+                    01
                   </span>
                 </div>
               </div>
-
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {experience.description}
-              </p>
-
-              {experience.documentation?.image && (
-              <img
-              src={experience.documentation.image}
-              alt={`${experience.org} documentation`}
-              loading="lazy"
-              className="mt-4 max-h-36 w-auto max-w-full rounded-md object-cover"
-  />
-)}
-
-{experience.documentation?.link && (
-  <a
-    href={experience.documentation.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="mt-3 inline-flex text-sm text-primary transition-colors hover:text-accent hover:underline"
-  >
-    {experience.documentation.linkLabel || "View documentation"}
-  </a>
-)}
             </article>
           </Reveal>
 
-          <div className="mt-5 flex items-center justify-between">
-            <button
-              onClick={previousExperience}
-              aria-label="Previous experience"
-              className="glass glass-hover flex size-10 items-center justify-center rounded-full"
-            >
-              <ChevronLeft className="size-5" />
-            </button>
+          {/* EXPERIENCE INDEX */}
+          <div className="overflow-hidden rounded-2xl border border-[#D4C9D7] bg-[#F1EDE7] text-[#493752] shadow-lg">
+            <div className="flex items-center justify-between border-b border-[#D4C9D7] px-5 py-5 sm:px-7">
+              <div>
+                <p className="text-[9px] uppercase tracking-[0.25em] text-[#88758E]">
+                  The Experience Index
+                </p>
+                <h3 className="mt-1 font-display text-xl italic">
+                  Other Contributions
+                </h3>
+              </div>
+              <span className="font-display text-2xl text-[#A18AAB]">
+                02—06
+              </span>
+            </div>
 
-            <div className="flex items-center gap-2">
-              {experiences.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setExperienceIndex(i)}
-                  aria-label={`Go to experience ${i + 1}`}
-                  className={`h-1.5 rounded-full transition-all ${
-                    i === experienceIndex
-                      ? "w-6 bg-primary"
-                      : "w-1.5 bg-primary/30"
-                  }`}
-                />
+            <div className="divide-y divide-[#D4C9D7]">
+              {experiences.slice(1).map((experience, index) => (
+                <Reveal key={`${experience.org}-${index}`} delay={index * 80}>
+                  <article className="group relative grid grid-cols-[42px_minmax(0,1fr)] gap-3 p-5 transition-colors duration-300 hover:bg-white/60 sm:grid-cols-[58px_minmax(0,1fr)_auto] sm:items-center sm:gap-5 sm:px-7">
+                    {/* EDITORIAL NUMBER */}
+                    <span className="font-display text-3xl italic text-[#B9A6C0] transition-colors group-hover:text-[#80658D] sm:text-4xl">
+                      {String(index + 2).padStart(2, "0")}
+                    </span>
+
+                    {/* EXPERIENCE DETAILS */}
+                    <div className="min-w-0">
+                      <div className="flex items-start gap-3">
+                        <div className="mt-1 flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#D4C9D7] bg-white p-1.5 sm:hidden">
+                          <img
+                            src={experience.logo}
+                            alt={`${experience.org} logo`}
+                            loading="lazy"
+                            className="size-full object-contain"
+                          />
+                        </div>
+
+                        <div className="min-w-0">
+                          <p className="text-[9px] uppercase tracking-[0.18em] text-[#917B99]">
+                            {experience.type}
+                          </p>
+
+                          <h4 className="mt-1 font-display text-lg leading-snug text-[#493752] sm:text-xl">
+                            {experience.position}
+                          </h4>
+
+                          <p className="mt-1 text-xs font-medium text-[#80658D]">
+                            {experience.org}
+                          </p>
+                        </div>
+                      </div>
+
+                      <p className="mt-3 text-xs leading-6 text-[#716579]">
+                        {experience.description}
+                      </p>
+
+                      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] text-[#8C8090]">
+                        <span>{experience.duration}</span>
+                        <span className="flex items-center gap-1">
+                          <MapPin className="size-3" />
+                          {experience.location}
+                        </span>
+                      </div>
+
+                      {experience.documentation?.image && (
+                        <img
+                          src={experience.documentation.image}
+                          alt={`${experience.org} documentation`}
+                          loading="lazy"
+                          className="mt-4 max-h-36 w-auto max-w-full rounded-lg object-cover"
+                        />
+                      )}
+
+                      {experience.documentation?.link && (
+                        <a
+                          href={experience.documentation.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-3 inline-flex text-[11px] text-[#80658D] hover:underline"
+                        >
+                          {experience.documentation.linkLabel || "View Documentation"} ↗
+                        </a>
+                      )}
+                    </div>
+
+                    {/* DESKTOP LOGO */}
+                    <div className="hidden size-16 items-center justify-center overflow-hidden rounded-xl border border-[#D4C9D7] bg-white p-2 sm:flex">
+                      <img
+                        src={experience.logo}
+                        alt={`${experience.org} logo`}
+                        loading="lazy"
+                        className="size-full object-contain transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                  </article>
+                </Reveal>
               ))}
             </div>
 
-            <button
-              onClick={nextExperience}
-              aria-label="Next experience"
-              className="glass glass-hover flex size-10 items-center justify-center rounded-full"
-            >
-              <ChevronRight className="size-5" />
-            </button>
+            <div className="flex items-center justify-between border-t border-[#D4C9D7] px-5 py-4 sm:px-7">
+              <span className="text-[9px] uppercase tracking-[0.2em] text-[#917B99]">
+                End of Experience Index
+              </span>
+              <Sparkles className="size-4 text-[#A18AAB]" />
+            </div>
           </div>
-
-          <p className="mt-3 text-center text-xs text-muted-foreground">
-            {experienceIndex + 1} / {experiences.length}
-          </p>
         </div>
+        
 
         {/* PIECES OF STORY */}
        <PiecesOfStory />
