@@ -48,6 +48,12 @@ const categories = [
         year: "2026",
         role: "Publication, Design, and Documentation Team",
         image: "/images/ecocraft2026.jpg",
+     {
+        title: "Srikandi Cahaya Nusantara",
+        year: "June 2026 - Present",
+        role: "Social Media Management",
+        image: "/images/scn.jpg",
+      },
       },
       {
         title: "Generasi OSIS Se-Kota Bekasi (GENOSI)",
