@@ -49,6 +49,12 @@ const categories = [
         role: "Publication, Design, and Documentation Team",
         image: "/images/ecocraft2026.jpg",
       },
+     {
+        title: "REOZAST16",
+        year: "2023-2024",
+        role: "Head of the Religious Affairs Division",
+        image: "/images/HeadoftheReligiousAffairsDivision.jpg",
+      },
       ],
       },
   {
