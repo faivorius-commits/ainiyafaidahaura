@@ -49,6 +49,7 @@ const categories = [
         role: "Publication, Design, and Documentation Team",
         image: "/images/advocare-donator-acsd2026.jpg",
       },
+      ],
       },
   {
     title: "Volunteering",
