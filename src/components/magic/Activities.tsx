@@ -53,7 +53,7 @@ const categories = [
         title: "Srikandi Cahaya Nusantara",
         year: "June 2026 - Present",
         role: "Social Media Management",
-        image: "/images/scn.jpg",
+        image: "/images/scntiktok.jpg",
       },
       {
         title: "Generasi OSIS Se-Kota Bekasi (GENOSI)",
