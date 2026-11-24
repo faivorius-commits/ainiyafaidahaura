@@ -380,61 +380,7 @@ export function Journey() {
                           <img
                             src={experience.logo}
                             alt={`${experience.org} logo`}
-                            loading="lazy"
-                            className="size-full object-contain"
-                          />
-                        </div>
 
-                        <div className="min-w-0">
-                          <p className="text-[9px] uppercase tracking-[0.18em] text-[#917B99]">
-                            {experience.type}
-                          </p>
-
-                          <h4 className="mt-1 font-display text-lg leading-snug text-[#493752] sm:text-xl">
-                            {experience.position}
-                          </h4>
-
-                          <p className="mt-1 text-xs font-medium text-[#80658D]">
-                            {experience.org}
-                          </p>
-                        </div>
-                      </div>
-
-                      <p className="mt-3 text-xs leading-6 text-[#716579]">
-                        {experience.description}
-                      </p>
-
-                      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] text-[#8C8090]">
-                        <span>{experience.duration}</span>
-                        <span className="flex items-center gap-1">
-                          <MapPin className="size-3" />
-                          {experience.location}
-                        </span>
-                      </div>
-
-                      {experience.documentation?.image && (
-                        <img
-                          src={experience.documentation.image}
-                          alt={`${experience.org} documentation`}
-                          loading="lazy"
-                          className="mt-4 max-h-36 w-auto max-w-full rounded-lg object-cover"
-                        />
-                      )}
-
-                      {experience.documentation?.link && (
-                        <a
-                          href={experience.documentation.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-3 inline-flex text-[11px] text-[#80658D] hover:underline"
-                        >
-                          {experience.documentation.linkLabel || "View Documentation"} ↗
-                        </a>
-                      )}
-                    </div>
-
-                    {/* DESKTOP LOGO */}
-                    <div className="hidden size-16 items-center justify-center overflow-hidden rounded-xl border border-[#D4C9D7] bg-white p-2 sm:flex">
             
 {/* EXPERIENCE — SELECTABLE EDITORIAL MAGAZINE */}
 
