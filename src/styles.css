@@ -2655,3 +2655,499 @@
 }
 
 
+/* =====================================
+   EXPERIENCE — SELECTABLE MAGAZINE
+===================================== */
+
+.experience-magazine {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.experience-magazine-card {
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--primary) 20%, var(--border));
+  border-radius: 1rem;
+  background: color-mix(in oklab, var(--card) 85%, transparent);
+  transition: background 350ms ease, border-color 350ms ease;
+}
+
+.experience-magazine-card.is-selected {
+  border-color: rgba(217, 197, 155, 0.55);
+  background: #211832;
+  color: #f5ebdd;
+  box-shadow: 0 16px 40px rgba(25, 12, 40, 0.2);
+}
+
+.experience-magazine-trigger {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  text-align: left;
+}
+
+.experience-magazine-number {
+  flex-shrink: 0;
+  color: var(--primary);
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.is-selected .experience-magazine-number {
+  color: #d9c59b;
+}
+
+.experience-magazine-logo {
+  display: flex;
+  width: 3.5rem;
+  height: 3.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  overflow: hidden;
+  border: 1px solid rgba(120, 90, 130, 0.2);
+  border-radius: 0.75rem;
+  background: white;
+}
+
+.experience-magazine-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.experience-magazine-heading {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.experience-magazine-type,
+.experience-magazine-label {
+  color: var(--primary);
+  font-size: 0.58rem;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.is-selected .experience-magazine-type {
+  color: #d9c59b;
+}
+
+.experience-magazine-position {
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.experience-magazine-org {
+  overflow: hidden;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  text-overflow: ellipsis;
+}
+
+.is-selected .experience-magazine-org {
+  color: #d9c59b;
+}
+
+.experience-magazine-indicator {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+
+.experience-magazine-content {
+  padding: 0 1.5rem 1.5rem;
+  animation: pieces-story-enter 300ms ease both;
+}
+
+.experience-magazine-divider {
+  height: 1px;
+  margin-bottom: 1.4rem;
+  background: linear-gradient(90deg, #d9c59b, transparent);
+}
+
+.experience-magazine-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.experience-magazine-meta span,
+.experience-magazine-footer {
+  color: #d9c59b;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+}
+
+.experience-magazine-meta p {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+}
+
+.experience-magazine-label {
+  color: #d9c59b;
+}
+
+.experience-magazine-description {
+  max-width: 42rem;
+  margin-top: 0.65rem;
+  color: #e7dded;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.experience-magazine-documentation {
+  display: block;
+  max-width: 100%;
+  max-height: 13rem;
+  margin-top: 1rem;
+  border-radius: 0.7rem;
+  object-fit: cover;
+}
+
+.experience-magazine-link {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: #e5c98d;
+  font-size: 0.75rem;
+}
+
+.experience-magazine-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+/* =====================================
+   PIECES OF STORY — PHOTO MAGAZINE
+===================================== */
+
+.pieces-story-section {
+  margin: 3rem 0 6rem;
+}
+
+.pieces-story-heading {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.pieces-story-eyebrow {
+  color: var(--muted-foreground);
+  font-size: 0.55rem;
+  letter-spacing: 0.28em;
+}
+
+.pieces-story-title {
+  margin-top: 0.6rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+.pieces-story-title span {
+  color: var(--primary);
+}
+
+.pieces-story-subtitle {
+  margin-top: 0.6rem;
+  color: var(--muted-foreground);
+  font-size: 0.7rem;
+}
+
+/* DESKTOP COLLAGE */
+
+.pieces-story-magazine {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 125px;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.pieces-story-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--primary) 35%, var(--border));
+  border-radius: 0.7rem;
+  background: var(--card);
+  box-shadow: var(--glow-soft);
+  transition:
+    grid-column 400ms ease,
+    grid-row 400ms ease,
+    transform 350ms ease,
+    border-color 350ms ease;
+}
+
+.pieces-story-card:nth-child(4n + 1) {
+  grid-row: span 2;
+}
+
+.pieces-story-card:nth-child(5n + 2) {
+  grid-column: span 2;
+}
+
+.pieces-story-card.is-selected {
+  z-index: 3;
+  grid-column: span 2;
+  grid-row: span 3;
+  border-color: var(--primary);
+}
+
+.pieces-story-select {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  text-align: left;
+}
+
+.pieces-story-image {
+  position: relative;
+  display: block;
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--primary) 12%, var(--background));
+}
+
+.pieces-story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 650ms ease;
+}
+
+.pieces-story-card:hover .pieces-story-image img {
+  transform: scale(1.06);
+}
+
+.pieces-story-placeholder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 100px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+}
+
+.pieces-story-card-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  background: color-mix(in oklab, var(--card) 94%, transparent);
+  color: var(--foreground);
+  font-family: Georgia, serif;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.pieces-story-card-caption span:first-child {
+  color: var(--primary);
+  font-size: 0.6rem;
+}
+
+.pieces-story-card-caption span:nth-child(2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pieces-story-expanded {
+  padding: 1rem;
+  border-top: 1px solid color-mix(in oklab, var(--primary) 25%, transparent);
+  animation: pieces-story-enter 300ms ease both;
+}
+
+.pieces-story-expanded-top {
+  display: flex;
+  justify-content: space-between;
+  color: var(--primary);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+}
+
+.pieces-story-expanded-top button {
+  display: flex;
+  width: 1.8rem;
+  height: 1.8rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+
+.pieces-story-date {
+  margin-top: 0.8rem;
+  color: var(--muted-foreground);
+  font-size: 0.65rem;
+}
+
+.pieces-story-expanded h3 {
+  margin-top: 0.4rem;
+  font-family: Georgia, serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.pieces-story-category {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--primary);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pieces-story-expanded-description {
+  margin-top: 0.8rem;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+
+.pieces-story-copy {
+  margin-top: 1rem;
+}
+
+.pieces-story-copy span {
+  color: var(--primary);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+}
+
+.pieces-story-copy p {
+  margin-top: 0.4rem;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.pieces-story-reflection {
+  padding-left: 0.8rem;
+  border-left: 1px solid var(--primary);
+}
+
+.pieces-story-instruction {
+  margin-top: 1.2rem;
+  color: var(--muted-foreground);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+/* MOBILE */
+
+@media (max-width: 640px) {
+  .experience-magazine-trigger {
+    gap: 0.65rem;
+    padding: 0.85rem 0.7rem;
+  }
+
+  .experience-magazine-number {
+    font-size: 1.5rem;
+  }
+
+  .experience-magazine-logo {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .experience-magazine-position {
+    font-size: 0.98rem;
+  }
+
+  .experience-magazine-org {
+    font-size: 0.65rem;
+  }
+
+  .experience-magazine-content {
+    padding: 0 1rem 1.2rem;
+  }
+
+  .pieces-story-section {
+    margin: 2rem 0 4rem;
+  }
+
+  .pieces-story-heading {
+    margin-bottom: 1.3rem;
+  }
+
+  .pieces-story-title {
+    font-size: 2rem;
+  }
+
+  .pieces-story-magazine {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 115px;
+    gap: 0.55rem;
+  }
+
+  .pieces-story-card:nth-child(4n + 1) {
+    grid-row: span 2;
+  }
+
+  .pieces-story-card:nth-child(5n + 2) {
+    grid-column: span 1;
+  }
+
+  .pieces-story-card.is-selected {
+    grid-column: span 2;
+    grid-row: span 3;
+  }
+
+  .pieces-story-card-caption {
+    padding: 0.45rem;
+    font-size: 0.67rem;
+  }
+
+  .pieces-story-expanded {
+    padding: 0.85rem;
+  }
+
+  .pieces-story-expanded h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pieces-story-card,
+  .pieces-story-image img,
+  .experience-magazine-card {
+    transition: none;
+  }
+}
+
+
