@@ -226,6 +226,8 @@ const honors = [
 export function Journey() {
   const [bookIndex, setBookIndex] = useState(0);
   const [honorsOpen, setHonorsOpen] = useState(false);
+  const [selectedExperience, setSelectedExperience] =
+  useState<number | null>(null);
 
   const touchStartX = useRef<number | null>(null);
 
@@ -306,77 +308,7 @@ export function Journey() {
           </div>
         </div>
         
-        {/* EXPERIENCE — LUXURY EDITORIAL MAGAZINE */}
-        <div className="mb-24">
-          <div className="mb-8 flex items-end justify-between gap-3">
-            <div>
-              <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-gold">
-                Professional Portfolio · 2026
-              </p>
-              <h2 className="font-display text-3xl text-primary sm:text-4xl">
-                Experience
-              </h2>
-            </div>
-            <span className="font-display text-sm italic text-muted-foreground">
-              A record of growth.
-            </span>
-          </div>
-
-          {/* FEATURED EXPERIENCE */}
-          <Reveal>
-            <article className="relative mb-5 overflow-hidden rounded-2xl border border-amber-200/20 bg-[#211832] p-5 text-[#F5EBDD] shadow-xl sm:p-8">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-purple-400/20 blur-3xl"
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -bottom-24 -left-16 size-56 rounded-full bg-amber-300/10 blur-3xl"
-              />
-
-              <div className="relative">
-                <div className="mb-8 flex items-center justify-between gap-3">
-                  <p className="text-[10px] uppercase tracking-[0.25em] text-[#D9C59B]">
-                    The Professional Journal
-                  </p>
-                  <span className="rounded-full border border-amber-200/30 px-3 py-1 text-[9px] tracking-widest text-[#D9C59B]">
-                    FEATURED · 01
-                  </span>
-                </div>
-
-                <div className="grid items-center gap-6 sm:grid-cols-[1fr_150px]">
-                  <div className="order-2 sm:order-1">
-                    <p className="mb-2 text-xs uppercase tracking-[0.2em] text-[#D9C59B]">
-                      {experiences[0]!.type}
-                    </p>
-
-                    <h3 className="font-display text-3xl leading-tight sm:text-4xl">
-                      {experiences[0]!.position}
-                    </h3>
-
-                    <p className="mt-2 font-display text-xl italic text-[#D9C59B]">
-                      {experiences[0]!.org}
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-[#D6C9DF]">
-                      <span>{experiences[0]!.duration}</span>
-                      <span className="flex items-center gap-1">
-                        <MapPin className="size-3" />
-                        {experiences[0]!.location}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="order-1 mx-auto flex size-32 items-center justify-center overflow-hidden rounded-2xl border border-amber-100/20 bg-white/95 p-3 shadow-2xl sm:order-2 sm:size-36">
-                    <img
-                      src={experiences[0]!.logo}
-                      alt={`${experiences[0]!.org} logo`}
-                      loading="lazy"
-                      className="size-full object-contain"
-                    />
-                  </div>
-                </div>
-
+        
                 <div className="my-7 h-px bg-gradient-to-r from-amber-200/60 via-purple-200/30 to-transparent" />
 
                 <p className="max-w-2xl text-sm leading-7 text-[#E7DDED]">
@@ -503,27 +435,144 @@ export function Journey() {
 
                     {/* DESKTOP LOGO */}
                     <div className="hidden size-16 items-center justify-center overflow-hidden rounded-xl border border-[#D4C9D7] bg-white p-2 sm:flex">
-                      <img
-                        src={experience.logo}
-                        alt={`${experience.org} logo`}
-                        loading="lazy"
-                        className="size-full object-contain transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
+            
+{/* EXPERIENCE — SELECTABLE EDITORIAL MAGAZINE */}
 
-            <div className="flex items-center justify-between border-t border-[#D4C9D7] px-5 py-4 sm:px-7">
-              <span className="text-[9px] uppercase tracking-[0.2em] text-[#917B99]">
-                End of Experience Index
+<div className="mb-24">
+  <div className="mb-8">
+    <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-gold">
+      Professional Journal · 2026
+    </p>
+
+    <div className="flex items-end justify-between gap-3">
+      <div>
+        <h2 className="font-display text-3xl text-primary sm:text-4xl">
+          Experience
+        </h2>
+        <p className="mt-2 max-w-md text-sm text-muted-foreground">
+          Roles, collaborations, and meaningful contributions.
+        </p>
+      </div>
+
+      <span className="font-display text-xl italic text-gold">
+        01—06
+      </span>
+    </div>
+  </div>
+
+  <div className="experience-magazine">
+    {experiences.map((item, index) => {
+      const active = selectedExperience === index;
+
+      return (
+        <Reveal key={item.org} delay={index * 60}>
+          <article
+            className={`experience-magazine-card ${
+              active ? "is-selected" : ""
+            }`}
+          >
+            <button
+              type="button"
+              className="experience-magazine-trigger"
+              aria-expanded={active}
+              onClick={() =>
+                setSelectedExperience(active ? null : index)
+              }
+            >
+              <span className="experience-magazine-number">
+                {String(index + 1).padStart(2, "0")}
               </span>
-              <Sparkles className="size-4 text-[#A18AAB]" />
-            </div>
-          </div>
-        </div>
-        
+
+              <span className="experience-magazine-logo">
+                <img
+                  src={item.logo}
+                  alt={`${item.org} logo`}
+                  loading="lazy"
+                />
+              </span>
+
+              <span className="experience-magazine-heading">
+                <span className="experience-magazine-type">
+                  {item.type}
+                </span>
+
+                <span className="experience-magazine-position">
+                  {item.position}
+                </span>
+
+                <span className="experience-magazine-org">
+                  {item.org}
+                </span>
+              </span>
+
+              <span className="experience-magazine-indicator">
+                {active ? "−" : "+"}
+              </span>
+            </button>
+
+            {active && (
+              <div className="experience-magazine-content">
+                <div className="experience-magazine-divider" />
+
+                <div className="experience-magazine-meta">
+                  <div>
+                    <span>PERIOD</span>
+                    <p>{item.duration}</p>
+                  </div>
+
+                  <div>
+                    <span>LOCATION</span>
+                    <p>{item.location}</p>
+                  </div>
+                </div>
+
+                <span className="experience-magazine-label">
+                  ABOUT THIS EXPERIENCE
+                </span>
+
+                <p className="experience-magazine-description">
+                  {item.description}
+                </p>
+
+                {item.documentation?.image && (
+                  <img
+                    src={item.documentation.image}
+                    alt={`${item.org} documentation`}
+                    loading="lazy"
+                    className="experience-magazine-documentation"
+                  />
+                )}
+
+                {item.documentation?.link && (
+                  <a
+                    href={item.documentation.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="experience-magazine-link"
+                  >
+                    {item.documentation.linkLabel || "View Documentation"} ↗
+                  </a>
+                )}
+
+                <div className="experience-magazine-footer">
+                  <span>THE PROFESSIONAL JOURNAL</span>
+                  <span>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              </div>
+            )}
+          </article>
+        </Reveal>
+      );
+    })}
+  </div>
+
+  <p className="mt-5 text-center text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+    Select a chapter to discover more
+  </p>
+</div>
+                      
 
         {/* BOOKS I LOVE */}
         <div className="mb-24">
