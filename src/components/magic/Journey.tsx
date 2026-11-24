@@ -227,7 +227,7 @@ export function Journey() {
   const [bookIndex, setBookIndex] = useState(0);
   const [honorsOpen, setHonorsOpen] = useState(false);
   const [selectedExperience, setSelectedExperience] =
-  useState<number | null>(null);
+  useState<number | null>(0);
 
   const touchStartX = useRef<number | null>(null);
 
