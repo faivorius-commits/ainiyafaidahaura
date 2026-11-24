@@ -3151,3 +3151,148 @@
 }
 
 
+/* =========================================
+   EXPERIENCE MAGAZINE — COLORFUL EDITION
+========================================= */
+
+.experience-magazine {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.experience-magazine-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 1.1rem;
+  box-shadow: 0 8px 22px rgba(30, 18, 42, 0.09);
+  transition: all 350ms ease;
+}
+
+/* INDIVIDUAL COLOR PALETTES */
+
+.experience-magazine > *:nth-child(1) .experience-magazine-card:not(.is-selected) {
+  background: linear-gradient(125deg, #eee2f5, #ddcce9, #f5eaf2);
+  border-color: #c6a9d8;
+}
+
+.experience-magazine > *:nth-child(2) .experience-magazine-card:not(.is-selected) {
+  background: linear-gradient(125deg, #dcece5, #c8dfd4, #edf2e7);
+  border-color: #a8c9b9;
+}
+
+.experience-magazine > *:nth-child(3) .experience-magazine-card:not(.is-selected) {
+  background: linear-gradient(125deg, #f5e4dc, #ebd0c4, #f8eee6);
+  border-color: #dcb8a7;
+}
+
+.experience-magazine > *:nth-child(4) .experience-magazine-card:not(.is-selected) {
+  background: linear-gradient(125deg, #e3e7f5, #d1d8ed, #eeebf5);
+  border-color: #b5bfdf;
+}
+
+.experience-magazine > *:nth-child(5) .experience-magazine-card:not(.is-selected) {
+  background: linear-gradient(125deg, #f3ead5, #e8d9b9, #faf1df);
+  border-color: #d8c49a;
+}
+
+.experience-magazine > *:nth-child(6) .experience-magazine-card:not(.is-selected) {
+  background: linear-gradient(125deg, #e2e9e8, #cddbd9, #eff0e8);
+  border-color: #b3c8c5;
+}
+
+/* UNSELECTED TEXT */
+
+.experience-magazine-card:not(.is-selected) .experience-magazine-number {
+  color: #76558b;
+}
+
+.experience-magazine-card:not(.is-selected) .experience-magazine-type {
+  color: #795c83;
+}
+
+.experience-magazine-card:not(.is-selected) .experience-magazine-position {
+  color: #30243a;
+}
+
+.experience-magazine-card:not(.is-selected) .experience-magazine-org {
+  color: #66566d;
+}
+
+.experience-magazine-card:not(.is-selected) .experience-magazine-indicator {
+  color: #594565;
+  border-color: rgba(89, 69, 101, 0.4);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* LOGO FRAME */
+
+.experience-magazine-card:not(.is-selected) .experience-magazine-logo {
+  border: 1px solid rgba(91, 67, 105, 0.2);
+  box-shadow: 0 4px 12px rgba(45, 27, 57, 0.1);
+}
+
+/* HOVER */
+
+.experience-magazine-card:not(.is-selected):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(30, 18, 42, 0.14);
+}
+
+/* SELECTED MAGAZINE PAGE */
+
+.experience-magazine-card.is-selected {
+  background:
+    radial-gradient(
+      circle at 95% 5%,
+      rgba(177, 139, 202, 0.24),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #30213f, #211832 65%, #392747);
+  border: 1px solid rgba(217, 197, 155, 0.75);
+  box-shadow: 0 18px 42px rgba(25, 12, 40, 0.25);
+}
+
+.experience-magazine-card.is-selected .experience-magazine-trigger {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.experience-magazine-card.is-selected .experience-magazine-position {
+  color: #fff7ed;
+}
+
+.experience-magazine-card.is-selected .experience-magazine-number {
+  color: #e1c995;
+}
+
+/* EXPANDED CONTENT */
+
+.experience-magazine-content {
+  animation: pieces-story-enter 350ms ease both;
+}
+
+.experience-magazine-divider {
+  background: linear-gradient(
+    90deg,
+    #e1c995,
+    rgba(225, 201, 149, 0.35),
+    transparent
+  );
+}
+
+/* ACCESSIBILITY */
+
+.experience-magazine-trigger:focus-visible {
+  outline: 2px solid #b99bc9;
+  outline-offset: -4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-magazine-card {
+    transition: none;
+  }
+}
+
+
