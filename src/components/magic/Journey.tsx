@@ -309,77 +309,6 @@ export function Journey() {
         </div>
         
         
-                <div className="my-7 h-px bg-gradient-to-r from-amber-200/60 via-purple-200/30 to-transparent" />
-
-                <p className="max-w-2xl text-sm leading-7 text-[#E7DDED]">
-                  {experiences[0]!.description}
-                </p>
-
-                {experiences[0]!.documentation?.image && (
-                  <img
-                    src={experiences[0]!.documentation.image}
-                    alt={`${experiences[0]!.org} documentation`}
-                    loading="lazy"
-                    className="mt-5 max-h-48 w-auto max-w-full rounded-lg border border-white/10 object-cover"
-                  />
-                )}
-
-                {experiences[0]!.documentation?.link && (
-                  <a
-                    href={experiences[0]!.documentation.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-2 text-xs tracking-wide text-[#E5C98D] transition-colors hover:text-white hover:underline"
-                  >
-                    {experiences[0]!.documentation.linkLabel || "View Documentation"}
-                    <span aria-hidden>↗</span>
-                  </a>
-                )}
-
-                <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-4">
-                  <span className="text-[9px] uppercase tracking-[0.2em] text-white/50">
-                    Selected Experience
-                  </span>
-                  <span className="font-display text-2xl italic text-[#D9C59B]">
-                    01
-                  </span>
-                </div>
-              </div>
-            </article>
-          </Reveal>
-
-          {/* EXPERIENCE INDEX */}
-          <div className="overflow-hidden rounded-2xl border border-[#D4C9D7] bg-[#F1EDE7] text-[#493752] shadow-lg">
-            <div className="flex items-center justify-between border-b border-[#D4C9D7] px-5 py-5 sm:px-7">
-              <div>
-                <p className="text-[9px] uppercase tracking-[0.25em] text-[#88758E]">
-                  The Experience Index
-                </p>
-                <h3 className="mt-1 font-display text-xl italic">
-                  Other Contributions
-                </h3>
-              </div>
-              <span className="font-display text-2xl text-[#A18AAB]">
-                02—06
-              </span>
-            </div>
-
-            <div className="divide-y divide-[#D4C9D7]">
-              {experiences.slice(1).map((experience, index) => (
-                <Reveal key={`${experience.org}-${index}`} delay={index * 80}>
-                  <article className="group relative grid grid-cols-[42px_minmax(0,1fr)] gap-3 p-5 transition-colors duration-300 hover:bg-white/60 sm:grid-cols-[58px_minmax(0,1fr)_auto] sm:items-center sm:gap-5 sm:px-7">
-                    {/* EDITORIAL NUMBER */}
-                    <span className="font-display text-3xl italic text-[#B9A6C0] transition-colors group-hover:text-[#80658D] sm:text-4xl">
-                      {String(index + 2).padStart(2, "0")}
-                    </span>
-
-                    {/* EXPERIENCE DETAILS */}
-                    <div className="min-w-0">
-                      <div className="flex items-start gap-3">
-                        <div className="mt-1 flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#D4C9D7] bg-white p-1.5 sm:hidden">
-                          <img
-                            src={experience.logo}
-                            alt={`${experience.org} logo`}
 
             
 {/* EXPERIENCE — SELECTABLE EDITORIAL MAGAZINE */}
@@ -387,7 +316,7 @@ export function Journey() {
 <div className="mb-24">
   <div className="mb-8">
     <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-gold">
-      Professional Journal · 2026
+      Professional Portfolio · 2026
     </p>
 
     <div className="flex items-end justify-between gap-3">
