@@ -35,7 +35,6 @@ export function Introduction() {
           <span className="intro-star">✦</span>
           <span>GET TO KNOW ME</span>
           <span className="intro-topline-line" />
-          <span className="intro-year">2026</span>
         </div>
 
         <div className="intro-main">
