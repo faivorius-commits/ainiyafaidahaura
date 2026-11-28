@@ -3,12 +3,12 @@ import "./Introduction.css";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 
 const skills = [
-  "Web Development",
+  "HTML",
   "Cybersecurity",
-  "Digital Forensics",
+  "JavaScript",
   "Research & Writing",
   "Public Speaking",
-  "International Relations",
+  "Design Graphic",
   "Leadership",
   "Content Creation",
   "Project Coordination",
