@@ -171,7 +171,7 @@ export function Hero() {
                     </p>
 
                     <p className="mt-2 font-display text-lg font-medium">
-                      AINIYA FAIDA HAURA
+                      AINIYA FAIDA
                     </p>
 
                     <p className="mt-3 text-[8px] tracking-[0.16em] text-muted-foreground">
@@ -223,7 +223,7 @@ export function Hero() {
             <span className="sparkle sparkle-8" />
 
             <p className="relative font-display text-4xl font-medium sm:text-5xl animate-name-starfield animate-star-glow">
-              Ainiya Faida Haura
+              Ainiya Faida 
             </p>
 
           </div>
