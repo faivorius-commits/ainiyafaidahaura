@@ -229,7 +229,7 @@ export function Hero() {
           </div>
 
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Explore my digital journey book!
+            I'm an aspiring IT student with a growing interest in cybersecurity, digital forensics, and the broader world of technology. Beyond technical exploration, I enjoy writing, researching international issues, and contributing to youth-led initiatives.
           </p>
         </Reveal>
 
