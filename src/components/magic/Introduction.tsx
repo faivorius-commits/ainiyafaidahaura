@@ -71,7 +71,16 @@ export function Introduction() {
             </a>
           </div>
 
-          <div className="intro-decoration" aria-hidden="true">
+          <div className="intro-photo-wrap">
+        <div className="intro-photo-glow" />
+        <div className="intro-photo-frame">
+        <img
+        src="/images/ainiya.jpg"
+        alt="Ainiya Faida"
+        />
+        </div>
+        <span className="intro-photo-star">✦</span>
+        </div>
             <div className="intro-ring intro-ring-outer" />
             <div className="intro-ring intro-ring-inner" />
 
