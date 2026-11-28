@@ -50,9 +50,6 @@ export function Introduction() {
             <span className="intro-name"> Ainiya.</span>
           </h2>
 
-          <p className="intro-role">
-            Writer <span>✦</span> Creator <span>✦</span> Youth Advocate
-          </p>
 
           <p className="intro-description">
             I'm a curious learner with an interest in technology,
