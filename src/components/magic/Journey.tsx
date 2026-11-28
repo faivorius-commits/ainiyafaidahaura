@@ -1,4 +1,4 @@
-
+import { Introduction } from "./Introduction";
 import { useRef, useState } from "react";
 import type { TouchEvent } from "react";
 import {
@@ -261,11 +261,8 @@ export function Journey() {
     <section id="journey" className="relative px-5 py-24">
       <div className="mx-auto max-w-3xl">
 
-        <SectionTitle
-          title="My Journey"
-          subtitle="My interest in the digital world began at an early age. Growing up, I was already familiar with computers and spent much of my time exploring games. What started as a childhood pastime gradually became part of my everyday life, and even today, gaming remains one of my interests."
-        />
-
+        <SectionTitle title="My Journey" />
+        <Introduction />
         <FeaturedHighlights compact />
 
 
