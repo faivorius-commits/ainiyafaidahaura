@@ -31,16 +31,6 @@ export function Introduction() {
     <section className="intro-ethereal">
       <div className="intro-orb intro-orb-one" />
       <div className="intro-orb intro-orb-two" />
-
-      <div className="intro-topline">
-        <span className="intro-eyebrow">
-          <Sparkles size={13} />
-          GET TO KNOW ME
-        </span>
-
-        <span className="intro-year">2026</span>
-      </div>
-
       <div className="intro-main">
         <div className="intro-copy">
           <p className="intro-greeting">A little introduction</p>
@@ -60,10 +50,6 @@ export function Introduction() {
             into meaningful work.
           </p>
 
-          <a href="#experience" className="intro-link">
-            Explore my journey
-            <ArrowUpRight size={16} />
-          </a>
         </div>
 
         <div className="intro-photo-wrap">
